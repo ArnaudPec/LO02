@@ -1,0 +1,20 @@
+!SESSION 2014-11-19 14:23:19.505 -----------------------------------------------
+eclipse.buildId=4.3.2.M20140221-1700
+java.version=1.6.0_65
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=fr_FR
+Framework arguments:  -product org.eclipse.epp.package.standard.product -product org.eclipse.epp.package.standard.product -keyring /Users/charlelieborella/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.standard.product -data /Users/charlelieborella/Documents/UTT/LO02/Projet/LO02 -product org.eclipse.epp.package.standard.product -keyring /Users/charlelieborella/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2014-11-19 14:23:22.879
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
+!SESSION 2014-11-19 15:15:34.421 -----------------------------------------------
+eclipse.buildId=4.3.2.M20140221-1700
+java.version=1.6.0_65
+java.vendor=Apple Inc.
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=fr_FR
+Framework arguments:  -product org.eclipse.epp.package.standard.product -product org.eclipse.epp.package.standard.product -product org.eclipse.epp.package.standard.product -product org.eclipse.epp.package.standard.product -product org.eclipse.epp.package.standard.product -keyring /Users/charlelieborella/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.standard.product -product org.eclipse.epp.package.standard.product -product org.eclipse.epp.package.standard.product -product org.eclipse.epp.package.standard.product -data /Users/charlelieborella/Documents/UTT/LO02/Projet/LO02 -product org.eclipse.epp.package.standard.product -keyring /Users/charlelieborella/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.core.net 1 0 2014-11-19 15:15:37.869
+!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16 by an external source. This value will be overwritten using the values from the preferences
