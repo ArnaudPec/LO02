@@ -4,8 +4,13 @@ public class Carte {
 
 	private int couleur;
 	private int valeur;
-	private boolean visibilite;
+	private int visibilite;
 	
+	
+	public Carte()
+	{
+		
+	}
 	
 	public Carte(int couleur, int valeur)
 	{
@@ -24,7 +29,7 @@ public class Carte {
 		return this.getCouleur();
 	}
 	
-	public boolean getVisibilite()
+	public int getVisibilite()
 	{
 		return this.visibilite;
 	}
@@ -39,30 +44,11 @@ public class Carte {
 		this.valeur = valeur;
 	}
 	
-	public void setVisibilite(boolean visibilie)
+	public void setVisibilite(int visibilie)
 	{
 		this.visibilite = visibilie;
 	}
 
-	public boolean estSpeciale()
-	{
-		boolean resultat = false;
-		switch (this.valeur) {
-		case 8:
-			resultat = true;
-			break;
-
-		default:
-			break;
-		}
-		return resultat;
-	}
-	
-	public boolean estSuperieur(Carte carte)
-	{
-		
-		
-	}
 	
 	
 }

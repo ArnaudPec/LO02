@@ -47,14 +47,8 @@ public class Carte {
 	public boolean estSpeciale()
 	{
 		boolean resultat = false;
-		switch (this.valeur) {
-		case 8:
-			resultat = true;
-			break;
-
-		default:
-			break;
-		}
+		swtich
+		
 		return resultat;
 	}
 	
