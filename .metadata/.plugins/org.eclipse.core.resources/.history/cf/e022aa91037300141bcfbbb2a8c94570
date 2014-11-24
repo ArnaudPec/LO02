@@ -1,0 +1,78 @@
+package fr.utt.lo02.carte;
+
+public class Carte {
+
+	private int couleur; // [coeur=0, pique=1, trèfle=2, carreau=3]
+	private int valeur; //[2=0, .. 10=8, valet=11, dame=12, roi=13, as=14]
+	private boolean visibilite;
+	
+	
+	public Carte(int couleur, int valeur)
+	{
+		this.couleur = couleur;
+		this.valeur = valeur;
+		this.visibilite = false;
+	}
+	
+	public int getCouleur()
+	{
+		return this.couleur;
+	}
+	
+	public int getValeur()
+	{
+		return this.getCouleur();
+	}
+	
+	public boolean getVisibilite()
+	{
+		return this.visibilite;
+	}
+
+	public void setCouleur(int couleur)
+	{
+		this.couleur = couleur;
+	}
+
+	public void setValeur(int valeur)
+	{
+		this.valeur = valeur;
+	}
+	
+	public void setVisibilite(boolean visibilite)
+	{
+		this.visibilite = visibilite;
+	}
+
+	public boolean estSpeciale()
+	{
+		boolean resultat = false;
+		switch (this.valeur) {
+		case 0:
+			resultat = true;
+		case 0:
+		resultat = true;
+		case 8:
+			resultat = true;
+			break;
+
+		default:
+			break;
+		}
+		return resultat;
+	}
+	
+	public boolean estSuperieurOuEgal(Carte carte)
+	{
+		boolean resultat = false;
+		if(this.valeur >= carte.getValeur())
+		{
+			resultat = true;
+		}
+		return resultat;
+	}
+	
+	
+}
+
+

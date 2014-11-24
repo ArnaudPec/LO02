@@ -1,0 +1,37 @@
+package fr.utt.lo02.carte;
+
+import java.util.LinkedList;
+
+public class Pioche extends Tas {
+
+	private Pioche pioche;
+	
+	private Pioche() 
+	{
+		LinkedList<Carte> pioche = new LinkedList<Carte>();
+		
+		for (int i = 0; i < 4; i++) 
+		{
+			for (int j = 2; j < 15; j++) 
+			{	
+				Carte carte = new Carte(i, j);
+				pioche.add(carte);
+			}
+		}
+		
+		this.listeCartes = pioche;
+	}
+
+	@Override
+	public void deplacerCarte() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void choisirCarteADeplacer() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

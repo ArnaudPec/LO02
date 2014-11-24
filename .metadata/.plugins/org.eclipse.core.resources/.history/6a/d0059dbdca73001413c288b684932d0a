@@ -1,0 +1,22 @@
+package fr.utt.lo02.carte;
+
+public class Pioche {
+
+	private Pioche pioche;
+	
+	private Pioche() 
+	{
+		LinkedList<Carte> pioche = new LinkedList<Carte>();
+		
+		for (int i = 0; i < 4; i++) 
+		{
+			for (int j = 2; j < 15; j++) 
+			{	
+				Carte carte = new Carte(i, j);
+				
+			}
+		}
+
+	}
+
+}

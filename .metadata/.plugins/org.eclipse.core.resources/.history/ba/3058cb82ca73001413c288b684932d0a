@@ -1,0 +1,11 @@
+package fr.utt.lo02.carte;
+
+public class Pioche {
+
+	
+	
+	public Pioche() {
+		// TODO Auto-generated constructor stub
+	}
+
+}
