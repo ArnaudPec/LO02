@@ -1,9 +1,31 @@
 package fr.utt.lo02.carte;
 
-public class Tapis {
+import java.util.LinkedList;
 
-	public Tapis() {
-		// TODO Auto-generated constructor stub
+public class Tapis extends Tas{
+
+	private static Tapis instanceTapis;
+	
+	private Tapis() 
+	{
+		this.listeCartes = new LinkedList<Carte>();
 	}
 
+	
+	public static Tapis getInstanceTapis()
+	{
+		Tapis instance;
+		
+		if(instanceTapis == null)
+		{
+			instance = new Tapis();
+			instanceTapis = instance;
+		}
+		else
+		{
+			instance = instanceTapis;
+		}
+		
+		return instance;
+	}	
 }

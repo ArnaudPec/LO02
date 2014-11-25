@@ -1,0 +1,27 @@
+package fr.utt.lo02.carte;
+
+import java.util.LinkedList;
+
+public class Tapis extends Tas{
+
+	private static Tapis instanceTapis;
+	
+	private Tapis() 
+	{
+		this.listeCartes = new LinkedList<Carte>();
+	}
+
+	
+	public static Tapis getInstanceTapis()
+	{
+		Tapis instance;
+	}
+	
+	
+	@Override
+	public void choisirCarteADeplacer() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

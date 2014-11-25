@@ -1,0 +1,16 @@
+package fr.utt.lo02.carte;
+
+public class TasVisible extends Tas {
+
+	
+	public TasVisible() {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void choisirCarteADeplacer() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

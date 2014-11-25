@@ -1,26 +1,30 @@
 package fr.utt.lo02.joueur;
 
+import fr.utt.lo02.carte.MainJoueur;
+import fr.utt.lo02.carte.TasCache;
+import fr.utt.lo02.carte.TasVisible;
+
 public class Joueur implements Strategie{
 	
 	protected int numJoueur;
 	protected String nom;
-	protected Main main;
-	protected TasCachee tasCachee;
+	protected MainJoueur mainJoueur;
+	protected TasCache tasCachee;
 	protected TasVisible tasVisible;
 	/**
 	 * @param numJoueur
 	 * @param nom
-	 * @param main
+	 * @param mainJoueur
 	 * @param tasCachee
 	 * @param tasVisible
 	 */
-	public Joueur(int numJoueur, String nom, Main main, TasCachee tasCachee,
+	public Joueur(int numJoueur, String nom, MainJoueur mainJoueur, TasCache tasCache,
 			TasVisible tasVisible) {
 		super();
 		this.numJoueur = numJoueur;
 		this.nom = nom;
-		this.main = main;
-		this.tasCachee = tasCachee;
+		this.mainJoueur = mainJoueur;
+		this.tasCachee = tasCache;
 		this.tasVisible = tasVisible;
 	}
 	public int getNumJoueur() {
@@ -30,21 +34,21 @@ public class Joueur implements Strategie{
 		this.numJoueur = numJoueur;
 	}
 	public String getNom() {
-		return nom;
+		return this.nom;
 	}
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	public Main getMain() {
-		return main;
+	public MainJoueur getMainJoueur() {
+		return this.mainJoueur;
 	}
-	public void setMain(Main main) {
-		this.main = main;
+	public void setMainJoueur(MainJoueur mainJoueur) {
+		this.mainJoueur = this.mainJoueur;
 	}
-	public TasCachee getTasCachee() {
-		return tasCachee;
+	public TasCache getTasCache() {
+		return this.tasCachee;
 	}
-	public void setTasCachee(TasCachee tasCachee) {
+	public void setTasCache(TasCache tasCachee) {
 		this.tasCachee = tasCachee;
 	}
 	public TasVisible getTasVisible() {

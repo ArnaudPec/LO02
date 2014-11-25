@@ -1,0 +1,19 @@
+package fr.utt.lo02.carte;
+
+import java.util.LinkedList;
+
+public class MainJoueur extends{
+
+	public MainJoueur() 
+	{
+		LinkedList<Carte> pioche = new LinkedList<Carte>();
+	}
+
+	
+	@Override
+	public void ajouterCarte(Carte carte)
+	{
+		this.listeCartes.add(carte);
+	}
+	
+}

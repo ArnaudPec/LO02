@@ -1,0 +1,16 @@
+package fr.utt.lo02.carte;
+
+public class MainJoueur {
+
+	public MainJoueur() {
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	@Override
+	public void ajouterCarte(Carte carte)
+	{
+		this.listeCartes.add(carte);
+	}
+	
+}

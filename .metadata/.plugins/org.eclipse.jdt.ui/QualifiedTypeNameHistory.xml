@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.partie.Partie"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.joueur.Joueur"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.carte.TasCache"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.carte.TasVisible"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.carte.MainJoueur"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
 </qualifiedTypeNameHistroy>

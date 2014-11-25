@@ -1,9 +1,18 @@
 package fr.utt.lo02.carte;
 
-public class TasVisible {
+import java.util.LinkedList;
 
-	public TasVisible() {
-		// TODO Auto-generated constructor stub
+public class TasVisible extends Tas {
+
+	
+	public TasVisible() 
+	{
+		this.listeCartes = new LinkedList<Carte>();
+	}
+	
+	public Carte prendreCarte()
+	{
+		return this.listeCartes.pollFirst();
 	}
 
 }

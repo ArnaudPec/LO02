@@ -3,24 +3,24 @@ package fr.utt.lo02.carte;
 public class Carte {
 
 	/**
-	 * Représente la couleur de la carte [coeur=0, pique=1, trèfle=2, carreau=3]
+	 * Repr√©sente la couleur de la carte [coeur=0, pique=1, tr√®fle=2, carreau=3]
 	 */
 	private int couleur;
 	
 	/**
-	 * Représente la valeur de la carte [2=2, .. 10=10, valet=11, dame=12, roi=13, as=14]
+	 * Repr√©sente la valeur de la carte [2=2, .. 10=10, valet=11, dame=12, roi=13, as=14]
 	 */
 	private int valeur;
 	
 	
 	/**
-	 * Représente la visibilité de la carte  [true=retourné, false=caché]
+	 * Repr√©sente la visibilit√© de la carte  [true=retourn√©, false=cach√©]
 	 */
 	private boolean visibilite;
 	
 	/**
-	 * Constructeur de carte, permet de créer une carte en lui attribuant une couleur et une valeur.
-	 * @param couleur de type Integer [coeur=0, pique=1, trèfle=2, carreau=3]
+	 * Constructeur de carte, permet de cr√©er une carte en lui attribuant une couleur et une valeur.
+	 * @param couleur de type Integer [coeur=0, pique=1, tr√®fle=2, carreau=3]
 	 * @param valeur de type Integer [2=2, .. 10=10, valet=11, dame=12, roi=13, as=14]
 	 */
 	public Carte(int couleur, int valeur)
@@ -50,8 +50,8 @@ public class Carte {
 	}
 	
 	/**
-	 * Getter de visibilité
-	 * @return Ma visibilité de ma carte [true=retourné, false=caché]
+	 * Getter de visibilit√©
+	 * @return Ma visibilit√© de ma carte [true=retourn√©, false=cach√©]
 	 */
 	public boolean getVisibilite()
 	{
@@ -60,7 +60,7 @@ public class Carte {
 
 	/**
 	 * Setter de couleur
-	 * @param couleur [coeur=0, pique=1, trèfle=2, carreau=3]
+	 * @param couleur [coeur=0, pique=1, tr√®fle=2, carreau=3]
 	 */
 	public void setCouleur(int couleur)
 	{
@@ -77,8 +77,8 @@ public class Carte {
 	}
 	
 	/**
-	 * Setter de visibilité
-	 * @param visibilite [true=retourné, false=caché]
+	 * Setter de visibilit√©
+	 * @param visibilite [true=retourn√©, false=cach√©]
 	 */
 	public void setVisibilite(boolean visibilite)
 	{
@@ -86,8 +86,8 @@ public class Carte {
 	}
 
 	/**
-	 * Méthode permettant de déterminer si la carte à une fonction spéciale
-	 * @return Un boolean [true=spéciale, false=pas spéciale]
+	 * M√©thode permettant de d√©terminer si la carte √† une fonction sp√©ciale
+	 * @return Un boolean [true=sp√©ciale, false=pas sp√©ciale]
 	 */
 	public boolean estSpeciale()
 	{
@@ -117,9 +117,9 @@ public class Carte {
 	
 	
 	/**
-	 * Méthode permettant de comparer deux cartes
+	 * M√©thode permettant de comparer deux cartes
 	 * @param carte 
-	 * @return Un boolean [true=supérieur ou égale, false=inférieur]
+	 * @return Un boolean [true=sup√©rieur ou √©gale, false=inf√©rieur]
 	 */
 	public boolean estSuperieurOuEgal(Carte carte)
 	{
@@ -132,6 +132,27 @@ public class Carte {
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString()
+	{
+		String 	resultat = " —————️ " + "\n";
+				resultat+= "|"+ this.couleur + "    |" + "\n"; 
+				resultat+= "|  " + this.valeur + "  |" + "\n";
+				resultat+= "|    " + this.couleur + "|" + "\n";
+				resultat+=" ————— " + "\n";
+		
+		return resultat;
+	}
+	
+	public static void main(String[]args)
+	{
+		Carte carte = new Carte(0,2);
+		System.out.println(carte.toString());
+		carte.toString();
+	}
 }
 
 

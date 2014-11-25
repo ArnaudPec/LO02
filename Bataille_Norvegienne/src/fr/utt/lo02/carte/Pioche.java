@@ -15,7 +15,7 @@ public class Pioche extends Tas {
 	/**
 	 * Attribut static permettant de stocker l'instance de pioche afin de ne pouvoir créer qu'une seule pioche. 
 	 */
-	private static Pioche pioche = null;
+	private static Pioche instancePioche = null;
 	
 		
 	/**
@@ -23,18 +23,16 @@ public class Pioche extends Tas {
 	 */
 	private Pioche() 
 	{
-		LinkedList<Carte> pioche = new LinkedList<Carte>();
+		this.listeCartes = new LinkedList<Carte>();
 		
 		for (int i = 0; i < 4; i++) 
 		{
 			for (int j = 2; j < 15; j++) 
 			{	
 				Carte carte = new Carte(i, j);
-				pioche.add(carte);
+				this.listeCartes.add(carte);
 			}
 		}
-		
-		this.listeCartes = pioche;
 	}
 
 	/**
@@ -45,39 +43,17 @@ public class Pioche extends Tas {
 	{
 		Pioche instance;
 		
-		if(pioche==null)
+		if(instancePioche==null)
 		{
-			Pioche nouvellePioche = new Pioche();
-			pioche = nouvellePioche;
-			instance = pioche;
+			instance = new Pioche();
+			instancePioche = instance;
 		}
 		else
 		{
-			instance = pioche; 
-		}
-		
+			instance = instancePioche; 
+		}		
 		return instance;
  	}
-	
-	
-	@Override
-	public void deplacerCarte(int position, Tas main) 
-	{
-		try {
-			main.ajouterCarte(this.listeCartes.get(position));
-			this.listeCartes.remove(position);
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-	}
-
-	@Override
-	public void choisirCarteADeplacer() {
-		// TODO Auto-generated method stub
-		
-	}
-
 	
 	/**
 	 * Permet de mélanger la pioche 
@@ -96,12 +72,42 @@ public class Pioche extends Tas {
 		return this.listeCartes.pollFirst();
 	}
 	
+	/**
+	 * Permet de distribuer les cartes entre les différents joueurs au début de partie.
+	 * 3 cartes face caché, 3 cartes face visible, 3 cartes en main
+	 * @param partie
+	 */
 	public void distribuerCarte(Partie partie)
 	{
-		
-		for (int i = 0; i < partie.getnbJoueurs() ; i++) {
-			
+		for (int i = 0; i < 3; i++) 
+		{
+			for (int j=0; j < partie.getnbJoueurs() ; j++) 
+			{			
+				Carte carteTire = prendreCarteDuDessus();
+				carteTire.setVisibilite(false);	
+				partie.getJoueur(i).getTasCache().ajouterCarte(carteTire);
+			}
 		}
+		
+		
+		for (int i = 0; i < 3; i++) 
+		{
+			for (int j=0; j < partie.getnbJoueurs() ; j++) 
+			{			
+				Carte carteTire = prendreCarteDuDessus();
+				partie.getJoueur(i).getTasVisible().ajouterCarte(carteTire);
+			}
+		}
+		
+		for (int i = 0; i < 3 ; i++) 
+		{
+			for (int j=0; j < partie.getnbJoueurs() ; j++) 
+			{			
+				Carte carteTire = prendreCarteDuDessus();
+				partie.getJoueur(i).getMainJoueur().ajouterCarte(carteTire);
+			}
+		}
+		
 	}
 	
 	
