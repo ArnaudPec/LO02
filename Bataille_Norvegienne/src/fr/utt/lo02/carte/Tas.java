@@ -17,7 +17,7 @@ public abstract class Tas {
 	/**
 	 *Nombre de cartes dans le tas.
 	 */
-	protected int nbCartes = this.listeCartes.size();
+	protected int nbCartes;
 
 	
 	public void ajouterCarte(Carte carte){

@@ -3,6 +3,7 @@ package fr.utt.lo02.partie;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.carte.Pioche;
@@ -103,6 +104,36 @@ public class Partie {
 		this.nbJoueurs++;
 	}
 	
+	public void interfaceAjouterJoueur()
+	{
+		boolean bol = true;
+		Scanner sc = new Scanner(System.in);
+		
+		while(bol)
+		{
+			System.out.println("Voulez vous ajouter un joueur (oui/non)");
+			String ajout = sc.nextLine();
+
+			if(ajout.toUpperCase().equals("OUI"))
+			{
+				System.out.println("Entrez le nom du joueur");
+				String nomJoueur = sc.nextLine();
+				Joueur joueur = new Joueur(nomJoueur, this.nbJoueurs);
+				ajouterJoueur(joueur);
+			}
+			else
+			{
+				if(this.nbJoueurs < 1)
+				{
+					System.out.println("Vous devez être deux joueurs minimum pour lancer une partie.");
+				}
+				else
+				{
+					bol = false;
+				}	
+			}
+		}	
+	}
 	
 	public boolean estGagnee()
 	{
@@ -129,8 +160,7 @@ public class Partie {
 	/**
 	 * Methode permettant de lancer la boucle de jeu.
 	 */
-	public void lancerPartie()
-	{
+	public void lancerPartie(){
 		
 		boolean estDanish = false;
 		boolean estGagnee = false;
@@ -171,8 +201,7 @@ public class Partie {
 	 * @param nbCartes nombre de carte à faire piocher
 	 * @param joueur joueur qui doit piocher
 	 */
-	public void piocher(int nbCartes, Joueur joueur)
-	{
+	public void piocher(int nbCartes, Joueur joueur){
 		LinkedList<Carte> liste = new LinkedList<Carte>();
 		
 		for (int i = 0; i < nbCartes; i++) {
@@ -182,6 +211,29 @@ public class Partie {
 		joueur.getMainJoueur().getListeCartes().addAll(liste);
 	}
 	
+//	public int[] choisirCarteAJouer(){
+//		ArrayList<Carte> cartes = new ArrayList<Carte>();
+//		
+//		System.out.println("choisissez les ou la carte(s) que vous voulez jouer.");
+//		Scanner sc = new Scanner(System.in);
+//		String str = sc.nextLine();
+//		
+//		return 0;	
+//		
+//	}
+	
+	
+	
+	public static void main(String[] args) {
+		
+		System.out.println("Nouvelle partie de Bataille Norvegienne.");
+		
+		Partie partie = getInstancePartie();
+		
+		partie.interfaceAjouterJoueur();
+		
+		
+	}
 	
 	
 }

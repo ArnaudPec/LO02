@@ -10,8 +10,18 @@ public class Joueur implements Strategie{
 	protected int numJoueur;
 	protected String nom;
 	protected MainJoueur mainJoueur;
-	protected TasCache tasCachee;
+	protected TasCache tasCache;
 	protected TasVisible tasVisible;
+	
+	public Joueur(String nomJoueur, int numJoueur)
+	{
+		this.numJoueur = numJoueur;
+		this.nom = nomJoueur;
+		this.mainJoueur = new MainJoueur();
+		this.tasCache = new TasCache();
+		this.tasVisible = new TasVisislbe();
+	}
+	
 	/**
 	 * @param numJoueur
 	 * @param nom
@@ -25,7 +35,7 @@ public class Joueur implements Strategie{
 		this.numJoueur = numJoueur;
 		this.nom = nom;
 		this.mainJoueur = mainJoueur;
-		this.tasCachee = tasCache;
+		this.tasCache = tasCache;
 		this.tasVisible = tasVisible;
 	}
 	public int getNumJoueur() {
