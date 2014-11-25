@@ -5,8 +5,6 @@ import java.util.LinkedList;
 
 import fr.utt.lo02.partie.Partie;
 
-
-
 /**
  * Classe singleton qui hérite de Tas
  */
@@ -21,8 +19,7 @@ public class Pioche extends Tas {
 	/**
 	 * Constructeur de pioche, créer l'ensemble des cartes de la pioche.  
 	 */
-	private Pioche() 
-	{
+	private Pioche() {
 		this.listeCartes = new LinkedList<Carte>();
 		
 		for (int i = 0; i < 4; i++) 
@@ -39,8 +36,7 @@ public class Pioche extends Tas {
 	 * Permet d'appeler une instance de pioche, s'il n'y a pas elle en crée une autrement elle retourne celle déjà crée.
 	 * @return une instance de pioche
 	 */
-	public static Pioche getInstannce()
-	{
+	public static Pioche getInstancePioche(){
 		Pioche instance;
 		
 		if(instancePioche==null)
@@ -53,13 +49,13 @@ public class Pioche extends Tas {
 			instance = instancePioche; 
 		}		
 		return instance;
- 	}
+		
+	}
 	
 	/**
 	 * Permet de mélanger la pioche 
 	 */
-	public void melanger()
-	{
+	public void melanger(){
 		 Collections.shuffle(this.listeCartes);  
 	}
 	
@@ -67,8 +63,7 @@ public class Pioche extends Tas {
 	 * Permet de prendre la première carte de la pioche et de la supprimer de la pioche.
 	 * @return la première carte de la pioche.
 	 */
-	public Carte prendreCarteDuDessus()
-	{
+	public Carte prendreCarteDuDessus(){
 		return this.listeCartes.pollFirst();
 	}
 	
@@ -77,11 +72,10 @@ public class Pioche extends Tas {
 	 * 3 cartes face caché, 3 cartes face visible, 3 cartes en main
 	 * @param partie
 	 */
-	public void distribuerCarte(Partie partie)
-	{
+	public void distribuerCarte(Partie partie){
 		for (int i = 0; i < 3; i++) 
 		{
-			for (int j=0; j < partie.getnbJoueurs() ; j++) 
+			for (int j=0; j < partie.getNbJoueurs() ; j++) 
 			{			
 				Carte carteTire = prendreCarteDuDessus();
 				carteTire.setVisibilite(false);	
@@ -92,7 +86,7 @@ public class Pioche extends Tas {
 		
 		for (int i = 0; i < 3; i++) 
 		{
-			for (int j=0; j < partie.getnbJoueurs() ; j++) 
+			for (int j=0; j < partie.getNbJoueurs() ; j++) 
 			{			
 				Carte carteTire = prendreCarteDuDessus();
 				partie.getJoueur(i).getTasVisible().ajouterCarte(carteTire);
@@ -101,7 +95,7 @@ public class Pioche extends Tas {
 		
 		for (int i = 0; i < 3 ; i++) 
 		{
-			for (int j=0; j < partie.getnbJoueurs() ; j++) 
+			for (int j=0; j < partie.getNbJoueurs() ; j++) 
 			{			
 				Carte carteTire = prendreCarteDuDessus();
 				partie.getJoueur(i).getMainJoueur().ajouterCarte(carteTire);

@@ -1,5 +1,6 @@
 package fr.utt.lo02.joueur;
 
+import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.carte.MainJoueur;
 import fr.utt.lo02.carte.TasCache;
 import fr.utt.lo02.carte.TasVisible;
@@ -59,12 +60,26 @@ public class Joueur implements Strategie{
 	}
 	
 	
-	public void estDanish() {
+	public void estDanish() { //Il faut enlever cette méthode ici, et on retourne un boolean false si le joueur ne peu pas jouer.
 		
 	} 
 	
-	public void jouer() {
+	public boolean estGagnant(){
+		boolean resultat = false;
+		if(this.tasCachee.getListeCartes() == null && this.mainJoueur.getListeCartes() == null)
+		{
+			resultat = true;
+		}
 		
+		return resultat;
+	}
+	
+	public boolean peuJouer(){
+		//vérifie que le joueur peu jouer.
+	}
+	
+	public Carte jouer() {
+		//S'il joue il retourne la carte qu'il veut jouer.
 	}
 	
 	public void changerCarte() {

@@ -1,0 +1,105 @@
+package fr.utt.lo02.partie;
+
+import java.util.ArrayList;
+
+import fr.utt.lo02.carte.Pioche;
+import fr.utt.lo02.carte.Tapis;
+import fr.utt.lo02.joueur.Joueur;
+
+public class Partie {
+
+	private int nbJoueurs;
+	private int joueurCourant;
+	private ArrayList<Joueur> listeJoueurs;
+	private Pioche pioche;
+	private Tapis tapis;
+	private static Partie instancePartie;
+	
+
+	private Partie() {
+		this.instancePartie = new Partie();
+		this.listeJoueurs = new ArrayList<Joueur>();
+		this.pioche = pioche.getInstancePioche();
+	}
+	
+	public static Partie getInstancePartie() {
+		
+		Partie instance;
+		
+		if(instancePartie==null)
+		{
+			instance = new Partie();
+			instancePartie = instance;
+		}
+		else
+		{
+			instance = instancePartie; 
+		}		
+		return instance;
+	}
+	
+	public int getNbJoueurs() {
+		return nbJoueurs;
+	}
+
+	public void setNbJoueurs(int nbJoueurs) {
+		this.nbJoueurs = nbJoueurs;
+	}
+
+	public int getJoueurCourant() {
+		return this.joueurCourant;
+	}
+	
+	public Joueur getJoueur(int position){
+		Joueur joueur=null;
+		try 
+		{
+			joueur = this.listeJoueurs.get(position);	
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return joueur;	
+	}
+
+	public void setJoueurCourant(int joueurCourant) {
+		this.joueurCourant = joueurCourant;
+	}
+
+	public ArrayList<Joueur> getListeJoueurs() {
+		return this.listeJoueurs;
+	}
+
+	public void setListeJoueurs(ArrayList<Joueur> listeJoueurs) {
+		this.listeJoueurs = listeJoueurs;
+	}
+
+	public Pioche getPioche() {
+		return this.pioche;
+	}
+
+	public void setPioche(Pioche pioche) {
+		this.pioche = pioche;
+	}
+
+	public Tapis getTapis() {
+		return this.tapis;
+	}
+
+	public void setTapis(Tapis tapis) {
+		this.tapis = tapis;
+	}
+
+	public static void setInstancePartie(Partie instancePartie) {
+		Partie.instancePartie = instancePartie;
+	}
+	
+	
+	public void ajouterJoueur(Joueur joueur)
+	{
+		this.listeJoueurs.add(joueur);
+	}
+	
+	
+	
+	
+}

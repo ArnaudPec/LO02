@@ -20,18 +20,15 @@ public abstract class Tas {
 	protected int nbCartes = this.listeCartes.size();
 
 	
-	public void ajouterCarte(Carte carte)
-	{
+	public void ajouterCarte(Carte carte){
 		this.listeCartes.add(carte);
 	}
 	
-	public void setListeCartes(LinkedList<Carte> listeCartes)
-	{
+	public void setListeCartes(LinkedList<Carte> listeCartes){
 		this.listeCartes = listeCartes;
 	}
 	
-	public LinkedList<Carte> getListeCartes()
-	{
+	public LinkedList<Carte> getListeCartes(){
 		return this.listeCartes;
 	}
 }

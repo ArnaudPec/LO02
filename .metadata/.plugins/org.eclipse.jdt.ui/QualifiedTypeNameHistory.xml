@@ -3,9 +3,12 @@
 <fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.partie.Partie"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="fr.utt.lo02.joueur.Joueur"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.carte.TasCache"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.carte.TasVisible"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.carte.MainJoueur"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.joueur.Joueur"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.carte.Pioche"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.carte.Tapis"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.carte.Carte"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 </qualifiedTypeNameHistroy>

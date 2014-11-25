@@ -1,0 +1,60 @@
+package fr.utt.lo02.partie;
+
+import java.util.ArrayList;
+
+import fr.utt.lo02.carte.Pioche;
+import fr.utt.lo02.carte.Tapis;
+import fr.utt.lo02.joueur.Joueur;
+
+public class Partie {
+
+	private int nbJoueurs;
+	private int joueurCourant;
+	private ArrayList<Joueur> listeJoueurs;
+	private Pioche pioche;
+	private Tapis tapis;
+	private static Partie instancePartie;
+	
+
+	private Partie() 
+	{
+		this.instancePartie = new Partie();
+		this.listeJoueurs = new ArrayList<Joueur>();
+		this.pioche = pioche.getInstancePioche();
+	}
+	
+	public static Partie getInstancePartie()
+	{
+		Partie instance;
+		
+		if(instancePartie==null)
+		{
+			instance = new Partie();
+			instancePartie = instance;
+		}
+		else
+		{
+			instance = instancePartie; 
+		}		
+		return instance;
+	}
+	
+	
+	public int getnbJoueurs() 
+	{
+		return this.nbJoueurs;
+	}
+	
+	public Joueur getJoueur(int position)
+	{
+		Joueur joueur=null;
+		try 
+		{
+			joueur = this.listeJoueurs.get(position);	
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return joueur;
+		
+	}
+}

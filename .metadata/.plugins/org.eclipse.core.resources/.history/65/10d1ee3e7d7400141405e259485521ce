@@ -1,0 +1,18 @@
+package fr.utt.lo02.partie;
+
+import fr.utt.lo02.carte.Tapis;
+
+public class ActionSpeciale {
+
+	private int valeurCarte;
+	private int nbJoueurs;
+	private int joueurCourant;
+	private Tapis tapis;
+	
+	
+	public ActionSpeciale(Partie partie, Joueur joueur)
+	{
+		
+	}
+	
+}

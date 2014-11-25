@@ -4,13 +4,11 @@ import java.util.LinkedList;
 
 public class TasCache extends Tas {
 
-	public TasCache() 
-	{
+	public TasCache() {
 		this.listeCartes = new LinkedList<Carte>();
 	}
 
-	public Carte prendreCarte()
-	{
+	public Carte prendreCarte(){
 		return this.listeCartes.pollFirst();
 	}
 

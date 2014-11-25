@@ -1,9 +1,0 @@
-package fr.utt.lo02.partie;
-
-public class Partie {
-
-	public Partie() {
-		// TODO Auto-generated constructor stub
-	}
-
-}

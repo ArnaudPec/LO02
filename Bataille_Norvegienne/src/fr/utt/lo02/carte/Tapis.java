@@ -6,14 +6,12 @@ public class Tapis extends Tas{
 
 	private static Tapis instanceTapis;
 	
-	private Tapis() 
-	{
+	private Tapis() {
 		this.listeCartes = new LinkedList<Carte>();
 	}
 
 	
-	public static Tapis getInstanceTapis()
-	{
+	public static Tapis getInstanceTapis(){
 		Tapis instance;
 		
 		if(instanceTapis == null)

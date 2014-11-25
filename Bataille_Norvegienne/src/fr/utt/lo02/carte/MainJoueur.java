@@ -4,11 +4,16 @@ import java.util.LinkedList;
 
 public class MainJoueur extends Tas{
 
-	public MainJoueur() 
-	{
+	public MainJoueur() {
 		this.listeCartes = new LinkedList<Carte>();
 	}
 	
-	
+	public Carte prendreCarte(int position)
+	{
+		Carte carte = this.listeCartes.get(position);
+		this.listeCartes.remove(position);
+		
+		return carte;
+	}
 	
 }
