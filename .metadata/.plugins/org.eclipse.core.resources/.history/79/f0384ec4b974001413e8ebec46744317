@@ -110,7 +110,7 @@ public class Joueur implements Strategie{
 			listeCarte[i] = this.mainJoueur.getListeCartes().get(Integer.parseInt(split[i]));
 		}
 		
-		return listeCarte;	
+		return intArray;	
 		
 	}
 	

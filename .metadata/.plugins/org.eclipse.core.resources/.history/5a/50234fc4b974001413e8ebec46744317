@@ -216,6 +216,25 @@ public class Partie {
 		joueur.getMainJoueur().getListeCartes().addAll(liste);
 	}
 	
+	public int[] choisirCarteAJouer(){
+		
+		System.out.println("choisissez les ou la carte(s) que vous voulez jouer.");
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+		
+		String[] split = str.split("-");
+		
+		int[] intArray = new int[split.length];
+		for(int i = 0; i < split.length; i++) {
+		    intArray[i] = Integer.parseInt(split[i]);
+		}
+		
+		return intArray;	
+		
+	}
+	
+	
+	
 	
 	public static void main(String[] args) {
 		

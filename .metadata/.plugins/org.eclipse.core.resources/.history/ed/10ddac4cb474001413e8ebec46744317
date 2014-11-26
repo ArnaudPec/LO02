@@ -47,8 +47,8 @@ public class Carte {
 	}
 	
 	/**
-	 * Getter de visibilite
-	 * @return Ma visibilite de ma carte [true=retourne, false=cache]
+	 * Getter de visibilit√©
+	 * @return Ma visibilit√© de ma carte [true=retourn√©, false=cach√©]
 	 */
 	public boolean getVisibilite(){
 		return this.visibilite;

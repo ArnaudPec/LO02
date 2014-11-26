@@ -104,13 +104,14 @@ public class Joueur implements Strategie{
 		
 		String[] split = str.split("-");
 		
-		Carte[] listeCarte = new Carte[split.length];
+		int[] intArray = new int[split.length];
 		
+		Carte[] listeCarte = new Carte[split.length];
 		for(int i = 0; i < split.length; i++) {
-			listeCarte[i] = this.mainJoueur.getListeCartes().get(Integer.parseInt(split[i]));
+		    intArray[i] = Integer.parseInt(split[i]);
 		}
 		
-		return listeCarte;	
+		return intArray;	
 		
 	}
 	

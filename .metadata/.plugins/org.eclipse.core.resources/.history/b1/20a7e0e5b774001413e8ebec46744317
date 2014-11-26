@@ -176,11 +176,7 @@ public class Partie {
 				{
 					System.out.println(joueur.getMainJoueur().toString());
 					// ! \\ 
-					//à modifier car le joueur peu choisir de jouer plusieurs cartes 
-					
-					for (int i = 0; i < choisirCarteAJouer().length; i++) {
-						
-					}
+					//à modifier car le joueur peu choisir de jouer plusieurs cartes !
 					this.tapis.ajouterCarte(joueur.jouer());
 					joueurCourant++;
 					
@@ -215,6 +211,28 @@ public class Partie {
 		
 		joueur.getMainJoueur().getListeCartes().addAll(liste);
 	}
+	
+	public int[] choisirCarteAJouer(){
+		
+		ArrayList<Carte> cartes = new ArrayList<Carte>();
+		
+		System.out.println("choisissez les ou la carte(s) que vous voulez jouer.");
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+		
+		String[] split = str.split("-");
+		
+		int[] intArray = new int[split.length];
+		for(int i = 0; i < split.length; i++) {
+		    intArray[i] = Integer.parseInt(split[i]);
+		}
+		
+		
+		return intArray;	
+		
+	}
+	
+	
 	
 	
 	public static void main(String[] args) {

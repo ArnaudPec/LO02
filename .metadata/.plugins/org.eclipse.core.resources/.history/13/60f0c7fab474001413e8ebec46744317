@@ -19,14 +19,13 @@ public class MainJoueur extends Tas{
 	@Override
 	public String toString()
 	{
-		String resultat = "";
+		String resultat;
 		
 		for (int i = 0; i < this.listeCartes.size(); i++) {
 			
-			resultat+= this.listeCartes.toString() + " ";
+			resultat+= this.listeCartes.toString();
 			
 		}
-		return resultat;
 	}
 	
 }

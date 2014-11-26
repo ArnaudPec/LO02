@@ -1,7 +1,5 @@
 package fr.utt.lo02.joueur;
 
-import java.util.Scanner;
-
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.carte.MainJoueur;
 import fr.utt.lo02.carte.TasCache;
@@ -59,10 +57,10 @@ public class Joueur implements Strategie{
 		this.mainJoueur = this.mainJoueur;
 	}
 	public TasCache getTasCache() {
-		return this.tasCache;
+		return this.tasCachee;
 	}
-	public void sethTasCache(TasCache tasCachee) {
-		this.tasCache = tasCachee;
+	public void setTasCache(TasCache tasCachee) {
+		this.tasCachee = tasCachee;
 	}
 	public TasVisible getTasVisible() {
 		return tasVisible;
@@ -78,7 +76,7 @@ public class Joueur implements Strategie{
 	
 	public boolean estGagnant(){
 		boolean resultat = false;
-		if(this.tasCache.getListeCartes() == null && this.mainJoueur.getListeCartes() == null)
+		if(this.tasCachee.getListeCartes() == null && this.mainJoueur.getListeCartes() == null)
 		{
 			resultat = true;
 		}
@@ -90,29 +88,14 @@ public class Joueur implements Strategie{
 		//vérifie que le joueur peu jouer.
 	}
 	
+	public Carte jouer() {
+		//S'il joue il retourne la carte qu'il veut jouer.
+	}
+	
 	public void changerCarte() {
 		
 	}
-	
-	public Carte[] choisirCarteAJouer(){
-		
-		
-		
-		System.out.println("choisissez les ou la carte(s) que vous voulez jouer.");
-		Scanner sc = new Scanner(System.in);
-		String str = sc.nextLine();
-		
-		String[] split = str.split("-");
-		
-		Carte[] listeCarte = new Carte[split.length];
-		
-		for(int i = 0; i < split.length; i++) {
-			listeCarte[i] = this.mainJoueur.getListeCartes().get(Integer.parseInt(split[i]));
-		}
-		
-		return listeCarte;	
-		
-	}
+
 	
 	
 }
