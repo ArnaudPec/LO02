@@ -96,8 +96,6 @@ public class Joueur implements Strategie{
 	
 	public Carte[] choisirCarteAJouer(){
 		
-		
-		
 		System.out.println("choisissez les ou la carte(s) que vous voulez jouer.");
 		Scanner sc = new Scanner(System.in);
 		String str = sc.nextLine();

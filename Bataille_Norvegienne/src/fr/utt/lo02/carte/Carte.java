@@ -123,22 +123,99 @@ public class Carte {
 	}
 	
 	
+	public String getValeurAffichage()
+	{
+		String valeur = "";
+
+		switch (this.valeur) {
+		case 2:
+			valeur= "2";
+			break;
+		case 3:
+			valeur= "3";
+			break;
+		case 4:
+			valeur= "4";
+			break;
+		case 5:
+			valeur= "5";
+			break;
+		case 6:
+			valeur= "6";
+			break;
+		case 7:
+			valeur= "7";
+			break;
+		case 8:
+			valeur= "8";
+			break;
+		case 9:
+			valeur= "9";
+			break;
+		case 10:
+			valeur= "J";
+			break;
+		case 11:
+			valeur= "V";
+			break;
+		case 12:
+			valeur= "D";
+			break;
+		case 13:
+			valeur= "R";
+			break;
+		case 14:
+			valeur= "A";
+			break;
+		default:
+			break;
+		}
+		
+		return valeur;
+	}
+	
+	
+	public String getCouleurAffichage()
+	{
+		String couleur = "";
+		
+		switch (this.couleur) {
+		case 0:
+			couleur= "\u2665";
+			break;
+		case 1:
+			couleur= "\u2660";
+			break;
+		case 2:
+			couleur= "\u2663";
+			break;
+		case 3:
+			couleur= "\u2666";
+			break;
+		default:
+			break;
+		}
+		
+		return couleur;
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString(){
+
 		String 	resultat = " —————️ " + "\n";
-				resultat+= "|"+ this.couleur + "    |" + "\n"; 
-				resultat+= "|  " + this.valeur + "  |" + "\n";
-				resultat+= "|    " + this.couleur + "|" + "\n";
+				resultat+= "|"+ getCouleurAffichage() + "    |" + "\n"; 
+				resultat+= "|  " + getValeurAffichage() + "  |" + "\n";
+				resultat+= "|    " + getCouleurAffichage() + "|" + "\n";
 				resultat+=" ————— " + "\n";
 		
 		return resultat;
 	}
 	
 	public static void main(String[]args){
-		Carte carte = new Carte(0,2);
+		Carte carte = new Carte(1,14);
 		System.out.println(carte.toString());
 		carte.toString();
 	}
