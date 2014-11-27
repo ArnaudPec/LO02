@@ -16,7 +16,7 @@ public class TasCache extends Tas {
 	@Override
 	public String toString(){
 		
-		String resultat = "TasCache \n\n";
+		String resultat = "Main \n\n";
 		String numCarte = "";
 		String bordureDessus ="";
 		String dessus = "";

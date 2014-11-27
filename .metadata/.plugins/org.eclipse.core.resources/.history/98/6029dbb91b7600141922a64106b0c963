@@ -11,7 +11,14 @@ public abstract class Tas {
 	/**
 	 *Représente l'ensemble des cartes contenu dans un Tas 
 	 */
-	protected LinkedList<Carte> listeCartes;	
+	protected LinkedList<Carte> listeCartes;
+	
+	
+	/**
+	 *Nombre de cartes dans le tas.
+	 */
+	protected int nbCartes;
+	
 	
 	/**
 	 * Getter permettant de récupérer une carte
@@ -25,34 +32,21 @@ public abstract class Tas {
 		if(position >= 0 && position <= this.listeCartes.size())
 		{
 			 carte = this.listeCartes.get(position);
-		}	
+		}
+		
 		return carte;
 		
 	}
 	
-	/**
-	 * Getter de listeCartes
-	 * @return la liste de carte courante.
-	 */
-	public LinkedList<Carte> getListeCartes(){
-		return this.listeCartes;
-	}
-
-	/**
-	 * Setter de liste de carte.
-	 * @param listeCartes
-	 */
-	public void setListeCartes(LinkedList<Carte> listeCartes){
-		this.listeCartes = listeCartes;
-	}
-	
-	/**
-	 * Cette méthode permet d'ajouter une carte à la liste de Carte
-	 * @param carte
-	 */
 	public void ajouterCarte(Carte carte){
 		this.listeCartes.add(carte);
 	}
 	
-
+	public void setListeCartes(LinkedList<Carte> listeCartes){
+		this.listeCartes = listeCartes;
+	}
+	
+	public LinkedList<Carte> getListeCartes(){
+		return this.listeCartes;
+	}
 }

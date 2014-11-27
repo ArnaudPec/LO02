@@ -17,7 +17,7 @@ public class Pioche extends Tas {
 	
 		
 	/**
-	 * Constructeur de pioche, crée l'ensemble des cartes de la pioche.  
+	 * Constructeur de pioche, créer l'ensemble des cartes de la pioche.  
 	 */
 	private Pioche() {
 		this.listeCartes = new LinkedList<Carte>();

@@ -1,0 +1,51 @@
+package fr.utt.lo02.carte;
+
+import java.util.LinkedList;
+
+/**
+ * Classe Tas, permet de généraliser un Tas
+ */
+public abstract class Tas {
+
+	
+	/**
+	 *Représente l'ensemble des cartes contenu dans un Tas 
+	 */
+	protected LinkedList<Carte> listeCartes;
+	
+	
+	/**
+	 *Nombre de cartes dans le tas.
+	 */
+	protected int nbCartes;
+	
+	
+	/**
+	 * Getter permettant de récupérer une carte
+	 * @param position
+	 * @return une carte
+	 */
+	public Carte getCarte(int position){
+		
+		Carte carte;
+		
+		try {
+			return this.listeCartes.get(position);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
+	
+	public void ajouterCarte(Carte carte){
+		this.listeCartes.add(carte);
+	}
+	
+	public void setListeCartes(LinkedList<Carte> listeCartes){
+		this.listeCartes = listeCartes;
+	}
+	
+	public LinkedList<Carte> getListeCartes(){
+		return this.listeCartes;
+	}
+}

@@ -2,21 +2,21 @@ package fr.utt.lo02.carte;
 
 import java.util.LinkedList;
 
-public class TasCache extends Tas {
+public class TasVisible extends Tas {
 
-	public TasCache() {
+	
+	public TasVisible() {
 		this.listeCartes = new LinkedList<Carte>();
 	}
-
+	
 	public Carte prendreCarte(){
 		return this.listeCartes.pollFirst();
 	}
-
 	
 	@Override
 	public String toString(){
 		
-		String resultat = "TasCache \n\n";
+		String resultat = "Tas Visible \n\n";
 		String numCarte = "";
 		String bordureDessus ="";
 		String dessus = "";
@@ -28,9 +28,9 @@ public class TasCache extends Tas {
 			
 			numCarte+= "  n°" + i + "    ";
 			bordureDessus+= " —————️ " + "  ";
-			dessus+= "|     |  ";
-			milieu+= "|     |  ";
-			bas+= "|     |  ";
+			dessus+= "|"+ this.listeCartes.get(i).getCouleurAffichage() + "    |  ";
+			milieu+= "|  " + this.listeCartes.get(i).getValeurAffichage() + "  |  ";
+			bas+= "|    "+ this.listeCartes.get(i).getCouleurAffichage() + "|  ";
 			bordureDessous+= " —————️ " + "  ";		
 		}
 		
@@ -39,5 +39,5 @@ public class TasCache extends Tas {
 		return resultat;
 	}
 	
-	
+
 }

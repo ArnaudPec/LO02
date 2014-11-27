@@ -24,6 +24,7 @@ public class MainJoueur extends Tas{
 		return carte;
 	}
 
+	
 	@Override
 	public String toString(){
 		

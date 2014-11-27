@@ -123,10 +123,6 @@ public class Carte {
 	}
 	
 	
-	/**
-	 * Permet d'avoir la valeur de la carte pour l'affichage
-	 * @return String contenant la valeur de la carte à afficher.
-	 */
 	public String getValeurAffichage()
 	{
 		String valeur = "";
@@ -179,10 +175,6 @@ public class Carte {
 	}
 	
 	
-	/**
-	 * Permet d'avoir la couleur de la carte pour l'affichage
-	 * @return String contenant la couleur de la carte à afficher.
-	 */
 	public String getCouleurAffichage()
 	{
 		String couleur = "";

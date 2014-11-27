@@ -123,10 +123,6 @@ public class Carte {
 	}
 	
 	
-	/**
-	 * Permet d'avoir la valeur de la carte pour l'affichage
-	 * @return String contenant la valeur de la carte à afficher.
-	 */
 	public String getValeurAffichage()
 	{
 		String valeur = "";
@@ -179,10 +175,6 @@ public class Carte {
 	}
 	
 	
-	/**
-	 * Permet d'avoir la couleur de la carte pour l'affichage
-	 * @return String contenant la couleur de la carte à afficher.
-	 */
 	public String getCouleurAffichage()
 	{
 		String couleur = "";
@@ -223,13 +215,13 @@ public class Carte {
 	}
 	
 	public static void main(String[]args){
-
+<<<<<<< HEAD
 		Carte carte = new Carte(1,14);
 		System.out.println(carte.toString());
-
-		Carte carte1 = new Carte(0,2);
-		System.out.println(carte1);
-
+=======
+		Carte carte = new Carte(0,2);
+		System.out.println(carte);
+>>>>>>> FETCH_HEAD
 		carte.toString();
 	}
 	

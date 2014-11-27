@@ -23,7 +23,11 @@ public class MainJoueur extends Tas{
 		
 		return carte;
 	}
-
+	
+	public Carte getCarte(int position){
+		return this.listeCartes.get(position);
+	}
+	
 	@Override
 	public String toString(){
 		
