@@ -14,7 +14,7 @@ public class TasCache extends Tas {
 
 	/**
 	 * Méthode pour prendre la première carte du Tas et la supprimer.
-	 * @return la première carte de la liste.
+	 * @return une Carte
 	 */
 	public Carte prendreCarte(){
 		return this.listeCartes.pollFirst();

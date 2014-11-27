@@ -43,7 +43,7 @@ public class Carte {
 	 * @return La valeur de la carte
 	 */
 	public int getValeur(){
-		return this.valeur;
+		return this.getCouleur();
 	}
 	
 	/**
@@ -115,7 +115,8 @@ public class Carte {
 	 */
 	public boolean estSuperieurOuEgale(Carte carte){
 		boolean resultat = false;
-		if(this.valeur >= carte.getValeur()) {
+		if(this.valeur >= carte.getValeur())
+		{
 			resultat = true;
 		}
 		return resultat;

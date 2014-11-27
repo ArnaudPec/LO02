@@ -5,10 +5,18 @@ import java.util.LinkedList;
 public class TasVisible extends Tas {
 
 	
+	/**
+	 * Constructeur de TasVisible. 
+	 */
 	public TasVisible() {
 		this.listeCartes = new LinkedList<Carte>();
 	}
+		
 	
+	/**
+	 * Méthode pour prendre la première carte du Tas et la supprimer.
+	 * @return la première carte de la liste.
+	 */
 	public Carte prendreCarte(){
 		return this.listeCartes.pollFirst();
 	}
