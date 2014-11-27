@@ -33,7 +33,7 @@ public class Pioche extends Tas {
 	}
 
 	/**
-	 * Permet d'appeler une instance de pioche, s'il n'y a pas elle en crée une autrement elle retourne celle déjà crée.
+	 * Permet d'appeler une instance de pioche, s'il n'y a pas elle en crée une, sinon elle retourne celle déjà crée.
 	 * @return une instance de pioche
 	 */
 	public static Pioche getInstancePioche(){
@@ -69,7 +69,7 @@ public class Pioche extends Tas {
 	
 	/**
 	 * Permet de distribuer les cartes entre les différents joueurs au début de partie.
-	 * 3 cartes face caché, 3 cartes face visible, 3 cartes en main
+	 * 3 cartes face cachée, 3 cartes face visible, 3 cartes en main
 	 * @param partie
 	 */
 	public void distribuerCarte(Partie partie){

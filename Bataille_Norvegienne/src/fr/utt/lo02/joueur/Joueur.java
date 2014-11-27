@@ -21,25 +21,9 @@ public class Joueur implements Strategie{
 		this.nom = nomJoueur;
 		this.mainJoueur = new MainJoueur();
 		this.tasCache = new TasCache();
-		this.tasVisible = new TasVisislbe();
+		this.tasVisible = new TasVisible();
 	}
 	
-	/**
-	 * @param numJoueur
-	 * @param nom
-	 * @param mainJoueur
-	 * @param tasCachee
-	 * @param tasVisible
-	 */
-	public Joueur(int numJoueur, String nom, MainJoueur mainJoueur, TasCache tasCache,
-			TasVisible tasVisible) {
-		super();
-		this.numJoueur = numJoueur;
-		this.nom = nom;
-		this.mainJoueur = mainJoueur;
-		this.tasCache = tasCache;
-		this.tasVisible = tasVisible;
-	}
 	public int getNumJoueur() {
 		return numJoueur;
 	}
@@ -61,7 +45,7 @@ public class Joueur implements Strategie{
 	public TasCache getTasCache() {
 		return this.tasCache;
 	}
-	public void sethTasCache(TasCache tasCachee) {
+	public void setTasCache(TasCache tasCachee) {
 		this.tasCache = tasCachee;
 	}
 	public TasVisible getTasVisible() {
@@ -71,46 +55,36 @@ public class Joueur implements Strategie{
 		this.tasVisible = tasVisible;
 	}
 	
-	
-	public void estDanish() { //Il faut enlever cette méthode ici, et on retourne un boolean false si le joueur ne peu pas jouer.
-		
-	} 
-	
 	public boolean estGagnant(){
-		boolean resultat = false;
-		if(this.tasCache.getListeCartes() == null && this.mainJoueur.getListeCartes() == null)
-		{
-			resultat = true;
-		}
-		
-		return resultat;
+		return (this.tasCache.getListeCartes().isEmpty() && this.tasVisible.getListeCartes().isEmpty() && this.mainJoueur.getListeCartes().isEmpty());
 	}
 	
-	public boolean peuJouer(){
-		//vérifie que le joueur peu jouer.
+	public boolean peutJouer(){
+		if( ){
+			return true;
+		}
+		else return false;
+		
 	}
 	
 	public void changerCarte() {
-		
+		//fera appel à choisirCarte et sera implémenté dans les classes filles afin de définir un choix inhérent au type de joueur et donc sa stratégie
 	}
 	
-	public Carte[] choisirCarteAJouer(){
+	
+	public String toString() {
+		return "Joueur [numJoueur=" + numJoueur + ", nom=" + nom
+				+ ", mainJoueur=" + mainJoueur + ", tasCache=" + tasCache
+				+ ", tasVisible=" + tasVisible + "]";
+	}
+
+	public void jouer() {
+		// TODO Auto-generated method stub
 		
-		
-		
-		System.out.println("choisissez les ou la carte(s) que vous voulez jouer.");
-		Scanner sc = new Scanner(System.in);
-		String str = sc.nextLine();
-		
-		String[] split = str.split("-");
-		
-		Carte[] listeCarte = new Carte[split.length];
-		
-		for(int i = 0; i < split.length; i++) {
-			listeCarte[i] = this.mainJoueur.getListeCartes().get(Integer.parseInt(split[i]));
-		}
-		
-		return listeCarte;	
+	}
+
+	public  Carte[] choisirCarteAJouer() { //sera précisé dans les classes filles
+		return null;
 		
 	}
 	
