@@ -8,7 +8,21 @@ public class MainJoueur extends Tas{
 		this.listeCartes = new LinkedList<Carte>();
 	}
 	
+<<<<<<< HEAD
 	public Carte prendreCarte(int position){
+=======
+	/**
+	 * 
+	 * Tu pourrais m'expliquer l'objectif de cette méthode stp ?
+	 * Je ne comprends pas ce qu'elle fait : elle prend une carte à quel objet ?
+	 * En lisant le code j'ai l'impression qu'il s'agit plutôt de poser une carte de la main puisqu'elle retourne une carte et que tu spécifies la position de la carte à "poser"
+	 * 
+	 * @param position
+	 * @return
+	 */
+	public Carte prendreCarte(int position)
+	{
+>>>>>>> FETCH_HEAD
 		Carte carte = this.listeCartes.get(position);
 		this.listeCartes.remove(position);
 		

@@ -172,11 +172,11 @@ public class Partie {
 			{
 				Joueur joueur = this.listeJoueurs.get(joueurCourant); //récupération du joueur courant
 				//Si le joueur peu jouer alors on passe au suivant
-				if(joueur.peuJouer())
+				if(joueur.peutJouer())
 				{
 					System.out.println(joueur.getMainJoueur().toString());
 					// ! \\ 
-					//à modifier car le joueur peu choisir de jouer plusieurs cartes 
+					//à modifier car le joueur peut choisir de jouer plusieurs cartes 
 					
 					for (int i = 0; i < choisirCarteAJouer().length; i++) {
 						
@@ -217,14 +217,13 @@ public class Partie {
 	}
 	
 	
-	public static void main(String[] args) {
+	 public static void main(String[] args) {
 		
 		System.out.println("Nouvelle partie de Bataille Norvegienne.");		
 		Partie partie = getInstancePartie();
 		partie.interfaceAjouterJoueur();
-		
 		partie.initialisationPartie();
-		partie.lancerPartie();		
+	
 	}
 	
 	
