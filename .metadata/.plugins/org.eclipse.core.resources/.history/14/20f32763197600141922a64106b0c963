@@ -8,16 +8,21 @@ public class MainJoueur extends Tas{
 		this.listeCartes = new LinkedList<Carte>();
 	}
 	
+<<<<<<< HEAD
+	public Carte prendreCarte(int position){
+=======
 	/**
-	 * Cette méthode permet de prendre une carte de la main du Joueur et la supprime.
-	 * Elle est différente de getCarte qui ne fait que retourner la Carte sans la supprimer.
-	 * Elle est utile pour faire jouer le joueur. 
+	 * 
+	 * Tu pourrais m'expliquer l'objectif de cette méthode stp ?
+	 * Je ne comprends pas ce qu'elle fait : elle prend une carte à quel objet ?
+	 * En lisant le code j'ai l'impression qu'il s'agit plutôt de poser une carte de la main puisqu'elle retourne une carte et que tu spécifies la position de la carte à "poser"
+	 * 
 	 * @param position
-	 * @return la carte à jouer.
+	 * @return
 	 */
 	public Carte prendreCarte(int position)
 	{
-
+>>>>>>> FETCH_HEAD
 		Carte carte = this.listeCartes.get(position);
 		this.listeCartes.remove(position);
 		

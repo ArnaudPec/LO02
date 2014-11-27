@@ -40,7 +40,7 @@ public class Joueur implements Strategie{
 		return this.mainJoueur;
 	}
 	public void setMainJoueur(MainJoueur mainJoueur) {
-		this.mainJoueur = mainJoueur;
+		this.mainJoueur = this.mainJoueur;
 	}
 	public TasCache getTasCache() {
 		return this.tasCache;
@@ -85,7 +85,7 @@ public class Joueur implements Strategie{
 //		for(int i = 0; i < split.length; i++) {
 //			listeCarte[i] = this.mainJoueur.getListeCartes().get(Integer.parseInt(split[i]));
 //		}
-
+	
 	public String toString() {
 		return "Joueur [numJoueur=" + numJoueur + ", nom=" + nom
 				+ ", mainJoueur=" + mainJoueur + ", tasCache=" + tasCache

@@ -85,7 +85,12 @@ public class Joueur implements Strategie{
 //		for(int i = 0; i < split.length; i++) {
 //			listeCarte[i] = this.mainJoueur.getListeCartes().get(Integer.parseInt(split[i]));
 //		}
-
+	
+	//!\
+	/* fait attention tu ne peux pas afficher de tasCache 
+	 * tu ne peux pas non plus afficher la mainduJoueur comme ça tu dois faire appel au méthode d'affichage
+	 * je vais pas toucher au code, l'idéal serait que tu fasses un Main et que tu tu test ce que tu fais. 
+	 * ce bout là va t'afficher une immondice merde je pense.*/
 	public String toString() {
 		return "Joueur [numJoueur=" + numJoueur + ", nom=" + nom
 				+ ", mainJoueur=" + mainJoueur + ", tasCache=" + tasCache

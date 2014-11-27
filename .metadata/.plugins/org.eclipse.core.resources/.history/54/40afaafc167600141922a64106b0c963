@@ -40,7 +40,7 @@ public class Joueur implements Strategie{
 		return this.mainJoueur;
 	}
 	public void setMainJoueur(MainJoueur mainJoueur) {
-		this.mainJoueur = mainJoueur;
+		this.mainJoueur = this.mainJoueur;
 	}
 	public TasCache getTasCache() {
 		return this.tasCache;
@@ -71,21 +71,22 @@ public class Joueur implements Strategie{
 		//fera appel à choisirCarte et sera implémenté dans les classes filles afin de définir un choix inhérent au type de joueur et donc sa stratégie
 	}
 	
-
-//	public Carte[] choisirCarteAJouer(){
-//		
-//		System.out.println("choisissez les ou la carte(s) que vous voulez jouer.");
-//		Scanner sc = new Scanner(System.in);
-//		String str = sc.nextLine();
-//		
-//		String[] split = str.split("-");
-//		
-//		Carte[] listeCarte = new Carte[split.length];
-//		
-//		for(int i = 0; i < split.length; i++) {
-//			listeCarte[i] = this.mainJoueur.getListeCartes().get(Integer.parseInt(split[i]));
-//		}
-
+<<<<<<< HEAD
+	public Carte[] choisirCarteAJouer(){
+		
+		System.out.println("choisissez les ou la carte(s) que vous voulez jouer.");
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+		
+		String[] split = str.split("-");
+		
+		Carte[] listeCarte = new Carte[split.length];
+		
+		for(int i = 0; i < split.length; i++) {
+			listeCarte[i] = this.mainJoueur.getListeCartes().get(Integer.parseInt(split[i]));
+		}
+=======
+	
 	public String toString() {
 		return "Joueur [numJoueur=" + numJoueur + ", nom=" + nom
 				+ ", mainJoueur=" + mainJoueur + ", tasCache=" + tasCache
@@ -93,7 +94,9 @@ public class Joueur implements Strategie{
 	}
 
 	public void jouer() {
-		// TODO Auto-generated method stub	
+		// TODO Auto-generated method stub
+>>>>>>> FETCH_HEAD
+		
 	}
 
 	public  Carte[] choisirCarteAJouer() { //sera précisé dans les classes filles
