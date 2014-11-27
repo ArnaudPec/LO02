@@ -1,6 +1,12 @@
 package fr.utt.lo02.joueur;
 
+import sun.security.jca.GetInstance;
+import fr.utt.lo02.*;
 import fr.utt.lo02.carte.Carte;
+import fr.utt.lo02.carte.MainJoueur;
+import fr.utt.lo02.carte.Tapis;
+import fr.utt.lo02.carte.TasCache;
+import fr.utt.lo02.carte.TasVisible;
 import fr.utt.*;
 
 public class Test {
@@ -11,14 +17,18 @@ public class Test {
 	
 
 	public static void main(String args[]) {
-		System.out.println("hello");
-		Humain j = new Humain("bob", 4);
-		j.getTasCache().ajouterCarte(new Carte(3, 11));
-		j.getTasCache().ajouterCarte(new Carte(1, 10));
-		j.getTasVisible().ajouterCarte(new Carte(1, 10));
-		System.out.println(j);
 		
+		
+		Joueur bob  = new Joueur("bob", 4);
+		bob.getMainJoueur().ajouterCarte(new Carte(2, 9));
+		bob.getMainJoueur().ajouterCarte(new Carte(2, 10));
+		bob.getMainJoueur().ajouterCarte(new Carte(2, 11));
+		bob.getMainJoueur().ajouterCarte(new Carte(2, 12));
 
+		//System.out.println(bob.peutJouer(new Carte(2, 2)));
+		System.out.println(bob.peutJouer(new Carte(2, 14)));
+		
+		
 	}
 
 }

@@ -6,6 +6,7 @@ public interface Strategie {
 
 	public void jouer();
 	public Carte[] choisirCarteAJouer();
+	public void changerCarte();
 	
 
 }

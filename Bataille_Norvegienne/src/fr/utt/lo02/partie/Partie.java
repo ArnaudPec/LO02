@@ -152,7 +152,7 @@ public class Partie {
 		this.pioche.melanger();
 		this.pioche.distribuerCarte(instancePartie);
 		
-		lancerPartie();
+		//lancerPartie();
 		
 	}
 	
@@ -160,46 +160,46 @@ public class Partie {
 	/**
 	 * Methode permettant de lancer la boucle de jeu.
 	 */
-	public void lancerPartie(){
-		
-		boolean estDanish = false;
-		boolean estGagnee = false;
-		
-		while(!estGagnee)
-		{
-			//tant que tout le monde peu jouer ..
-			while(!(estDanish && estGagnee))
-			{
-				Joueur joueur = this.listeJoueurs.get(joueurCourant); //récupération du joueur courant
-				//Si le joueur peu jouer alors on passe au suivant
-				if(joueur.peutJouer())
-				{
-					System.out.println(joueur.getMainJoueur().toString());
-					// ! \\ 
-					//à modifier car le joueur peut choisir de jouer plusieurs cartes 
-					
-					for (int i = 0; i < choisirCarteAJouer().length; i++) {
-						
-					}
-					this.tapis.ajouterCarte(joueur.jouer());
-					joueurCourant++;
-					
-					//Si le joueur à posé et qu'il n'a plus de carte il à gagné !
-					if(joueur.estGagnant())
-					{
-						estGagnee = true;
-					}
-				}
-				else //Sinon on donne la main au dernier à avoir poser et on fini la manche.
-				{
-					joueur.getMainJoueur().getListeCartes().addAll(this.tapis.getListeCartes());//Je donne le tapis au joueur qui n'a pas pu jouer.
-					this.tapis=null;
-					joueurCourant--;
-					estDanish = true;
-				}
-			}
-		}	
-	}
+//	public void lancerPartie(){
+//		
+//		boolean estDanish = false;
+//		boolean estGagnee = false;
+//		
+//		while(!estGagnee)
+//		{
+//			//tant que tout le monde peu jouer ..
+//			while(!(estDanish && estGagnee))
+//			{
+//				Joueur joueur = this.listeJoueurs.get(joueurCourant); //récupération du joueur courant
+//				//Si le joueur peu jouer alors on passe au suivant
+//				if(joueur.peutJouer())
+//				{
+//					System.out.println(joueur.getMainJoueur().toString());
+//					// ! \\ 
+//					//à modifier car le joueur peut choisir de jouer plusieurs cartes 
+//					
+//					for (int i = 0; i < choisirCarteAJouer().length; i++) {
+//						
+//					}
+//					this.tapis.ajouterCarte(joueur.jouer());
+//					joueurCourant++;
+//					
+//					//Si le joueur à posé et qu'il n'a plus de carte il à gagné !
+//					if(joueur.estGagnant())
+//					{
+//						estGagnee = true;
+//					}
+//				}
+//				else //Sinon on donne la main au dernier à avoir poser et on fini la manche.
+//				{
+//					joueur.getMainJoueur().getListeCartes().addAll(this.tapis.getListeCartes());//Je donne le tapis au joueur qui n'a pas pu jouer.
+//					this.tapis=null;
+//					joueurCourant--;
+//					estDanish = true;
+//				}
+//			}
+//		}	
+//	}
 	
 	/**
 	 * Permet de faire piocher un joueur

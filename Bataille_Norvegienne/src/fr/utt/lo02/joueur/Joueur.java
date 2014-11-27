@@ -2,11 +2,13 @@ package fr.utt.lo02.joueur;
 
 import java.util.Scanner;
 
+import javax.swing.text.html.HTMLDocument.Iterator;
+
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.carte.MainJoueur;
 import fr.utt.lo02.carte.TasCache;
 import fr.utt.lo02.carte.TasVisible;
-
+import fr.utt.lo02.*;
 public class Joueur implements Strategie{
 	
 	protected int numJoueur;
@@ -59,32 +61,40 @@ public class Joueur implements Strategie{
 		return (this.tasCache.getListeCartes().isEmpty() && this.tasVisible.getListeCartes().isEmpty() && this.mainJoueur.getListeCartes().isEmpty());
 	}
 	
-	public boolean peutJouer(){
-		if( ){
-			return true;
-		}
-		else return false;
+	/**
+	 * Méthode qui permet d'évaluer si le joueur peut jouer, c'est-à-dire s'il a en sa possession une ou plusieurs cartes supérieures à la dernière carte posée.
+	 * On utilise un itérateur pour parcourir la main du joueur. Il est nécessaire de gérer le cas de la carte 7.
+	 * @param derniereCarteTapis
+	 * @return Un booleen 
+	 */
+	public boolean peutJouer(Carte derniereCarteTapis){
 		
-	}
+		if(derniereCarteTapis.getValeur()==7){
+			
+			java.util.Iterator<Carte> it = this.mainJoueur.getListeCartes().iterator();
+			while (it.hasNext()) {
+				Carte carte = (Carte) it.next();
+				if(carte.getValeur()<=7) return true;
+			}
+			
+			return false;
+		}
+		
+		else{
+			
+			java.util.Iterator<Carte> it = this.mainJoueur.getListeCartes().iterator();
+			while (it.hasNext()) {
+				Carte carte = (Carte) it.next();
+				if(carte.estSuperieurOuEgale(derniereCarteTapis)) return true;
+			}
+			
+			return false;
+		}
+ 	}
 	
 	public void changerCarte() {
 		//fera appel à choisirCarte et sera implémenté dans les classes filles afin de définir un choix inhérent au type de joueur et donc sa stratégie
 	}
-	
-
-//	public Carte[] choisirCarteAJouer(){
-//		
-//		System.out.println("choisissez les ou la carte(s) que vous voulez jouer.");
-//		Scanner sc = new Scanner(System.in);
-//		String str = sc.nextLine();
-//		
-//		String[] split = str.split("-");
-//		
-//		Carte[] listeCarte = new Carte[split.length];
-//		
-//		for(int i = 0; i < split.length; i++) {
-//			listeCarte[i] = this.mainJoueur.getListeCartes().get(Integer.parseInt(split[i]));
-//		}
 
 	public String toString() {
 		return "Joueur [numJoueur=" + numJoueur + ", nom=" + nom
