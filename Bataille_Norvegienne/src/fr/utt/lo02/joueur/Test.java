@@ -1,5 +1,7 @@
 package fr.utt.lo02.joueur;
 
+import java.util.LinkedList;
+
 import sun.security.jca.GetInstance;
 import fr.utt.lo02.*;
 import fr.utt.lo02.carte.Carte;

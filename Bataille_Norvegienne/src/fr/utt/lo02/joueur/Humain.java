@@ -87,11 +87,11 @@ public class Humain extends Joueur {
 	 * des contrôles : 
 	 * 1 - ajouter une condition au choix du nombre de carte à jouer 
 	 * 		pour cela il faut au préalable vérifier le nombre max de carte de même valeur de sa main ( ex : 8coeur 8carreau Aspic RoiTrefle  =  2)
-	 * 		et interdir un choix supérieur à ce nombre
+	 * 		et interdir un choix supérieur à ce nombre --> NORMALEMENT OK 
 	 * 
 	 * 2 - A la sélection de la première carte d'une série de plusieurs carte, il faut implémenter une vérification de la main (ex: l'humain souhaite jouer deux cartes,
 	 * 		selon l'exemple du 1 - il ne peut que choisir une carte de valeur 8, s'il demande l'as il faut lui redemander de choisir avant de prendreCarte(l'as en question)
-	 * 		
+	 * 		---> NORMALEMENT OK
 	 */
 	public Carte[] choisirCarteAJouer(){
 		
@@ -99,43 +99,61 @@ public class Humain extends Joueur {
 	
 		Carte[] listeCartes;
 		int numCarte=0;
-		boolean error =false;
+		int nombreMaxCarteJouable;
+		//boolean error =false; 
+		boolean error = true;
+		nombreMaxCarteJouable=this.mainJoueur.calculerNbMaxCarteMemeValeur();
+		if(nombreMaxCarteJouable>3) nombreMaxCarteJouable = 3;
 		
 		System.out.println(this.mainJoueur);
 		
 		System.out.println("Choisissez le nombre de carte à jouer");
-		int nb = scanner.nextInt();
 		
-		while (nb>3) {
-			System.out.println("Erreur : Choisissez un nombre inférieur ou égal à 3");
+		int nb = scanner.nextInt();
+		while (nb>nombreMaxCarteJouable) {
+			System.out.println("Erreur : Vous ne pouvez jouer au maximum que "+nombreMaxCarteJouable+ " carte(s)\nChoisissez un nombre inférieur ou égal à " +nombreMaxCarteJouable);
 			nb = scanner.nextInt();
 		}
 		
 		listeCartes = new Carte[nb];
 		
-		
-			
-		for (int i = 0; i < nb; i++) {
-			
-			error =true;
-			
-			while(error){
-				error=false;
-				System.out.println(this.mainJoueur);
-				System.out.println("\nChoisissez la carte " +i + ": \n");
-				numCarte=scanner.nextInt();
-				while(numCarte>3){
-					System.out.println("\nIl n'y a que quatre cartes ! Choississez la carte "  +i + ": \n");
-					numCarte=scanner.nextInt();
-				}
-				for(int j=0; j<i; j++){
-					if(mainJoueur.getCarte(numCarte).equals(listeCartes[j])) error=true;
-					if(mainJoueur.getCarte(numCarte).getValeur()!=listeCartes[j].getValeur()) error =true;
-				}
+		System.out.println(this.mainJoueur);
+		System.out.println("\nChoisissez la(les) carte(s) à jouer (pour un groupe, un seul choix) : \n");
+		numCarte=scanner.nextInt();
+
+		while(this.mainJoueur.calculerNbOccurenceMemeValeur(this.mainJoueur.getCarte(numCarte))!=nombreMaxCarteJouable){
+			System.out.println("Choix incorrect, vous aviez choisi de jouer " +nb+ " carte(s). Recommencez : \n");
+			System.out.println(this.mainJoueur);
+			numCarte=scanner.nextInt();
 			}
-			
-			listeCartes[i]=this.mainJoueur.prendreCarte(numCarte);	
+		System.out.println("Choix correct");
+		int valeur = this.mainJoueur.getCarte(numCarte).getValeur();
+		for (int i = 0; i < listeCartes.length; i++) {
+			listeCartes[i]=this.mainJoueur.prendreCarte(this.mainJoueur.calculerPositionCarteValeur(valeur));
 		}
+		
+		
+//		for (int i = 0; i < nb; i++) {
+//			
+//			error =true;
+//			
+//			while(error){
+//				error=false;
+//				System.out.println(this.mainJoueur);
+//				System.out.println("\nChoisissez la carte " +i + ": \n");
+//				numCarte=scanner.nextInt();
+//				while(numCarte>3){
+//					System.out.println("\nIl n'y a que quatre cartes ! Choississez la carte "  +i + ": \n");
+//					numCarte=scanner.nextInt();
+//				}	
+//				for(int j=0; j<i; j++){
+//					if(mainJoueur.getCarte(numCarte).equals(listeCartes[j])) error=true;
+//					if(mainJoueur.getCarte(numCarte).getValeur()!=listeCartes[j].getValeur()) error =true;
+//				}
+//			}
+//			
+//			listeCartes[i]=this.mainJoueur.prendreCarte(numCarte);	
+//		}
 		
 		System.out.println("Choix : \n");
 		for (int i = 0; i < listeCartes.length; i++) {
