@@ -20,21 +20,6 @@ public class TasCache extends Tas {
 		return this.listeCartes.pollFirst();
 	}
 	
-	/**
-	 * Edit : j'ai ajouté cette méthode pour faciliter l'échanger de carte, pour pouvoir échanger à une position donnée
-	 * @param position
-	 * @return la première carte de la liste.
-	 */
-	public Carte prendreCarte(int position)
-	{
-
-		Carte carte = this.listeCartes.get(position);
-		this.listeCartes.remove(position);
-		
-		return carte;
-	}
-
-	
 	@Override
 	public String toString(){
 		
