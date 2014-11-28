@@ -100,8 +100,7 @@ public class Humain extends Joueur {
 		Carte[] listeCartes;
 		int numCarte=0;
 		int nombreMaxCarteJouable;
-		//boolean error =false; 
-		boolean error = true;
+		
 		nombreMaxCarteJouable=this.mainJoueur.calculerNbMaxCarteMemeValeur();
 		if(nombreMaxCarteJouable>3) nombreMaxCarteJouable = 3;
 		
@@ -126,7 +125,7 @@ public class Humain extends Joueur {
 			System.out.println(this.mainJoueur);
 			numCarte=scanner.nextInt();
 			}
-		System.out.println("Choix correct");
+		System.out.println("Choix correct\n");
 		int valeur = this.mainJoueur.getCarte(numCarte).getValeur();
 		for (int i = 0; i < listeCartes.length; i++) {
 			listeCartes[i]=this.mainJoueur.prendreCarte(this.mainJoueur.calculerPositionCarteValeur(valeur));
@@ -166,7 +165,7 @@ public class Humain extends Joueur {
 	
 	
 	/** 
-	 * Méthode permettant au joueur humain d'échanger ces cartes en début de partie
+	 * Méthode permettant au joueur humain d'échanger ses cartes en début de partie
 	 */
 	public void changerCartes(){
 		
