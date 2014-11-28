@@ -1,5 +1,6 @@
 package fr.utt.lo02.joueur;
 
+import java.util.HashSet;
 import java.util.Scanner;
 
 import javax.swing.text.html.HTMLDocument.Iterator;
@@ -26,38 +27,12 @@ public class Joueur implements Strategie{
 		this.tasVisible = new TasVisible();
 	}
 	
-	public int getNumJoueur() {
-		return numJoueur;
-	}
-	public void setNumJoueur(int numJoueur) {
-		this.numJoueur = numJoueur;
-	}
-	public String getNom() {
-		return this.nom;
-	}
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-	public MainJoueur getMainJoueur() {
-		return this.mainJoueur;
-	}
-	public void setMainJoueur(MainJoueur mainJoueur) {
-		this.mainJoueur = mainJoueur;
-	}
-	public TasCache getTasCache() {
-		return this.tasCache;
-	}
-	public void setTasCache(TasCache tasCachee) {
-		this.tasCache = tasCachee;
-	}
-	public TasVisible getTasVisible() {
-		return tasVisible;
-	}
-	public void setTasVisible(TasVisible tasVisible) {
-		this.tasVisible = tasVisible;
-	}
-	
+	/**
+	 * Méthode permettant de déterminer si un joueur a gagné, c'est à dire si tous ses tas sont vides
+	 * @return un booleen
+	 */
 	public boolean estGagnant(){
+		
 		return (this.tasCache.getListeCartes().isEmpty() && this.tasVisible.getListeCartes().isEmpty() && this.mainJoueur.getListeCartes().isEmpty());
 	}
 	
@@ -92,8 +67,19 @@ public class Joueur implements Strategie{
 		}
  	}
 	
-	public void changerCarte() {
-		//fera appel à choisirCarte et sera implémenté dans les classes filles afin de définir un choix inhérent au type de joueur et donc sa stratégie
+	/**
+	 * Méthode permettant au joueur de choisir la ou les cartes de sa main qu'il souhaite jouer. Son implémentation est différente selon le type de joueur.
+	 */
+	public  Carte[] choisirCarteAJouer() { 
+		return null;
+	}
+	
+
+	/**
+	 * Méthode permettant au joueur d'échanger les cartes de sa main avec celles de son tas visible. Son implémentation est différente selon le type de joueur.
+	 */
+	public void changerCartes() {
+		
 	}
 
 	public String toString() {
@@ -101,15 +87,38 @@ public class Joueur implements Strategie{
 				+ ", mainJoueur=" + mainJoueur + ", tasCache=" + tasCache
 				+ ", tasVisible=" + tasVisible + "]";
 	}
-
-	public void jouer() {
-		// TODO Auto-generated method stub	
+	
+	public int getNumJoueur() {
+		return numJoueur;
+	}
+	public void setNumJoueur(int numJoueur) {
+		this.numJoueur = numJoueur;
+	}
+	public String getNom() {
+		return this.nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public MainJoueur getMainJoueur() {
+		return this.mainJoueur;
+	}
+	public void setMainJoueur(MainJoueur mainJoueur) {
+		this.mainJoueur = mainJoueur;
+	}
+	public TasCache getTasCache() {
+		return this.tasCache;
+	}
+	public void setTasCache(TasCache tasCachee) {
+		this.tasCache = tasCachee;
+	}
+	public TasVisible getTasVisible() {
+		return tasVisible;
+	}
+	public void setTasVisible(TasVisible tasVisible) {
+		this.tasVisible = tasVisible;
 	}
 
-	public  Carte[] choisirCarteAJouer() { //sera précisé dans les classes filles
-		return null;
-		
-	}
 	
-	
+
 }

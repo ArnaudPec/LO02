@@ -19,16 +19,35 @@ public class Test {
 	public static void main(String args[]) {
 		
 		
-		Joueur bob  = new Joueur("bob", 4);
-		bob.getMainJoueur().ajouterCarte(new Carte(2, 9));
+		Joueur bob  = new Humain ("bob", 4);
+		bob.getMainJoueur().ajouterCarte(new Carte(2, 8));
 		bob.getMainJoueur().ajouterCarte(new Carte(2, 10));
 		bob.getMainJoueur().ajouterCarte(new Carte(2, 11));
 		bob.getMainJoueur().ajouterCarte(new Carte(2, 12));
+		
+		
+		bob.getTasCache().ajouterCarte(new Carte(2, 8));
+		bob.getTasCache().ajouterCarte(new Carte(1, 4));
+		bob.getTasCache().ajouterCarte(new Carte(3, 7));
+
+		
+		bob.getTasVisible().ajouterCarte(new Carte(1, 8));
+		bob.getTasVisible().ajouterCarte(new Carte(1, 5));
+		bob.getTasVisible().ajouterCarte(new Carte(0, 2));
+
+
 
 		//System.out.println(bob.peutJouer(new Carte(2, 2)));
-		System.out.println(bob.peutJouer(new Carte(2, 14)));
+		//System.out.println(bob.peutJouer(new Carte(2, 5)));
 		
 		
+		//System.out.println(bob);
+		
+		
+		bob.changerCartes();
+		bob.choisirCarteAJouer();
+
+	
 	}
 
 }

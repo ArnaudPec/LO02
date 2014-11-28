@@ -1,5 +1,8 @@
 package fr.utt.lo02.joueur;
 
+import java.util.HashSet;
+import java.util.LinkedList;
+
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.carte.MainJoueur;
 import fr.utt.lo02.carte.TasCache;
