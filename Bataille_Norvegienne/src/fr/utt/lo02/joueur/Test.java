@@ -21,7 +21,7 @@ public class Test {
 	public static void main(String args[]) {
 		
 		
-		Joueur bob  = new Humain ("bob", 4);
+		IaAleatoire bob  = new IaAleatoire("bob", 4);
 		bob.getMainJoueur().ajouterCarte(new Carte(2, 8));
 		bob.getMainJoueur().ajouterCarte(new Carte(2, 10));
 		bob.getMainJoueur().ajouterCarte(new Carte(2, 11));
@@ -46,7 +46,7 @@ public class Test {
 		//System.out.println(bob);
 		
 		
-		bob.changerCartes();
+		//bob.changerCartes();
 		bob.choisirCarteAJouer();
 
 	
