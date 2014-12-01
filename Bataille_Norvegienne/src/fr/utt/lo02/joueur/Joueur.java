@@ -1,15 +1,11 @@
 package fr.utt.lo02.joueur;
 
-import java.util.HashSet;
-import java.util.Scanner;
-
-import javax.swing.text.html.HTMLDocument.Iterator;
 
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.carte.MainJoueur;
 import fr.utt.lo02.carte.TasCache;
 import fr.utt.lo02.carte.TasVisible;
-import fr.utt.lo02.*;
+
 public class Joueur implements Strategie{
 	
 	protected int numJoueur;
@@ -38,7 +34,7 @@ public class Joueur implements Strategie{
 	
 	/**
 	 * Méthode qui permet d'évaluer si le joueur peut jouer, c'est-à-dire s'il a en sa possession une ou plusieurs cartes supérieures à la dernière carte posée.
-	 * On utilise un itérateur pour parcourir la main du joueur. Il est nécessaire de gérer le cas de la carte 7.
+	 * On utilise un itérateur pour parcourir la main du joueur. Il est nécessaire de gérer le cas de la carte 7 et de la carte 2.
 	 * @param derniereCarteTapis
 	 * @return Un booleen 
 	 */
@@ -55,12 +51,14 @@ public class Joueur implements Strategie{
 			return false;
 		}
 		
+		
 		else{
 			
 			java.util.Iterator<Carte> it = this.mainJoueur.getListeCartes().iterator();
 			while (it.hasNext()) {
 				Carte carte = (Carte) it.next();
-				if(carte.estSuperieurOuEgale(derniereCarteTapis)) return true;
+				if(carte.estSuperieurOuEgale(derniereCarteTapis) || carte.getValeur()==2) return true;
+				
 			}
 			
 			return false;
@@ -83,9 +81,7 @@ public class Joueur implements Strategie{
 	}
 
 	public String toString() {
-		return "Joueur [numJoueur=" + numJoueur + ", nom=" + nom
-				+ ", mainJoueur=" + mainJoueur + ", tasCache=" + tasCache
-				+ ", tasVisible=" + tasVisible + "]";
+		return "Joueur [numJoueur=" + numJoueur + ", nom=" + nom + ", mainJoueur=" + mainJoueur + ", tasCache=" + tasCache+ ", tasVisible=" + tasVisible + "]";
 	}
 	
 	public int getNumJoueur() {

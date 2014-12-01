@@ -21,7 +21,7 @@ public class Test {
 	public static void main(String args[]) {
 		
 		
-		IaAleatoire bob  = new IaAleatoire("bob", 4);
+		Joueur bob  = new IaOffensive("bob", 4);
 		bob.getMainJoueur().ajouterCarte(new Carte(2, 8));
 		bob.getMainJoueur().ajouterCarte(new Carte(2, 10));
 		bob.getMainJoueur().ajouterCarte(new Carte(2, 11));
@@ -35,10 +35,10 @@ public class Test {
 		
 		bob.getTasVisible().ajouterCarte(new Carte(1, 8));
 		bob.getTasVisible().ajouterCarte(new Carte(1, 5));
-		bob.getTasVisible().ajouterCarte(new Carte(0, 2));
+		bob.getTasVisible().ajouterCarte(new Carte(0, 14));
 
 
-
+       
 		//System.out.println(bob.peutJouer(new Carte(2, 2)));
 		//System.out.println(bob.peutJouer(new Carte(2, 5)));
 		
@@ -47,7 +47,13 @@ public class Test {
 		
 		
 		//bob.changerCartes();
-		bob.choisirCarteAJouer();
+		System.out.println(bob.peutJouer(new Carte(2, 4)));
+		
+		System.out.println(bob.choisirCarteAJouer());
+		
+		//System.out.println(bob.getMainJoueur());
+		//bob.changerCartes();
+		//System.out.println(bob.getMainJoueur());
 
 	
 	}

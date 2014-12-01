@@ -1,7 +1,6 @@
 package fr.utt.lo02.carte;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -87,7 +86,7 @@ public class MainJoueur extends Tas{
 		int [] tab = new int[16];
 		for (int i = 0; i < tab.length; i++) tab[i]=0;
 		
-		for (Iterator iterator = listeCartes.iterator(); iterator.hasNext();) {
+		for (Iterator<Carte> iterator = listeCartes.iterator(); iterator.hasNext();) {
 			Carte carte = (Carte) iterator.next();
 			tab[carte.getValeur()]++;
 		}
@@ -108,7 +107,7 @@ public class MainJoueur extends Tas{
 
 		int compteur=0;
 		
-		for (Iterator iterator = listeCartes.iterator(); iterator.hasNext();) {
+		for (Iterator<Carte> iterator = listeCartes.iterator(); iterator.hasNext();) {
 			Carte carte = (Carte) iterator.next();
 			if (c.getValeur()==carte.getValeur()) compteur ++;
 		}
@@ -123,7 +122,7 @@ public class MainJoueur extends Tas{
 	 */
 	public int calculerPositionCarteValeur(int valeur){
 		int i=0;
-		for (Iterator iterator = listeCartes.iterator(); iterator.hasNext();) {
+		for (Iterator<Carte> iterator = listeCartes.iterator(); iterator.hasNext();) {
 			Carte carte = (Carte) iterator.next();
 			if(carte.getValeur()==valeur) return i;
 			i++;
@@ -131,4 +130,48 @@ public class MainJoueur extends Tas{
 		return 99;
 	}
 	
+	/**
+	 * Méthode qui permet de savoir si la main contient des cartes non spéciales
+	 * @return un booleen qui indique la présence ou non d'une carte spéciale
+	 */
+	public boolean contenirCarteNonSpeciale(){
+		Iterator<Carte> it = this.listeCartes.iterator();
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next();
+			if(!carte.estSpeciale())return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * Méthode qui permet de récupérer une carte non spéciale contenue dans la MainJoueur.
+	 * @return une carte non spéciale
+	 */
+	public Carte prendreCarteNonSpeciale() {
+		Iterator<Carte> it = this.listeCartes.iterator();
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next();
+			if(!carte.estSpeciale()) { 
+				it.remove();
+				return carte;
+			}
+		}
+		return null;
+		
+	}
+	
+	
+//	/**
+//	 * Méthode permettant de récupérer de la main les cartes jouables
+//	 * @return la liste des cartes jouables
+//	 */
+//	public LinkedList<Carte> getListeCartesJouables(){
+//		LinkedList<Carte> listeCartesJouables = new LinkedList<Carte>();
+//		Iterator<Carte> it = listeCartesJouables.iterator();
+//		while (it.hasNext()) {
+//			//Carte carte = (Carte) it.next();
+//			
+//		}
+//		return listeCartesJouables;
+//	}
 }

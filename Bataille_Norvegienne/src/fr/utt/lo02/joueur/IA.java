@@ -3,10 +3,6 @@
  */
 package fr.utt.lo02.joueur;
 
-import fr.utt.lo02.carte.MainJoueur;
-import fr.utt.lo02.carte.TasCache;
-import fr.utt.lo02.carte.TasVisible;
-
 /**
  *
  */

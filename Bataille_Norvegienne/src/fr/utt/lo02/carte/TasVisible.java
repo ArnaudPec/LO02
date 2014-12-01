@@ -1,5 +1,6 @@
 package fr.utt.lo02.carte;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class TasVisible extends Tas {
@@ -35,7 +36,55 @@ public class TasVisible extends Tas {
 		return carte;
 	}
 
+	/**
+	 * Méthode qui permet de savoir si le TasVisible contient des cartes spéciales
+	 * @return un booleen qui indique la présence ou non d'une carte spéciale
+	 */
+	public boolean contenirCarteSpeciale(){
+		Iterator<Carte> it = this.listeCartes.iterator();
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next();
+			if(carte.estSpeciale())return true;
+		}
+		return false;
+	}
 	
+	
+	/**
+	 * Méthode qui permet de récupérer une carte spéciale contenue dans le TasVisible. Elle retourne en priorité les cartes spéciales As et Huit
+	 * @return une carte spéciale, en priorité un As, ou un huit ou null s'il n'y a plus de carte spéciale
+	 */
+	public Carte prendreCarteSpeciale() {
+		Iterator<Carte> it = this.listeCartes.iterator();
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next();
+			if(carte.getValeur()==14) {  // c'est un as	
+				it.remove();
+				return carte;
+			}
+		}
+		
+		it = this.listeCartes.iterator();
+		
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next(); 
+			if(carte.getValeur()==8) { // c'est un huit
+				it.remove();
+				return carte; 
+			}
+		}
+		
+		it = this.listeCartes.iterator();
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next();
+			if(carte.estSpeciale()){ // c'est une carte spéciale
+				it.remove();
+				return carte; 	
+			}
+		}
+		return null;
+		
+	}
 	@Override
 	public String toString(){
 		

@@ -1,15 +1,8 @@
 package fr.utt.lo02.joueur;
 
-import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Random;
-import java.util.Scanner;
 
-import fr.utt.lo02.carte.Carte;
-import fr.utt.lo02.carte.MainJoueur;
-import fr.utt.lo02.carte.TasCache;
-import fr.utt.lo02.carte.TasVisible;
-
+import fr.utt.lo02.carte.*;
 public class IaAleatoire extends IA {
 
 	public IaAleatoire(String nomJoueur, int numJoueur) {
@@ -17,98 +10,84 @@ public class IaAleatoire extends IA {
 		// TODO Auto-generated constructor stub
 	}
 
-		/** 
-		 * Méthode permettant au joueur IaAleatoire de choisir les cartes à jouer. 
-		 */
-	
-	public Carte[] choisirCarteAJouer(){
-		
-		Scanner scanner = new Scanner(System.in);
-		Random rand = new Random(); 
-		Carte[] listeCartes;
-		int numCarte=0;
-		int nombreMaxCarteJouable;
-		
-		nombreMaxCarteJouable=this.mainJoueur.calculerNbMaxCarteMemeValeur();
-		if(nombreMaxCarteJouable>3) nombreMaxCarteJouable = 3;
-		
-		System.out.println("ici");
-		int nb = rand.nextInt(nombreMaxCarteJouable+1);
-		while (nb==0) {
-			System.out.println("la");
-			nb = rand.nextInt(nombreMaxCarteJouable+1);
-		}
-		
-		listeCartes = new Carte[nb];
-		
-		System.out.println(this.mainJoueur);
-		System.out.println("\nChoisissez la(les) carte(s) à jouer (pour un groupe, un seul choix) : \n");
-		numCarte=rand.nextInt(nombreMaxCarteJouable+1);
+	/**
+	 * Méthode permettant au joueur IaAleatoire de choisir les cartes à jouer.
+	 * Ici tout est choisi aléatoirement. On utilise l'objet random.
+	 * @see rand
+	 *
+	 * @see MainJoueur#calculerNbMaxCarteMemeValeur()
+	 * @see MainJoueur#calculerNbOccurenceMemeValeur(Carte)
+	 * @see MainJoueur#calculerPositionCarteValeur(int)
+	 *
+	 */
+	public Carte[] choisirCarteAJouer() {
 
-		while(numCarte>3 ||(this.mainJoueur.calculerNbOccurenceMemeValeur(this.mainJoueur.getCarte(numCarte))!=nombreMaxCarteJouable) ){
-			System.out.println("Choix incorrect, vous aviez choisi de jouer " +nb+ " carte(s). Recommencez : \n");
-			System.out.println(this.mainJoueur);
-			numCarte=rand.nextInt(nombreMaxCarteJouable+1);
-			}
-		System.out.println("Choix correct\n");
+		Random rand = new Random();
+		Carte[] listeCartes;
+		int numCarte = 0;
+		int nombreMaxCarteJouable;
+
+		nombreMaxCarteJouable = this.mainJoueur.calculerNbMaxCarteMemeValeur();
+		if (nombreMaxCarteJouable > 3)
+			nombreMaxCarteJouable = 3;
+
+		int nb = rand.nextInt(nombreMaxCarteJouable + 1);
+		while (nb == 0) {
+			nb = rand.nextInt(nombreMaxCarteJouable + 1);
+		}
+
+		listeCartes = new Carte[nb];
+
+		numCarte = rand.nextInt(3 + 1);
+
+		while (numCarte > 3
+				|| (this.mainJoueur
+						.calculerNbOccurenceMemeValeur(this.mainJoueur
+								.getCarte(numCarte)) != nombreMaxCarteJouable)) {
+			numCarte = rand.nextInt(3 + 1);
+		}
 		int valeur = this.mainJoueur.getCarte(numCarte).getValeur();
 		for (int i = 0; i < listeCartes.length; i++) {
-			listeCartes[i]=this.mainJoueur.prendreCarte(this.mainJoueur.calculerPositionCarteValeur(valeur));
-		}
-
-		System.out.println("Choix : \n");
-		for (int i = 0; i < listeCartes.length; i++) {
-			System.out.println(listeCartes[i]);
-			
+			listeCartes[i] = this.mainJoueur.prendreCarte(this.mainJoueur
+					.calculerPositionCarteValeur(valeur));
 		}
 
 		return listeCartes;
 	}
-		
-		
-		/** 
-		 * Méthode permettant au joueur humain d'échanger ses cartes en début de partie
-		 */
-		public void changerCartes(){
-			
-			Scanner scanner = new Scanner(System.in);
-			Scanner scanner2 =new Scanner(System.in);
-			int numCarteMain, numCarteVis;
-			
-			System.out.println(this.mainJoueur);
-			System.out.println(this.tasVisible);
-			
-			System.out.println("Souhaitez vous echanger une carte ? O/n \n");
-			
-			String chaine=scanner.nextLine();
-			char c = chaine.charAt(0);
-			
-			while(c!='n'){
-				System.out.println(this.mainJoueur);
-				System.out.println(this.tasVisible);
-				
-				System.out.println("Numéro de la carte à échanger (main) :");
-				numCarteMain = scanner2.nextInt();
-				
-				System.out.println("Numéro de la carte à échanger (cartes visibles) :");
-				numCarteVis = scanner2.nextInt();
-				this.mainJoueur.ajouterCarte(this.tasVisible.prendreCarte(numCarteVis));
-				this.tasVisible.ajouterCarte(this.mainJoueur.prendreCarte(numCarteMain));	
-				
-				System.out.println(this.mainJoueur);
-				System.out.println(this.tasVisible);
-				
-				System.out.println("Souhaitez vous echanger une autre carte ? O/n \n");
-				chaine=scanner.nextLine();
-				c = chaine.charAt(0);
-			}		
+
+	/**
+	 * Méthode permettant au joueur humain d'échanger ses cartes en début de
+	 * partie.
+	 * 
+	 * @see rand
+	 *
+	 * @see MainJoueur#ajouterCarte(Carte)
+	 * @see MainJoueur#prendreCarte(int)
+	 * 
+	 * @see TasVisible#ajouterCarte(Carte)
+	 * @see TasVisible#prendreCarte(int)
+	 */
+	public void changerCartes() {
+
+		int numCarteMain, numCarteVis;
+		int nbChangement = 3;
+		Random rand = new Random();
+
+		boolean changer = rand.nextBoolean();
+		System.out.println(changer);
+		while (changer && nbChangement > 0) {
+
+			numCarteMain = rand.nextInt(4);
+			numCarteVis = rand.nextInt(3);
+
+			this.mainJoueur.ajouterCarte(this.tasVisible
+					.prendreCarte(numCarteVis));
+			this.tasVisible.ajouterCarte(this.mainJoueur
+					.prendreCarte(numCarteMain));
+			nbChangement--;
+			changer = rand.nextBoolean();
 		}
-		
+
 	}
 
-
-
-
-	
-
-
+}
