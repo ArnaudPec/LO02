@@ -32,6 +32,8 @@ public class Humain extends Joueur {
 	 * carte de valeur 8, s'il demande l'as il faut lui redemander de choisir
 	 * avant de prendreCarte(l'as en question) ---> NORMALEMENT OK
 	 * 
+	 * @return une liste de carte
+	 * 
 	 * @see MainJoueur#calculerNbMaxCarteMemeValeur()
 	 * @see MainJoueur#calculerNbOccurenceMemeValeur(Carte)
 	 * @see MainJoueur#calculerPositionCarteValeur(int)

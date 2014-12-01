@@ -17,7 +17,10 @@ public class IaAleatoire extends IA {
 	/**
 	 * Méthode permettant au joueur IaAleatoire de choisir les cartes à jouer.
 	 * Ici tout est choisi aléatoirement. On utilise l'objet random.
-	 * @see rand
+	 * 
+	 * @return une liste de carte
+	 * 
+	 * @see Random
 	 *
 	 * @see MainJoueur#calculerNbMaxCarteMemeValeur()
 	 * @see MainJoueur#calculerNbOccurenceMemeValeur(Carte)
@@ -68,7 +71,7 @@ public class IaAleatoire extends IA {
 	 * Méthode permettant au joueur humain d'échanger ses cartes en début de
 	 * partie.
 	 * 
-	 * @see rand
+	 * @see Random
 	 *
 	 * @see MainJoueur#ajouterCarte(Carte)
 	 * @see MainJoueur#prendreCarte(int)

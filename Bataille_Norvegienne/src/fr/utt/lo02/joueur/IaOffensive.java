@@ -15,8 +15,20 @@ public class IaOffensive extends IA {
 	
 	/**
 	 * Méthode permettant au joueur IaOffensif de choisir les cartes à jouer.
-	 * L'Ia offensive privilégie la pose de cartes spéciales. Elle pose le maximum de cartes posables. 
-	 * Pour l'instant même comportement que l'iaAléatoire
+	 * L'Ia offensive privilégie la pose de cartes spéciales. On tente tout d'abord de poser des as, puis des huits, puis des cartes spéciales. En dernier 
+	 * recours, si on ne dispose pas de carte spéciale on pose aléatoirement une carte.
+	 * 
+	 * Pour chaque carte posée, on évalue le nombre maximum de carte de cette valeur, et on pose toutes les cartes correspondantes.
+	 * De cette manière on s'arrure de poser le maximum de carte à chaque fois.
+	 * 
+	 * @return une liste de carte
+	 * 
+	 * @see MainJoueur#contenirCarte(int)
+	 * @see MainJoueur#calculerNbOccurenceMemeValeur(Carte)
+	 * @see MainJoueur#prendreCarteValeur(int)
+	 * 
+	 * @see Random
+	 * 
 	 */
 
 	public Carte[] choisirCarteAJouer() {
@@ -41,7 +53,8 @@ public class IaOffensive extends IA {
 		
 		else if (this.mainJoueur.contenirCarteSpeciale()){ // on pose une carte spéciale
 			Carte carte = this.mainJoueur.prendreCarteSpeciale();
-			listeCartes=new Carte[this.mainJoueur.calculerNbOccurenceMemeValeur(carte)];
+			listeCartes=new Carte[this.mainJoueur.calculerNbOccurenceMemeValeur(carte)+1];//le +1 correspond à la carte déjà prise ligne précédente
+			System.out.println(this.mainJoueur.calculerNbOccurenceMemeValeur(carte));
 			listeCartes[0]=carte;
 			for (int i = 1; i < listeCartes.length; i++) {
 				listeCartes[i]=this.mainJoueur.prendreCarteValeur(carte.getValeur());
