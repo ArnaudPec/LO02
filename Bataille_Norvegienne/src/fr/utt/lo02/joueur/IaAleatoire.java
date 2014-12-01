@@ -3,6 +3,10 @@ package fr.utt.lo02.joueur;
 import java.util.Random;
 
 import fr.utt.lo02.carte.*;
+/**
+ * @see Joueur
+ *
+ */
 public class IaAleatoire extends IA {
 
 	public IaAleatoire(String nomJoueur, int numJoueur) {
@@ -50,6 +54,11 @@ public class IaAleatoire extends IA {
 		for (int i = 0; i < listeCartes.length; i++) {
 			listeCartes[i] = this.mainJoueur.prendreCarte(this.mainJoueur
 					.calculerPositionCarteValeur(valeur));
+		}
+		
+		System.out.println("Choix : \n");
+		for (int i = 0; i < listeCartes.length; i++) {
+			System.out.println(listeCartes[i]);
 		}
 
 		return listeCartes;

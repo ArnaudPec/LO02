@@ -1,15 +1,7 @@
 package fr.utt.lo02.joueur;
 
-import java.util.LinkedList;
-
-import sun.security.jca.GetInstance;
-import fr.utt.lo02.*;
 import fr.utt.lo02.carte.Carte;
-import fr.utt.lo02.carte.MainJoueur;
-import fr.utt.lo02.carte.Tapis;
-import fr.utt.lo02.carte.TasCache;
-import fr.utt.lo02.carte.TasVisible;
-import fr.utt.*;
+
 
 public class Test {
 
@@ -46,12 +38,13 @@ public class Test {
 		//System.out.println(bob);
 		
 		
-		//bob.changerCartes();
+		bob.changerCartes();
 		System.out.println(bob.peutJouer(new Carte(2, 4)));
+		System.out.println(bob.getMainJoueur());
+
+		bob.choisirCarteAJouer();	
 		
-		System.out.println(bob.choisirCarteAJouer());
-		
-		//System.out.println(bob.getMainJoueur());
+		System.out.println(bob.getMainJoueur());
 		//bob.changerCartes();
 		//System.out.println(bob.getMainJoueur());
 

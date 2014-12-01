@@ -15,42 +15,53 @@ public class IaOffensive extends IA {
 	
 	/**
 	 * Méthode permettant au joueur IaOffensif de choisir les cartes à jouer.
-	 * L'Ia agressive privilégie la pose de cartes spéciales. Elle pose le maximum de cartes posables. 
+	 * L'Ia offensive privilégie la pose de cartes spéciales. Elle pose le maximum de cartes posables. 
 	 * Pour l'instant même comportement que l'iaAléatoire
 	 */
 
 	public Carte[] choisirCarteAJouer() {
 
-		Random rand = new Random();
 		Carte[] listeCartes;
-		int numCarte = 0;
-		int nombreMaxCarteJouable;
+		int as = 14, huit = 8;
 
-		nombreMaxCarteJouable = this.mainJoueur.calculerNbMaxCarteMemeValeur();
-		if (nombreMaxCarteJouable > 3)
-			nombreMaxCarteJouable = 3;
-
-		int nb = rand.nextInt(nombreMaxCarteJouable + 1);
-		while (nb == 0) {
-			nb = rand.nextInt(nombreMaxCarteJouable + 1);
-		}
-
-		listeCartes = new Carte[nb];
-
-		numCarte = rand.nextInt(3 + 1);
-
-		while (numCarte > 3
-				|| (this.mainJoueur
-						.calculerNbOccurenceMemeValeur(this.mainJoueur
-								.getCarte(numCarte)) != nombreMaxCarteJouable)) {
-			numCarte = rand.nextInt(3 + 1);
-		}
-		int valeur = this.mainJoueur.getCarte(numCarte).getValeur();
-		for (int i = 0; i < listeCartes.length; i++) {
-			listeCartes[i] = this.mainJoueur.prendreCarte(this.mainJoueur
-					.calculerPositionCarteValeur(valeur));
+		if(this.mainJoueur.contenirCarte(as)){ //on récupère le(s) as
+			
+			listeCartes = new Carte[this.mainJoueur.calculerNbOccurenceMemeValeur(as)]; //on initialise le tableau avec le nombre d'as présents
+			for (int i = 0; i < listeCartes.length; i++) {
+				listeCartes[i]=this.mainJoueur.prendreCarteValeur(as); //on prend tous les as trouvés
+			}
 		}
 		
+		else if (this.mainJoueur.contenirCarte(huit)){ // on pose le(s) huit(s)
+			listeCartes = new Carte[this.mainJoueur.calculerNbOccurenceMemeValeur(huit)];
+			for (int i = 0; i < listeCartes.length; i++) {
+				listeCartes[i]=this.mainJoueur.prendreCarteValeur(huit);
+			}
+		}
+		
+		else if (this.mainJoueur.contenirCarteSpeciale()){ // on pose une carte spéciale
+			Carte carte = this.mainJoueur.prendreCarteSpeciale();
+			listeCartes=new Carte[this.mainJoueur.calculerNbOccurenceMemeValeur(carte)];
+			listeCartes[0]=carte;
+			for (int i = 1; i < listeCartes.length; i++) {
+				listeCartes[i]=this.mainJoueur.prendreCarteValeur(carte.getValeur());
+			}
+		}
+		
+		else { //s'il n'y a pas de cartes spéciales on tire une carte au hasard
+			Random rand =new Random();
+			int valeur = this.mainJoueur.getCarte(rand.nextInt(3)).getValeur();
+			listeCartes= new Carte[this.mainJoueur.calculerNbOccurenceMemeValeur(valeur)];
+			for (int i = 0; i < listeCartes.length; i++) {
+				listeCartes[i]=this.mainJoueur.prendreCarteValeur(valeur);
+				
+			}
+			
+		}
+		System.out.println("Choix : \n");
+		for (int i = 0; i < listeCartes.length; i++) {
+			System.out.println(listeCartes[i]);
+		}
 		return listeCartes;
 	}
 

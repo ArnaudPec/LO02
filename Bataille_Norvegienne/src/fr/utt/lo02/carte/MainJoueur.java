@@ -25,6 +25,28 @@ public class MainJoueur extends Tas{
 		
 		return carte;
 	}
+	
+	/**
+	 * Cette méthode permet de prendre une carte de la main du Joueur et la supprime.
+	 * Elle permet de récupérer une carte sélectionnée par sa valeur.
+	 * 
+	 * @param valeur de la carte à prendre
+	 * @return une carte de valeur donnée, ou null si une telle carte est absente de la main
+	 */
+	
+	public Carte prendreCarteValeur(int valeur)
+	{
+		Iterator<Carte> it = this.listeCartes.iterator();
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next();
+			if(carte.getValeur()==valeur){
+				it.remove();
+				return carte;
+			}
+		}
+
+		return null;
+	}
 
 	@Override
 	public String toString(){
@@ -116,6 +138,25 @@ public class MainJoueur extends Tas{
 	}
 	
 	/**
+	 * Méthode qui permet de compter le nombre de cartes de même valeur pour une carte de valeur donnée
+	 * @param entier valeur donnée
+	 * @return le nombre de cartes de même valeur pour la valeur donnée
+	 */
+	public int calculerNbOccurenceMemeValeur(int valeur) {
+
+		int compteur=0;
+		
+		for (Iterator<Carte> iterator = listeCartes.iterator(); iterator.hasNext();) {
+			Carte carte = (Carte) iterator.next();
+			if (valeur==carte.getValeur()) compteur ++;
+		}
+				return compteur;
+		
+	}
+	
+	
+	
+	/**
 	 * Méthode permettant de parcourir la main et de renvoyer la position de la première carte de valeur donnée en paramètre
 	 * @param valeur dont la position est recherchée
 	 * @return position de la prochaine carte de cette même valeur ou la valeur 99 : code d'erreur
@@ -129,6 +170,21 @@ public class MainJoueur extends Tas{
 		}
 		return 99;
 	}
+	
+	/**
+	 * Méthode qui permet de savoir si la main contient une carte de valeur donnee
+	 * @param un entier, valeur de carte à rechercher
+	 * @return un booleen qui indique la présence ou non d'une carte de valeur donnée
+	 */
+	public boolean contenirCarte(int valeur){
+		Iterator<Carte> it = this.listeCartes.iterator();
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next();
+			if(carte.getValeur()==valeur)return true;
+		}
+		return false;
+	}
+	
 	
 	/**
 	 * Méthode qui permet de savoir si la main contient des cartes non spéciales
@@ -160,17 +216,49 @@ public class MainJoueur extends Tas{
 		
 	}
 	
+	/**
+	 * Méthode qui permet de savoir si la main contient des cartes spéciales
+	 * @return un booleen qui indique la présence ou non d'une carte spéciale
+	 */
+	public boolean contenirCarteSpeciale(){
+		Iterator<Carte> it = this.listeCartes.iterator();
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next();
+			if(carte.estSpeciale())return true;
+		}
+		return false;
+	}
+	
+	
+	/**
+	 * Méthode qui permet de récupérer une carte spéciale contenue dans la MainJoueur.
+	 * @return une carte spéciale
+	 */
+	public Carte prendreCarteSpeciale() {
+		Iterator<Carte> it = this.listeCartes.iterator();
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next();
+			if(carte.estSpeciale()) { 
+				it.remove();
+				return carte;
+			}
+		}
+		return null;
+		
+	}
+	
+
+	
 	
 //	/**
-//	 * Méthode permettant de récupérer de la main les cartes jouables
+//	 * Méthode permettant de récupérer de la main les cartes jouables : prendre en compte le 7, le 2 ....
 //	 * @return la liste des cartes jouables
 //	 */
-//	public LinkedList<Carte> getListeCartesJouables(){
+//	public LinkedList<Carte> getListeCartesJouables(Carte derniere){
 //		LinkedList<Carte> listeCartesJouables = new LinkedList<Carte>();
 //		Iterator<Carte> it = listeCartesJouables.iterator();
 //		while (it.hasNext()) {
-//			//Carte carte = (Carte) it.next();
-//			
+//			Carte carte = (Carte) it.next();
 //		}
 //		return listeCartesJouables;
 //	}
