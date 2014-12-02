@@ -109,7 +109,7 @@ public class Carte {
 	
 	
 	/**
-	 * M√©thode permettant de comparer deux cartes
+	 * Méthode permettant de comparer deux cartes
 	 * @param carte 
 	 * @return Un boolean [true=superieur ou egale, false=inferieur]
 	 */

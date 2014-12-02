@@ -1,0 +1,45 @@
+package fr.utt.lo02.partie;
+
+import fr.utt.lo02.carte.Carte;
+import fr.utt.lo02.carte.Tapis;
+import fr.utt.lo02.joueur.Joueur;
+
+public class ActionSpeciale {
+
+	private Tapis tapis;
+	private Joueur joueur;
+	private Partie partie;
+	
+	public ActionSpeciale(Partie partie, int JoueurCourant)
+	{
+		this.partie = partie;
+		this.tapis = partie.getTapis();
+		this.joueur = partie.getJoueur(JoueurCourant);
+	}
+	
+	
+	public void appelerBonneMethode(Carte carte)
+	{
+		switch (carte.getValeur()) {
+		case 2:
+			effectuerAction2();
+			break;
+		case 7:
+			resultat = true;
+			break;
+		case 8:
+			resultat = true;
+			break;
+		case 10:
+			resultat = true;
+			break;
+		case 14:
+			resultat = true;
+			break;
+		default:
+			resultat = false;
+			break;
+		}
+	}
+	
+}

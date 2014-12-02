@@ -7,9 +7,12 @@
 <fullyQualifiedTypeName name="fr.utt.lo02.joueur.Joueur"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.carte.Pioche"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.carte.Tapis"/>
-<fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.carte.MainJoueur"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.carte.Carte"/>
+<fullyQualifiedTypeName name="java.util.LinkedList"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.joueur.IaAleatoire"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.joueur.IaOffensive"/>
+<fullyQualifiedTypeName name="apple.awt.CImage.Creator"/>
 </qualifiedTypeNameHistroy>

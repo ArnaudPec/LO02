@@ -38,6 +38,14 @@ public class Tapis extends Tas {
 		return this.listeCartes.getFirst();
 	}
 	
+	
+	/**
+	 *Permet de vider le tapis, supprime tout les éléments de la liste. 
+	 */
+	public void viderTapis(){
+		this.listeCartes.clear();
+	}
+	
 	@Override
 	public String toString(){
 		return "Tapis \n" + carteDuDessus().toString() + "\n"; 

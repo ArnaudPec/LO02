@@ -74,26 +74,6 @@ public class MainJoueur extends Tas{
 		return resultat;
 	}
 	
-	public static void main(String[] args) {
-		
-		MainJoueur main = new MainJoueur();
-		
-		Carte carte = new Carte(0,2);
-		Carte carte2 = new Carte(1,11);
-		Carte carte3 = new Carte(2,11);
-		Carte carte4 = new Carte(3,14);
-		main.listeCartes.add(carte);
-		main.listeCartes.add(carte2);
-		main.listeCartes.add(carte3);
-		main.listeCartes.add(carte4);
-
-		System.out.println(main.toString());
-		
-//		System.out.println(main.calculerNbMaxCarteMemeValeur());
-//		System.out.println(main.calculerNbOccurenceMemeValeur(new Carte(1, 11)));
-		
-	}
-	
 	/**
 	 * Méthode qui permet de déterminer le nombre maximum de carte de même valeur dans une main.
 	 * Elle est utile afin d'empêcher un joueur de poser un nombre n de cartes (avec n>1) alors qu'il ne dispose pas de n cartes
@@ -154,8 +134,7 @@ public class MainJoueur extends Tas{
 		
 	}
 	
-	
-	
+
 	/**
 	 * Méthode permettant de parcourir la main et de renvoyer la position de la première carte de valeur donnée en paramètre
 	 * @param valeur dont la position est recherchée
@@ -248,7 +227,25 @@ public class MainJoueur extends Tas{
 	}
 	
 
-	
+	public static void main(String[] args) {
+		
+		MainJoueur main = new MainJoueur();
+		
+		Carte carte = new Carte(0,2);
+		Carte carte2 = new Carte(1,11);
+		Carte carte3 = new Carte(2,11);
+		Carte carte4 = new Carte(3,14);
+		main.listeCartes.add(carte);
+		main.listeCartes.add(carte2);
+		main.listeCartes.add(carte3);
+		main.listeCartes.add(carte4);
+
+		System.out.println(main.toString());
+		
+//		System.out.println(main.calculerNbMaxCarteMemeValeur());
+//		System.out.println(main.calculerNbOccurenceMemeValeur(new Carte(1, 11)));
+		
+	}
 	
 //	/**
 //	 * Méthode permettant de récupérer de la main les cartes jouables : prendre en compte le 7, le 2 ....
