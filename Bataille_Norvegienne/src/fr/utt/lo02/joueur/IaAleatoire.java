@@ -3,9 +3,10 @@ package fr.utt.lo02.joueur;
 import java.util.Random;
 
 import fr.utt.lo02.carte.*;
+
 /**
  * @see Joueur
- *
+ * 
  */
 public class IaAleatoire extends IA {
 
@@ -21,11 +22,11 @@ public class IaAleatoire extends IA {
 	 * @return une liste de carte
 	 * 
 	 * @see Random
-	 *
+	 * 
 	 * @see MainJoueur#calculerNbMaxCarteMemeValeur()
 	 * @see MainJoueur#calculerNbOccurenceMemeValeur(Carte)
 	 * @see MainJoueur#calculerPositionCarteValeur(int)
-	 *
+	 * 
 	 */
 	public Carte[] choisirCarteAJouer(Carte derniereCarte) {
 
@@ -61,7 +62,7 @@ public class IaAleatoire extends IA {
 			listeCartes[i] = this.mainJoueur.prendreCarte(this.mainJoueur
 					.calculerPositionCarteValeur(valeur));
 		}
-		
+
 		System.out.println("Choix : \n");
 		for (int i = 0; i < listeCartes.length; i++) {
 			System.out.println(listeCartes[i]);
@@ -74,11 +75,11 @@ public class IaAleatoire extends IA {
 	}
 
 	/**
-	 * Méthode permettant au joueur humain d'échanger ses cartes en début de
+	 * M��thode permettant au joueur humain d'��changer ses cartes en d��but de
 	 * partie.
 	 * 
 	 * @see Random
-	 *
+	 * 
 	 * @see MainJoueur#ajouterCarte(Carte)
 	 * @see MainJoueur#prendreCarte(int)
 	 * 

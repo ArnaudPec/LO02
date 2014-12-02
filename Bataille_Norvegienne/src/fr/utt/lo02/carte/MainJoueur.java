@@ -81,6 +81,7 @@ public class MainJoueur extends Tas{
 		return resultat;
 	}
 	
+
 	public static void main(String[] args) {
 		
 		MainJoueur main = new MainJoueur();
@@ -160,8 +161,7 @@ public class MainJoueur extends Tas{
 		
 	}
 	
-	
-	
+
 	/**
 	 * Méthode permettant de parcourir la main et de renvoyer la position de la première carte de valeur donnée en paramètre
 	 * @param valeur dont la position est recherchée
@@ -253,7 +253,6 @@ public class MainJoueur extends Tas{
 		
 	}
 	
-
 	/**
 	 * Méthode permettant de savoir si la main contient des cartes jouables.
 	 */
@@ -296,5 +295,7 @@ public class MainJoueur extends Tas{
 		this.listeCartes.addAll(this.listesCartesNonJouable);
 	}
 	
+
+
 	
 }

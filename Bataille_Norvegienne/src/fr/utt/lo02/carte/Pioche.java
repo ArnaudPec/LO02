@@ -36,7 +36,7 @@ public class Pioche extends Tas {
 	 * Permet d'appeler une instance de pioche, s'il n'y a pas elle en crée une, sinon elle retourne celle déjà crée.
 	 * @return une instance de pioche
 	 */
-	public static Pioche getInstancePioche(){
+	public static Pioche getInstancePioche(int taille){
 		Pioche instance;
 		
 		if(instancePioche==null)
@@ -48,8 +48,22 @@ public class Pioche extends Tas {
 		{
 			instance = instancePioche; 
 		}		
-		return instance;
-		
+		return instance;		
+	}
+	
+	/**
+	 * Ajoute un autre paquet de carte a la pioche (dans le cas ou il y'a plus que 5 joueurs). 
+	 */
+	public void ajouterUnSecondJeuDeCarte()
+	{
+		for (int i = 0; i < 4; i++) 
+		{
+			for (int j = 2; j < 15; j++) 
+			{	
+				Carte carte = new Carte(i, j);
+				this.listeCartes.add(carte);
+			}
+		}
 	}
 	
 	/**

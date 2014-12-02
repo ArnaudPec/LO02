@@ -5,9 +5,12 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Scanner;
 
+import apple.awt.CImage.Creator;
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.carte.Pioche;
 import fr.utt.lo02.carte.Tapis;
+import fr.utt.lo02.joueur.IaAleatoire;
+import fr.utt.lo02.joueur.IaOffensive;
 import fr.utt.lo02.joueur.Joueur;
 
 public class Partie {
@@ -106,34 +109,99 @@ public class Partie {
 	
 	public void interfaceAjouterJoueur()
 	{
-		boolean bol = true;
+		boolean conditionIA = false;
+		boolean conditionJ = false;
+		
+		int nbJoueursHumain=0;
+		int nbJoueursIA=0;
+		
+		int niveau=0;
+		
 		Scanner sc = new Scanner(System.in);
 		
-		while(bol)
-		{
-			System.out.println("Voulez vous ajouter un joueur (oui/non)");
-			String ajout = sc.nextLine();
+		System.out.println("Combien de joueur humain voulez vous ajouter");
+		String demandeNbJoueurs = sc.nextLine();
+		
+		nbJoueursHumain = Integer.parseInt(demandeNbJoueurs);
+		
+		
+		do {
+			if(nbJoueursHumain > 0 && nbJoueursHumain <= 11 )
+			{
+				conditionJ = true;
+			}
+		} while (!conditionJ);
+			
 
-			if(ajout.toUpperCase().equals("OUI"))
-			{
-				System.out.println("Entrez le nom du joueur");
-				String nomJoueur = sc.nextLine();
-				Joueur joueur = new Joueur(nomJoueur, this.nbJoueurs);
-				ajouterJoueur(joueur);
-			}
-			else
-			{
-				if(this.nbJoueurs < 1)
+		System.out.println("Voulez vous ajouter des IA ?(Oui/Non)");
+		String demandeIA = sc.nextLine();
+		
+		if("OUI".equals(demandeIA.toUpperCase())){
+			
+			System.out.println("Combien d'IA voulez vous ajouter ?");
+			String demandeNbIA = sc.nextLine();
+			
+			nbJoueursIA= Integer.parseInt(demandeNbIA);
+			
+			do {
+				if(nbJoueursHumain+nbJoueursIA > 0 && nbJoueursHumain+nbJoueursIA <= 11 )
 				{
-					System.out.println("Vous devez être deux joueurs minimum pour lancer une partie.");
+					conditionJ = true;
 				}
-				else
-				{
-					bol = false;
-				}	
+			} while (!conditionIA);
+			
+			System.out.println("Quel niveau d'IA désirez vous (0=aléatoire, 1=offensive)");
+			String niveauIA = sc.nextLine();
+			niveau = Integer.parseInt(niveauIA);
+		}
+		else{
+			if(nbJoueursHumain<2)
+			{
+				System.out.println("Vous ne pouvez pas lancer de partie seul, une IA a été crée ");
+				nbJoueursIA=1;
+				niveau=0;
 			}
-		}	
+		}
+		
+		creationJoueur(nbJoueursHumain);
+		creationIA(nbJoueursIA, niveau);
+		
 	}
+	
+	
+	public void creationJoueur(int nbJoueur)
+	{
+		Scanner sc = new Scanner(System.in);
+
+		for (int i = 0; i < nbJoueur ; i++) {
+			System.out.println("Entrez le nom du joueur");
+			String nomJoueur = sc.nextLine();
+			Joueur joueur = new Joueur(nomJoueur, this.nbJoueurs);
+			this.nbJoueurs++;
+			ajouterJoueur(joueur);
+		}
+	}
+	
+	public void creationIA(int nbIA, int niveau){
+		
+		for (int i = 0; i < nbIA ; i++) {
+			if(niveau == 0)
+			{
+				IaAleatoire iaAleatoire = new IaAleatoire("ia"+i, this.nbJoueurs);
+				ajouterJoueur(iaAleatoire);
+				this.nbJoueurs++;
+			}
+			if(niveau == 1)
+			{
+				IaOffensive iaOfensive = new IaOffensive("ia"+i, this.nbJoueurs);
+				ajouterJoueur(iaOfensive);
+				this.nbJoueurs++;
+			}
+
+		}
+		
+	}
+	
 	
 	public boolean estGagnee()
 	{
