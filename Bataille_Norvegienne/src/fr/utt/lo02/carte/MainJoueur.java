@@ -79,18 +79,17 @@ public class MainJoueur extends Tas{
 		MainJoueur main = new MainJoueur();
 		
 		Carte carte = new Carte(0,2);
-		Carte carte2 = new Carte(1,11);
-		Carte carte3 = new Carte(2,11);
-		Carte carte4 = new Carte(3,14);
+		Carte carte2 = new Carte(1,8);
+		Carte carte3 = new Carte(2,10);
+		Carte carte4 = new Carte(3,7);
 		main.listeCartes.add(carte);
 		main.listeCartes.add(carte2);
 		main.listeCartes.add(carte3);
 		main.listeCartes.add(carte4);
-
-		System.out.println(main.toString());
+		System.out.println(main);
+		LinkedList<Carte> list = main.getListeCartesJouables(new Carte(0,9));
+		System.out.println(list);
 		
-//		System.out.println(main.calculerNbMaxCarteMemeValeur());
-//		System.out.println(main.calculerNbOccurenceMemeValeur(new Carte(1, 11)));
 		
 	}
 	
@@ -250,16 +249,17 @@ public class MainJoueur extends Tas{
 
 	
 	
-//	/**
-//	 * Méthode permettant de récupérer de la main les cartes jouables : prendre en compte le 7, le 2 ....
-//	 * @return la liste des cartes jouables
-//	 */
-//	public LinkedList<Carte> getListeCartesJouables(Carte derniere){
-//		LinkedList<Carte> listeCartesJouables = new LinkedList<Carte>();
-//		Iterator<Carte> it = listeCartesJouables.iterator();
-//		while (it.hasNext()) {
-//			Carte carte = (Carte) it.next();
-//		}
-//		return listeCartesJouables;
-//	}
+	/**
+	 * Méthode permettant de récupérer de la main les cartes jouables : prendre en compte le 7, le 2 ....
+	 * @return la liste des cartes jouables
+	 */
+	public LinkedList<Carte> getListeCartesJouables(Carte derniereCarte){
+		LinkedList<Carte> listeCartesJouables = new LinkedList<Carte>();
+		Iterator<Carte> it = this.listeCartes.iterator();
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next();
+			if(carte.estPosable(derniereCarte)) listeCartesJouables.add(carte);
+		}
+		return listeCartesJouables;
+	}
 }
