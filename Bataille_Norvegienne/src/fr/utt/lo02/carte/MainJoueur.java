@@ -74,6 +74,28 @@ public class MainJoueur extends Tas{
 		return resultat;
 	}
 	
+<<<<<<< HEAD
+=======
+	public static void main(String[] args) {
+		
+		MainJoueur main = new MainJoueur();
+		
+		Carte carte = new Carte(0,2);
+		Carte carte2 = new Carte(1,8);
+		Carte carte3 = new Carte(2,10);
+		Carte carte4 = new Carte(3,7);
+		main.listeCartes.add(carte);
+		main.listeCartes.add(carte2);
+		main.listeCartes.add(carte3);
+		main.listeCartes.add(carte4);
+		System.out.println(main);
+		LinkedList<Carte> list = main.getListeCartesJouables(new Carte(0,9));
+		System.out.println(list);
+		
+		
+	}
+	
+>>>>>>> FETCH_HEAD
 	/**
 	 * Méthode qui permet de déterminer le nombre maximum de carte de même valeur dans une main.
 	 * Elle est utile afin d'empêcher un joueur de poser un nombre n de cartes (avec n>1) alors qu'il ne dispose pas de n cartes
@@ -227,6 +249,7 @@ public class MainJoueur extends Tas{
 	}
 	
 
+<<<<<<< HEAD
 	public static void main(String[] args) {
 		
 		MainJoueur main = new MainJoueur();
@@ -246,17 +269,34 @@ public class MainJoueur extends Tas{
 //		System.out.println(main.calculerNbOccurenceMemeValeur(new Carte(1, 11)));
 		
 	}
+=======
+	/**
+	 * Méthode permettant de savoir si la main contient des cartes jouables.
+	 */
+	public boolean contenirCartesJouables(Carte derniereCarte){
+		LinkedList<Carte> listeCartesJouables = new LinkedList<Carte>();
+		Iterator<Carte> it = this.listeCartes.iterator();
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next();
+			if(carte.estPosable(derniereCarte)) return true;
+		}
+		return false;
+	}
 	
-//	/**
-//	 * Méthode permettant de récupérer de la main les cartes jouables : prendre en compte le 7, le 2 ....
-//	 * @return la liste des cartes jouables
-//	 */
-//	public LinkedList<Carte> getListeCartesJouables(Carte derniere){
-//		LinkedList<Carte> listeCartesJouables = new LinkedList<Carte>();
-//		Iterator<Carte> it = listeCartesJouables.iterator();
-//		while (it.hasNext()) {
-//			Carte carte = (Carte) it.next();
-//		}
-//		return listeCartesJouables;
-//	}
+	/**
+	 * Méthode permettant de récupérer de la main les cartes jouables : prendre en compte le 7, le 2 ....
+	 * @return la liste des cartes jouables
+	 */
+	public LinkedList<Carte> getListeCartesJouables(Carte derniereCarte){
+		LinkedList<Carte> listeCartesJouables = new LinkedList<Carte>();
+		Iterator<Carte> it = this.listeCartes.iterator();
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next();
+			if(carte.estPosable(derniereCarte)) listeCartesJouables.add(carte);
+		}
+		return listeCartesJouables;
+	}
+	
+>>>>>>> FETCH_HEAD
+	
 }

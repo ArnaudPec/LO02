@@ -209,6 +209,23 @@ public class Carte {
 		return couleur;
 	}
 	
+	
+	/**
+	 * Méthode permettant de déterminer si la carte est posable en fonction de la carte qui a été posée avant.
+	 * On doit gérer chacun des cas en se référant aux cartes du jeu
+	 * @param cartePrecedente	
+	 * @return un booleen 
+	 */
+	public boolean estPosable ( Carte cartePrecedente){
+		
+		if (this.valeur==2)return true;
+		else if (cartePrecedente.getValeur()==8 && this.valeur!=2) return false;
+		else if (cartePrecedente.getValeur()==15 && this.valeur==15) return true;
+		else if (cartePrecedente.getValeur()==7 && this.valeur<= 7) return true;
+		else if (cartePrecedente.getValeur()<=this.valeur) return true;
+		else return false;
+	}
+	
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
@@ -217,7 +234,7 @@ public class Carte {
 
 		String 	resultat = " —————️ " + "\n";
 				resultat+= "|"+ getCouleurAffichage() + "    |" + "\n"; 
-				resultat+= "|  " + getValeurAffichage() + "  |" + "\n";
+				resultat+= "|  "+ getValeurAffichage() + "  |" + "\n";
 				resultat+= "|    " + getCouleurAffichage() + "|" + "\n";
 				resultat+=" ————— " + "\n";
 		
@@ -226,13 +243,15 @@ public class Carte {
 	
 	public static void main(String[]args){
 
-		Carte carte = new Carte(1,14);
+		Carte carte = new Carte(1,2);
 		System.out.println(carte.toString());
 
 		Carte carte1 = new Carte(0,2);
 		System.out.println(carte1);
 
 		carte.toString();
+		
+		System.out.println(carte.estPosable(new Carte(0, 15)));
 	}
 	
 }
