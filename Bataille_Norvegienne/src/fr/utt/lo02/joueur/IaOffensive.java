@@ -31,8 +31,10 @@ public class IaOffensive extends IA {
 	 * 
 	 */
 
-	public Carte[] choisirCarteAJouer() {
+	public Carte[] choisirCarteAJouer(Carte derniereCarte) {
 
+		this.mainJoueur.trierCartesJouables(derniereCarte);
+		
 		Carte[] listeCartes;
 		int as = 14, huit = 8;
 
@@ -75,6 +77,9 @@ public class IaOffensive extends IA {
 		for (int i = 0; i < listeCartes.length; i++) {
 			System.out.println(listeCartes[i]);
 		}
+		
+		this.mainJoueur.fusionner();
+		
 		return listeCartes;
 	}
 

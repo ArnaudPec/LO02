@@ -29,23 +29,14 @@ public class Test {
 		bob.getTasVisible().ajouterCarte(new Carte(1, 5));
 		bob.getTasVisible().ajouterCarte(new Carte(0, 13));
 
-
-       
-		//System.out.println(bob.peutJouer(new Carte(2, 2)));
-		//System.out.println(bob.peutJouer(new Carte(2, 5)));
-		
-		
-		//System.out.println(bob);
-		
-		
-//		bob.changerCartes();
-//		System.out.println(bob.peutJouer(new Carte(2, 4)));
-//		System.out.println(bob.getMainJoueur());
 //
 //		bob.choisirCarteAJouer();	
 		
 		System.out.println(bob.getMainJoueur());
-		System.out.println(bob.peutJouer(new Carte(0, 15)));
+		System.out.println(bob.peutJouer(new Carte(0, 10)));
+		bob.choisirCarteAJouer(new Carte(0, 10));	
+		System.out.println(bob.getMainJoueur());
+
 		//bob.changerCartes();
 		//System.out.println(bob.getMainJoueur());
 

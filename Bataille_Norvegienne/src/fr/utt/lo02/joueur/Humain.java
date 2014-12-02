@@ -39,12 +39,14 @@ public class Humain extends Joueur {
 	 * @see MainJoueur#calculerPositionCarteValeur(int)
 	 * 
 	 */
-	public Carte[] choisirCarteAJouer() {
+	public Carte[] choisirCarteAJouer(Carte derniereCarte) {
 
 		Scanner scanner = new Scanner(System.in);
 		Carte[] listeCartes;
 		int numCarte = 0;
 		int nombreMaxCarteJouable;
+		this.mainJoueur.trierCartesJouables(derniereCarte); // on restreint le choix aux cartes jouables
+
 
 		nombreMaxCarteJouable = this.mainJoueur.calculerNbMaxCarteMemeValeur();
 		if (nombreMaxCarteJouable > 3) nombreMaxCarteJouable = 3;
@@ -81,6 +83,8 @@ public class Humain extends Joueur {
 		
 		scanner.close();
 
+		this.mainJoueur.fusionner();
+		
 		return listeCartes;
 	}
 

@@ -27,12 +27,15 @@ public class IaAleatoire extends IA {
 	 * @see MainJoueur#calculerPositionCarteValeur(int)
 	 *
 	 */
-	public Carte[] choisirCarteAJouer() {
+	public Carte[] choisirCarteAJouer(Carte derniereCarte) {
 
 		Random rand = new Random();
 		Carte[] listeCartes;
 		int numCarte = 0;
 		int nombreMaxCarteJouable;
+		
+		this.mainJoueur.trierCartesJouables(derniereCarte); // on restreint le choix aux cartes jouables
+
 
 		nombreMaxCarteJouable = this.mainJoueur.calculerNbMaxCarteMemeValeur();
 		if (nombreMaxCarteJouable > 3)
@@ -63,6 +66,9 @@ public class IaAleatoire extends IA {
 		for (int i = 0; i < listeCartes.length; i++) {
 			System.out.println(listeCartes[i]);
 		}
+		
+		this.mainJoueur.fusionner();
+
 
 		return listeCartes;
 	}

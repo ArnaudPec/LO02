@@ -5,9 +5,16 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class MainJoueur extends Tas{
+	
+	/**
+	 * Liste utilisée pour stocker les cartes qui ne sont pas jouable à un tour donnée. Permet de ne travailler que sur 
+	 * une main de carte jouables au moment de l'action de jouer
+	 */
+	private LinkedList<Carte> listesCartesNonJouable;
 
 	public MainJoueur() {
 		this.listeCartes = new LinkedList<Carte>();
+		this.listesCartesNonJouable = new LinkedList<Carte>();
 	}
 	
 	/**
@@ -251,7 +258,6 @@ public class MainJoueur extends Tas{
 	 * Méthode permettant de savoir si la main contient des cartes jouables.
 	 */
 	public boolean contenirCartesJouables(Carte derniereCarte){
-		LinkedList<Carte> listeCartesJouables = new LinkedList<Carte>();
 		Iterator<Carte> it = this.listeCartes.iterator();
 		while (it.hasNext()) {
 			Carte carte = (Carte) it.next();
@@ -272,6 +278,22 @@ public class MainJoueur extends Tas{
 			if(carte.estPosable(derniereCarte)) listeCartesJouables.add(carte);
 		}
 		return listeCartesJouables;
+	}
+	
+	public void trierCartesJouables(Carte derniereCarte) {
+		this.listesCartesNonJouable=new LinkedList<Carte>();
+		Iterator<Carte> it = this.listeCartes.iterator();
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next();
+			if(!carte.estPosable(derniereCarte)) {
+				this.listesCartesNonJouable.add(carte);
+				it.remove();
+			}
+		}
+	}
+	
+	public void fusionner(){
+		this.listeCartes.addAll(this.listesCartesNonJouable);
 	}
 	
 	

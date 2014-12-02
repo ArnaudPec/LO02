@@ -45,7 +45,7 @@ public class Joueur implements Strategie{
 	/**
 	 * Méthode permettant au joueur de choisir la ou les cartes de sa main qu'il souhaite jouer. Son implémentation est différente selon le type de joueur.
 	 */
-	public  Carte[] choisirCarteAJouer() { 
+	public  Carte[] choisirCarteAJouer(Carte derniereCarte) { 
 		return null;
 	}
 	
