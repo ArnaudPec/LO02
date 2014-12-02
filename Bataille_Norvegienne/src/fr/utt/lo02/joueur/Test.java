@@ -15,7 +15,7 @@ public class Test {
 		
 		Joueur bob  = new IaOffensive("bob", 4);
 		bob.getMainJoueur().ajouterCarte(new Carte(2, 3));
-		bob.getMainJoueur().ajouterCarte(new Carte(2, 10));
+		bob.getMainJoueur().ajouterCarte(new Carte(2, 2));
 		bob.getMainJoueur().ajouterCarte(new Carte(2, 11));
 		bob.getMainJoueur().ajouterCarte(new Carte(2, 12));
 		
@@ -38,13 +38,14 @@ public class Test {
 		//System.out.println(bob);
 		
 		
-		bob.changerCartes();
-		System.out.println(bob.peutJouer(new Carte(2, 4)));
-		System.out.println(bob.getMainJoueur());
-
-		bob.choisirCarteAJouer();	
+//		bob.changerCartes();
+//		System.out.println(bob.peutJouer(new Carte(2, 4)));
+//		System.out.println(bob.getMainJoueur());
+//
+//		bob.choisirCarteAJouer();	
 		
 		System.out.println(bob.getMainJoueur());
+		System.out.println(bob.peutJouer(new Carte(0, 15)));
 		//bob.changerCartes();
 		//System.out.println(bob.getMainJoueur());
 

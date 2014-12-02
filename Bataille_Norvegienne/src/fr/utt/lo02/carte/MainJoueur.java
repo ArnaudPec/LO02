@@ -247,7 +247,18 @@ public class MainJoueur extends Tas{
 	}
 	
 
-	
+	/**
+	 * Méthode permettant de savoir si la main contient des cartes jouables.
+	 */
+	public boolean contenirCartesJouables(Carte derniereCarte){
+		LinkedList<Carte> listeCartesJouables = new LinkedList<Carte>();
+		Iterator<Carte> it = this.listeCartes.iterator();
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next();
+			if(carte.estPosable(derniereCarte)) return true;
+		}
+		return false;
+	}
 	
 	/**
 	 * Méthode permettant de récupérer de la main les cartes jouables : prendre en compte le 7, le 2 ....
@@ -262,4 +273,6 @@ public class MainJoueur extends Tas{
 		}
 		return listeCartesJouables;
 	}
+	
+	
 }

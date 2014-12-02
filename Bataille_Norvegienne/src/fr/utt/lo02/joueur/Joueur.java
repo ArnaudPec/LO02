@@ -33,36 +33,13 @@ public class Joueur implements Strategie{
 	}
 	
 	/**
-	 * Méthode qui permet d'évaluer si le joueur peut jouer, c'est-à-dire s'il a en sa possession une ou plusieurs cartes supérieures à la dernière carte posée.
-	 * On utilise un itérateur pour parcourir la main du joueur. Il est nécessaire de gérer le cas de la carte 7 et de la carte 2.
+	 * Méthode qui permet d'évaluer si le joueur peut jouer, c'est-à-dire s'il a en sa possession une ou plusieurs cartes jouables
 	 * @param derniereCarteTapis
 	 * @return Un booleen 
 	 */
 	public boolean peutJouer(Carte derniereCarteTapis){
-		
-		if(derniereCarteTapis.getValeur()==7){
-			
-			java.util.Iterator<Carte> it = this.mainJoueur.getListeCartes().iterator();
-			while (it.hasNext()) {
-				Carte carte = (Carte) it.next();
-				if(carte.getValeur()<=7) return true;
-			}
-			
-			return false;
-		}
-		
-		
-		else{
-			
-			java.util.Iterator<Carte> it = this.mainJoueur.getListeCartes().iterator();
-			while (it.hasNext()) {
-				Carte carte = (Carte) it.next();
-				if(carte.estSuperieurOuEgale(derniereCarteTapis) || carte.getValeur()==2) return true;
-				
-			}
-			
-			return false;
-		}
+		if(this.mainJoueur.contenirCartesJouables(derniereCarteTapis)) return true;
+		else return false;
  	}
 	
 	/**
