@@ -13,11 +13,11 @@ public class Test {
 	public static void main(String args[]) {
 		
 		
-		Joueur bob  = new IaOffensive("bob", 4);
+		Joueur bob  = new Humain("bob", 4);
 		bob.getMainJoueur().ajouterCarte(new Carte(2, 3));
 		bob.getMainJoueur().ajouterCarte(new Carte(2, 2));
 		bob.getMainJoueur().ajouterCarte(new Carte(2, 11));
-		bob.getMainJoueur().ajouterCarte(new Carte(2, 12));
+		bob.getMainJoueur().ajouterCarte(new Carte(2, 15));
 		
 		
 		bob.getTasCache().ajouterCarte(new Carte(2, 8));
@@ -29,12 +29,13 @@ public class Test {
 		bob.getTasVisible().ajouterCarte(new Carte(1, 5));
 		bob.getTasVisible().ajouterCarte(new Carte(0, 13));
 
-//
-//		bob.choisirCarteAJouer();	
+
+		Carte carteTest = new Carte(0, 10);
 		
 		System.out.println(bob.getMainJoueur());
-		System.out.println(bob.peutJouer(new Carte(0, 10)));
-		bob.choisirCarteAJouer(new Carte(0, 10));	
+		System.out.println(carteTest);
+		System.out.println(bob.peutJouer(carteTest));
+		bob.choisirCarteAJouer(carteTest);	
 		System.out.println(bob.getMainJoueur());
 
 		//bob.changerCartes();

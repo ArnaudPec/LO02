@@ -34,7 +34,7 @@ public class IaOffensive extends IA {
 	public Carte[] choisirCarteAJouer(Carte derniereCarte) {
 
 		this.mainJoueur.trierCartesJouables(derniereCarte);
-		
+		System.out.println("Main Jouable" + this.mainJoueur);
 		Carte[] listeCartes;
 		int as = 14, huit = 8;
 

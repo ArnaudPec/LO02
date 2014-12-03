@@ -64,7 +64,7 @@ public class Humain extends Joueur {
 		System.out.println(this.mainJoueur +"\nChoisissez la(les) carte(s) à jouer (pour un groupe, un seul choix) : \n");
 		numCarte = scanner.nextInt();
 
-		while (numCarte > 3 || (this.mainJoueur.calculerNbOccurenceMemeValeur(this.mainJoueur.getCarte(numCarte)) != nombreMaxCarteJouable)) {
+		while (numCarte > this.mainJoueur.getListeCartes().size() || (this.mainJoueur.calculerNbOccurenceMemeValeur(this.mainJoueur.getCarte(numCarte)) != nombreMaxCarteJouable)) {
 			System.out.println("Choix incorrect, vous aviez choisi de jouer "+ nb + " carte(s). Recommencez : \n" + this.mainJoueur);
 			numCarte = scanner.nextInt();
 		}
@@ -155,7 +155,7 @@ public class Humain extends Joueur {
 }
 
 
-/**
+/**OSBOLETE, SERA DEFINITIVEMENT SUPPRIME DANS UN PROCHAIN COMMIT
  * Méthode permettant de choisir les cartes à jouer. ATTENTION, ne gère pas
  * encore les choix du joueur dans le cas où celui ci voudrait jouer 3
  * cartes alors qu'il n'en a que deux de même valeur

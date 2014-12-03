@@ -95,8 +95,7 @@ public class MainJoueur extends Tas{
 		main.listeCartes.add(carte3);
 		main.listeCartes.add(carte4);
 		System.out.println(main);
-		LinkedList<Carte> list = main.getListeCartesJouables(new Carte(0,9));
-		System.out.println(list);
+		
 		
 		
 	}
@@ -265,21 +264,28 @@ public class MainJoueur extends Tas{
 		return false;
 	}
 	
-	/**
-	 * Méthode permettant de récupérer de la main les cartes jouables : prendre en compte le 7, le 2 ....
-	 * @return la liste des cartes jouables
-	 */
-	public LinkedList<Carte> getListeCartesJouables(Carte derniereCarte){
-		LinkedList<Carte> listeCartesJouables = new LinkedList<Carte>();
-		Iterator<Carte> it = this.listeCartes.iterator();
-		while (it.hasNext()) {
-			Carte carte = (Carte) it.next();
-			if(carte.estPosable(derniereCarte)) listeCartesJouables.add(carte);
-		}
-		return listeCartesJouables;
-	}
+//	/**OSBOLETE, SERA DEFINITIVEMENT SUPPRIME DANS UN PROCHAIN COMMIT
+//	 * Méthode permettant de récupérer de la main les cartes jouables : prendre en compte le 7, le 2 ....
+//	 * @return la liste des cartes jouables
+//	 */
+//	public LinkedList<Carte> getListeCartesJouables(Carte derniereCarte){
+//		LinkedList<Carte> listeCartesJouables = new LinkedList<Carte>();
+//		Iterator<Carte> it = this.listeCartes.iterator();
+//		while (it.hasNext()) {
+//			Carte carte = (Carte) it.next();
+//			if(carte.estPosable(derniereCarte)) listeCartesJouables.add(carte);
+//		}
+//		return listeCartesJouables;
+//	}
 	
+	/**
+	 * Méthode permettant de trier les cartes de la main. Les cartes qui ne sont pas jouables
+	 * après la dernière carte posée sur le tapis sont placé dans une liste différente.
+	 * De cette manière, on peut restreindre efficacement le choix du joueur.
+	 * @param derniereCarte jouée
+	 */
 	public void trierCartesJouables(Carte derniereCarte) {
+		
 		this.listesCartesNonJouable=new LinkedList<Carte>();
 		Iterator<Carte> it = this.listeCartes.iterator();
 		while (it.hasNext()) {
@@ -291,6 +297,9 @@ public class MainJoueur extends Tas{
 		}
 	}
 	
+	/**
+	 * Méthode permettant à la suite d'un tour de replacer les cartes non jouables dans this.listeCartes
+	 */
 	public void fusionner(){
 		this.listeCartes.addAll(this.listesCartesNonJouable);
 	}
