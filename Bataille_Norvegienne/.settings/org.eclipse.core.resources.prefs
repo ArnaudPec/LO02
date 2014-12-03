@@ -5,10 +5,13 @@ encoding//src/fr/utt/lo02/carte/Pioche.java=UTF-8
 encoding//src/fr/utt/lo02/carte/Tapis.java=UTF-8
 encoding//src/fr/utt/lo02/carte/Tas.java=UTF-8
 encoding//src/fr/utt/lo02/carte/TasCache.java=UTF-8
+<<<<<<< Updated upstream
 encoding//src/fr/utt/lo02/carte/TasVisible.java=UTF-8
 encoding//src/fr/utt/lo02/joueur/Humain.java=UTF-8
 encoding//src/fr/utt/lo02/joueur/IaAleatoire.java=UTF-8
 encoding//src/fr/utt/lo02/joueur/IaOffensive.java=UTF-8
+=======
+>>>>>>> Stashed changes
 encoding//src/fr/utt/lo02/joueur/Joueur.java=UTF-8
 encoding//src/fr/utt/lo02/partie/ActionSpeciale.java=UTF-8
 encoding//src/fr/utt/lo02/partie/Partie.java=UTF-8

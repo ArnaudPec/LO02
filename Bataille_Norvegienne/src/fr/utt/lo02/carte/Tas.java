@@ -57,5 +57,13 @@ public abstract class Tas {
 	public void ajouterPlusieursCartes(LinkedList<Carte> carte){
 		this.listeCartes.addAll(carte);
 	}
+	
+	public void ajouterPlusieursCartes(Carte[] carte){	
+		for (int i = 0; i < carte.length; i++) {
+			this.listeCartes.add(carte[i]);
+		}
+		
+	}
+	
 
 }
