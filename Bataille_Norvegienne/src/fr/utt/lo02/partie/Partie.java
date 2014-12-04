@@ -238,6 +238,9 @@ public class Partie {
 	}
 	
 	
+	/**
+	 * @param joueur
+	 */
 	public void faireJouerJoueur(Joueur joueur){
 		
 		System.out.println("C'est " +joueur.getNom()+ " qui joue ! \n");
@@ -247,34 +250,50 @@ public class Partie {
 		Carte[] carteJouees = joueur.choisirCarteAJouer(this.getTapis().carteDuDessus());
 		this.getTapis().ajouterPlusieursCartes(carteJouees);	
 		
-		this.fairePiocherJoueur(joueur, carteJouees.length);
+		this.fairePiocherJoueur(joueur);
 
 	}
 	
-	public void fairePiocherJoueur(Joueur joueur, int nbCarte){
+	/**
+	 * Méthode permettant de faire piocher un joueur pour compléter sa main. 
+	 * On pioche tout d'abord dans le tas Pioche puis dans les TasVisible puis TasCaché.
+	 * Le nombre de carte piochée dépend du nombre de carte restantes dans la main du joueur ainsi
+	 * que du nombre de cartes restantes dans la pioche.
+	 * Le mode de piochage pour les TasVisible et TasCaché est différent de celui de la pioche.
+	 * Dans TasVisible on pioche les 3 cartes d'un coup une fois la pioche vidée et la main de nouveau vide.
+	 * Le piochage dans le TasCaché s'effectue carte par carte à chaque fois que la main ne contient plus de carte.
+	 * 
+	 * @param joueur
+	 * 
+	 */
+	public void fairePiocherJoueur(Joueur joueur /*, int nbCarte*/){ // en réalité ce paramètre ne sert à rien vu qu'on doit juste compléter la main pour arriver à 3
 		
-		int nbmax;
+		int nbMax;
 		
-		if(!this.pioche.getListeCartes().isEmpty()){
-			if(this.pioche.getListeCartes().size()>nbCarte) nbmax = nbCarte;
-			else nbmax = this.pioche.getListeCartes().size();
+		if(!this.pioche.getListeCartes().isEmpty() && joueur.getMainJoueur().getListeCartes().size()<3){ //On pioche jusqu'à avoir 3 cartes
+			nbMax = 3 - joueur.getMainJoueur().getListeCartes().size();
 			
-			for (int i = 0; i < nbmax; i++) {
+			if(this.pioche.getListeCartes().size()<nbMax) nbMax = this.pioche.getListeCartes().size();
+			
+			for (int i = 0; i < nbMax; i++) {
 				joueur.getMainJoueur().ajouterCarte(this.pioche.prendreCarteDuDessus());
 			}
-			System.out.println(nbmax +" cartes a(ont) été piochée(s) par "+joueur.getNom() +"\n");
-
+			System.out.println(nbMax +" cartes a(ont) été piochée(s) par "+joueur.getNom() +"\n");
+			
 		}
 		
 		else if(this.pioche.getListeCartes().isEmpty() && joueur.getMainJoueur().getListeCartes().isEmpty())
 		{
 			joueur.getMainJoueur().ajouterPlusieursCartes(joueur.getTasVisible().getListeCartes());
+			System.out.println(joueur.getNom() +" Vient de prendre les cartes de son TasVisible\n");
+
 		}
 		
 		else if(this.pioche.getListeCartes().isEmpty() && joueur.getTasVisible().getListeCartes().isEmpty() &&
 				joueur.getMainJoueur().getListeCartes().isEmpty())
 		{
 			joueur.getMainJoueur().ajouterCarte(joueur.getTasCache().prendreCarte());
+			System.out.println(joueur.getNom() +" Vient de prendre une carte de son TasCache\n");
 		}
 		
 		
@@ -320,20 +339,20 @@ public class Partie {
 		}	
 	}
 	
-	/**
-	 * Permet de faire piocher un joueur
-	 * @param nbCartes nombre de carte à faire piocher
-	 * @param joueur joueur qui doit piocher
-	 */
-	public void piocher(int nbCartes, Joueur joueur){
-		LinkedList<Carte> liste = new LinkedList<Carte>();
-		
-		for (int i = 0; i < nbCartes; i++) {
-			liste.add(this.pioche.prendreCarteDuDessus());
-		}
-		
-		joueur.getMainJoueur().getListeCartes().addAll(liste);
-	}
+//	/**
+//	 * Permet de faire piocher un joueur
+//	 * @param nbCartes nombre de carte à faire piocher
+//	 * @param joueur joueur qui doit piocher
+//	 */
+//	public void piocher(int nbCartes, Joueur joueur){
+//		LinkedList<Carte> liste = new LinkedList<Carte>();
+//		
+//		for (int i = 0; i < nbCartes; i++) {
+//			liste.add(this.pioche.prendreCarteDuDessus());
+//		}
+//		
+//		joueur.getMainJoueur().getListeCartes().addAll(liste);
+//	}
 	
 	
 	 public static void main(String[] args) {

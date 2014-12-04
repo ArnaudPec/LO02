@@ -49,18 +49,15 @@ public class Humain extends Joueur {
 		int nombreMaxCarteJouable;
 		this.mainJoueur.trierCartesJouables(derniereCarte); // on restreint le choix aux cartes jouables
 
-
 		nombreMaxCarteJouable = this.mainJoueur.calculerNbMaxCarteMemeValeur();
 		if (nombreMaxCarteJouable > 3) nombreMaxCarteJouable = 3;
 
 		System.out.println(this.mainJoueur + "Choisissez le nombre de carte à jouer");
 
-		int nb;
-	
-			nb = scanner.nextInt(); // if there is another number  
+		int nb = scanner.nextInt();
 		
 		while (nb > nombreMaxCarteJouable || nb<1) {
-			System.out.println("Erreur : Vous ne pouvez jouer au maximum que " + nombreMaxCarteJouable+ " carte(s)\nChoisissez un nombre inférieur ou égal à " + nombreMaxCarteJouable);
+			System.out.println("Erreur : Vous ne pouvez jouer au maximum que " + nombreMaxCarteJouable + " carte(s)\nChoisissez un nombre inférieur ou égal à " + nombreMaxCarteJouable);
 			nb = scanner.nextInt();
 		}
 
@@ -69,7 +66,12 @@ public class Humain extends Joueur {
 		System.out.println(this.mainJoueur +"\nChoisissez la(les) carte(s) à jouer (pour un groupe, un seul choix) : \n");
 		numCarte = scanner.nextInt();
 
-		while (numCarte > this.mainJoueur.getListeCartes().size() || (this.mainJoueur.calculerNbOccurenceMemeValeur(this.mainJoueur.getCarte(numCarte)) != nombreMaxCarteJouable)) {
+//		if(numCarte > )
+		
+		while (numCarte > this.mainJoueur.getListeCartes().size()-1
+				/*|| (this.mainJoueur
+						.calculerNbOccurenceMemeValeur(this.mainJoueur
+								.getCarte(numCarte)) != nombreMaxCarteJouable)*/) {
 			System.out.println("Choix incorrect, vous aviez choisi de jouer "+ nb + " carte(s). Recommencez : \n" + this.mainJoueur);
 			numCarte = scanner.nextInt();
 		}
