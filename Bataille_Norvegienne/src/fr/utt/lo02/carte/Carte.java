@@ -218,11 +218,16 @@ public class Carte {
 	 */
 	public boolean estPosable ( Carte cartePrecedente){
 		
+		/* 
+		
+		*/
+		
 		if (cartePrecedente == null) return true;
 		else if (this.valeur==2)return true;
 		else if (cartePrecedente.getValeur()==8 && this.valeur!=2) return false;
 		else if (cartePrecedente.getValeur()==15 && this.valeur==15) return true;
 		else if (cartePrecedente.getValeur()==7 && this.valeur<= 7) return true;
+		else if (cartePrecedente.getValeur()==7 && this.valeur> 7) return false;
 		else if (cartePrecedente.getValeur()<=this.valeur) return true;
 		else return false;
 	}

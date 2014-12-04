@@ -1,11 +1,9 @@
 package fr.utt.lo02.partie;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-import apple.awt.CImage.Creator;
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.carte.Pioche;
 import fr.utt.lo02.carte.Tapis;
@@ -163,7 +161,8 @@ public class Partie {
 				niveau=0;
 			}
 		}
-		
+		sc.close();
+		sc.reset();
 		creationJoueur(nbJoueursHumain);
 		creationIA(nbJoueursIA, niveau);
 		
@@ -180,6 +179,10 @@ public class Partie {
 			Humain joueur = new Humain(nomJoueur, this.nbJoueurs);
 			ajouterJoueur(joueur);
 		}
+		
+		sc.close();
+		sc.reset();
+		
 	}
 	
 	public void creationIA(int nbIA, int niveau){
@@ -242,33 +245,42 @@ public class Partie {
 	
 	public void faireJouerJoueur(Joueur joueur){
 		
+		System.out.println("C'est " +joueur.getNom()+ " qui joue ! \n");
+		
 		System.out.println(this.getTapis());
 		
 		Carte[] carteJouees = joueur.choisirCarteAJouer(this.getTapis().carteDuDessus());
-		this.getTapis().ajouterPlusieursCartes(carteJouees);		
+		this.getTapis().ajouterPlusieursCartes(carteJouees);	
+		
+		this.fairePiocherJoueur(joueur, carteJouees.length);
+
 	}
 	
-	public void fairePiocherJoueur(Joueur joueur, int nbCarte)
-	{
-		int max = 0;
+	public void fairePiocherJoueur(Joueur joueur, int nbCarte){
+		
+		int nbmax;
 		
 		if(!this.pioche.getListeCartes().isEmpty()){
+			if(this.pioche.getListeCartes().size()>nbCarte) nbmax = nbCarte;
+			else nbmax = this.pioche.getListeCartes().size();
 			
-			if( this.pioche.getListeCartes().size() > nbCarte){
-				max= nbCarte;
-			}
-			for (int i = 0; i < max ; i++) {
+			for (int i = 0; i < nbmax; i++) {
 				joueur.getMainJoueur().ajouterCarte(this.pioche.prendreCarteDuDessus());
 			}
-		}
-		else if(joueur.getTasVisible().getListeCartes().isEmpty() && joueur.getMainJoueur().getListeCartes().isEmpty()){				
-			for (int i = 0; i < joueur.getTasVisible().getListeCartes().size(); i++) {
-				joueur.getMainJoueur().ajouterCarte(this.pioche.prendreCarteDuDessus());				
-			}				
-		}else if(!joueur.getTasCache().getListeCartes().isEmpty()){
-			joueur.getMainJoueur().ajouterCarte(this.pioche.prendreCarteDuDessus());
+			System.out.println(nbmax +" cartes a(ont) été piochée(s) par "+joueur.getNom() +"\n");
+
 		}
 		
+		else if(this.pioche.getListeCartes().isEmpty() && joueur.getMainJoueur().getListeCartes().isEmpty())
+		{
+			joueur.getMainJoueur().ajouterPlusieursCartes(joueur.getTasVisible().getListeCartes());
+		}
+		
+		else if(this.pioche.getListeCartes().isEmpty() && joueur.getTasVisible().getListeCartes().isEmpty() &&
+				joueur.getMainJoueur().getListeCartes().isEmpty())
+		{
+			joueur.getMainJoueur().ajouterCarte(joueur.getTasCache().prendreCarte());
+		}
 		
 		
 	}
@@ -279,7 +291,7 @@ public class Partie {
 	 */
 	public void lancerPartie(){
 		
-		System.out.println("La partie démarre");
+		System.out.println("La partie démarre\n");
 		boolean estDanish = false;
 		boolean estGagnee = false;
 		
@@ -295,17 +307,20 @@ public class Partie {
 					//Permet de choisir les cartes que le joueur veut jouer
 					this.faireJouerJoueur(joueur);
 					
+					
 					//Gestion du joueur courant
-					this.gestionDuJoueurCourant();
 									
 				}
 				else //Sinon on donne la main au dernier à avoir poser et on fini la manche.
 				{
-					joueur.getMainJoueur().getListeCartes().addAll(this.tapis.getListeCartes());//Je donne le tapis au joueur qui n'a pas pu jouer.
-					this.tapis=null;
-					joueurCourant--;
-					estDanish = true;
+					System.out.println("Ahah " +joueur.getNom() + " tu ne peux pas jouer mécréant, prend toi le tapis dans la face ! \n\n");
+					joueur.getMainJoueur().getListeCartes().addAll(this.tapis.prendreTapis());//Je donne le tapis au joueur qui n'a pas pu jouer.
+					//this.tapis=null;
+					//joueurCourant--;
+					//estDanish = true;
 				}
+				this.gestionDuJoueurCourant();
+
 			}
 		}	
 	}

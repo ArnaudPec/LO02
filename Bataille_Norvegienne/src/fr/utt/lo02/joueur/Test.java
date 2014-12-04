@@ -30,10 +30,8 @@ public class Test {
 		bob.getTasVisible().ajouterCarte(new Carte(0, 13));
 
 
-		Carte carteTest = new Carte(0, 10);
+		Carte carteTest = new Carte(0, 7);
 		
-		System.out.println(bob.getMainJoueur());
-		System.out.println(carteTest);
 		System.out.println(bob.peutJouer(carteTest));
 		bob.choisirCarteAJouer(carteTest);	
 		System.out.println(bob.getMainJoueur());

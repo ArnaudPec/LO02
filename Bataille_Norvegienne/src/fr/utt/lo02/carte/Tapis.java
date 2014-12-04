@@ -53,6 +53,18 @@ public class Tapis extends Tas {
 		super.listeCartes.clear();
 	}
 	
+	/**
+	 * Méthode permettant de faire prendre tout le contenu du tapis à joueur.
+	 * @return La liste des cartes à ajouter à la main du joueur
+	 */
+	public LinkedList<Carte> prendreTapis(){
+		LinkedList<Carte> liste = new LinkedList<Carte>();
+		liste.addAll(this.listeCartes);
+		this.viderTapis();
+		return liste;
+		
+	}
+	
 	@Override
 	public String toString(){
 		String res = "";

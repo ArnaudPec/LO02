@@ -97,7 +97,7 @@ public class IaAleatoire extends IA {
 		System.out.println(changer);
 		while (changer && nbChangement > 0) {
 
-			numCarteMain = rand.nextInt(4);
+			numCarteMain = rand.nextInt(3);
 			numCarteVis = rand.nextInt(3);
 
 			this.mainJoueur.ajouterCarte(this.tasVisible
