@@ -10,7 +10,7 @@ public class TasVisible extends Tas {
 	 * Constructeur de TasVisible. 
 	 */
 	public TasVisible() {
-		this.listeCartes = new LinkedList<Carte>();
+		super.listeCartes = new LinkedList<Carte>();
 	}
 		
 	
@@ -19,7 +19,7 @@ public class TasVisible extends Tas {
 	 * @return la première carte de la liste.
 	 */
 	public Carte prendreCarte(){
-		return this.listeCartes.pollFirst();
+		return super.listeCartes.pollFirst();
 	}
 	
 	/**
@@ -30,7 +30,7 @@ public class TasVisible extends Tas {
 	public Carte prendreCarte(int position)
 	{
 
-		Carte carte = this.listeCartes.get(position);
+		Carte carte = super.listeCartes.get(position);
 		this.listeCartes.remove(position);
 		
 		return carte;
@@ -55,7 +55,7 @@ public class TasVisible extends Tas {
 	 * @return une carte spéciale, en priorité un As, ou un huit ou null s'il n'y a plus de carte spéciale
 	 */
 	public Carte prendreCarteSpeciale() {
-		Iterator<Carte> it = this.listeCartes.iterator();
+		Iterator<Carte> it = super.listeCartes.iterator();
 		while (it.hasNext()) {
 			Carte carte = (Carte) it.next();
 			if(carte.getValeur()==14) {  // c'est un as	
@@ -64,7 +64,7 @@ public class TasVisible extends Tas {
 			}
 		}
 		
-		it = this.listeCartes.iterator();
+		it = super.listeCartes.iterator();
 		
 		while (it.hasNext()) {
 			Carte carte = (Carte) it.next(); 
@@ -74,7 +74,7 @@ public class TasVisible extends Tas {
 			}
 		}
 		
-		it = this.listeCartes.iterator();
+		it = super.listeCartes.iterator();
 		while (it.hasNext()) {
 			Carte carte = (Carte) it.next();
 			if(carte.estSpeciale()){ // c'est une carte spéciale
@@ -96,13 +96,13 @@ public class TasVisible extends Tas {
 		String bas = "";
 		String bordureDessous = "";
 		
-		for (int i = 0; i < this.listeCartes.size(); i++) {
+		for (int i = 0; i < super.listeCartes.size(); i++) {
 			
 			numCarte+= "  n°" + i + "    ";
 			bordureDessus+= " —————️ " + "  ";
-			dessus+= "|"+ this.listeCartes.get(i).getCouleurAffichage() + "    |  ";
-			milieu+= "|  " + this.listeCartes.get(i).getValeurAffichage() + "  |  ";
-			bas+= "|    "+ this.listeCartes.get(i).getCouleurAffichage() + "|  ";
+			dessus+= "|"+ super.listeCartes.get(i).getCouleurAffichage() + "    |  ";
+			milieu+= "|  " + super.listeCartes.get(i).getValeurAffichage() + "  |  ";
+			bas+= "|    "+ super.listeCartes.get(i).getCouleurAffichage() + "|  ";
 			bordureDessous+= " —————️ " + "  ";		
 		}
 		

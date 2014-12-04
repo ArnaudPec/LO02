@@ -56,7 +56,7 @@ public class Carte {
 
 	/**
 	 * Setter de couleur
-	 * @param couleur [coeur=0, pique=1, tr√®fle=2, carreau=3]
+	 * @param couleur [coeur=0, pique=1, trèfle=2, carreau=3]
 	 */
 	public void setCouleur(int couleur){
 		this.couleur = couleur;

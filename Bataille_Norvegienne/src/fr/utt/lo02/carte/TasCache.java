@@ -9,7 +9,7 @@ public class TasCache extends Tas {
 	 * Constructeur de TasCache 
 	 */
 	public TasCache() {
-		this.listeCartes = new LinkedList<Carte>();
+		super.listeCartes = new LinkedList<Carte>();
 	}
 
 	/**
@@ -17,7 +17,7 @@ public class TasCache extends Tas {
 	 * @return la première carte de la liste.
 	 */
 	public Carte prendreCarte(){
-		return this.listeCartes.pollFirst();
+		return super.listeCartes.pollFirst();
 	}
 	
 	@Override
@@ -31,7 +31,7 @@ public class TasCache extends Tas {
 		String bas = "";
 		String bordureDessous = "";
 		
-		for (int i = 0; i < this.listeCartes.size(); i++) {
+		for (int i = 0; i < super.listeCartes.size(); i++) {
 			
 			numCarte+= "  n°" + i + "    ";
 			bordureDessus+= " —————️ " + "  ";

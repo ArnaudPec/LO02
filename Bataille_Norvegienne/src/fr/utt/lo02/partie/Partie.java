@@ -9,6 +9,7 @@ import apple.awt.CImage.Creator;
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.carte.Pioche;
 import fr.utt.lo02.carte.Tapis;
+import fr.utt.lo02.joueur.Humain;
 import fr.utt.lo02.joueur.IaAleatoire;
 import fr.utt.lo02.joueur.IaOffensive;
 import fr.utt.lo02.joueur.Joueur;
@@ -176,7 +177,7 @@ public class Partie {
 		for (int i = 0; i < nbJoueur ; i++) {
 			System.out.println("Entrez le nom du joueur");
 			String nomJoueur = sc.nextLine();
-			Joueur joueur = new Joueur(nomJoueur, this.nbJoueurs);
+			Humain joueur = new Humain(nomJoueur, this.nbJoueurs);
 			ajouterJoueur(joueur);
 		}
 	}
@@ -218,11 +219,7 @@ public class Partie {
 		
 		this.interfaceAjouterJoueur();
 		this.pioche.melanger();
-		//listeJoueurs.get(0).getTasCache().ajouterCarte(new Carte(2,10));
-		//System.out.println(listeJoueurs.get(0).getTasCache());
-		this.pioche.distribuerCarte(partie);
-		//lancerPartie();
-		
+		this.pioche.distribuerCarte(partie);	
 	}
 	
 	
@@ -244,9 +241,15 @@ public class Partie {
 				//Si le joueur peu jouer alors on passe au suivant
 				if(joueur.peutJouer(this.getTapis().carteDuDessus()))
 				{
-					System.out.println(joueur.getMainJoueur().toString());
+					//System.out.println(joueur.getMainJoueur().toString());
 					// ! \\ 
 					//à modifier car le joueur peut choisir de jouer plusieurs cartes 
+					
+					//Permet de choisir les cartes que le joueur veut jouer
+
+					System.out.println(this.getTapis());
+					
+					
 					
 					Carte[] carteJouees = joueur.choisirCarteAJouer(this.getTapis().carteDuDessus());
 					this.getTapis().ajouterPlusieursCartes(carteJouees);
@@ -254,8 +257,13 @@ public class Partie {
 					for (int i = 0; i < carteJouees.length; i++) {
 						joueur.getMainJoueur().ajouterCarte(this.pioche.prendreCarteDuDessus());
 					}
-									
-					joueurCourant++;
+					//QUand on arrive au maximum il faut revenir au début !
+					if(this.joueurCourant == this.nbJoueurs-1){
+						this.joueurCourant=0;
+					}else{
+						joueurCourant++;	
+					}
+					
 					
 					//Si le joueur à posé et qu'il n'a plus de carte il à gagné !
 					if(joueur.estGagnant())

@@ -41,6 +41,8 @@ public class Humain extends Joueur {
 	 */
 	public Carte[] choisirCarteAJouer(Carte derniereCarte) {
 
+		System.out.println(this.mainJoueur);
+		
 		Scanner scanner = new Scanner(System.in);
 		Carte[] listeCartes;
 		int numCarte = 0;
@@ -53,7 +55,12 @@ public class Humain extends Joueur {
 
 		System.out.println(this.mainJoueur + "Choisissez le nombre de carte à jouer");
 
-		int nb = scanner.nextInt();
+		int nb;
+		if(scanner.hasNextInt() )
+			nb = scanner.nextInt(); // if there is another number  
+		else 
+			nb = 0; // nothing added in the input 
+		
 		while (nb > nombreMaxCarteJouable || nb<1) {
 			System.out.println("Erreur : Vous ne pouvez jouer au maximum que " + nombreMaxCarteJouable+ " carte(s)\nChoisissez un nombre inférieur ou égal à " + nombreMaxCarteJouable);
 			nb = scanner.nextInt();
@@ -71,6 +78,8 @@ public class Humain extends Joueur {
 		
 		System.out.println("Choix correct\n");
 		
+		scanner.reset();
+		
 		int valeur = this.mainJoueur.getCarte(numCarte).getValeur();
 		for (int i = 0; i < listeCartes.length; i++) {
 			listeCartes[i] = this.mainJoueur.prendreCarte(this.mainJoueur.calculerPositionCarteValeur(valeur));
@@ -81,7 +90,7 @@ public class Humain extends Joueur {
 			System.out.println(listeCartes[i]);
 		}
 		
-		scanner.close();
+		
 
 		this.mainJoueur.fusionner();
 		

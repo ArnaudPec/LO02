@@ -7,7 +7,7 @@ public class Tapis extends Tas {
 	private static Tapis instanceTapis;
 
 	private Tapis() {
-		this.listeCartes = new LinkedList<Carte>();
+		super.listeCartes = new LinkedList<Carte>();
 	}
 
 	
@@ -35,7 +35,14 @@ public class Tapis extends Tas {
 	 */
 	public Carte carteDuDessus(){
 		
-		return this.listeCartes.getFirst();
+		Carte carte = null;
+		
+		if(!super.listeCartes.isEmpty())
+		{
+			carte = super.listeCartes.getLast();
+		}
+		
+		return carte;
 	}
 	
 	
@@ -43,12 +50,20 @@ public class Tapis extends Tas {
 	 *Permet de vider le tapis, supprime tout les éléments de la liste. 
 	 */
 	public void viderTapis(){
-		this.listeCartes.clear();
+		super.listeCartes.clear();
 	}
 	
 	@Override
 	public String toString(){
-		return "Tapis \n" + carteDuDessus().toString() + "\n"; 
+		String res = "";
+		if(this.listeCartes.isEmpty())
+		{
+			res= "Pas de carte";
+		}
+		else{
+			res="Tapis \n" + carteDuDessus().toString() + "\n"; 
+		}
+		return res;
 	}
 
 	public static void main(String[] args) {

@@ -20,7 +20,7 @@ public class Pioche extends Tas {
 	 * Constructeur de pioche, crée l'ensemble des cartes de la pioche.  
 	 */
 	private Pioche() {
-		this.listeCartes = new LinkedList<Carte>();
+		super.listeCartes = new LinkedList<Carte>();
 		
 		for (int i = 0; i < 4; i++) 
 		{
@@ -61,7 +61,7 @@ public class Pioche extends Tas {
 			for (int j = 2; j < 15; j++) 
 			{	
 				Carte carte = new Carte(i, j);
-				this.listeCartes.add(carte);
+				super.listeCartes.add(carte);
 			}
 		}
 	}
@@ -78,7 +78,7 @@ public class Pioche extends Tas {
 	 * @return la première carte de la pioche.
 	 */
 	public Carte prendreCarteDuDessus(){
-		return this.listeCartes.pollFirst();
+		return super.listeCartes.pollFirst();
 	}
 	
 	/**
