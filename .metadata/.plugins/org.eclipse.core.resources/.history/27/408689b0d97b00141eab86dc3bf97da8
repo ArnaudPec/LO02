@@ -250,23 +250,37 @@ public class Partie {
 	
 	public void fairePiocherJoueur(Joueur joueur, int nbCarte)
 	{
-		int max = 0;
+		int diff = 0;
 		
 		if(!this.pioche.getListeCartes().isEmpty()){
+			diff = this.pioche.getListeCartes().size() - nbCarte;
+			if(diff < 0)
+			{
+				diff= Math.abs(diff);
+				for (int i = 0; i < this.pioche.getListeCartes().size(); i++) {
+					joueur.getMainJoueur().ajouterCarte(this.pioche.prendreCarteDuDessus());
+				}
+				this.fairePiocherJoueur(joueur, diff);
+			}	
+		}
+		else if(!joueur.getTasVisible().getListeCartes().isEmpty()){	
+			diff = joueur.getTasVisible().getListeCartes().size() - nbCarte;
 			
-			if( this.pioche.getListeCartes().size() > nbCarte){
-				max= nbCarte;
+			if(diff < 0)
+			{
+				diff= Math.abs(diff);
+				for (int i = 0; i < joueur.getTasVisible().getListeCartes().size(); i++) {
+					joueur.getMainJoueur().ajouterCarte(this.pioche.prendreCarteDuDessus());
+				}
 			}
-			for (int i = 0; i < max ; i++) {
+			
+			joueur.getTasVisible().getListeCartes().size() - 
+			
+			for (int i =  ; i <= nbCarte; i--) {
 				joueur.getMainJoueur().ajouterCarte(this.pioche.prendreCarteDuDessus());
 			}
-		}
-		else if(joueur.getTasVisible().getListeCartes().isEmpty() && joueur.getMainJoueur().getListeCartes().isEmpty()){				
-			for (int i = 0; i < joueur.getTasVisible().getListeCartes().size(); i++) {
-				joueur.getMainJoueur().ajouterCarte(this.pioche.prendreCarteDuDessus());				
-			}				
 		}else if(!joueur.getTasCache().getListeCartes().isEmpty()){
-			joueur.getMainJoueur().ajouterCarte(this.pioche.prendreCarteDuDessus());
+			
 		}
 		
 		
