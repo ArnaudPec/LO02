@@ -138,20 +138,23 @@ public class Partie {
 		if("OUI".equals(demandeIA.toUpperCase())){
 			
 			System.out.println("Combien d'IA voulez vous ajouter ?");
-			String demandeNbIA = sc.nextLine();
+			//String demandeNbIA = sc.nextLine();
 			
-			nbJoueursIA= Integer.parseInt(demandeNbIA);
-			
+			//nbJoueursIA= Integer.parseInt(demandeNbIA);
+			nbJoueursIA = sc.nextInt();
 			do {
 				if(nbJoueursHumain+nbJoueursIA > 0 && nbJoueursHumain+nbJoueursIA <= 11 )
-				{
-					conditionJ = true;
+				{ // boucle infinie 
+					System.out.println("ici");
+//					conditionJ = true;
+					conditionIA = true;
 				}
 			} while (!conditionIA);
 			
 			System.out.println("Quel niveau d'IA désirez vous (0=aléatoire, 1=offensive)");
-			String niveauIA = sc.nextLine();
-			niveau = Integer.parseInt(niveauIA);
+			//String niveauIA = sc.nextLine();
+			//niveau = Integer.parseInt(niveauIA);
+			niveau = sc.nextInt();
 		}
 		else{
 			if(nbJoueursHumain<2)
@@ -187,13 +190,13 @@ public class Partie {
 			{
 				IaAleatoire iaAleatoire = new IaAleatoire("ia"+i, this.nbJoueurs);
 				ajouterJoueur(iaAleatoire);
-				this.nbJoueurs++;
+				//this.nbJoueurs++; Ces lignes font planter l'exécution
 			}
 			if(niveau == 1)
 			{
-				IaOffensive iaOfensive = new IaOffensive("ia"+i, this.nbJoueurs);
-				ajouterJoueur(iaOfensive);
-				this.nbJoueurs++;
+				IaOffensive iaOffensive = new IaOffensive("ia"+i, this.nbJoueurs);
+				ajouterJoueur(iaOffensive);
+				//this.nbJoueurs++;
 			}
 
 		}
@@ -239,6 +242,8 @@ public class Partie {
 	
 	
 	/**
+	 * Méthode permettant de gérer l'action d'un joueur sur la partie pour un tour
+	 * 
 	 * @param joueur
 	 */
 	public void faireJouerJoueur(Joueur joueur){
