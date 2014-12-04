@@ -159,18 +159,15 @@ public class Carte {
 			valeur= "10";
 			break;
 		case 11:
-			valeur= "J";
-			break;
-		case 12:
 			valeur= "V";
 			break;
-		case 13:
+		case 12:
 			valeur= "D";
 			break;
-		case 14:
+		case 13:
 			valeur= "R";
 			break;
-		case 15:
+		case 14:
 			valeur= "A";
 			break;
 		default:

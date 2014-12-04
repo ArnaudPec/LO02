@@ -24,7 +24,7 @@ public class Pioche extends Tas {
 		
 		for (int i = 0; i < 4; i++) 
 		{
-			for (int j = 2; j <= 15; j++) 
+			for (int j = 2; j < 15; j++) 
 			{	
 				Carte carte = new Carte(i, j);
 				this.listeCartes.add(carte);
@@ -89,7 +89,7 @@ public class Pioche extends Tas {
 	public void distribuerCarte(Partie partie){
 		for (int i = 0; i < 3; i++) 
 		{
-			for (int j=0; j < partie.getNbJoueurs()-1 ; j++) 
+			for (int j=0; j < partie.getNbJoueurs() ; j++) 
 			{			
 				Carte carteTire = this.prendreCarteDuDessus();
 				carteTire.setVisibilite(false);

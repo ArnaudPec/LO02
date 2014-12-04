@@ -278,7 +278,7 @@ public class Partie {
 			for (int i = 0; i < nbMax; i++) {
 				joueur.getMainJoueur().ajouterCarte(this.pioche.prendreCarteDuDessus());
 			}
-			System.out.println(nbMax +" cartes a(ont) été piochée(s) par "+joueur.getNom() +"\n");
+			System.out.println(nbMax +" carte(s) a(ont) été piochée(s) par "+joueur.getNom() +"\n");
 			
 		}
 		
@@ -320,18 +320,12 @@ public class Partie {
 				{					
 					//Permet de choisir les cartes que le joueur veut jouer
 					this.faireJouerJoueur(joueur);
-					
-					
-					//Gestion du joueur courant
-									
+					System.out.println("La pioche contient " +this.pioche.getListeCartes().size() +" cartes. \n");								
 				}
-				else //Sinon on donne la main au dernier à avoir poser et on fini la manche.
+				else //Le Joueur ne pouvant pas jouer récupère le tapis
 				{
 					System.out.println("Ahah " +joueur.getNom() + " tu ne peux pas jouer mécréant, prend toi le tapis dans la face ! \n\n");
 					joueur.getMainJoueur().getListeCartes().addAll(this.tapis.prendreTapis());//Je donne le tapis au joueur qui n'a pas pu jouer.
-					//this.tapis=null;
-					//joueurCourant--;
-					//estDanish = true;
 				}
 				this.gestionDuJoueurCourant();
 
@@ -339,29 +333,12 @@ public class Partie {
 		}	
 	}
 	
-//	/**
-//	 * Permet de faire piocher un joueur
-//	 * @param nbCartes nombre de carte à faire piocher
-//	 * @param joueur joueur qui doit piocher
-//	 */
-//	public void piocher(int nbCartes, Joueur joueur){
-//		LinkedList<Carte> liste = new LinkedList<Carte>();
-//		
-//		for (int i = 0; i < nbCartes; i++) {
-//			liste.add(this.pioche.prendreCarteDuDessus());
-//		}
-//		
-//		joueur.getMainJoueur().getListeCartes().addAll(liste);
-//	}
-	
-	
 	 public static void main(String[] args) {
 		
 		System.out.println("Nouvelle partie de Bataille Norvegienne.");		
 		Partie partie = getInstancePartie();
 		partie.initialisationPartie(partie);
 		partie.lancerPartie();
-		//System.out.println(partie.getJoueur(0).getMainJoueur());
 	
 	}
 	
