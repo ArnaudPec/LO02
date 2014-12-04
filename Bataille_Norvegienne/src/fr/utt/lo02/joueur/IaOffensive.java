@@ -106,11 +106,8 @@ public class IaOffensive extends IA {
 			this.tasVisible.ajouterCarte(this.mainJoueur.prendreCarteNonSpeciale());
 			nbChangement--;
 		}
-	}
-	
-
-		
-	}
+	}		
+}
 
 
 

@@ -161,13 +161,10 @@ public class Partie {
 				niveau=0;
 			}
 		}
-		sc.close();
-		sc.reset();
 		creationJoueur(nbJoueursHumain);
 		creationIA(nbJoueursIA, niveau);
 		
 	}
-	
 	
 	public void creationJoueur(int nbJoueur)
 	{
@@ -180,8 +177,6 @@ public class Partie {
 			ajouterJoueur(joueur);
 		}
 		
-		sc.close();
-		sc.reset();
 		
 	}
 	

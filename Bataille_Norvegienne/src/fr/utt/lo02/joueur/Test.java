@@ -36,10 +36,7 @@ public class Test {
 		bob.choisirCarteAJouer(carteTest);	
 		System.out.println(bob.getMainJoueur());
 
-		//bob.changerCartes();
-		//System.out.println(bob.getMainJoueur());
-
-	
+		
 	}
 
 }

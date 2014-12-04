@@ -56,10 +56,8 @@ public class Humain extends Joueur {
 		System.out.println(this.mainJoueur + "Choisissez le nombre de carte à jouer");
 
 		int nb;
-		if(scanner.hasNextInt() )
+	
 			nb = scanner.nextInt(); // if there is another number  
-		else 
-			nb = 0; // nothing added in the input 
 		
 		while (nb > nombreMaxCarteJouable || nb<1) {
 			System.out.println("Erreur : Vous ne pouvez jouer au maximum que " + nombreMaxCarteJouable+ " carte(s)\nChoisissez un nombre inférieur ou égal à " + nombreMaxCarteJouable);
@@ -162,63 +160,3 @@ public class Humain extends Joueur {
 	
 
 }
-
-
-/**OSBOLETE, SERA DEFINITIVEMENT SUPPRIME DANS UN PROCHAIN COMMIT
- * Méthode permettant de choisir les cartes à jouer. ATTENTION, ne gère pas
- * encore les choix du joueur dans le cas où celui ci voudrait jouer 3
- * cartes alors qu'il n'en a que deux de même valeur
- * 
- * @return Une liste de carte
- * 
- */
-
-/*
- * public HashSet<Carte> choisirCarteAJouer(){
- * 
- * HashSet<Carte> listeCartes ; Scanner scanner = new Scanner(System.in);
- * int numCarte; int valCarte; boolean cartesMemeValeur; boolean memeCartes;
- * 
- * System.out.println("Choisissez le nombre de carte à jouer"); int nb =
- * scanner.nextInt();
- * 
- * while (nb>3) {
- * 
- * System.out.println("Erreur : Choisissez un nombre inférieur ou égal à 3");
- * nb = scanner.nextInt();
- * 
- * }
- * 
- * System.out.println(this.mainJoueur+ "\n");
- * 
- * do { listeCartes = new HashSet<Carte>(); cartesMemeValeur = true;
- * memeCartes=false;
- * 
- * for (int i = 0; i < nb; i++) {
- * System.out.println("\nChoisissez la carte " +i + ": \n");
- * numCarte=scanner.nextInt();
- * listeCartes.add(this.mainJoueur.getCarte(numCarte)); }
- * 
- * if(listeCartes.size()!=nb) memeCartes = true;
- * 
- * java.util.Iterator<Carte> it = listeCartes.iterator();
- * 
- * Carte premiereCarte = (Carte) it.next();
- * 
- * while (it.hasNext()) { Carte carte = (Carte) it.next();
- * if(carte.getValeur()!=premiereCarte.getValeur()) cartesMemeValeur =
- * false; }
- * 
- * System.out.println(memeCartes);
- * 
- * } while (!cartesMemeValeur && memeCartes);
- * 
- * 
- * System.out.println("ok");
- * 
- * return listeCartes;
- * 
- * }
- * 
- * }
- */
