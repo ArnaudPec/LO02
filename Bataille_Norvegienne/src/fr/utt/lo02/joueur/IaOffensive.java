@@ -65,7 +65,7 @@ public class IaOffensive extends IA {
 		
 		else { //s'il n'y a pas de cartes spéciales on tire une carte au hasard
 			Random rand =new Random();
-			int valeur = this.mainJoueur.getCarte(rand.nextInt(3)).getValeur();
+			int valeur = this.mainJoueur.getCarte(rand.nextInt(this.mainJoueur.getListeCartes().size())).getValeur();
 			listeCartes= new Carte[this.mainJoueur.calculerNbOccurenceMemeValeur(valeur)];
 			for (int i = 0; i < listeCartes.length; i++) {
 				listeCartes[i]=this.mainJoueur.prendreCarteValeur(valeur);

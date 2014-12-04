@@ -178,8 +178,7 @@ public class Partie {
 			String nomJoueur = sc.nextLine();
 			Humain joueur = new Humain(nomJoueur, this.nbJoueurs);
 			ajouterJoueur(joueur);
-		}
-		
+		}		
 		
 	}
 	
@@ -248,9 +247,7 @@ public class Partie {
 	 */
 	public void faireJouerJoueur(Joueur joueur){
 		
-		System.out.println("C'est " +joueur.getNom()+ " qui joue ! \n");
-		
-		System.out.println(this.getTapis());
+		System.out.println("C'est " +joueur.getNom()+ " qui joue ! \n" + this.getTapis());
 		
 		Carte[] carteJouees = joueur.choisirCarteAJouer(this.getTapis().carteDuDessus());
 		this.getTapis().ajouterPlusieursCartes(carteJouees);	
