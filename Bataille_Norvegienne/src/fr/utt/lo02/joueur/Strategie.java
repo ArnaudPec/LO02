@@ -1,5 +1,7 @@
 package fr.utt.lo02.joueur;
 
+import java.util.ArrayList;
+
 import fr.utt.lo02.carte.Carte;
 
 public interface Strategie {
@@ -17,5 +19,5 @@ public interface Strategie {
 	 */
 	public void changerCartes();	
 
-	public void interfaceDemandeChoisirUnJoueur();
+	public int interfaceDemandeChoisirUnJoueur(ArrayList<Joueur> j);
 }

@@ -1,6 +1,9 @@
 package fr.utt.lo02.joueur;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
+import java.util.Scanner;
 
 import fr.utt.lo02.carte.*;
 
@@ -109,5 +112,21 @@ public class IaAleatoire extends IA {
 		}
 
 	}
+	/** 
+	 * Méthode permettant de choisir un joueur dans le cas de la pose d'un as. L'IA aléatoire désigne aléatoirement 
+	 * un joueur qui va prendre le tas. Il ne doit pas se désigner lui même
+	 */	
+	public int interfaceDemandeChoisirUnJoueur(ArrayList<Joueur> liste){
+			
+			int num;
+			Random rand = new Random();
+			do{
+				num = rand.nextInt(liste.size());
+			}while(num == this.numJoueur || num < 0);
+			
+			System.out.println(this.nom + " a choisi : " +liste.get(num).getNom());
+			
+			return num ;
+		}
 
 }

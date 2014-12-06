@@ -1,6 +1,8 @@
 package fr.utt.lo02.joueur;
 
 
+import java.util.ArrayList;
+
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.carte.MainJoueur;
 import fr.utt.lo02.carte.TasCache;
@@ -56,6 +58,10 @@ public class Joueur implements Strategie{
 	public void changerCartes() {
 		
 	}
+	
+	public int calculerNombreTotalCarte(){
+		return this.mainJoueur.getListeCartes().size()+this.tasCache.getListeCartes().size()+this.tasVisible.getListeCartes().size();
+	}
 
 	public String toString() {
 		return "Joueur [numJoueur=" + numJoueur + ", nom=" + nom + ", mainJoueur=" + mainJoueur + ", tasCache=" + tasCache+ ", tasVisible=" + tasVisible + "]";
@@ -92,10 +98,11 @@ public class Joueur implements Strategie{
 		this.tasVisible = tasVisible;
 	}
 
+
 	@Override
-	public void interfaceDemandeChoisirUnJoueur() {
+	public int interfaceDemandeChoisirUnJoueur(ArrayList<Joueur> j) {
 		// TODO Auto-generated method stub
-		
+		return 0;
 	}
 
 	

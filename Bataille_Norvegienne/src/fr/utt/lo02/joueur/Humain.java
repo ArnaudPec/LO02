@@ -160,6 +160,31 @@ public class Humain extends Joueur {
 		scanner2.close();
 	}
 	
+<<<<<<< HEAD
+	public int interfaceDemandeChoisirUnJoueur(ArrayList<Joueur> liste){
+		
+		int num;
+		
+		Scanner scanner = new Scanner(System.in);
+		do{
+			
+			System.out.println(this.nom + " ,choisissez un autre joueur : \n");
+			
+			for (Iterator<Joueur> iterator = liste.iterator(); iterator.hasNext();) {
+				Joueur joueur = (Joueur) iterator.next();
+				System.out.println(joueur.getNumJoueur()+ " : " +joueur.getNom() + ", Main : " + joueur.getMainJoueur().getListeCartes().size() );
+				
+			}
+			
+			num = scanner.nextInt();
+			
+		}while(num>liste.size()-1 || num == this.numJoueur || num < 0);
+		
+		System.out.println("Vous avez choisi : " +liste.get(num).getNom());
+		
+		return num ;
+	}
+=======
 //	public int interfaceDemandeChoisirUnJoueur(){
 //		
 //		Scanner sc = new Scanner(System.in);
@@ -181,4 +206,5 @@ public class Humain extends Joueur {
 //		return resultat;
 //	}	
 	
+>>>>>>> 89f374dbacf2dd9527d038ae8d3dbd91f519867c
 }
