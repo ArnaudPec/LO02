@@ -59,7 +59,7 @@ public class Tapis extends Tas {
 	public LinkedList<Carte> prendreTapis() {
 		LinkedList<Carte> liste = new LinkedList<Carte>();
 		liste.addAll(this.listeCartes);
-		this.viderTapis();
+		super.viderTas();
 		return liste;
 
 	}

@@ -121,10 +121,11 @@ public class IaAleatoire extends IA {
 			int num;
 			Random rand = new Random();
 			do{
+				System.out.println("hi man i'm running infinitely !!  ");
 				num = rand.nextInt(liste.size());
-			}while(num == this.numJoueur || num < 0);
+			}while(num == super.numJoueur);
 			
-			System.out.println(this.nom + " a choisi : " +liste.get(num).getNom());
+			System.out.println(super.nom + " a choisi : " +liste.get(num).getNom());
 			
 			return num ;
 		}

@@ -22,7 +22,7 @@ public class Pioche extends Tas {
 	private Pioche() {
 		super.listeCartes = new LinkedList<Carte>();
 
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 4; i++) { 
 			for (int j = 2; j < 15; j++) {
 				Carte carte = new Carte(i, j);
 				this.listeCartes.add(carte);

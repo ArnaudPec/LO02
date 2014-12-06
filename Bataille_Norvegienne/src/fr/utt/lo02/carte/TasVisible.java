@@ -90,6 +90,19 @@ public class TasVisible extends Tas {
 		return null;
 
 	}
+	
+	/**
+	 * Méthode permettant de faire prendre tout le contenu du TasVisible.
+	 * 
+	 * @return La liste des cartes à ajouter à la main du joueur
+	 */
+	public LinkedList<Carte> prendreTasVisible() {
+		LinkedList<Carte> liste = new LinkedList<Carte>();
+		liste.addAll(this.listeCartes);
+		this.viderTas();
+		return liste;
+	}
+
 
 	@Override
 	public String toString() {

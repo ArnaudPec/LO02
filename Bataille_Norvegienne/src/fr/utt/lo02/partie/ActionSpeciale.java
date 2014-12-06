@@ -38,7 +38,7 @@ public class ActionSpeciale {
 
 		if (this.partie.getJoueurSuivant().peutJouer(this.tapis.carteDuDessus())==false) {
 			int choixDuJoueur = this.joueur.interfaceDemandeChoisirUnJoueur(partie.getListeJoueurs());
-			LinkedList<Carte> tapis = this.tapis.getListeCartes();
+			LinkedList<Carte> tapis = this.tapis.prendreTapis();
 			Joueur joueur = this.partie.getListeJoueurs().get(choixDuJoueur);
 
 			joueur.getMainJoueur().ajouterPlusieursCartes(tapis);
@@ -57,7 +57,7 @@ public class ActionSpeciale {
 			Carte carte = iterator.previous();
 			if (carte.getValeur() == 8) {
 				this.partie.gestionDuJoueurCourant();
-				System.out.println("Vous avez passé votre tour !");
+				System.out.println(joueur.getNom() +" passe son tour !");
 			}			
 			i++;
 		}	

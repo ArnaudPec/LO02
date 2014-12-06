@@ -65,5 +65,9 @@ public abstract class Tas {
 			this.listeCartes.add(carte[i]);
 		}
 	}
+	
+	public void viderTas(){
+		this.listeCartes.clear();
+	}
 
 }

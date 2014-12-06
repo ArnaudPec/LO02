@@ -1,6 +1,7 @@
 package fr.utt.lo02.partie;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -165,12 +166,12 @@ public class Partie {
 				niveau = 0;
 			}
 		}
-		creationJoueur(nbJoueursHumain);
+		creationHumain(nbJoueursHumain);
 		creationIA(nbJoueursIA, niveau);
 
 	}
 
-	public void creationJoueur(int nbJoueur) {
+	public void creationHumain(int nbJoueur) {
 		Scanner sc = new Scanner(System.in);
 
 		for (int i = 0; i < nbJoueur; i++) {
@@ -234,6 +235,14 @@ public class Partie {
 		} else {
 			joueurCourant++;
 		}
+		int nb = 0;
+	for (Iterator iterator = this.listeJoueurs.iterator(); iterator.hasNext();) {
+		Joueur joueur = (Joueur) iterator.next();
+		nb = nb + joueur.calculerNombreTotalCarte();
+	}
+	nb += this.tapis.getListeCartes().size() + this.pioche.getListeCartes().size();
+	System.out.println("NOMBRE DE CARTE TOTAL : " +nb);
+	
 	}
 
 	/**
@@ -269,7 +278,7 @@ public class Partie {
 	 * @param joueur
 	 * 
 	 */
-	public void fairePiocherJoueur(Joueur joueur /* , int nbCarte */) {
+	public void fairePiocherJoueur(Joueur joueur) {
 
 		int nbMax;
 
@@ -296,8 +305,7 @@ public class Partie {
 
 		else if (this.pioche.getListeCartes().isEmpty()
 				&& joueur.getMainJoueur().getListeCartes().isEmpty()) {
-			joueur.getMainJoueur().ajouterPlusieursCartes(
-					joueur.getTasVisible().getListeCartes());
+			joueur.getMainJoueur().ajouterPlusieursCartes(joueur.getTasVisible().prendreTasVisible());
 			System.out.println(joueur.getNom()
 					+ " Vient de prendre les cartes de son TasVisible\n");
 
@@ -320,8 +328,6 @@ public class Partie {
 		boolean estDanish = false;
 		boolean estGagnee = false;
 
-		ActionSpeciale actionSpeciale = new ActionSpeciale(this, this.joueurCourant);
-
 		while (!estGagnee) {
 			// tant que tout le monde peu jouer ..
 			while (!(estDanish && estGagnee)) {
@@ -333,8 +339,11 @@ public class Partie {
 				// Si le joueur peu jouer alors on passe au suivant
 				if (joueur.peutJouer(this.getTapis().carteDuDessus())) {
 					// Permet de choisir les cartes que le joueur veut jouer
+					System.out.println("num avant : " +joueur.getNumJoueur());
 					this.faireJouerJoueur(joueur);
+					System.out.println("num après : " + joueur.getNumJoueur());
 					if (this.tapis.carteDuDessus().estSpeciale()) {
+						ActionSpeciale actionSpeciale = new ActionSpeciale(this, this.joueurCourant);
 						actionSpeciale.appelerBonneMethode();
 					}
 
