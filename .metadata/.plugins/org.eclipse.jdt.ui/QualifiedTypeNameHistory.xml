@@ -9,11 +9,12 @@
 <fullyQualifiedTypeName name="fr.utt.lo02.carte.Tapis"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
-<fullyQualifiedTypeName name="fr.utt.lo02.carte.MainJoueur"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.carte.Carte"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.joueur.IaAleatoire"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.joueur.IaOffensive"/>
 <fullyQualifiedTypeName name="apple.awt.CImage.Creator"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.joueur.Humain"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.carte.MainJoueur"/>
+<fullyQualifiedTypeName name="java.util.ListIterator"/>
 </qualifiedTypeNameHistroy>

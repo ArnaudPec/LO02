@@ -160,25 +160,25 @@ public class Humain extends Joueur {
 		scanner2.close();
 	}
 	
-//	public int interfaceDemandeChoisirUnJoueur(){
-//		
-//		Scanner sc = new Scanner(System.in);
-//		boolean condition=false;		
-//		int resultat = -1;
-//		
-//		do
-//		{
-//			String joueur = sc.nextLine();		
-//			int numJoueur = Integer.parseInt(joueur);
-//			
-//			if(numJoueur>=0 && numJoueur < this.partie.getNbJoueurs() && numJoueur != this.partie.getJoueurCourant())
-//			{
-//				resultat = numJoueur;
-//				condition = true;
-//			}
-//		}while(!condition);
-//		
-//		return resultat;
-//	}	
+	public int interfaceDemandeChoisirUnJoueur(){
+		
+		Scanner sc = new Scanner(System.in);
+		boolean condition=false;		
+		int resultat = -1;
+		
+		do
+		{
+			String joueur = sc.nextLine();		
+			int numJoueur = Integer.parseInt(joueur);
+			
+			if(numJoueur>=0 && numJoueur < this.partie.getNbJoueurs() && numJoueur != this.partie.getJoueurCourant())
+			{
+				resultat = numJoueur;
+				condition = true;
+			}
+		}while(!condition);
+		
+		return resultat;
+	}	
 	
 }

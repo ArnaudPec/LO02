@@ -215,6 +215,10 @@ public class Carte {
 	 */
 	public boolean estPosable ( Carte cartePrecedente){
 		
+		/* 
+		
+		*/
+		
 		if (cartePrecedente == null) return true;
 		else if (this.valeur==2)return true;
 		else if (cartePrecedente.getValeur()==8 && this.valeur!=2) return false;

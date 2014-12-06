@@ -32,7 +32,7 @@ public class ActionSpeciale {
 			effectuerAction10();
 			break;
 		case 14:
-			//effectuerActionA();
+			effectuerActionA();
 			break;
 		}
 	}
