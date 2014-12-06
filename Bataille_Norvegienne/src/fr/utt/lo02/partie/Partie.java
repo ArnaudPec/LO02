@@ -102,7 +102,7 @@ public class Partie {
 	 * @return retourne le joueur suivant.
 	 */
 	public Joueur getJoueurSuivant() {
-		return this.listeJoueurs.get(joueurCourant + 1);
+		return this.listeJoueurs.get((joueurCourant + 1)%this.nbJoueurs);
 	}
 
 	public void ajouterJoueur(Joueur joueur) {
@@ -320,7 +320,7 @@ public class Partie {
 		boolean estDanish = false;
 		boolean estGagnee = false;
 
-		ActionSpeciale actionSpeciale = new ActionSpeciale(this, this.nbJoueurs);
+		ActionSpeciale actionSpeciale = new ActionSpeciale(this, this.joueurCourant);
 
 		while (!estGagnee) {
 			// tant que tout le monde peu jouer ..

@@ -227,23 +227,25 @@ public class Carte {
 	 * @return un booleen
 	 */
 	public boolean estPosable(Carte cartePrecedente) {
-
+		
+		boolean posable;
 		if (cartePrecedente == null)
-			return true;
-		else if (this.valeur == 2)
-			return true;
-		else if (cartePrecedente.getValeur() == 8 && this.valeur != 2)
-			return false;
-		else if (cartePrecedente.getValeur() == 15 && this.valeur == 15)
-			return true;
-		else if (cartePrecedente.getValeur() == 7 && this.valeur <= 7)
-			return true;
-		else if (cartePrecedente.getValeur() == 7 && this.valeur > 7)
-			return false;
+			posable =  true;
 		else if (cartePrecedente.getValeur() <= this.valeur)
-			return true;
+			posable =  true;
+		else if (this.valeur == 2)
+			posable =  true;
+//		else if (cartePrecedente.getValeur() == 8 && this.valeur != 2)
+//			posable =  false;
+		else if (cartePrecedente.getValeur() == 14 && this.valeur == 14)
+			posable =  true;
+		else if (cartePrecedente.getValeur() == 7 && this.valeur <= 7)
+			posable =  true;
+		else if (cartePrecedente.getValeur() == 7 && this.valeur > 7)
+			posable =  false;
 		else
-			return false;
+			posable =  false;
+		return posable;
 	}
 
 	/*

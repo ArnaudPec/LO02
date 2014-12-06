@@ -2,7 +2,6 @@ package fr.utt.lo02.partie;
 
 import java.util.LinkedList;
 import java.util.ListIterator;
-import java.util.Scanner;
 
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.carte.Tapis;
@@ -29,21 +28,22 @@ public class ActionSpeciale {
 			effectuerAction10();
 			break;
 		case 14:
-			// effectuerActionA();
+			effectuerActionA();
 			break;
 		}
 	}
 
-	/*
-	 * private void effectuerActionA() {
-	 * 
-	 * if(!this.partie.getJoueurSuivant().peutJouer(this.tapis.carteDuDessus()))
-	 * { int choixDuJoueur = this.joueur.interfaceDemandeChoisirUnJoueur();
-	 * LinkedList<Carte> tapis = this.tapis.getListeCartes(); Joueur joueur =
-	 * this.partie.getListeJoueurs().get(choixDuJoueur);
-	 * 
-	 * joueur.getMainJoueur().ajouterPlusieursCartes(tapis); } }
-	 */
+	
+	private void effectuerActionA() {
+
+		if (this.partie.getJoueurSuivant().peutJouer(this.tapis.carteDuDessus())==false) {
+			int choixDuJoueur = this.joueur.interfaceDemandeChoisirUnJoueur(partie.getListeJoueurs());
+			LinkedList<Carte> tapis = this.tapis.getListeCartes();
+			Joueur joueur = this.partie.getListeJoueurs().get(choixDuJoueur);
+
+			joueur.getMainJoueur().ajouterPlusieursCartes(tapis);
+		}
+	}
 
 	private void effectuerAction10() {
 		this.partie.getTapis().viderTapis();

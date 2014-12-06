@@ -183,27 +183,4 @@ public class Humain extends Joueur {
 		
 		return num ;
 	}
-
-//	public int interfaceDemandeChoisirUnJoueur(){
-//		
-//		Scanner sc = new Scanner(System.in);
-//		boolean condition=false;		
-//		int resultat = -1;
-//		
-//		do
-//		{
-//			String joueur = sc.nextLine();		
-//			int numJoueur = Integer.parseInt(joueur);
-//			
-//			if(numJoueur>=0 && numJoueur < this.partie.getNbJoueurs() && numJoueur != this.partie.getJoueurCourant())
-//			{
-//				resultat = numJoueur;
-//				condition = true;
-//			}
-//		}while(!condition);
-//		
-//		return resultat;
-//	}	
-	
->>>>>>> 89f374dbacf2dd9527d038ae8d3dbd91f519867c
 }
