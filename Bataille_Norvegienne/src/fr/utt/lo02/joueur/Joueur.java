@@ -92,6 +92,12 @@ public class Joueur implements Strategie{
 		this.tasVisible = tasVisible;
 	}
 
+	@Override
+	public void interfaceDemandeChoisirUnJoueur() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 
 }

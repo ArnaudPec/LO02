@@ -17,4 +17,5 @@ public interface Strategie {
 	 */
 	public void changerCartes();	
 
+	public void interfaceDemandeChoisirUnJoueur();
 }

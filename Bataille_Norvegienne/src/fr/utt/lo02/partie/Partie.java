@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 import fr.utt.lo02.carte.Carte;
+import fr.utt.lo02.carte.MainJoueur;
 import fr.utt.lo02.carte.Pioche;
 import fr.utt.lo02.carte.Tapis;
 import fr.utt.lo02.joueur.Humain;
@@ -100,6 +101,15 @@ public class Partie {
 		Partie.instancePartie = instancePartie;
 	}
 	
+	
+	/**
+	 * Methode permettant de récupérer le joueur suivant
+	 * @return retourne le joueur suivant.
+	 */
+	public Joueur getJoueurSuivant()
+	{
+		return this.listeJoueurs.get(joueurCourant+1);
+	}
 	
 	public void ajouterJoueur(Joueur joueur){
 		this.listeJoueurs.add(joueur);
