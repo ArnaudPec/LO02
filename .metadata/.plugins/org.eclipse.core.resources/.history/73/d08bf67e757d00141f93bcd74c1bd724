@@ -160,6 +160,7 @@ public class Humain extends Joueur {
 		scanner2.close();
 	}
 	
+<<<<<<< HEAD
 	public int interfaceDemandeChoisirUnJoueur(ArrayList<Joueur> liste){
 		
 		int num;
@@ -183,7 +184,7 @@ public class Humain extends Joueur {
 		
 		return num ;
 	}
-
+=======
 //	public int interfaceDemandeChoisirUnJoueur(){
 //		
 //		Scanner sc = new Scanner(System.in);
