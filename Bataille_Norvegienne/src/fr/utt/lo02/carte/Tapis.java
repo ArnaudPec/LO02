@@ -44,12 +44,6 @@ public class Tapis extends Tas {
 		return carte;
 	}
 
-	/**
-	 * Permet de vider le tapis, supprime tout les éléments de la liste.
-	 */
-	public void viderTapis() {
-		super.listeCartes.clear();
-	}
 
 	/**
 	 * Méthode permettant de faire prendre tout le contenu du tapis à joueur.
@@ -75,7 +69,5 @@ public class Tapis extends Tas {
 		return res;
 	}
 
-	public static void main(String[] args) {
-
-	}
+	
 }

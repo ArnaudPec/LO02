@@ -34,7 +34,7 @@ public class Test {
 		bob.getTasVisible().ajouterCarte(new Carte(0, 13));
 
 
-		Carte carteTest = new Carte(0, 7);
+		//Carte carteTest = new Carte(0, 7);
 		
 //		System.out.println(bob.peutJouer(carteTest));
 //		bob.choisirCarteAJouer(carteTest);	
@@ -55,7 +55,7 @@ public class Test {
 		j.add(patrick);
 		j.add(jean);
 		
-		System.out.println(bob.interfaceDemandeChoisirUnJoueur(j));
+		System.out.println(bob.choisirUnJoueur(j));
 		
 		
 	}

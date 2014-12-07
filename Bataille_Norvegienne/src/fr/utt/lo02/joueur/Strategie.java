@@ -19,5 +19,10 @@ public interface Strategie {
 	 */
 	public void changerCartes();	
 
-	public int interfaceDemandeChoisirUnJoueur(ArrayList<Joueur> j);
+	/**
+	 * Cette méthode permet au joueur de désigner un autre joueur de la partie. Est utilisé notamment dans le cas d'une action spéciale à la pose d'un as.
+	 * @param liste
+	 * @return un entier, le numéri du joueur choisi
+	 */
+	public int choisirUnJoueur(ArrayList<Joueur> liste);
 }

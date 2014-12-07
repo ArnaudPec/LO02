@@ -56,7 +56,7 @@ public class Joueur implements Strategie{
 	 * Méthode permettant au joueur d'échanger les cartes de sa main avec celles de son tas visible. Son implémentation est différente selon le type de joueur.
 	 */
 	public void changerCartes() {
-		
+		//implémentation dans les classes filles
 	}
 	
 	public int calculerNombreTotalCarte(){
@@ -70,38 +70,22 @@ public class Joueur implements Strategie{
 	public int getNumJoueur() {
 		return numJoueur;
 	}
-	public void setNumJoueur(int numJoueur) {
-		this.numJoueur = numJoueur;
-	}
 	public String getNom() {
 		return this.nom;
-	}
-	public void setNom(String nom) {
-		this.nom = nom;
 	}
 	public MainJoueur getMainJoueur() {
 		return this.mainJoueur;
 	}
-	public void setMainJoueur(MainJoueur mainJoueur) {
-		this.mainJoueur = mainJoueur;
-	}
+	
 	public TasCache getTasCache() {
 		return this.tasCache;
 	}
-	public void setTasCache(TasCache tasCachee) {
-		this.tasCache = tasCachee;
-	}
+	
 	public TasVisible getTasVisible() {
 		return tasVisible;
 	}
-	public void setTasVisible(TasVisible tasVisible) {
-		this.tasVisible = tasVisible;
-	}
 
-
-	@Override
-	public int interfaceDemandeChoisirUnJoueur(ArrayList<Joueur> j) {
-		// TODO Auto-generated method stub
+	public int choisirUnJoueur(ArrayList<Joueur> j) {
 		return 0;
 	}
 

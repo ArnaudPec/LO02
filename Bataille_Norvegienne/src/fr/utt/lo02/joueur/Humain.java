@@ -160,7 +160,7 @@ public class Humain extends Joueur {
 		scanner2.close();
 	}
 	
-	public int interfaceDemandeChoisirUnJoueur(ArrayList<Joueur> liste){
+	public int choisirUnJoueur(ArrayList<Joueur> liste){
 		
 		int num;
 		

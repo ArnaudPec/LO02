@@ -44,31 +44,20 @@ public class IaOffensive extends IA {
 
 		if (this.mainJoueur.contenirCarte(as)) { // on récupère le(s) as
 
-			listeCartes = new Carte[this.mainJoueur
-					.calculerNbOccurenceMemeValeur(as)]; // on initialise le
-															// tableau avec le
-															// nombre d'as
-															// présents
+			listeCartes = new Carte[this.mainJoueur.calculerNbOccurenceMemeValeur(as)]; // on initialise le// tableau avec le nombre d'as présents
 			for (int i = 0; i < listeCartes.length; i++) {
-				listeCartes[i] = this.mainJoueur.prendreCarteValeur(as); // on
-																			// prend
-																			// tous
-																			// les
-																			// as
-																			// trouvés
+				listeCartes[i] = this.mainJoueur.prendreCarteValeur(as); // on prend tous les as trouvés
 			}
 		}
 
 		else if (this.mainJoueur.contenirCarte(huit)) { // on pose le(s) huit(s)
-			listeCartes = new Carte[this.mainJoueur
-					.calculerNbOccurenceMemeValeur(huit)];
+			listeCartes = new Carte[this.mainJoueur.calculerNbOccurenceMemeValeur(huit)];
 			for (int i = 0; i < listeCartes.length; i++) {
 				listeCartes[i] = this.mainJoueur.prendreCarteValeur(huit);
 			}
 		}
 
-		else if (this.mainJoueur.contenirCarteSpeciale()) { // on pose une carte
-															// spéciale
+		else if (this.mainJoueur.contenirCarteSpeciale()) { // on pose une carte spéciale
 			Carte carte = this.mainJoueur.prendreCarteSpeciale();
 			listeCartes = new Carte[this.mainJoueur
 					.calculerNbOccurenceMemeValeur(carte) + 1];// le +1
@@ -141,11 +130,11 @@ public class IaOffensive extends IA {
 	/** 
 	 * Méthode permettant de choisir un joueur dans le cas de la pose d'un as. Il ne doit pas se désigner lui même.
 	 */
-	public int interfaceDemandeChoisirUnJoueur(ArrayList<Joueur> liste) {
+	public int choisirUnJoueur(ArrayList<Joueur> liste) {
 		int nbcarte = 1000;
 		int num = 0;
 		
-		for (Iterator iterator = liste.iterator(); iterator.hasNext();) {
+		for (Iterator<Joueur> iterator = liste.iterator(); iterator.hasNext();) {
 			Joueur joueur = (Joueur) iterator.next();
 				if(joueur.calculerNombreTotalCarte()<nbcarte && joueur.getNumJoueur()!=this.numJoueur){
 					num = joueur.getNumJoueur();

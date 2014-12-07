@@ -2,11 +2,9 @@ package fr.utt.lo02.partie;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Scanner;
 
 import fr.utt.lo02.carte.Carte;
-import fr.utt.lo02.carte.MainJoueur;
 import fr.utt.lo02.carte.Pioche;
 import fr.utt.lo02.carte.Tapis;
 import fr.utt.lo02.joueur.Humain;
@@ -73,24 +71,8 @@ public class Partie {
 		return this.listeJoueurs;
 	}
 
-	public void setListeJoueurs(ArrayList<Joueur> listeJoueurs) {
-		this.listeJoueurs = listeJoueurs;
-	}
-
-	public Pioche getPioche() {
-		return this.pioche;
-	}
-
-	public void setPioche(Pioche pioche) {
-		this.pioche = pioche;
-	}
-
 	public Tapis getTapis() {
 		return this.tapis;
-	}
-
-	public void setTapis(Tapis tapis) {
-		this.tapis = tapis;
 	}
 
 	public static void setInstancePartie(Partie instancePartie) {
@@ -139,35 +121,24 @@ public class Partie {
 		if ("OUI".equals(demandeIA.toUpperCase())) {
 
 			System.out.println("Combien d'IA voulez vous ajouter ?");
-			// String demandeNbIA = sc.nextLine();
-
-			// nbJoueursIA= Integer.parseInt(demandeNbIA);
 			nbJoueursIA = sc.nextInt();
 			do {
-				if (nbJoueursHumain + nbJoueursIA > 0
-						&& nbJoueursHumain + nbJoueursIA <= 11) { // boucle
-																	// infinie
-					System.out.println("ici");
-					// conditionJ = true;
+				if (nbJoueursHumain + nbJoueursIA > 0 && nbJoueursHumain + nbJoueursIA <= 11) { 
 					conditionIA = true;
 				}
 			} while (!conditionIA);
 
-			System.out
-					.println("Quel niveau d'IA désirez vous (0=aléatoire, 1=offensive)");
-			// String niveauIA = sc.nextLine();
-			// niveau = Integer.parseInt(niveauIA);
+			System.out.println("Quel niveau d'IA désirez vous (0=aléatoire, 1=offensive)");
 			niveau = sc.nextInt();
 		} else {
 			if (nbJoueursHumain < 2) {
-				System.out
-						.println("Vous ne pouvez pas lancer de partie seul, une IA a été crée ");
+				System.out.println("Vous ne pouvez pas lancer de partie seul, une IA a été crée ");
 				nbJoueursIA = 1;
 				niveau = 0;
 			}
 		}
-		creationHumain(nbJoueursHumain);
-		creationIA(nbJoueursIA, niveau);
+		this.creationHumain(nbJoueursHumain);
+		this.creationIA(nbJoueursIA, niveau);
 
 	}
 
@@ -178,7 +149,7 @@ public class Partie {
 			System.out.println("Entrez le nom du joueur");
 			String nomJoueur = sc.nextLine();
 			Humain joueur = new Humain(nomJoueur, this.nbJoueurs);
-			ajouterJoueur(joueur);
+			this.ajouterJoueur(joueur);
 		}
 
 	}
@@ -187,16 +158,13 @@ public class Partie {
 
 		for (int i = 0; i < nbIA; i++) {
 			if (niveau == 0) {
-				IaAleatoire iaAleatoire = new IaAleatoire("ia" + i,
-						this.nbJoueurs);
-				ajouterJoueur(iaAleatoire);
-				// this.nbJoueurs++; Ces lignes font planter l'exécution
+				IaAleatoire iaAleatoire = new IaAleatoire("ia" + i,this.nbJoueurs);
+				this.ajouterJoueur(iaAleatoire);
 			}
 			if (niveau == 1) {
 				IaOffensive iaOffensive = new IaOffensive("ia" + i,
 						this.nbJoueurs);
-				ajouterJoueur(iaOffensive);
-				// this.nbJoueurs++;
+				this.ajouterJoueur(iaOffensive);
 			}
 
 		}
@@ -230,18 +198,19 @@ public class Partie {
 	 * premier joueur.
 	 */
 	public void gestionDuJoueurCourant() {
-		if (this.joueurCourant == this.nbJoueurs - 1) {
-			this.joueurCourant = 0;
-		} else {
-			joueurCourant++;
-		}
+		
+		if (this.joueurCourant == this.nbJoueurs - 1) this.joueurCourant = 0;
+		else joueurCourant++;
+		
 		int nb = 0;
-	for (Iterator iterator = this.listeJoueurs.iterator(); iterator.hasNext();) {
-		Joueur joueur = (Joueur) iterator.next();
-		nb = nb + joueur.calculerNombreTotalCarte();
-	}
-	nb += this.tapis.getListeCartes().size() + this.pioche.getListeCartes().size();
-	System.out.println("NOMBRE DE CARTE TOTAL : " +nb);
+		
+		for (Iterator<Joueur> iterator = this.listeJoueurs.iterator(); iterator.hasNext();) {
+			Joueur joueur = (Joueur) iterator.next();
+			nb = nb + joueur.calculerNombreTotalCarte();
+		}
+	
+		nb += this.tapis.getListeCartes().size() + this.pioche.getListeCartes().size();
+		System.out.println("NOMBRE TOTAL DE CARTE : " +nb);
 	
 	}
 
@@ -259,8 +228,7 @@ public class Partie {
 		Carte[] carteJouees = joueur.choisirCarteAJouer(this.getTapis()
 				.carteDuDessus());
 		this.getTapis().ajouterPlusieursCartes(carteJouees);
-
-		this.fairePiocherJoueur(joueur);
+		
 
 	}
 
@@ -282,13 +250,7 @@ public class Partie {
 
 		int nbMax;
 
-		if (!this.pioche.getListeCartes().isEmpty()
-				&& joueur.getMainJoueur().getListeCartes().size() < 3) { // On
-																			// pioche
-																			// jusqu'à
-																			// avoir
-																			// 3
-																			// cartes
+		if (!this.pioche.getListeCartes().isEmpty()	&& joueur.getMainJoueur().getListeCartes().size() < 3) { 
 			nbMax = 3 - joueur.getMainJoueur().getListeCartes().size();
 
 			if (this.pioche.getListeCartes().size() < nbMax)
@@ -303,8 +265,7 @@ public class Partie {
 
 		}
 
-		else if (this.pioche.getListeCartes().isEmpty()
-				&& joueur.getMainJoueur().getListeCartes().isEmpty()) {
+		else if (this.pioche.getListeCartes().isEmpty() && joueur.getMainJoueur().getListeCartes().isEmpty() && (!joueur.getTasVisible().getListeCartes().isEmpty())) {
 			joueur.getMainJoueur().ajouterPlusieursCartes(joueur.getTasVisible().prendreTasVisible());
 			System.out.println(joueur.getNom()
 					+ " Vient de prendre les cartes de son TasVisible\n");
@@ -314,7 +275,7 @@ public class Partie {
 		else if (this.pioche.getListeCartes().isEmpty() && joueur.getTasVisible().getListeCartes().isEmpty() && joueur.getMainJoueur().getListeCartes().isEmpty()) 
 		{
 			joueur.getMainJoueur().ajouterCarte(joueur.getTasCache().prendreCarte());
-			System.out.println(joueur.getNom()+ " Vient de prendre une carte de son TasCache\n");
+			System.out.println(joueur.getNom()+ " Vient de prendre une carte de son TasCache\n Il contient encore " +joueur.getTasCache().getListeCartes().size() + "\n");
 		}
 
 	}
@@ -326,39 +287,45 @@ public class Partie {
 
 		System.out.println("La partie démarre\n");
 		boolean estDanish = false;
-		boolean estGagnee = false;
+		//boolean estGagnee = false;
+		Joueur gagnant = null;
+		int nbtour=0;
 
-		while (!estGagnee) {
-			// tant que tout le monde peu jouer ..
-			while (!(estDanish && estGagnee)) {
-				Joueur joueur = this.listeJoueurs.get(joueurCourant); // récupération
-																		// du
-																		// joueur
-																		// courant
-
-				// Si le joueur peu jouer alors on passe au suivant
+//		while (!estGagnee) {
+//			// tant que tout le monde peut jouer ..
+			while (!(estDanish/* && estGagnee*/)) {
+				Joueur joueur = this.listeJoueurs.get(joueurCourant); // On récupère le joueur courant
+				// Si le joueur peut jouer alors on passe au suivant
 				if (joueur.peutJouer(this.getTapis().carteDuDessus())) {
-					// Permet de choisir les cartes que le joueur veut jouer
-					System.out.println("num avant : " +joueur.getNumJoueur());
+					
+					System.out.println("num joueur : " +joueur.getNumJoueur());
 					this.faireJouerJoueur(joueur);
-					System.out.println("num après : " + joueur.getNumJoueur());
+					if(joueur.estGagnant()){
+						estDanish = true;
+						gagnant = joueur;
+					}
+					else this.fairePiocherJoueur(joueur);
+					
 					if (this.tapis.carteDuDessus().estSpeciale()) {
 						ActionSpeciale actionSpeciale = new ActionSpeciale(this, this.joueurCourant);
 						actionSpeciale.appelerBonneMethode();
 					}
 
-					System.out.println("La pioche contient "
-							+ this.pioche.getListeCartes().size()
-							+ " cartes. \n");
-				} else // Le Joueur ne pouvant pas jouer récupère le tapis
+					System.out.println("La pioche contient "+ this.pioche.getListeCartes().size()+ " cartes. \n");
+					System.out.println("Le tapis contient "+ this.tapis.getListeCartes().size()+ " cartes. \n");
+				} 
+				
+				else // Le Joueur ne pouvant pas jouer récupère le tapis
 				{
 					System.out.println("Ahah "+ joueur.getNom()+ " tu ne peux pas jouer mécréant, prend toi le tapis dans la face ! \n\n");
 					joueur.getMainJoueur().getListeCartes().addAll(this.tapis.prendreTapis());// Je donne le															
 				}
 				this.gestionDuJoueurCourant();
-
+				 nbtour++;	
 			}
-		}
+			
+			System.out.println("Partie terminée, gagnant : " +gagnant.getNom() + "en " +nbtour+ " tours");
+		//}
 	}
 
 	public static void main(String[] args) {

@@ -303,21 +303,6 @@ public class MainJoueur extends Tas {
 		return false;
 	}
 
-	// /**OSBOLETE, SERA DEFINITIVEMENT SUPPRIME DANS UN PROCHAIN COMMIT
-	// * Méthode permettant de récupérer de la main les cartes jouables :
-	// prendre en compte le 7, le 2 ....
-	// * @return la liste des cartes jouables
-	// */
-	// public LinkedList<Carte> getListeCartesJouables(Carte derniereCarte){
-	// LinkedList<Carte> listeCartesJouables = new LinkedList<Carte>();
-	// Iterator<Carte> it = this.listeCartes.iterator();
-	// while (it.hasNext()) {
-	// Carte carte = (Carte) it.next();
-	// if(carte.estPosable(derniereCarte)) listeCartesJouables.add(carte);
-	// }
-	// return listeCartesJouables;
-	// }
-
 	/**
 	 * Méthode permettant de trier les cartes de la main. Les cartes qui ne sont
 	 * pas jouables après la dernière carte posée sur le tapis sont placé dans

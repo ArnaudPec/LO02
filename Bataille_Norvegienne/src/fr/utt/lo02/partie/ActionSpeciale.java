@@ -37,7 +37,7 @@ public class ActionSpeciale {
 	private void effectuerActionA() {
 
 		if (this.partie.getJoueurSuivant().peutJouer(this.tapis.carteDuDessus())==false) {
-			int choixDuJoueur = this.joueur.interfaceDemandeChoisirUnJoueur(partie.getListeJoueurs());
+			int choixDuJoueur = this.joueur.choisirUnJoueur(partie.getListeJoueurs());
 			LinkedList<Carte> tapis = this.tapis.prendreTapis();
 			Joueur joueur = this.partie.getListeJoueurs().get(choixDuJoueur);
 
@@ -46,7 +46,7 @@ public class ActionSpeciale {
 	}
 
 	private void effectuerAction10() {
-		this.partie.getTapis().viderTapis();
+		this.partie.getTapis().viderTas();
 	}
 
 	private void effectuerAction8() {
