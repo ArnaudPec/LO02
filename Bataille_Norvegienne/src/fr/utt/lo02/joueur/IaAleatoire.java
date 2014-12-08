@@ -40,29 +40,27 @@ public class IaAleatoire extends IA {
 		System.out.println(this.mainJoueur);
 
 		nombreMaxCarteJouable = this.mainJoueur.calculerNbMaxCarteMemeValeur();
-		if (nombreMaxCarteJouable > 3)
-			nombreMaxCarteJouable = 3;
+		if (nombreMaxCarteJouable > 3)	nombreMaxCarteJouable = 3;
 
-		int nb = rand.nextInt(nombreMaxCarteJouable + 1);
-		while (nb == 0) {
-			nb = rand.nextInt(nombreMaxCarteJouable + 1);
-		}
+		int nb = rand.nextInt(nombreMaxCarteJouable )+1;
+	
+		//while (nb == 0) {
+		//	nb = rand.nextInt(nombreMaxCarteJouable + 1);
+		//	System.out.println("i");
+		//}
 
 		listeCartes = new Carte[nb];
 
-		numCarte = rand.nextInt(this.mainJoueur.getListeCartes().size() + 0);
+		numCarte = rand.nextInt(this.mainJoueur.getListeCartes().size()/* + 0*/);
 
-		while (numCarte > this.mainJoueur.getListeCartes().size()
-				|| (this.mainJoueur
-						.calculerNbOccurenceMemeValeur(this.mainJoueur
-								.getCarte(numCarte)) != 
-								nombreMaxCarteJouable)) {
-			numCarte = rand.nextInt(this.mainJoueur.getListeCartes().size() + 0);
+		while (numCarte > this.mainJoueur.getListeCartes().size() || (this.mainJoueur.calculerNbOccurenceMemeValeur(this.mainJoueur.getCarte(numCarte).getValeur()) < nombreMaxCarteJouable)) {
+			System.out.println("e");
+			numCarte = rand.nextInt(this.mainJoueur.getListeCartes().size() /*+ 0*/);
 		}
 		int valeur = this.mainJoueur.getCarte(numCarte).getValeur();
 		for (int i = 0; i < listeCartes.length; i++) {
-			listeCartes[i] = this.mainJoueur.prendreCarte(this.mainJoueur
-					.calculerPositionCarteValeur(valeur));
+			System.out.println("u");
+			listeCartes[i] = this.mainJoueur.prendreCarte(this.mainJoueur.calculerPositionCarteValeur(valeur));
 		}
 
 		System.out.println("Choix : \n");

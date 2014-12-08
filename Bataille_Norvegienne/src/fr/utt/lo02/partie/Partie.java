@@ -94,6 +94,7 @@ public class Partie {
 	}
 
 	public void interfaceAjouterJoueur() {
+		
 		boolean conditionIA = false;
 		boolean conditionJ = false;
 
@@ -149,7 +150,7 @@ public class Partie {
 			System.out.println("Entrez le nom du joueur");
 			String nomJoueur = sc.nextLine();
 			Humain joueur = new Humain(nomJoueur, this.nbJoueurs);
-			this.ajouterJoueur(joueur);
+			//this.ajouterJoueur(joueur);
 		}
 
 	}
@@ -166,9 +167,7 @@ public class Partie {
 						this.nbJoueurs);
 				this.ajouterJoueur(iaOffensive);
 			}
-
 		}
-
 	}
 
 	/**
@@ -275,7 +274,7 @@ public class Partie {
 		else if (this.pioche.getListeCartes().isEmpty() && joueur.getTasVisible().getListeCartes().isEmpty() && joueur.getMainJoueur().getListeCartes().isEmpty()) 
 		{
 			joueur.getMainJoueur().ajouterCarte(joueur.getTasCache().prendreCarte());
-			System.out.println(joueur.getNom()+ " Vient de prendre une carte de son TasCache\n Il contient encore " +joueur.getTasCache().getListeCartes().size() + "\n");
+			System.out.println(joueur.getNom()+ " Vient de prendre une carte de son TasCache\n Il contient encore " +joueur.getTasCache().getListeCartes().size() + "cartes\n");
 		}
 
 	}
