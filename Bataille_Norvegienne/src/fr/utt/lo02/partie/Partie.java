@@ -150,7 +150,7 @@ public class Partie {
 			System.out.println("Entrez le nom du joueur");
 			String nomJoueur = sc.nextLine();
 			Humain joueur = new Humain(nomJoueur, this.nbJoueurs);
-			//this.ajouterJoueur(joueur);
+			this.ajouterJoueur(joueur);
 		}
 
 	}
