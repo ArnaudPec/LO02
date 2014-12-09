@@ -54,12 +54,10 @@ public class IaAleatoire extends IA {
 		numCarte = rand.nextInt(this.mainJoueur.getListeCartes().size()/* + 0*/);
 
 		while (numCarte > this.mainJoueur.getListeCartes().size() || (this.mainJoueur.calculerNbOccurenceMemeValeur(this.mainJoueur.getCarte(numCarte).getValeur()) < nombreMaxCarteJouable)) {
-			System.out.println("e");
 			numCarte = rand.nextInt(this.mainJoueur.getListeCartes().size() /*+ 0*/);
 		}
 		int valeur = this.mainJoueur.getCarte(numCarte).getValeur();
 		for (int i = 0; i < listeCartes.length; i++) {
-			System.out.println("u");
 			listeCartes[i] = this.mainJoueur.prendreCarte(this.mainJoueur.calculerPositionCarteValeur(valeur));
 		}
 
@@ -117,7 +115,6 @@ public class IaAleatoire extends IA {
 			int num;
 			Random rand = new Random();
 			do{
-				System.out.println("hi man i'm running infinitely !!  ");
 				num = rand.nextInt(liste.size());
 			}while(num == super.numJoueur);
 			

@@ -140,6 +140,8 @@ public class Partie {
 		}
 		this.creationHumain(nbJoueursHumain);
 		this.creationIA(nbJoueursIA, niveau);
+		
+		if(this.nbJoueurs>5)this.pioche.ajouterUnSecondJeuDeCarte();
 
 	}
 
@@ -147,7 +149,7 @@ public class Partie {
 		Scanner sc = new Scanner(System.in);
 
 		for (int i = 0; i < nbJoueur; i++) {
-			System.out.println("Entrez le nom du joueur");
+			System.out.println("\nEntrez le nom du joueur");
 			String nomJoueur = sc.nextLine();
 			Humain joueur = new Humain(nomJoueur, this.nbJoueurs);
 			this.ajouterJoueur(joueur);
@@ -196,11 +198,11 @@ public class Partie {
 	 * jeu. Incrémente le joueur s'il y'a un joueur après lui sinon repasse au
 	 * premier joueur.
 	 */
-	public void gestionDuJoueurCourant() {
+	public void incrementerJoueur() {
 		
 		if (this.joueurCourant == this.nbJoueurs - 1) this.joueurCourant = 0;
 		else joueurCourant++;
-		
+
 		int nb = 0;
 		
 		for (Iterator<Joueur> iterator = this.listeJoueurs.iterator(); iterator.hasNext();) {
@@ -219,15 +221,14 @@ public class Partie {
 	 * 
 	 * @param joueur
 	 */
-	public void faireJouerJoueur(Joueur joueur) {
+	public int faireJouerJoueur(Joueur joueur) {
 
-		System.out.println("C'est " + joueur.getNom() + " qui joue ! \n"
-				+ this.getTapis());
+		System.out.println("C'est " + joueur.getNom() + " qui joue ! \n"+ this.getTapis());
 
-		Carte[] carteJouees = joueur.choisirCarteAJouer(this.getTapis()
-				.carteDuDessus());
+		Carte[] carteJouees = joueur.choisirCarteAJouer(this.getTapis().getCarteDuDessus());
 		this.getTapis().ajouterPlusieursCartes(carteJouees);
 		
+		return carteJouees.length;
 
 	}
 
@@ -282,50 +283,91 @@ public class Partie {
 	/**
 	 * Methode permettant de lancer la boucle de jeu.
 	 */
+
 	public void lancerPartie() {
 
-		System.out.println("La partie démarre\n");
 		boolean estDanish = false;
-		//boolean estGagnee = false;
 		Joueur gagnant = null;
-		int nbtour=0;
+		int nbtour = 0;
 
-//		while (!estGagnee) {
-//			// tant que tout le monde peut jouer ..
-			while (!(estDanish/* && estGagnee*/)) {
-				Joueur joueur = this.listeJoueurs.get(joueurCourant); // On récupère le joueur courant
-				// Si le joueur peut jouer alors on passe au suivant
-				if (joueur.peutJouer(this.getTapis().carteDuDessus())) {
-					
-					System.out.println("num joueur : " +joueur.getNumJoueur());
-					this.faireJouerJoueur(joueur);
-					if(joueur.estGagnant()){
-						estDanish = true;
-						gagnant = joueur;
-					}
-					else this.fairePiocherJoueur(joueur);
-					
-					if (this.tapis.carteDuDessus().estSpeciale()) {
-						ActionSpeciale actionSpeciale = new ActionSpeciale(this, this.joueurCourant);
-						actionSpeciale.appelerBonneMethode();
-					}
+		while (!estDanish) {
+			Joueur joueur = this.listeJoueurs.get(joueurCourant);
+			
+			if (joueur.peutJouer(this.getTapis().getCarteDuDessus())) {
 
-					System.out.println("La pioche contient "+ this.pioche.getListeCartes().size()+ " cartes. \n");
-					System.out.println("Le tapis contient "+ this.tapis.getListeCartes().size()+ " cartes. \n");
-				} 
+				System.out.println("num joueur : " + joueur.getNumJoueur());
 				
-				else // Le Joueur ne pouvant pas jouer récupère le tapis
-				{
-					System.out.println("Ahah "+ joueur.getNom()+ " tu ne peux pas jouer mécréant, prend toi le tapis dans la face ! \n\n");
-					joueur.getMainJoueur().getListeCartes().addAll(this.tapis.prendreTapis());// Je donne le															
-				}
-				this.gestionDuJoueurCourant();
-				 nbtour++;	
+				int nbCartesPosees=this.faireJouerJoueur(joueur);
+				
+				if (joueur.estGagnant()) {estDanish = true; gagnant = joueur;} 
+				else this.fairePiocherJoueur(joueur);
+				
+				if (this.tapis.getCarteDuDessus().estSpeciale()) {ActionSpeciale actionSpeciale = new ActionSpeciale(this,this.joueurCourant, nbCartesPosees);actionSpeciale.appelerBonneMethode();}
+
+				System.out.println("La pioche contient "+ this.pioche.getListeCartes().size() + " cartes. \nLe tapis contient "+ this.tapis.getListeCartes().size() + " cartes. \n");
+			}
+
+			else {
+				System.out.println("Ahah "+ joueur.getNom()+ " tu ne peux pas jouer mécréant, prend toi le tapis dans la face ! \n\n");
+				joueur.getMainJoueur().getListeCartes().addAll(this.tapis.prendreTapis());// Je donne le
 			}
 			
-			System.out.println("Partie terminée, gagnant : " +gagnant.getNom() + "en " +nbtour+ " tours");
-		//}
+			this.incrementerJoueur();
+			
+			nbtour++;
+		}
+
+		System.out.println("Partie terminée, gagnant : " + gagnant.getNom()	+ " en " + nbtour + " tours");
+
 	}
+	
+
+	
+	
+//	public void lancerPartie() {
+//
+//		System.out.println("La partie démarre\n");
+//		boolean estDanish = false;
+//		//boolean estGagnee = false;
+//		Joueur gagnant = null;
+//		int nbtour=0;
+//
+////		while (!estGagnee) {
+////			// tant que tout le monde peut jouer ..
+//			while (!(estDanish/* && estGagnee*/)) {
+//				Joueur joueur = this.listeJoueurs.get(joueurCourant); // On récupère le joueur courant
+//				// Si le joueur peut jouer alors on passe au suivant
+//				if (joueur.peutJouer(this.getTapis().carteDuDessus())) {
+//					
+//					System.out.println("num joueur : " +joueur.getNumJoueur());
+//					this.faireJouerJoueur(joueur);
+//					if(joueur.estGagnant()){
+//						estDanish = true;
+//						gagnant = joueur;
+//					}
+//					else this.fairePiocherJoueur(joueur);
+//					
+//					if (this.tapis.carteDuDessus().estSpeciale()) {
+//						ActionSpeciale actionSpeciale = new ActionSpeciale(this, this.joueurCourant);
+//						actionSpeciale.appelerBonneMethode();
+//					}
+//
+//					System.out.println("La pioche contient "+ this.pioche.getListeCartes().size()+ " cartes. \n");
+//					System.out.println("Le tapis contient "+ this.tapis.getListeCartes().size()+ " cartes. \n");
+//				} 
+//				
+//				else // Le Joueur ne pouvant pas jouer récupère le tapis
+//				{
+//					System.out.println("Ahah "+ joueur.getNom()+ " tu ne peux pas jouer mécréant, prend toi le tapis dans la face ! \n\n");
+//					joueur.getMainJoueur().getListeCartes().addAll(this.tapis.prendreTapis());// Je donne le															
+//				}
+//				this.gestionDuJoueurCourant();
+//				 	nbtour++;	
+//			}
+//			
+//			System.out.println("Partie terminée, gagnant : " +gagnant.getNom() + "en " +nbtour+ " tours");
+//		//}
+//	}
 
 	public static void main(String[] args) {
 

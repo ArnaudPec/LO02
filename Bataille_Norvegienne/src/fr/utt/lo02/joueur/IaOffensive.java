@@ -59,8 +59,7 @@ public class IaOffensive extends IA {
 
 		else if (this.mainJoueur.contenirCarteSpeciale()) { // on pose une carte spéciale
 			Carte carte = this.mainJoueur.prendreCarteSpeciale();
-			listeCartes = new Carte[this.mainJoueur
-					.calculerNbOccurenceMemeValeur(carte) + 1];// le +1
+			listeCartes = new Carte[this.mainJoueur.calculerNbOccurenceMemeValeur(carte) + 1];// le +1
 																// correspond à
 																// la carte déjà
 																// prise ligne
@@ -69,8 +68,7 @@ public class IaOffensive extends IA {
 					.calculerNbOccurenceMemeValeur(carte));
 			listeCartes[0] = carte;
 			for (int i = 1; i < listeCartes.length; i++) {
-				listeCartes[i] = this.mainJoueur.prendreCarteValeur(carte
-						.getValeur());
+				listeCartes[i] = this.mainJoueur.prendreCarteValeur(carte.getValeur());
 			}
 		}
 
@@ -139,6 +137,7 @@ public class IaOffensive extends IA {
 				if(joueur.calculerNombreTotalCarte()<nbcarte && joueur.getNumJoueur()!=this.numJoueur){
 					num = joueur.getNumJoueur();
 					nbcarte=joueur.calculerNombreTotalCarte();
+					
 				}
 		}
 

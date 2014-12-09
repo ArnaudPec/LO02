@@ -33,7 +33,7 @@ public class Tapis extends Tas {
 	 * 
 	 * @return Une carte.
 	 */
-	public Carte carteDuDessus() {
+	public Carte getCarteDuDessus() {
 
 		Carte carte = null;
 
@@ -64,7 +64,7 @@ public class Tapis extends Tas {
 		if (this.listeCartes.isEmpty()) {
 			res = "Pas de carte";
 		} else {
-			res = "Tapis \n" + carteDuDessus().toString() + "\n";
+			res = "Tapis \n" + getCarteDuDessus().toString() + "\n";
 		}
 		return res;
 	}
