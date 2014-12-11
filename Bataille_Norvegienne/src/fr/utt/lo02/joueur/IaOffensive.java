@@ -127,6 +127,7 @@ public class IaOffensive extends IA {
 
 	/** 
 	 * Méthode permettant de choisir un joueur dans le cas de la pose d'un as. Il ne doit pas se désigner lui même.
+	 * L'IA offensive désigne le joueur ayant le moins de cartes en main.
 	 */
 	public int choisirUnJoueur(ArrayList<Joueur> liste) {
 		int nbcarte = 1000;

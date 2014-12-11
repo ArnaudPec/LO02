@@ -73,7 +73,7 @@ public class IaAleatoire extends IA {
 	}
 
 	/**
-	 * M��thode permettant au joueur humain d'��changer ses cartes en d��but de
+	 * M��thode permettant au joueur d'échanger ses cartes en début de
 	 * partie.
 	 * 
 	 * @see Random
