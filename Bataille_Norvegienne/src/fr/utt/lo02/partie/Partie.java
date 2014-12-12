@@ -9,6 +9,7 @@ import fr.utt.lo02.carte.Pioche;
 import fr.utt.lo02.carte.Tapis;
 import fr.utt.lo02.joueur.Humain;
 import fr.utt.lo02.joueur.IaAleatoire;
+import fr.utt.lo02.joueur.IaEquilibree;
 import fr.utt.lo02.joueur.IaOffensive;
 import fr.utt.lo02.joueur.Joueur;
 
@@ -81,7 +82,6 @@ public class Partie {
 
 	/**
 	 * Methode permettant de récupérer le joueur suivant
-	 * 
 	 * @return retourne le joueur suivant.
 	 */
 	public Joueur getJoueurSuivant() {
@@ -92,58 +92,103 @@ public class Partie {
 		this.listeJoueurs.add(joueur);
 		this.nbJoueurs++;
 	}
-
+	
 	public void interfaceAjouterJoueur() {
 		
-		boolean conditionIA = false;
-		boolean conditionJ = false;
-
 		int nbJoueursHumain = 0;
 		int nbJoueursIA = 0;
+		Scanner scanner = new Scanner(System.in);
+		Scanner scanner2 = new Scanner(System.in);
 
-		int niveau = 0;
-
-		Scanner sc = new Scanner(System.in);
-
-		System.out.println("Combien de joueur humain voulez vous ajouter");
-		String demandeNbJoueurs = sc.nextLine();
-
-		nbJoueursHumain = Integer.parseInt(demandeNbJoueurs);
-
-		do {
-			if (nbJoueursHumain > 0 && nbJoueursHumain <= 11) {
-				conditionJ = true;
+		do{
+			System.out.println("Combien de joueur humain souhaitez vous ajouter ? (0-11 joueurs)");
+			nbJoueursHumain = scanner.nextInt();
+		}while(nbJoueursHumain>11 || nbJoueursHumain <0);
+			
+		System.out.println("Souhaitez vous ajouter des IA ?(Oui/Non)");
+		String reponse = scanner2.nextLine();
+		
+		if (reponse.toUpperCase().equals("OUI") && nbJoueursHumain<11){
+			do{
+				System.out.println("Combien de joueur IA souhaitez vous ajouter ? (1-" + (11-nbJoueursHumain) + ")");
+				nbJoueursIA= scanner.nextInt();
+			}while(nbJoueursHumain + nbJoueursIA >11);
+			if(nbJoueursIA==1 && nbJoueursHumain==0){
+				System.out.println("Vous ne pouvez pas lancer de partie avec une seule IA, une IA a ete ajoutee !");
+				nbJoueursIA ++;
 			}
-		} while (!conditionJ);
-
-		System.out.println("Voulez vous ajouter des IA ?(Oui/Non)");
-		String demandeIA = sc.nextLine();
-
-		if ("OUI".equals(demandeIA.toUpperCase())) {
-
-			System.out.println("Combien d'IA voulez vous ajouter ?");
-			nbJoueursIA = sc.nextInt();
-			do {
-				if (nbJoueursHumain + nbJoueursIA > 0 && nbJoueursHumain + nbJoueursIA <= 11) { 
-					conditionIA = true;
-				}
-			} while (!conditionIA);
-
-			System.out.println("Quel niveau d'IA désirez vous (0=aléatoire, 1=offensive)");
-			niveau = sc.nextInt();
-		} else {
-			if (nbJoueursHumain < 2) {
-				System.out.println("Vous ne pouvez pas lancer de partie seul, une IA a été crée ");
-				nbJoueursIA = 1;
-				niveau = 0;
-			}
+		} 
+		else if(reponse.toUpperCase().equals("OUI")){
+			System.out.println("Nombre maximum de joueurs atteint. Impossible d'ajouter des IAs");	
 		}
+		else if (nbJoueursHumain ==1) {
+			System.out.println("Vous ne pouvez pas lancer de partie seul, une IA a ete ajoutee !");
+			nbJoueursIA = 1;
+		}
+		else{
+			System.out.println("Vous ne pouvez pas lancer de partie sans joueurs, un joueur humain et une IA ont ete ajoutees !");
+			nbJoueursIA = 1;
+			nbJoueursHumain =1;
+		}	
 		this.creationHumain(nbJoueursHumain);
-		this.creationIA(nbJoueursIA, niveau);
+		this.creationIA(nbJoueursIA);
 		
 		if(this.nbJoueurs>5)this.pioche.ajouterUnSecondJeuDeCarte();
-
 	}
+//	
+//	
+//	public void interfaceAjouterJoueur() {
+//		
+//		boolean conditionIA = false;
+//		boolean conditionJ = false;
+//
+//		int nbJoueursHumain = 0;
+//		int nbJoueursIA = 0;
+//
+////		int niveau = 0;
+//
+//		Scanner sc = new Scanner(System.in);
+//
+//		System.out.println("Combien de joueur humain voulez vous ajouter");
+//		String demandeNbJoueurs = sc.nextLine();
+//
+//		nbJoueursHumain = Integer.parseInt(demandeNbJoueurs);
+//
+//		do {
+//			if (nbJoueursHumain > 0 && nbJoueursHumain <= 11) {
+//				conditionJ = true;
+//			}
+//		} while (!conditionJ);
+//
+//		System.out.println("Voulez vous ajouter des IA ?(Oui/Non)");
+//		String demandeIA = sc.nextLine();
+//
+//		if ("OUI".equals(demandeIA.toUpperCase())) {
+//
+//			System.out.println("Combien d'IA voulez vous ajouter ?");
+//			nbJoueursIA = sc.nextInt();
+//			do {
+//				if (nbJoueursHumain + nbJoueursIA > 0 && nbJoueursHumain + nbJoueursIA <= 11) { 
+//					conditionIA = true;
+//				}
+//			} while (!conditionIA);
+//
+////			System.out.println("Quel niveau d'IA désirez vous (0=aléatoire, 1=offensive)");
+////			niveau = sc.nextInt();
+//		} else {
+//			if (nbJoueursHumain < 2) {
+//				System.out.println("Vous ne pouvez pas lancer de partie seul, une IA aléatoire a été crée ");
+//				nbJoueursIA = 1;
+////				niveau = 0;
+//			}
+//		}
+//		this.creationHumain(nbJoueursHumain);
+//		this.creationIA(nbJoueursIA);
+////		this.creationIA(nbJoueursIA, niveau);
+//		
+//		if(this.nbJoueurs>5)this.pioche.ajouterUnSecondJeuDeCarte();
+//
+//	}
 
 	public void creationHumain(int nbJoueur) {
 		Scanner sc = new Scanner(System.in);
@@ -156,21 +201,63 @@ public class Partie {
 		}
 
 	}
+	
+	
 
-	public void creationIA(int nbIA, int niveau) {
-
-		for (int i = 0; i < nbIA; i++) {
-			if (niveau == 0) {
-				IaAleatoire iaAleatoire = new IaAleatoire("ia" + i,this.nbJoueurs);
-				this.ajouterJoueur(iaAleatoire);
+	/**Méthode permettant de créer les joueurs gérés par l'ordinateur
+	 * @param nbJoueur à créer
+	 */
+	public void creationIA(int nbJoueur) {
+		
+		Scanner scanner = new Scanner(System.in);
+		int strategie;
+		
+		for (int i = 0; i < nbJoueur; i++) {
+			
+			System.out.println("\nIA numero "+i +" : Quelle stratégie souahitez vous affronter ? \n0 : Aleatoire | 1 : Offensive | 2 : Equilibree");
+			strategie = scanner.nextInt();
+			
+			while(strategie<0 || strategie > 2){
+				System.out.println("Erreur, recommencez :");
+				strategie = scanner.nextInt();
 			}
-			if (niveau == 1) {
-				IaOffensive iaOffensive = new IaOffensive("ia" + i,
-						this.nbJoueurs);
-				this.ajouterJoueur(iaOffensive);
+			
+			switch (strategie) {
+			case 0:
+				IaAleatoire iaAleatoire = new IaAleatoire("ia_" + i +"_Aleatoire",this.nbJoueurs);
+				this.ajouterJoueur(iaAleatoire);
+				break;
+				
+			case 1:
+				IaOffensive  IaOffensive = new IaOffensive("ia_" + i +"_Offensive",this.nbJoueurs);
+				this.ajouterJoueur(IaOffensive);
+				break;
+				
+			case 2:
+				IaEquilibree  IaEquilibree = new IaEquilibree("ia_" + i +"_Equilibree",this.nbJoueurs);
+				this.ajouterJoueur(IaEquilibree);
+				break;
+
+			default:
+				break;
 			}
 		}
 	}
+
+//	public void creationIA(int nbIA, int niveau) {
+//
+//		for (int i = 0; i < nbIA; i++) {
+//			if (niveau == 0) {
+//				IaAleatoire iaAleatoire = new IaAleatoire("ia" + i,this.nbJoueurs);
+//				this.ajouterJoueur(iaAleatoire);
+//			}
+//			if (niveau == 1) {
+//				IaOffensive iaOffensive = new IaOffensive("ia" + i,
+//						this.nbJoueurs);
+//				this.ajouterJoueur(iaOffensive);
+//			}
+//		}
+//	}
 
 	/**
 	 * Méthode qui retourne si la partie est gagnée en vérifiant que le joueur
@@ -211,8 +298,7 @@ public class Partie {
 		}
 	
 		nb += this.tapis.getListeCartes().size() + this.pioche.getListeCartes().size();
-		System.out.println("NOMBRE TOTAL DE CARTE : " +nb);
-	
+		System.out.println("NOMBRE TOTAL DE CARTE DANS LE JEU : " +nb);
 	}
 
 	/**
@@ -260,7 +346,7 @@ public class Partie {
 				joueur.getMainJoueur().ajouterCarte(
 				this.pioche.prendreCarteDuDessus());
 			}
-			System.out.println(nbMax + " carte(s) a(ont) été piochée(s) par "
+			System.out.println(nbMax + " carte(s) a(ont) ete piochee(s) par "
 					+ joueur.getNom() + "\n");
 
 		}
@@ -268,14 +354,14 @@ public class Partie {
 		else if (this.pioche.getListeCartes().isEmpty() && joueur.getMainJoueur().getListeCartes().isEmpty() && (!joueur.getTasVisible().getListeCartes().isEmpty())) {
 			joueur.getMainJoueur().ajouterPlusieursCartes(joueur.getTasVisible().prendreTasVisible());
 			System.out.println(joueur.getNom()
-					+ " Vient de prendre les cartes de son TasVisible\n");
+					+ " vient de prendre les cartes de son TasVisible\n");
 
 		}
 
 		else if (this.pioche.getListeCartes().isEmpty() && joueur.getTasVisible().getListeCartes().isEmpty() && joueur.getMainJoueur().getListeCartes().isEmpty()) 
 		{
 			joueur.getMainJoueur().ajouterCarte(joueur.getTasCache().prendreCarte());
-			System.out.println(joueur.getNom()+ " Vient de prendre une carte de son TasCache\n Il contient encore " +joueur.getTasCache().getListeCartes().size() + "cartes\n");
+			System.out.println(joueur.getNom()+ " vient de prendre une carte de son TasCache\nIl contient encore " +joueur.getTasCache().getListeCartes().size() + "cartes\n");
 		}
 
 	}
@@ -308,7 +394,7 @@ public class Partie {
 			}
 
 			else {
-				System.out.println("Ahah "+ joueur.getNom()+ " tu ne peux pas jouer mécréant, prend toi le tapis dans la face ! \n\n");
+				System.out.println("Le joueur "+ joueur.getNom()+ " ne peut pas jouer Il ramasse le tapis\n");
 				joueur.getMainJoueur().getListeCartes().addAll(this.tapis.prendreTapis());// Je donne le
 			}
 			
@@ -316,59 +402,9 @@ public class Partie {
 			
 			nbtour++;
 		}
-
-		System.out.println("Partie terminée, gagnant : " + gagnant.getNom()	+ " en " + nbtour + " tours");
-
+		System.out.println("Partie terminee, gagnant : " + gagnant.getNom()	+ " en " + nbtour + " tours");
 	}
 	
-
-	
-	
-//	public void lancerPartie() {
-//
-//		System.out.println("La partie démarre\n");
-//		boolean estDanish = false;
-//		//boolean estGagnee = false;
-//		Joueur gagnant = null;
-//		int nbtour=0;
-//
-////		while (!estGagnee) {
-////			// tant que tout le monde peut jouer ..
-//			while (!(estDanish/* && estGagnee*/)) {
-//				Joueur joueur = this.listeJoueurs.get(joueurCourant); // On récupère le joueur courant
-//				// Si le joueur peut jouer alors on passe au suivant
-//				if (joueur.peutJouer(this.getTapis().carteDuDessus())) {
-//					
-//					System.out.println("num joueur : " +joueur.getNumJoueur());
-//					this.faireJouerJoueur(joueur);
-//					if(joueur.estGagnant()){
-//						estDanish = true;
-//						gagnant = joueur;
-//					}
-//					else this.fairePiocherJoueur(joueur);
-//					
-//					if (this.tapis.carteDuDessus().estSpeciale()) {
-//						ActionSpeciale actionSpeciale = new ActionSpeciale(this, this.joueurCourant);
-//						actionSpeciale.appelerBonneMethode();
-//					}
-//
-//					System.out.println("La pioche contient "+ this.pioche.getListeCartes().size()+ " cartes. \n");
-//					System.out.println("Le tapis contient "+ this.tapis.getListeCartes().size()+ " cartes. \n");
-//				} 
-//				
-//				else // Le Joueur ne pouvant pas jouer récupère le tapis
-//				{
-//					System.out.println("Ahah "+ joueur.getNom()+ " tu ne peux pas jouer mécréant, prend toi le tapis dans la face ! \n\n");
-//					joueur.getMainJoueur().getListeCartes().addAll(this.tapis.prendreTapis());// Je donne le															
-//				}
-//				this.gestionDuJoueurCourant();
-//				 	nbtour++;	
-//			}
-//			
-//			System.out.println("Partie terminée, gagnant : " +gagnant.getNom() + "en " +nbtour+ " tours");
-//		//}
-//	}
-
 	public static void main(String[] args) {
 
 		System.out.println("Nouvelle partie de Bataille Norvegienne.");

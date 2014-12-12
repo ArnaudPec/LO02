@@ -57,6 +57,23 @@ public class Test {
 		
 		System.out.println(bob.choisirUnJoueur(j));
 		
+		Joueur equi  = new IaEquilibree("equi", 0);
+		
+		equi.getMainJoueur().ajouterCarte(new Carte(1, 10));
+		equi.getMainJoueur().ajouterCarte(new Carte(2, 9));
+		equi.getMainJoueur().ajouterCarte(new Carte(3, 11));
+		
+		equi.getTasVisible().ajouterCarte(new Carte(1, 4));
+		equi.getTasVisible().ajouterCarte(new Carte(1, 3));
+		equi.getTasVisible().ajouterCarte(new Carte(0, 11));
+
+		System.out.println(equi.getMainJoueur());
+		equi.changerCartes();
+		System.out.println(equi.getMainJoueur());
+		
+		equi.peutJouer(new Carte(2, 6));
+		equi.choisirCarteAJouer(new Carte(2, 9));
+
 		
 	}
 

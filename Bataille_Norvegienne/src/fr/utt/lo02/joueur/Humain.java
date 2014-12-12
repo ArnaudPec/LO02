@@ -19,18 +19,9 @@ public class Humain extends Joueur {
 
 
 	/**
-	 * Méthode permettant au joueur humain de choisir les cartes à jouer.
-	 * ATTENTION, il faut encore vérifier tous les contrôles : 1 - ajouter une
-	 * condition au choix du nombre de carte à jouer pour cela il faut au
-	 * préalable vérifier le nombre max de carte de même valeur de sa main ( ex
-	 * : 8coeur 8carreau Aspic RoiTrefle = 2) et interdir un choix supérieur à
-	 * ce nombre --> NORMALEMENT OK
-	 * 
-	 * 2 - A la sélection de la première carte d'une série de plusieurs carte,
-	 * il faut implémenter une vérification de la main (ex: l'humain souhaite
-	 * jouer deux cartes, selon l'exemple du 1 - il ne peut que choisir une
-	 * carte de valeur 8, s'il demande l'as il faut lui redemander de choisir
-	 * avant de prendreCarte(l'as en question) ---> NORMALEMENT OK
+	 * Méthode permettant au joueur humain de choisir les cartes à jouer. 
+	 * Il choisit le nombre de carte à jouer et la ou les cartes en questions.
+	 * La cohérence des choix est vérifiée.
 	 * 
 	 * @return une liste de carte
 	 * 
@@ -65,13 +56,8 @@ public class Humain extends Joueur {
 
 		System.out.println(this.mainJoueur +"\nChoisissez la(les) carte(s) à jouer (pour un groupe, un seul choix) : \n");
 		numCarte = scanner.nextInt();
-
-//		if(numCarte > )
 		
-		while (numCarte > this.mainJoueur.getListeCartes().size()-1
-				/*|| (this.mainJoueur
-						.calculerNbOccurenceMemeValeur(this.mainJoueur
-								.getCarte(numCarte)) != nombreMaxCarteJouable)*/) {
+		while (numCarte > this.mainJoueur.getListeCartes().size()-1/*|| (this.mainJoueur.calculerNbOccurenceMemeValeur(this.mainJoueur.getCarte(numCarte)) != nombreMaxCarteJouable)*/) {
 			System.out.println("Choix incorrect, vous aviez choisi de jouer "+ nb + " carte(s). Recommencez : \n" + this.mainJoueur);
 			numCarte = scanner.nextInt();
 		}
@@ -89,8 +75,6 @@ public class Humain extends Joueur {
 		for (int i = 0; i < listeCartes.length; i++) {
 			System.out.println(listeCartes[i]);
 		}
-		
-		
 
 		this.mainJoueur.fusionner();
 		

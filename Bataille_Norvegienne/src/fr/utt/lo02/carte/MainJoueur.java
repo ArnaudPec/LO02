@@ -1,5 +1,7 @@
 package fr.utt.lo02.carte;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -18,6 +20,68 @@ public class MainJoueur extends Tas {
 	}
 
 	/**
+	 * Méthode qui permet de savoir si la main contient une carte de valeur
+	 * donnee
+	 * 
+	 * @param un
+	 *            entier, valeur de carte à rechercher
+	 * @return un booleen qui indique la présence ou non d'une carte de valeur
+	 *         donnée
+	 */
+	public boolean contenirCarte(int valeur) {
+		Iterator<Carte> it = super.listeCartes.iterator();
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next();
+			if (carte.getValeur() == valeur)
+				return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Méthode qui permet de savoir si la main contient des cartes non spéciales
+	 * 
+	 * @return un booleen qui indique la présence ou non d'une carte spéciale
+	 */
+	public boolean contenirCarteNonSpeciale() {
+		Iterator<Carte> it = super.listeCartes.iterator();
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next();
+			if (!carte.estSpeciale())
+				return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Méthode qui permet de savoir si la main contient des cartes spéciales
+	 * 
+	 * @return un booleen qui indique la présence ou non d'une carte spéciale
+	 */
+	public boolean contenirCarteSpeciale() {
+		Iterator<Carte> it = super.listeCartes.iterator();
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next();
+			if (carte.estSpeciale())
+				return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Méthode permettant de savoir si la main contient des cartes jouables.
+	 */
+	public boolean contenirCartesJouables(Carte derniereCarte) {
+		Iterator<Carte> it = super.listeCartes.iterator();
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next();
+			if (carte.estPosable(derniereCarte))
+				return true;
+		}
+		return false;
+	}
+
+	/**
 	 * Cette méthode permet de prendre une carte de la main du Joueur et la
 	 * supprime. Elle est différente de getCarte qui ne fait que retourner la
 	 * Carte sans la supprimer. Elle est utile pour faire jouer le joueur.
@@ -31,6 +95,45 @@ public class MainJoueur extends Tas {
 		super.listeCartes.remove(position);
 
 		return carte;
+	}
+
+	/**
+	 * Méthode qui permet de récupérer une carte spéciale contenue dans la
+	 * MainJoueur.
+	 * 
+	 * @return une carte spéciale
+	 */
+	public Carte prendreCarteSpeciale() {
+		Collections.shuffle(super.listeCartes);
+		Iterator<Carte> it = super.listeCartes.iterator();
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next();
+			if (carte.estSpeciale()) {
+				it.remove();
+				return carte;
+			}
+		}
+		return null;
+	
+	}
+
+	/**
+	 * Méthode qui permet de récupérer une carte non spéciale contenue dans la
+	 * MainJoueur.
+	 * 
+	 * @return une carte non spéciale
+	 */
+	public Carte prendreCarteNonSpeciale() {
+		Iterator<Carte> it = super.listeCartes.iterator();
+		while (it.hasNext()) {
+			Carte carte = (Carte) it.next();
+			if (!carte.estSpeciale()) {
+				it.remove();
+				return carte;
+			}
+		}
+		return null;
+	
 	}
 
 	/**
@@ -55,58 +158,36 @@ public class MainJoueur extends Tas {
 
 		return null;
 	}
-
-	@Override
-	public String toString() {
-
-		String resultat = "Main \n\n";
-		String numCarte = "";
-		String bordureDessus = "";
-		String dessus = "";
-		String milieu = "";
-		String bas = "";
-		String bordureDessous = "";
-
-		for (int i = 0; i < super.listeCartes.size(); i++) {
-
-			numCarte += "  n°" + i + "    ";
-			bordureDessus += " —————️ " + "  ";
-			dessus += "|" + super.listeCartes.get(i).getCouleurAffichage()
-					+ "    |  ";
-			if (super.listeCartes.get(i).getValeur() == 10) {
-				milieu += "| " + super.listeCartes.get(i).getValeurAffichage()
-						+ "  |  ";
-			} else {
-				milieu += "|  " + super.listeCartes.get(i).getValeurAffichage()
-						+ "  |  ";
-			}
-			bas += "|    " + super.listeCartes.get(i).getCouleurAffichage()
-					+ "|  ";
-			bordureDessous += " —————️ " + "  ";
+	
+	/**
+	 * Méthode permettant de retourner la plus petite valeur de carte contenue dans la main.
+	 * @return valeurMin
+	 */
+	public int calculerPlusPetiteValeur(){
+		
+		int valeurMin = 15;
+		for (Iterator<Carte> iterator = super.listeCartes.iterator(); iterator.hasNext();) {
+			Carte carte = (Carte) iterator.next();
+			if(carte.getValeur()<valeurMin) valeurMin=carte.getValeur();
 		}
-
-		resultat += numCarte + "\n" + bordureDessus + "\n" + dessus + "\n"
-				+ milieu + "\n" + bas + "\n" + bordureDessous + "\n";
-
-		return resultat;
+		
+		return valeurMin;
 	}
 
-	public static void main(String[] args) {
-
-		MainJoueur main = new MainJoueur();
-
-		Carte carte = new Carte(0, 2);
-		Carte carte2 = new Carte(1, 8);
-		Carte carte3 = new Carte(2, 10);
-		Carte carte4 = new Carte(3, 7);
-		main.listeCartes.add(carte);
-		main.listeCartes.add(carte2);
-		main.listeCartes.add(carte3);
-		main.listeCartes.add(carte4);
-		System.out.println(main);
-
+	/**
+	 * Méthode permettant de retourner la plus petite valeur de carte contenue dans la main.
+	 * @return valeurMin
+	 */
+	public int calculerPlusGrandeValeur(){
+		
+		int valeurMax = 0;
+		for (Iterator<Carte> iterator = super.listeCartes.iterator(); iterator.hasNext();) {
+			Carte carte = (Carte) iterator.next();
+			if(carte.getValeur()>valeurMax) valeurMax=carte.getValeur();
+		}
+		
+		return valeurMax;
 	}
-
 	/**
 	 * Méthode qui permet de déterminer le nombre maximum de carte de même
 	 * valeur dans une main. Elle est utile afin d'empêcher un joueur de poser
@@ -164,143 +245,36 @@ public class MainJoueur extends Tas {
 	 * Méthode qui permet de compter le nombre de cartes de même valeur pour une
 	 * carte de valeur donnée
 	 * 
-	 * @param entier
-	 *            valeur donnée
+	 * @param entier valeur donnée
 	 * @return le nombre de cartes de même valeur pour la valeur donnée
 	 */
 	public int calculerNbOccurenceMemeValeur(int valeur) {
 
 		int compteur = 0;
 
-		for (Iterator<Carte> iterator = super.listeCartes.iterator(); iterator
-				.hasNext();) {
+		for (Iterator<Carte> iterator = super.listeCartes.iterator(); iterator.hasNext();) {
 			Carte carte = (Carte) iterator.next();
-			if (valeur == carte.getValeur())
-				compteur++;
+			if (valeur == carte.getValeur()) compteur++;
 		}
 		return compteur;
 
 	}
-
+	
 	/**
 	 * Méthode permettant de parcourir la main et de renvoyer la position de la
 	 * première carte de valeur donnée en paramètre
 	 * 
-	 * @param valeur
-	 *            dont la position est recherchée
-	 * @return position de la prochaine carte de cette même valeur ou la valeur
-	 *         99 : code d'erreur
+	 * @param valeur dont la position est recherchée
+	 * @return position de la prochaine carte de cette même valeur ou la valeur 99 : code d'erreur
 	 */
 	public int calculerPositionCarteValeur(int valeur) {
 		int i = 0;
-		for (Iterator<Carte> iterator = super.listeCartes.iterator(); iterator
-				.hasNext();) {
+		for (Iterator<Carte> iterator = super.listeCartes.iterator(); iterator.hasNext();) {
 			Carte carte = (Carte) iterator.next();
-			if (carte.getValeur() == valeur)
-				return i;
+			if (carte.getValeur() == valeur) return i;
 			i++;
 		}
 		return 99;
-	}
-
-	/**
-	 * Méthode qui permet de savoir si la main contient une carte de valeur
-	 * donnee
-	 * 
-	 * @param un
-	 *            entier, valeur de carte à rechercher
-	 * @return un booleen qui indique la présence ou non d'une carte de valeur
-	 *         donnée
-	 */
-	public boolean contenirCarte(int valeur) {
-		Iterator<Carte> it = super.listeCartes.iterator();
-		while (it.hasNext()) {
-			Carte carte = (Carte) it.next();
-			if (carte.getValeur() == valeur)
-				return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Méthode qui permet de savoir si la main contient des cartes non spéciales
-	 * 
-	 * @return un booleen qui indique la présence ou non d'une carte spéciale
-	 */
-	public boolean contenirCarteNonSpeciale() {
-		Iterator<Carte> it = super.listeCartes.iterator();
-		while (it.hasNext()) {
-			Carte carte = (Carte) it.next();
-			if (!carte.estSpeciale())
-				return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Méthode qui permet de récupérer une carte non spéciale contenue dans la
-	 * MainJoueur.
-	 * 
-	 * @return une carte non spéciale
-	 */
-	public Carte prendreCarteNonSpeciale() {
-		Iterator<Carte> it = super.listeCartes.iterator();
-		while (it.hasNext()) {
-			Carte carte = (Carte) it.next();
-			if (!carte.estSpeciale()) {
-				it.remove();
-				return carte;
-			}
-		}
-		return null;
-
-	}
-
-	/**
-	 * Méthode qui permet de savoir si la main contient des cartes spéciales
-	 * 
-	 * @return un booleen qui indique la présence ou non d'une carte spéciale
-	 */
-	public boolean contenirCarteSpeciale() {
-		Iterator<Carte> it = super.listeCartes.iterator();
-		while (it.hasNext()) {
-			Carte carte = (Carte) it.next();
-			if (carte.estSpeciale())
-				return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Méthode qui permet de récupérer une carte spéciale contenue dans la
-	 * MainJoueur.
-	 * 
-	 * @return une carte spéciale
-	 */
-	public Carte prendreCarteSpeciale() {
-		Iterator<Carte> it = super.listeCartes.iterator();
-		while (it.hasNext()) {
-			Carte carte = (Carte) it.next();
-			if (carte.estSpeciale()) {
-				it.remove();
-				return carte;
-			}
-		}
-		return null;
-
-	}
-
-	/**
-	 * Méthode permettant de savoir si la main contient des cartes jouables.
-	 */
-	public boolean contenirCartesJouables(Carte derniereCarte) {
-		Iterator<Carte> it = super.listeCartes.iterator();
-		while (it.hasNext()) {
-			Carte carte = (Carte) it.next();
-			if (carte.estPosable(derniereCarte))
-				return true;
-		}
-		return false;
 	}
 
 	/**
@@ -331,6 +305,40 @@ public class MainJoueur extends Tas {
 	 */
 	public void fusionner() {
 		super.listeCartes.addAll(this.listesCartesNonJouable);
+	}
+
+	public String toString() {
+	
+		String resultat = "Main \n\n";
+		String numCarte = "";
+		String bordureDessus = "";
+		String dessus = "";
+		String milieu = "";
+		String bas = "";
+		String bordureDessous = "";
+	
+		for (int i = 0; i < super.listeCartes.size(); i++) {
+	
+			numCarte += "  n°" + i + "    ";
+			bordureDessus += " —————️ " + "  ";
+			dessus += "|" + super.listeCartes.get(i).getCouleurAffichage()
+					+ "    |  ";
+			if (super.listeCartes.get(i).getValeur() == 10) {
+				milieu += "| " + super.listeCartes.get(i).getValeurAffichage()
+						+ "  |  ";
+			} else {
+				milieu += "|  " + super.listeCartes.get(i).getValeurAffichage()
+						+ "  |  ";
+			}
+			bas += "|    " + super.listeCartes.get(i).getCouleurAffichage()
+					+ "|  ";
+			bordureDessous += " —————️ " + "  ";
+		}
+	
+		resultat += numCarte + "\n" + bordureDessus + "\n" + dessus + "\n"
+				+ milieu + "\n" + bas + "\n" + bordureDessous + "\n";
+	
+		return resultat;
 	}
 
 }

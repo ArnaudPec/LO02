@@ -13,6 +13,7 @@ public class IaOffensive extends IA {
 	public IaOffensive(String nomJoueur, int numJoueur) {
 		super(nomJoueur, numJoueur);
 	}
+	
 
 	/**
 	 * Méthode permettant au joueur IaOffensif de choisir les cartes à jouer.
@@ -37,10 +38,13 @@ public class IaOffensive extends IA {
 
 	public Carte[] choisirCarteAJouer(Carte derniereCarte) {
 
-		this.mainJoueur.trierCartesJouables(derniereCarte);
-		System.out.println("Main Jouable" + this.mainJoueur);
 		Carte[] listeCartes;
 		int as = 14, huit = 8;
+		Random rand = new Random();
+
+		this.mainJoueur.trierCartesJouables(derniereCarte);
+		System.out.println("Main Jouable" + this.mainJoueur);
+		
 
 		if (this.mainJoueur.contenirCarte(as)) { // on récupère le(s) as
 
@@ -59,13 +63,8 @@ public class IaOffensive extends IA {
 
 		else if (this.mainJoueur.contenirCarteSpeciale()) { // on pose une carte spéciale
 			Carte carte = this.mainJoueur.prendreCarteSpeciale();
-			listeCartes = new Carte[this.mainJoueur.calculerNbOccurenceMemeValeur(carte) + 1];// le +1
-																// correspond à
-																// la carte déjà
-																// prise ligne
-																// précédente
-			System.out.println(this.mainJoueur
-					.calculerNbOccurenceMemeValeur(carte));
+			listeCartes = new Carte[this.mainJoueur.calculerNbOccurenceMemeValeur(carte) + 1];// le +1correspond à la carte déjà prise ligne précédente
+			System.out.println(this.mainJoueur.calculerNbOccurenceMemeValeur(carte));
 			listeCartes[0] = carte;
 			for (int i = 1; i < listeCartes.length; i++) {
 				listeCartes[i] = this.mainJoueur.prendreCarteValeur(carte.getValeur());
@@ -73,7 +72,6 @@ public class IaOffensive extends IA {
 		}
 
 		else { // s'il n'y a pas de cartes spéciales on tire une carte au hasard
-			Random rand = new Random();
 			int valeur = this.mainJoueur.getCarte(
 					rand.nextInt(this.mainJoueur.getListeCartes().size()))
 					.getValeur();
@@ -98,9 +96,7 @@ public class IaOffensive extends IA {
 	/**
 	 * Méthode permettant au joueur IaOffensif d'échanger ses cartes en début de
 	 * partie. Ce dernier va tenter de récupérer en priorité des cartes
-	 * spéciales. Parmi ces dernières, l'as (envoyer le tapis à un joueur) et le
-	 * huit(faire passer son tour) seront privilégiées On n'échange pas les
-	 * cartes spéciales déjà présentes dans la main.
+	 * spéciales. On n'échange pas les cartes spéciales déjà présentes dans la main.
 	 * 
 	 * @see MainJoueur#ajouterCarte(Carte)
 	 * @see MainJoueur#contenirCarteNonSpeciale()
@@ -128,6 +124,8 @@ public class IaOffensive extends IA {
 	/** 
 	 * Méthode permettant de choisir un joueur dans le cas de la pose d'un as. Il ne doit pas se désigner lui même.
 	 * L'IA offensive désigne le joueur ayant le moins de cartes en main.
+	 * 
+	 *  @see Joueur#calculerNombreTotalCarte()
 	 */
 	public int choisirUnJoueur(ArrayList<Joueur> liste) {
 		int nbcarte = 1000;
@@ -138,12 +136,12 @@ public class IaOffensive extends IA {
 				if(joueur.calculerNombreTotalCarte()<nbcarte && joueur.getNumJoueur()!=this.numJoueur){
 					num = joueur.getNumJoueur();
 					nbcarte=joueur.calculerNombreTotalCarte();
-					
+					System.out.println("i");
 				}
+				System.out.println('e');
 		}
 
 		System.out.println(this.nom + " a choisi : " + liste.get(num).getNom());
-
 		return num;
 	}
 

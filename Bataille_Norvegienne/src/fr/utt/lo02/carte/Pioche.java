@@ -62,13 +62,6 @@ public class Pioche extends Tas {
 	}
 
 	/**
-	 * Permet de mélanger la pioche
-	 */
-	public void melanger() {
-		Collections.shuffle(this.listeCartes);
-	}
-
-	/**
 	 * Permet de prendre la première carte de la pioche et de la supprimer de la
 	 * pioche.
 	 * 
@@ -76,6 +69,13 @@ public class Pioche extends Tas {
 	 */
 	public Carte prendreCarteDuDessus() {
 		return super.listeCartes.pollFirst();
+	}
+
+	/**
+	 * Permet de mélanger la pioche
+	 */
+	public void melanger() {
+		Collections.shuffle(this.listeCartes);
 	}
 
 	/**

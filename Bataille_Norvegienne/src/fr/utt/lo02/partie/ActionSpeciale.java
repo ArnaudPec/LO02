@@ -51,10 +51,10 @@ public class ActionSpeciale {
 		
 		if(!this.joueur.peutJouer(this.tapis.getCarteDuDessus())) {
 			this.joueur.getMainJoueur().ajouterPlusieursCartes(this.tapis.prendreTapis());
-			System.out.println("Maintenant " +this.joueur.getNom() + ": " +this.joueur.getMainJoueur().getListeCartes().size() +"cartes \n");
+			System.out.println("Maintenant " +this.joueur.getNom() + ": " +this.joueur.getMainJoueur().getListeCartes().size() +" cartes en main\n");
 		}
 		else {
-			System.out.println(this.joueur.getNom() + " a contré l'as\n");
+			System.out.println(this.joueur.getNom() + " a contre l'as\n");
 		}
 		
 		if(joueur.getNumJoueur()==0) this.partie.setJoueurCourant(this.partie.getNbJoueurs()-1);
@@ -84,18 +84,4 @@ public class ActionSpeciale {
 		
 		this.partie.setJoueurCourant(numCourant);
 	}
-	
-//	
-//	private void effectuerActionA() {
-//
-//		if (this.partie.getJoueurSuivant().peutJouer(this.tapis.carteDuDessus())==false) {
-//			int choixDuJoueur = this.joueur.choisirUnJoueur(partie.getListeJoueurs());
-//			LinkedList<Carte> tapis = this.tapis.prendreTapis();
-//			Joueur joueur = this.partie.getListeJoueurs().get(choixDuJoueur);
-//
-//			joueur.getMainJoueur().ajouterPlusieursCartes(tapis);
-//		}
-//	}
-//
-
 }
