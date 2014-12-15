@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import sun.nio.cs.ext.ISCII91;
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.carte.Pioche;
 import fr.utt.lo02.carte.Tapis;
@@ -211,16 +212,19 @@ public class Partie {
 		
 		Scanner scanner = new Scanner(System.in);
 		int strategie;
+		boolean joueurOf=false;
 		
 		for (int i = 0; i < nbJoueur; i++) {
 			
-			System.out.println("\nIA numero "+i +" : Quelle stratégie souahitez vous affronter ? \n0 : Aleatoire | 1 : Offensive | 2 : Equilibree");
+			System.out.println("\nIA numero "+i +" : Quelle stratégie souahitez vous affronter ? \n0 : Aleatoire | 1 : Offensive (MAX 1)| 2 : Equilibree");
 			strategie = scanner.nextInt();
 			
 			while(strategie<0 || strategie > 2){
 				System.out.println("Erreur, recommencez :");
 				strategie = scanner.nextInt();
 			}
+			
+			joueurOf=this.verifierPresenceIaOffensive();
 			
 			switch (strategie) {
 			case 0:
@@ -229,8 +233,13 @@ public class Partie {
 				break;
 				
 			case 1:
+				if(!joueurOf){
 				IaOffensive  IaOffensive = new IaOffensive("ia_" + i +"_Offensive",this.nbJoueurs);
-				this.ajouterJoueur(IaOffensive);
+				this.ajouterJoueur(IaOffensive);}
+				else {
+					System.out.println("Nombre max d'IA offensive atteint, creation d'une IA aleatoire");
+					this.ajouterJoueur(new IaAleatoire("ia_" + i +"_Aleatoire",this.nbJoueurs));
+				}
 				break;
 				
 			case 2:
@@ -242,6 +251,22 @@ public class Partie {
 				break;
 			}
 		}
+	}
+	
+	/**
+	 * Méthode permettant de vérifier si un joueur offensif est présent dans la liste des joueurs
+	 * @return
+	 */
+	public boolean verifierPresenceIaOffensive(){
+		
+		for (Iterator iterator = listeJoueurs.iterator(); iterator.hasNext();) {
+			Joueur joueur = (Joueur) iterator.next();
+			if (joueur instanceof IaOffensive) return true;
+			}
+		
+		return false;
+			
+	
 	}
 
 //	public void creationIA(int nbIA, int niveau) {
