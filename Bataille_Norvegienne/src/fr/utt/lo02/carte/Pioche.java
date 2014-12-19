@@ -92,14 +92,12 @@ public class Pioche extends Tas {
 				partie.getJoueur(j).getTasCache().ajouterCarte(carteTire);
 			}
 		}
-
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < partie.getNbJoueurs(); j++) {
 				Carte carteTire = this.prendreCarteDuDessus();
 				partie.getJoueur(j).getTasVisible().ajouterCarte(carteTire);
 			}
 		}
-
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < partie.getNbJoueurs(); j++) {
 				Carte carteTire = this.prendreCarteDuDessus();

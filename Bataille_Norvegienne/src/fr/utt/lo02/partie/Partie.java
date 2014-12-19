@@ -89,11 +89,18 @@ public class Partie {
 		return this.listeJoueurs.get((joueurCourant + 1)%this.nbJoueurs);
 	}
 
+	/**
+	 * Méthode permettant d'ajouter un joueur à la la collection listeJoueurs.
+	 * @param joueur
+	 */
 	public void ajouterJoueur(Joueur joueur) {
 		this.listeJoueurs.add(joueur);
 		this.nbJoueurs++;
 	}
 	
+	/**
+	 * Méthode permettant de gérer le mécanisme d'ajout des joueurs en début de partie
+	 */
 	public void interfaceAjouterJoueur() {
 		
 		int nbJoueursHumain = 0;
@@ -126,7 +133,7 @@ public class Partie {
 			System.out.println("Vous ne pouvez pas lancer de partie seul, une IA a ete ajoutee !");
 			nbJoueursIA = 1;
 		}
-		else{
+		else if(nbJoueursIA==0 && nbJoueursHumain==0){
 			System.out.println("Vous ne pouvez pas lancer de partie sans joueurs, un joueur humain et une IA ont ete ajoutees !");
 			nbJoueursIA = 1;
 			nbJoueursHumain =1;
@@ -255,7 +262,7 @@ public class Partie {
 	
 	/**
 	 * Méthode permettant de vérifier si un joueur offensif est présent dans la liste des joueurs
-	 * @return
+	 * @return un booleen 
 	 */
 	public boolean verifierPresenceIaOffensive(){
 		
@@ -379,14 +386,14 @@ public class Partie {
 		else if (this.pioche.getListeCartes().isEmpty() && joueur.getMainJoueur().getListeCartes().isEmpty() && (!joueur.getTasVisible().getListeCartes().isEmpty())) {
 			joueur.getMainJoueur().ajouterPlusieursCartes(joueur.getTasVisible().prendreTasVisible());
 			System.out.println(joueur.getNom()
-					+ " vient de prendre les cartes de son TasVisible\n");
+					+ " vient de prendre les cartes de son TasVisible.\n");
 
 		}
 
 		else if (this.pioche.getListeCartes().isEmpty() && joueur.getTasVisible().getListeCartes().isEmpty() && joueur.getMainJoueur().getListeCartes().isEmpty()) 
 		{
 			joueur.getMainJoueur().ajouterCarte(joueur.getTasCache().prendreCarte());
-			System.out.println(joueur.getNom()+ " vient de prendre une carte de son TasCache\nIl contient encore " +joueur.getTasCache().getListeCartes().size() + "cartes\n");
+			System.out.println(joueur.getNom()+ " vient de prendre une carte de son TasCache.\nIl contient encore " +joueur.getTasCache().getListeCartes().size() + " cartes.\n");
 		}
 
 	}
@@ -419,7 +426,7 @@ public class Partie {
 			}
 
 			else {
-				System.out.println("Le joueur "+ joueur.getNom()+ " ne peut pas jouer Il ramasse le tapis\n");
+				System.out.println("Le joueur "+ joueur.getNom()+ " ne peut pas jouer, il ramasse le tapis.\n");
 				joueur.getMainJoueur().getListeCartes().addAll(this.tapis.prendreTapis());// Je donne le
 			}
 			

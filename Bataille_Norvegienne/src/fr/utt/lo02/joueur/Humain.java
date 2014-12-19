@@ -144,6 +144,9 @@ public class Humain extends Joueur {
 		scanner2.close();
 	}
 	
+	/** Méthode permettant au joueur humain de désigner un autre joueur de la partie
+	 * @see fr.utt.lo02.joueur.Joueur#choisirUnJoueur(java.util.ArrayList)
+	 */
 	public int choisirUnJoueur(ArrayList<Joueur> liste){
 		
 		int num;

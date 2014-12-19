@@ -33,6 +33,9 @@ public class ActionSpeciale {
 	}
 
 
+	/**
+	 * Méthode permettant dé gérer la pose d'une carte 10. Son effet consisteà enlever du jeu les arte du tapis.
+	 */
 	private void effectuerAction10() {
 		this.partie.getTapis().viderTas();
 	}
@@ -51,10 +54,10 @@ public class ActionSpeciale {
 		
 		if(!this.joueur.peutJouer(this.tapis.getCarteDuDessus())) {
 			this.joueur.getMainJoueur().ajouterPlusieursCartes(this.tapis.prendreTapis());
-			System.out.println("Maintenant " +this.joueur.getNom() + ": " +this.joueur.getMainJoueur().getListeCartes().size() +" cartes en main\n");
+			System.out.println("Maintenant " +this.joueur.getNom() + ": " +this.joueur.getMainJoueur().getListeCartes().size() +" cartes en main.\n");
 		}
 		else {
-			System.out.println(this.joueur.getNom() + " a contre l'as\n");
+			System.out.println(this.joueur.getNom() + " a contre l'as.\n");
 		}
 		
 		if(joueur.getNumJoueur()==0) this.partie.setJoueurCourant(this.partie.getNbJoueurs()-1);
@@ -76,7 +79,7 @@ public class ActionSpeciale {
 	 */
 	private void effectuerAction8() {
 		
-		System.out.println(this.nbCartesJouees + " carte(s) 8 a(ont) été posée(s), il faut donc sauter " + this.nbCartesJouees + " joueurs.");
+		System.out.println(this.nbCartesJouees + " carte(s) 8 a(ont) ete posee(s), il faut donc sauter " + this.nbCartesJouees + " joueurs.");
 		
 		int numCourant = joueur.getNumJoueur();
 		System.out.println("Numero du joueur, avant le saut : " +joueur.getNumJoueur());

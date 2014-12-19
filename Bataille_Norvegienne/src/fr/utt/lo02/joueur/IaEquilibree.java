@@ -27,7 +27,6 @@ public class IaEquilibree extends IA {
 		 * 
 		 * Cette stratégie augmente le nombre maximum de cartes posées par tour.
 		 * 
-		 * 
 		 * @return une liste de carte
 		 * 
 		 * @see Random
@@ -43,7 +42,7 @@ public class IaEquilibree extends IA {
 		
 			System.out.println(this.mainJoueur);
 			this.mainJoueur.trierCartesJouables(derniereCarte); // on restreint le choix aux cartes jouables
-			System.out.println(this.mainJoueur);
+			System.out.println("Main jouable : \n" + this.mainJoueur);
 
 			int valeur = this.mainJoueur.calculerPlusPetiteValeur();
 			listeCartes = new Carte [this.mainJoueur.calculerNbOccurenceMemeValeur(valeur)];

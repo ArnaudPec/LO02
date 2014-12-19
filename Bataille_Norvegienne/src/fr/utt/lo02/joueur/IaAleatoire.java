@@ -35,19 +35,17 @@ public class IaAleatoire extends IA {
 		Carte[] listeCartes;
 		int numCarte = 0;
 		int nombreMaxCarteJouable;
-		
-		this.mainJoueur.trierCartesJouables(derniereCarte); // on restreint le choix aux cartes jouables
+
 		System.out.println(this.mainJoueur);
+		this.mainJoueur.trierCartesJouables(derniereCarte); // on restreint le choix aux cartes jouables
+		System.out.println("Main jouable : \n" + this.mainJoueur);
+
 
 		nombreMaxCarteJouable = this.mainJoueur.calculerNbMaxCarteMemeValeur();
 		if (nombreMaxCarteJouable > 3)	nombreMaxCarteJouable = 3;
 
 		int nb = rand.nextInt(nombreMaxCarteJouable )+1;
 	
-		//while (nb == 0) {
-		//	nb = rand.nextInt(nombreMaxCarteJouable + 1);
-		//	System.out.println("i");
-		//}
 
 		listeCartes = new Carte[nb];
 

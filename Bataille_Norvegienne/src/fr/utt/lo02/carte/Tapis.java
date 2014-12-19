@@ -62,7 +62,7 @@ public class Tapis extends Tas {
 	public String toString() {
 		String res = "";
 		if (this.listeCartes.isEmpty()) {
-			res = "Pas de carte";
+			res = "Tapis : pas de cartes.";
 		} else {
 			res = "Tapis \n" + getCarteDuDessus().toString() + "\n";
 		}

@@ -42,8 +42,9 @@ public class IaOffensive extends IA {
 		int as = 14, huit = 8;
 		Random rand = new Random();
 
+		System.out.println(this.mainJoueur);
 		this.mainJoueur.trierCartesJouables(derniereCarte);
-		System.out.println("Main Jouable" + this.mainJoueur);
+		System.out.println("Main Jouable : \n" + this.mainJoueur);
 		
 
 		if (this.mainJoueur.contenirCarte(as)) { // on récupère le(s) as
@@ -110,13 +111,9 @@ public class IaOffensive extends IA {
 
 		boolean changer = true;
 		System.out.println(changer);
-		while (this.tasVisible.contenirCarteSpeciale()
-				&& this.mainJoueur.contenirCarteNonSpeciale()
-				&& nbChangement > 0) {
-			this.mainJoueur
-					.ajouterCarte(this.tasVisible.prendreCarteSpeciale());
-			this.tasVisible.ajouterCarte(this.mainJoueur
-					.prendreCarteNonSpeciale());
+		while (this.tasVisible.contenirCarteSpeciale()&& this.mainJoueur.contenirCarteNonSpeciale()&& nbChangement > 0) {
+			this.mainJoueur.ajouterCarte(this.tasVisible.prendreCarteSpeciale());
+			this.tasVisible.ajouterCarte(this.mainJoueur.prendreCarteNonSpeciale());
 			nbChangement--;
 		}
 	}
@@ -136,9 +133,7 @@ public class IaOffensive extends IA {
 				if(joueur.calculerNombreTotalCarte()<nbcarte && joueur.getNumJoueur()!=this.numJoueur){
 					num = joueur.getNumJoueur();
 					nbcarte=joueur.calculerNombreTotalCarte();
-					System.out.println("i");
 				}
-				System.out.println('e');
 		}
 
 		System.out.println(this.nom + " a choisi : " + liste.get(num).getNom());
