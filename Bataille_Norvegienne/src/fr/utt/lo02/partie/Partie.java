@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
-import sun.nio.cs.ext.ISCII91;
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.carte.Pioche;
 import fr.utt.lo02.carte.Tapis;
@@ -101,6 +100,7 @@ public class Partie {
 	/**
 	 * Méthode permettant de gérer le mécanisme d'ajout des joueurs en début de partie
 	 */
+	@SuppressWarnings("resource")
 	public void interfaceAjouterJoueur() {
 		
 		int nbJoueursHumain = 0;
@@ -198,6 +198,7 @@ public class Partie {
 //
 //	}
 
+	@SuppressWarnings("resource")
 	public void creationHumain(int nbJoueur) {
 		Scanner sc = new Scanner(System.in);
 
@@ -215,6 +216,7 @@ public class Partie {
 	/**Méthode permettant de créer les joueurs gérés par l'ordinateur
 	 * @param nbJoueur à créer
 	 */
+	@SuppressWarnings("resource")
 	public void creationIA(int nbJoueur) {
 		
 		Scanner scanner = new Scanner(System.in);
@@ -266,7 +268,7 @@ public class Partie {
 	 */
 	public boolean verifierPresenceIaOffensive(){
 		
-		for (Iterator iterator = listeJoueurs.iterator(); iterator.hasNext();) {
+		for (Iterator<Joueur> iterator = listeJoueurs.iterator(); iterator.hasNext();) {
 			Joueur joueur = (Joueur) iterator.next();
 			if (joueur instanceof IaOffensive) return true;
 			}

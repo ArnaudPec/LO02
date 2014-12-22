@@ -30,6 +30,7 @@ public class Humain extends Joueur {
 	 * @see MainJoueur#calculerPositionCarteValeur(int)
 	 * 
 	 */
+	@SuppressWarnings("resource")
 	public Carte[] choisirCarteAJouer(Carte derniereCarte) {
 
 		System.out.println(this.mainJoueur);
@@ -147,6 +148,7 @@ public class Humain extends Joueur {
 	/** Méthode permettant au joueur humain de désigner un autre joueur de la partie
 	 * @see fr.utt.lo02.joueur.Joueur#choisirUnJoueur(java.util.ArrayList)
 	 */
+	@SuppressWarnings("resource")
 	public int choisirUnJoueur(ArrayList<Joueur> liste){
 		
 		int num;
