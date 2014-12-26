@@ -5,6 +5,7 @@ public class Vue {
 	
 	
 	public static void main(String[] args) {
+		@SuppressWarnings("unused")
 		VueGraphique vg = new VueGraphique();
 	}
 
