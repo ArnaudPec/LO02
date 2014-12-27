@@ -1,0 +1,41 @@
+Règles
+======
+
+=== Mise en place
+
+Les cartes sont distribuées une à une. Les cartes en trop constitueront la pioche.
+
+On commence par donner à chacun une carte qui reste cachée, face contre la table. Cette étape est répétée de façon à ce que chaque joueur dispose de 3 cartes devant lui, dont on ignore la valeur et la couleur. Ensuite, chaque joueur reçoit 3 cartes supplémentaires, toujours distribuées une à une, mais cette fois-ci, la couleur et la valeur de chaque carte sont montrées à tous. Ces 3 cartes sont placées sur les 3 premières cartes distribuées. Enfin, on termine en donnant à tous les participants 3 autres cartes qui seront tenues en main et donc cachées des adversaires. Le reste des cartes constitue la pioche.
+
+Chaque joueur dispose ainsi de _9_ _cartes_ : 3 de faces cachées, 3 de faces visibles et 3 cartes en main. Avant de poser la première carte et de commencer la partie, les participants peuvent échanger les cartes qu'ils ont en main avec les cartes de faces visibles. Il n'y a qu'à ce point du jeu que l'on peut changer ses cartes. Par expérience, on remarque qu'il est préférable de disposer devant soi des cartes qui ont une forte valeur ou des cartes spéciales (celles-ci seront détaillées plus loin).
+En début de partie, un joueur dispose de 9 cartes : 3 cartes retournées, 3 cartes visibles placées sur les cartes retournées et 3 en cartes en main.
+
+=== Déroulement de la partie
+
+La première personne à jouer est le joueur placé à la gauche du donneur. À ce stade de la partie, le joueur peut choisir de poser une, deux ou trois cartes sur la table, du moment que celles-ci sont de même valeur (la couleur n'importe pas). En outre, aussi longtemps qu'il reste des cartes dans la pioche, un joueur doit toujours posséder 3 cartes en main. Ainsi, après avoir déposé ses cartes, le joueur reprend dans la pioche le nombre nécessaire de cartes afin de compléter sa main.
+
+Le joueur suivant doit jouer au moins une carte de valeur supérieure ou égale à celle(s) posée(s) par le joueur précédent. Lui aussi peut choisir de poser une ou plusieurs cartes de même valeur. Après avoir joué, ce joueur pioche également autant de cartes que nécessaire afin d'en posséder à nouveau 3 en main. Et ainsi de suite pour chaque joueur.
+
+Toutefois, il arrivera rapidement un moment où l'un des joueurs n'aura plus la possibilité de poser de cartes suffisamment grosses. Dans ce cas, celui-ci ramasse le paquet constitué et dispose désormais de toutes celles-ci pour jouer ( se dit aussi "qu'il _cocogne_"). C'est le dernier joueur à avoir posé qui reprend la main.
+
+La pioche épuisée, chaque joueur doit vider sa main afin de pouvoir ramasser les 3 cartes visibles devant lui. Dès qu'un des joueurs n'a plus de cartes en main, il les ramasse simplement et continue à jouer comme précédemment.
+
+Lorsqu'un joueur n'a de nouveau plus de cartes en main, il pioche au hasard une des trois cartes retournées disposées devant lui. Si celle-ci convient, il la pose et peut en prendre une autre qu'il posera à son tour si elle convient. S'il ne peut jouer cette carte, le joueur ramasse le tas et doit éliminer les cartes qu'il a en main avant de pouvoir à nouveau ramasser une des cartes devant lui.
+Fin de la partie
+
+Le gagnant est le premier joueur à ne plus avoir de cartes devant lui ni dans sa main. Il sera alors _Danish_ !
+
+=== Cartes spéciales
+
+Sauf précision contraire, les cartes spéciales ne peuvent être jouées que lorsque cela est possible. Ainsi le 8 (qui fait passer un tour) ne peut être déposé que si la carte du pot est inférieur à 8. Le 2 échappe à cette règle puisqu'il agit comme un joker.
+
+_2_ : On peut déposer cette carte sur n'importe quelle autre, le jeu repart au 2.
+
+_7_ : Le joueur suivant doit impérativement jouer une (ou plusieurs) cartes de valeur inférieure ou égale à 7 (quel que soit le nombre de 7 posés).
+
+_8_ : Le joueur suivant passe son tour (si on met plusieurs 8, autant de joueurs que de 8 posés passent leur tour)..
+
+_10_ : Les cartes du tas sont retirées du jeu ( se dit aussi, qu'il bêche). Elles ne pourront pas revenir dans la partie.
+    
+_As_ : Cette carte permet d'envoyer le tas au joueur que l'on veut, sans être forcément le suivant. Cette carte ne peut être contrée que par un autre As ou un 2.
+
