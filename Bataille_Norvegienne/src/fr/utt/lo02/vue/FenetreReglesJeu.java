@@ -6,7 +6,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JEditorPane;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+
 
 /**
  * Fenêtre affichant les règles du jeu
@@ -19,10 +24,11 @@ public class FenetreReglesJeu extends JFrame  {
 
 	public FenetreReglesJeu() {
 
-		setTitle("Règles du Jeu");
-		setSize(700, 500);
+		this.setTitle("Règles du Jeu");
+		this.setSize(700, 500);
 		setBackground(Color.gray);
-		getContentPane().setLayout(new BorderLayout());
+		this.getContentPane().setLayout(new BorderLayout());
+		this.setLocationRelativeTo(null);
 
 		JPanel topPanel = new JPanel();
 		JButton button = new JButton("Ok, je ne tricherai pas, promis !");
