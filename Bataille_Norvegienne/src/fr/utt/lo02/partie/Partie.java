@@ -59,7 +59,7 @@ public class Partie {
 		try {
 			joueur = this.listeJoueurs.get(position);
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return joueur;
 	}

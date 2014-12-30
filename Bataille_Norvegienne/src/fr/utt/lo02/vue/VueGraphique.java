@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.JEditorPane;
@@ -19,80 +21,33 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import fr.utt.lo02.carte.Carte;
-
 public class VueGraphique implements ActionListener {
 
 	private JFrame window;
 	private JMenuBar menuBar;
 	private ImagePanel container;
-	
+
 	private JMenu jmenuPartie;
 	private JMenu jmenuAide;
 	private JMenuItem itemNouvellePartie;
 	private JMenuItem itemQuitter;
 	private JMenuItem itemAPropos;
 	private JMenuItem itemRegles;
-	
-	private JPanel mainPanel;
-	private JPanel tapisPanel;
+
+	private MainScrollPane mainPanel;
 	private JPanel infoPartiePanel;
+	private JPanel tapisPanel;
 	private BufferedImage matriceCarte;
-	
-	
 
 	public VueGraphique (){
-		
-		// Fenêtre
+
 		this.window = new JFrame("Bataille Norvégienne");
 		this.window.setVisible(true);
-	//	this.window.setSize(800,600);
-		this.window.setPreferredSize(new Dimension(800,600));
-		this.initialiserMatriceCarte();
-
-		this.window.setResizable(true);
-		this.window.setLocationRelativeTo(null);
 		this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		// Container
-		this.container =  new ImagePanel(new BorderLayout());  
-		this.window.setContentPane(this.container);  
-		this.container.add(this.menuBar = new JMenuBar(), BorderLayout.NORTH);
-		this.container.add(this.tapisPanel = new JPanel(true), BorderLayout.WEST);
-		this.container.add(this.infoPartiePanel = new JPanel(true), BorderLayout.EAST);
-		this.container.add(this.mainPanel = new JPanel(true), BorderLayout.SOUTH);
-		
-//		this.tapisPanel.setPreferredSize(new Dimension(500, 200));
-//		this.mainPanel.setPreferredSize(new Dimension(800, 200));
-//		this.infoPartiePanel.setPreferredSize(new Dimension(300, 200));
-		
-		// Menu
-		this.menuBar.add(this.jmenuPartie = new JMenu("Partie"));
-		this.menuBar.add(this.jmenuAide = new JMenu("Aide"));
-		this.jmenuPartie.add(this.itemNouvellePartie = new JMenuItem("Nouvelle Partie"));
-		this.jmenuPartie.add(this.itemQuitter = new JMenuItem("Quitter"));
-		this.jmenuAide.add(this.itemRegles = new JMenuItem("Règles du jeu"));
-		this.jmenuAide.add(this.itemAPropos = new JMenuItem("A propos"));
-		
-		//Panels
-		this.tapisPanel.setBackground(new Color(255,0,0));
-		this.mainPanel.setBackground(new Color(0,255,0));
-		this.infoPartiePanel.setBackground(new Color(255,0,255));
-		
-		this.tapisPanel.add(new CartePanel (this.matriceCarte),BorderLayout.CENTER);
-		this.infoPartiePanel.add(new CartePanel(new Carte(1, 12), this.matriceCarte), BorderLayout.CENTER);
-		this.mainPanel.add(new CartePanel(new Carte(0, 13), this.matriceCarte), BorderLayout.CENTER);
-		this.mainPanel.add(new CartePanel(new Carte(1, 14), this.matriceCarte), BorderLayout.CENTER);
-		this.mainPanel.add(new CartePanel(new Carte(2, 9), this.matriceCarte), BorderLayout.CENTER);
-		this.mainPanel.add(new CartePanel(new Carte(3, 10), this.matriceCarte), BorderLayout.CENTER);
+		this.initialiserMatriceCarte();
+		this.initialiserFenetre();
 
-		
-		this.window.pack();
-		// Actions
-		this.itemQuitter.addActionListener(this);
-		this.itemAPropos.addActionListener(this);
-		this.itemNouvellePartie.addActionListener(this);
-		this.itemRegles.addActionListener(this);
 
 	}
 
@@ -110,27 +65,93 @@ public class VueGraphique implements ActionListener {
 		}
 		else if (e.getSource() == this.itemNouvellePartie){
 			System.out.println("Nouvelle Partie");
-			
-			FenetreConfiguration fc = new FenetreConfiguration();
+
+			ConfigurationFrame fc = new ConfigurationFrame();
 			fc.setVisible(true);
+			this.dessinerJeu();
 
 		}
 		else if (e.getSource() == this.itemRegles){
-			
+
 			System.out.println("Règles du jeu");
 			
-			FenetreReglesJeu ed = new FenetreReglesJeu();
-			ed.setVisible(true);
+			File f = new File("ressources/regles.html");
+			
+			try {
+				URL url = new URL("file://" + f.getAbsolutePath());
+				JEditorPane ep = new JEditorPane(url);
+				ep.setEditable(false);
+				ep.setPreferredSize(new Dimension(700,500));
+				JScrollPane sp = new JScrollPane(ep);
+				JOptionPane.showMessageDialog(this.window, sp, "Règles du jeu", JOptionPane.INFORMATION_MESSAGE);
+				
+			} catch (MalformedURLException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
 			
 		}
 	}
-	
+
 	private void initialiserMatriceCarte(){
 		try {
 			this.matriceCarte = ImageIO.read(new File("ressources/cards.jpg"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
+	
+	private void initialiserFenetre(){
+		
+				// Fenêtre
+				this.window.setResizable(true);
+				//this.window.setPreferredSize(new Dimension(800,600));
+
+				// Container
+
+				this.container = new ImagePanel(new BorderLayout());  
+				this.window.setContentPane(this.container);
+				this.container.setBackground(new Color(0,90,50));
+
+				// Menu
+				this.menuBar = new JMenuBar();
+				this.menuBar.add(this.jmenuPartie = new JMenu("Partie"));
+				this.menuBar.add(this.jmenuAide = new JMenu("Aide"));
+				this.jmenuPartie.add(this.itemNouvellePartie = new JMenuItem("Nouvelle Partie"));
+				this.jmenuPartie.add(this.itemQuitter = new JMenuItem("Quitter"));
+				this.jmenuAide.add(this.itemRegles = new JMenuItem("Règles du jeu"));
+				this.jmenuAide.add(this.itemAPropos = new JMenuItem("A propos"));
+
+				this.container.add(this.menuBar, BorderLayout.NORTH);
+				
+				//this.window.pack();
+				this.window.setSize(new Dimension(800,600));
+				this.window.setLocationRelativeTo(null);	
+				
+				// Actions
+				this.itemQuitter.addActionListener(this);
+				this.itemAPropos.addActionListener(this);
+				this.itemNouvellePartie.addActionListener(this);
+				this.itemRegles.addActionListener(this);
+				
+	}
+
+	private void dessinerJeu(){
+		
+		this.initialiserFenetre();
+
+		this.container.add(this.tapisPanel = new TapisPanel(matriceCarte), BorderLayout.CENTER);
+		this.container.add(this.infoPartiePanel = new InfoPartiePanel(), BorderLayout.EAST);
+		this.container.add(this.mainPanel = new MainScrollPane(this.matriceCarte), BorderLayout.SOUTH);
+
+		
+		//Panels
+		this.mainPanel.setBackground(new Color(0,90,50));
+		this.infoPartiePanel.setBackground(new Color(0,90,50));
+		this.tapisPanel.setBackground(new Color(0,90,50));
+
+		this.window.pack();
+	}
+	
 }

@@ -11,24 +11,23 @@ import javax.swing.JPanel;
 
 /**
  * Fenêtre permettant de configurer une partie
- *
  */
-public class FenetreConfiguration extends JFrame  {
+public class ConfigurationFrame extends JFrame  {
 
 	private static final long serialVersionUID = 1L;
-
-	public FenetreConfiguration() {
+	private JPanel jPanel;
+	
+	public ConfigurationFrame() {
 
 		this.setTitle("Nouvelle partie");
 		this.setSize(700, 500);
-		this.getContentPane().setLayout(new BorderLayout());
+		jPanel = (JPanel) this.getContentPane();
 		this.setLocationRelativeTo(null);
 
-		JPanel topPanel = new JPanel();
+		
 		JButton button = new JButton("Ok");
 		
-		this.getContentPane().add(topPanel, BorderLayout.CENTER);
-		this.getContentPane().add(button, BorderLayout.SOUTH);
+		this.jPanel.add(button, BorderLayout.SOUTH);
 		
 		button.addActionListener(new ActionListener() {
 			

@@ -12,12 +12,13 @@ import javax.swing.JPanel;
 public class ImagePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	
+
 	protected BufferedImage image;
 
 	public ImagePanel() {
 		super();
 	}
-
 
 	public ImagePanel(String path) {
 		try {
@@ -26,7 +27,6 @@ public class ImagePanel extends JPanel {
 			e.printStackTrace();
 		}
 	}
-	
 
 	public ImagePanel(LayoutManager arg0, String path) {
 		super(arg0);
@@ -46,5 +46,9 @@ public class ImagePanel extends JPanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		g.drawImage(this.image, 0, 0, null);
+	}
+	
+	public void setImage(BufferedImage image) {
+		this.image = image;
 	}
 }
