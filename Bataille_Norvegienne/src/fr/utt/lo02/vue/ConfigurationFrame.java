@@ -20,7 +20,7 @@ public class ConfigurationFrame extends JFrame  {
 	public ConfigurationFrame() {
 
 		this.setTitle("Nouvelle partie");
-		this.setSize(700, 500);
+		this.setSize(new Dimension(400, 300));
 		jPanel = (JPanel) this.getContentPane();
 		this.setLocationRelativeTo(null);
 
@@ -28,6 +28,8 @@ public class ConfigurationFrame extends JFrame  {
 		JButton button = new JButton("Ok");
 		
 		this.jPanel.add(button, BorderLayout.SOUTH);
+		
+		//this.pack();
 		
 		button.addActionListener(new ActionListener() {
 			

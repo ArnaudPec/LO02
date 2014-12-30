@@ -35,7 +35,7 @@ public class CartePanel extends ImagePanel {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.out.println("Vous avez cliqué sur un " + carte.getValeurAffichage());
+				System.out.println("Vous avez cliqué sur un " + carte.getValeurAffichage() + " de " +carte.getCouleurAffichage());
 			}
 
 			@Override

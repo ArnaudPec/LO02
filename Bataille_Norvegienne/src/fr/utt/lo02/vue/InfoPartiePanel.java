@@ -1,22 +1,32 @@
 package fr.utt.lo02.vue;
 
+import java.awt.Dimension;
 import java.util.Observable;
 import java.util.Observer;
+
+import javax.swing.JEditorPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class InfoPartiePanel extends JPanel implements Observer{
 
 	private static final long serialVersionUID = 1L;
-	private JTextArea jta;
+	private JEditorPane ep;
+	private JScrollPane sp;
 	
 	public InfoPartiePanel(){
 		String texte = new String();
 		texte = "Etat de la partie :  \n\nListe des Joueurs : \n \nBob main : 3 tc : 2 tv : 0 \n \nJean main : 3 tc : 3 tv : 3";
 		
-		this.jta = new JTextArea(texte);
-		this.jta.setEditable(false);
-		this.add(jta);
+		this.ep = new JEditorPane("text", texte);
+		this.ep.setPreferredSize(new Dimension(200, 200));
+
+		this.ep.setEditable(false);
+		
+		this.sp = new JScrollPane(ep);
+		
+		this.add(sp);
 	}
 
 	@Override

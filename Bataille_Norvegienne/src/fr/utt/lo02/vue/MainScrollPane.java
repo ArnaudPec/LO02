@@ -23,14 +23,14 @@ public class MainScrollPane extends ScrollPane {
 		this.main = new JPanel();
 		
 		this.main.add(new CartePanel(new Carte(0, 2), matriceCarte, 0.5));
-		this.main.add(new CartePanel(new Carte(0, 3), matriceCarte, 0.5));
+		this.main.add(new CartePanel(new Carte(3, 3), matriceCarte, 0.5));
+		this.main.add(new CartePanel(new Carte(1, 2), matriceCarte, 0.5));
+		this.main.add(new CartePanel(new Carte(2, 10), matriceCarte, 0.5));	
+		this.main.add(new CartePanel(new Carte(0, 12), matriceCarte, 0.5));	
+		this.main.add(new CartePanel(new Carte(0, 3), matriceCarte, 0.5));	
+		this.main.add(new CartePanel(new Carte(2, 14), matriceCarte, 0.5));
 		this.main.add(new CartePanel(new Carte(0, 2), matriceCarte, 0.5));
-		this.main.add(new CartePanel(new Carte(0, 3), matriceCarte, 0.5));	
-		this.main.add(new CartePanel(new Carte(0, 3), matriceCarte, 0.5));	
-		this.main.add(new CartePanel(new Carte(0, 3), matriceCarte, 0.5));	
-		this.main.add(new CartePanel(new Carte(0, 3), matriceCarte, 0.5));
-		this.main.add(new CartePanel(new Carte(0, 2), matriceCarte, 0.5));
-		this.main.add(new CartePanel(new Carte(0, 3), matriceCarte, 0.5));
+		this.main.add(new CartePanel(new Carte(3, 3), matriceCarte, 0.5));
 		this.main.add(new CartePanel(new Carte(0, 2), matriceCarte, 0.5));
 		this.main.add(new CartePanel(new Carte(0, 3), matriceCarte, 0.5));
 		this.main.add(new CartePanel(new Carte(0, 2), matriceCarte, 0.5));
