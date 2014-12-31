@@ -12,7 +12,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
-import javax.swing.JComboBox;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -47,11 +46,8 @@ public class VueGraphique implements ActionListener {
 		this.window = new JFrame("Bataille Norvégienne");
 		this.window.setVisible(true);
 		this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		this.initialiserMatriceCarte();
 		this.initialiserFenetre();
-
-
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -76,29 +72,55 @@ public class VueGraphique implements ActionListener {
 
 	private void initialiserPartie() {
 		
+		this.ajouterJoueurs();
+		this.dessinerJeu();	
+		
+		//test
+		//this.choisirJoueur();
+	}
+
+	private void ajouterJoueurs() {
+		
 		int nbJoueur = Integer.parseInt(JOptionPane.showInputDialog("Nombre total de joueurs ?"));
 		int nbJoueurHumain = Integer.parseInt(JOptionPane.showInputDialog("Nombre de joueurs humains ?"));
 		int nbJoueurIA = nbJoueur-nbJoueurHumain;
 		System.out.println(nbJoueurIA);
 		
 		for (int i = 0; i < nbJoueurHumain; i++) {
+			@SuppressWarnings("unused")
 			String nom = JOptionPane.showInputDialog("Veuillez entrer le nom du joueur " +i);
 		}
 		
 		for (int i = 0; i < nbJoueurIA; i++) {
-			 String strategieChoisie = (String) JOptionPane.showInputDialog(this.window,"Veuillez choisir une stratégie pour le joeur IA "+ i, "Stratégie",
-				        JOptionPane.QUESTION_MESSAGE, 
-				        null, 
-				        Strategies, 
-				        Strategies[0]);
+			@SuppressWarnings("unused")
+			String strategieChoisie = (String) JOptionPane.showInputDialog(
+					this.window,
+					"Veuillez choisir une stratégie pour le joueur IA " + i,
+					"Stratégie", JOptionPane.QUESTION_MESSAGE, null,
+					Strategies, Strategies[0]);
 		}
+		
 
-		this.dessinerJeu();		
+	}
+
+	private void choisirJoueur() {
+		
+		@SuppressWarnings("unused")
+		String strategieChoisie = (String) JOptionPane.showInputDialog(
+				this.window,
+				"Veuillez choisir un joueur ",
+				"Choisir un joueur", JOptionPane.QUESTION_MESSAGE, null,
+				Strategies, Strategies[0]);
+			
+		
 	}
 
 	private void afficherApropos() {
 		
-		JEditorPane ep = new JEditorPane("text/html","<b>Bataille Norvégienne</b><br><br>Par Charlélie Borella et Arnaud Pecoraro<br>Automne 2014 - UV LO02");
+		JEditorPane ep = new JEditorPane(
+				"text/html",
+				"<b>Bataille Norvégienne</b><br><br>Par Charlélie Borella et Arnaud Pecoraro<br>Automne 2014 - UV LO02");
+		
 		ep.setEditable(false);
 		ep.setPreferredSize(new Dimension(300,100));
 		JScrollPane sp = new JScrollPane(ep);

@@ -438,14 +438,5 @@ public class Partie {
 		}
 		System.out.println("Partie terminee, gagnant : " + gagnant.getNom()	+ " en " + nbtour + " tours");
 	}
-	
-	public static void main(String[] args) {
-
-		System.out.println("Nouvelle partie de Bataille Norvegienne.");
-		Partie partie = getInstancePartie();
-		partie.initialisationPartie(partie);
-		partie.lancerPartie();
-
-	}
 
 }
