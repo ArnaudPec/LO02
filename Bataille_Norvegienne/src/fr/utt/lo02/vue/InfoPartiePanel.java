@@ -7,7 +7,6 @@ import java.util.Observer;
 import javax.swing.JEditorPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
 public class InfoPartiePanel extends JPanel implements Observer{
 

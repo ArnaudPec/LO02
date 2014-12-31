@@ -12,6 +12,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
+import javax.swing.JComboBox;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -38,6 +39,8 @@ public class VueGraphique implements ActionListener {
 	private JPanel infoPartiePanel;
 	private JPanel tapisPanel;
 	private BufferedImage matriceCarte;
+	
+	public static final String[] Strategies = { "Aléatoire", "Offensive", "Equilibrée"};
 
 	public VueGraphique (){
 
@@ -57,41 +60,67 @@ public class VueGraphique implements ActionListener {
 		}
 		else if (e.getSource() == this.itemAPropos){
 			System.out.println("A propos");
-			JEditorPane ep = new JEditorPane("text/html","<b>Bataille Norvégienne</b><br><br>Par Charlélie Borella et Arnaud Pecoraro<br>Automne 2014 - UV LO02");
-			ep.setEditable(false);
-			ep.setPreferredSize(new Dimension(300,100));
-			JScrollPane sp = new JScrollPane(ep);
-			JOptionPane.showMessageDialog(this.window, sp, "A propos", JOptionPane.INFORMATION_MESSAGE);
+			this.afficherApropos();
 		}
 		else if (e.getSource() == this.itemNouvellePartie){
 			System.out.println("Nouvelle Partie");
-
-			ConfigurationFrame fc = new ConfigurationFrame();
-			fc.setVisible(true);
-			this.dessinerJeu();
-
+			this.initialiserPartie();
 		}
 		else if (e.getSource() == this.itemRegles){
 
 			System.out.println("Règles du jeu");
-			
-			File f = new File("ressources/regles.html");
-			
-			try {
-				URL url = new URL("file://" + f.getAbsolutePath());
-				JEditorPane ep = new JEditorPane(url);
-				ep.setEditable(false);
-				ep.setPreferredSize(new Dimension(700,500));
-				JScrollPane sp = new JScrollPane(ep);
-				JOptionPane.showMessageDialog(this.window, sp, "Règles du jeu", JOptionPane.INFORMATION_MESSAGE);
-				
-			} catch (MalformedURLException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			this.afficherRegles();
 			
 		}
+	}
+
+	private void initialiserPartie() {
+		
+		int nbJoueur = Integer.parseInt(JOptionPane.showInputDialog("Nombre total de joueurs ?"));
+		int nbJoueurHumain = Integer.parseInt(JOptionPane.showInputDialog("Nombre de joueurs humains ?"));
+		int nbJoueurIA = nbJoueur-nbJoueurHumain;
+		System.out.println(nbJoueurIA);
+		
+		for (int i = 0; i < nbJoueurHumain; i++) {
+			String nom = JOptionPane.showInputDialog("Veuillez entrer le nom du joueur " +i);
+		}
+		
+		for (int i = 0; i < nbJoueurIA; i++) {
+			 String strategieChoisie = (String) JOptionPane.showInputDialog(this.window,"Veuillez choisir une stratégie pour le joeur IA "+ i, "Stratégie",
+				        JOptionPane.QUESTION_MESSAGE, 
+				        null, 
+				        Strategies, 
+				        Strategies[0]);
+		}
+
+		this.dessinerJeu();		
+	}
+
+	private void afficherApropos() {
+		
+		JEditorPane ep = new JEditorPane("text/html","<b>Bataille Norvégienne</b><br><br>Par Charlélie Borella et Arnaud Pecoraro<br>Automne 2014 - UV LO02");
+		ep.setEditable(false);
+		ep.setPreferredSize(new Dimension(300,100));
+		JScrollPane sp = new JScrollPane(ep);
+		JOptionPane.showMessageDialog(this.window, sp, "A propos", JOptionPane.INFORMATION_MESSAGE);		
+	}
+
+	private void afficherRegles() {
+		File f = new File("ressources/regles.html");
+		
+		try {
+			URL url = new URL("file://" + f.getAbsolutePath());
+			JEditorPane ep = new JEditorPane(url);
+			ep.setEditable(false);
+			ep.setPreferredSize(new Dimension(700,500));
+			JScrollPane sp = new JScrollPane(ep);
+			JOptionPane.showMessageDialog(this.window, sp, "Règles du jeu", JOptionPane.INFORMATION_MESSAGE);
+			
+		} catch (MalformedURLException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}		
 	}
 
 	private void initialiserMatriceCarte(){
