@@ -17,12 +17,11 @@ public class TapisPanel extends JPanel implements Observer{
 	
 	public TapisPanel(BufferedImage matriceCarte){
 		
-		this.setPreferredSize(new Dimension(600,320));
-		this.dessinPioche = new CartePanel(new Carte(0, 5), matriceCarte, 0.7);
+		this.setPreferredSize(new Dimension(500,320));
+		this.dessinPioche = new CartePanel(null, matriceCarte, 0.7);
 		this.derniereCarte = new CartePanel(null, matriceCarte, 0.7);
 		this.add(this.derniereCarte);	
 		this.add(this.dessinPioche);
-		
 	}
 
 	@Override

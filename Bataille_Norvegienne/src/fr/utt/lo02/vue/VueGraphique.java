@@ -89,16 +89,14 @@ public class VueGraphique implements ActionListener {
 
 	private void ajouterJoueurs() {
 		
-		int nbJoueur = 0, nbJoueurHumain = -1;
+		int nbJoueur = 0;
 		while (nbJoueur <2 || nbJoueur > 11) nbJoueur = Integer.parseInt(JOptionPane.showInputDialog("Nombre total de joueurs ? (max : 11)"));
 		
-		while(nbJoueurHumain < 0 || nbJoueurHumain > nbJoueur) nbJoueurHumain=Integer.parseInt(JOptionPane.showInputDialog("Nombre de joueurs humains ?"));
-		int nbJoueurIA = nbJoueur-nbJoueurHumain;		
+		int nbJoueurIA = nbJoueur -1;		
 		
-		for (int i = 0; i < nbJoueurHumain; i++) {
-			String nom = JOptionPane.showInputDialog("Veuillez entrer le nom du joueur " +i);
-			this.partie.creationHumain(i, nom);
-		}
+		String nom = JOptionPane.showInputDialog("Veuillez entrer le nom du joueur ");
+		this.partie.creationHumain(nom);
+		
 		
 		for (int i = 0; i < nbJoueurIA; i++) {
 			String strategieChoisie = (String) JOptionPane.showInputDialog(
@@ -211,7 +209,7 @@ public class VueGraphique implements ActionListener {
 
 		this.container.add(this.tapisPanel = new TapisPanel(matriceCarte), BorderLayout.CENTER);
 		this.container.add(this.infoPartiePanel = new InfoPartiePanel(this.partie.getListeJoueurs()), BorderLayout.EAST);
-		this.container.add(this.mainPanel = new MainScrollPane(this.matriceCarte, this.partie.getListeJoueurs().get(1).getMainJoueur()), BorderLayout.SOUTH);
+		this.container.add(this.mainPanel = new MainScrollPane(this.matriceCarte, this.partie.getListeJoueurs().get(0).getMainJoueur()), BorderLayout.SOUTH);
 
 		//Panels
 		this.mainPanel.setBackground(new Color(0,90,50));
