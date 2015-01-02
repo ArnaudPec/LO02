@@ -10,8 +10,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+import javax.swing.ComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -66,6 +69,7 @@ public class VueGraphique implements ActionListener {
 		else if (e.getSource() == this.itemNouvellePartie){
 			System.out.println("Nouvelle Partie");
 			this.initialiserPartie();
+			this.choisirJoueur();
 		}
 		else if (e.getSource() == this.itemRegles){
 			System.out.println("Règles du jeu");
@@ -75,6 +79,7 @@ public class VueGraphique implements ActionListener {
 
 	private void initialiserPartie() {
 		
+		this.partie = null;
 		this.partie = Partie.getInstancePartie();
 
 		this.ajouterJoueurs();
@@ -83,37 +88,49 @@ public class VueGraphique implements ActionListener {
 
 	private void ajouterJoueurs() {
 		
-		int nbJoueur = Integer.parseInt(JOptionPane.showInputDialog("Nombre total de joueurs ?"));
-		int nbJoueurHumain = Integer.parseInt(JOptionPane.showInputDialog("Nombre de joueurs humains ?"));
-		int nbJoueurIA = nbJoueur-nbJoueurHumain;
-		System.out.println(nbJoueurIA);
+		int nbJoueur = 0, nbJoueurHumain = -1;
+		while (nbJoueur <2 || nbJoueur > 11) nbJoueur = Integer.parseInt(JOptionPane.showInputDialog("Nombre total de joueurs ? (max : 11)"));
 		
+		while(nbJoueurHumain < 0 || nbJoueurHumain > nbJoueur) nbJoueurHumain=Integer.parseInt(JOptionPane.showInputDialog("Nombre de joueurs humains ?"));
+		int nbJoueurIA = nbJoueur-nbJoueurHumain;		
 		
 		for (int i = 0; i < nbJoueurHumain; i++) {
 			String nom = JOptionPane.showInputDialog("Veuillez entrer le nom du joueur " +i);
-			Joueur joueur = new Joueur(nom, i);
-			this.partie.ajouterJoueur(joueur);
+			this.partie.creationHumain(i, nom);
 		}
 		
 		for (int i = 0; i < nbJoueurIA; i++) {
-			@SuppressWarnings("unused")
 			String strategieChoisie = (String) JOptionPane.showInputDialog(
 					this.window,
 					"Veuillez choisir une stratégie pour le joueur IA " + i,
 					"Stratégie", JOptionPane.QUESTION_MESSAGE, null,
 					Strategies, Strategies[0]);
+			if(strategieChoisie.equals(Strategies[2])) this.partie.creationIA(i, 2);
+			
+			else if (strategieChoisie.equals(Strategies[1]) && !this.partie.verifierPresenceIaOffensive()) this.partie.creationIA(i, 1);
+			
+			else if (strategieChoisie.equals(Strategies[1])) {
+				JOptionPane.showMessageDialog(this.window, "Nombre maximum d'IA offensive atteint, une IA aléatoire a été ajoutée à la place.", "Alerte", JOptionPane.WARNING_MESSAGE );
+				this.partie.creationIA(i, 0);
+			}
+			else this.partie.creationIA(i, 0);
 		}
 		System.out.println(partie.getListeJoueurs());
 	}
 
 	private void choisirJoueur() {
+
+		String[] listeJoueur = this.partie.getListeNomsJoueurs();
 		
-		@SuppressWarnings("unused")
-		String strategieChoisie = (String) JOptionPane.showInputDialog(
+		String joueurChoisi = (String) JOptionPane.showInputDialog(
 				this.window,
 				"Veuillez choisir un joueur ",
-				"Choisir un joueur", JOptionPane.QUESTION_MESSAGE, null,
-				Strategies, Strategies[0]);
+				"Choisir un joueur", 
+				JOptionPane.QUESTION_MESSAGE, 
+				null, listeJoueur, 
+				listeJoueur[0]);
+		
+		System.out.println("joueur choisi " +this.partie.getJoueurNom(joueurChoisi));
 	}
 
 	private void afficherApropos() {

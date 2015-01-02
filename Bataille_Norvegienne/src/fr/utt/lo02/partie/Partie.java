@@ -87,6 +87,28 @@ public class Partie implements Runnable {
 	public ArrayList<Joueur> getListeJoueurs() {
 		return this.listeJoueurs;
 	}
+	
+	public Joueur getJoueurNom(String nom){
+		for (Iterator<Joueur> iterator = listeJoueurs.iterator(); iterator.hasNext();) {
+			Joueur joueur = (Joueur) iterator.next();
+			if(joueur.getNom().equals(nom)) return joueur;
+			
+		}
+		 return null;
+	}
+	
+	public String[] getListeNomsJoueurs(){
+		String[] listeNoms = new String[this.nbJoueurs];
+		int i=0;
+		for (Iterator<Joueur> iterator = listeJoueurs.iterator(); iterator.hasNext();) {
+			Joueur joueur = (Joueur) iterator.next();
+			listeNoms[i] = joueur.getNom();
+			i++;
+			
+		}
+		
+		return listeNoms;
+	}
 
 	public Tapis getTapis() {
 		return this.tapis;
@@ -226,7 +248,30 @@ public class Partie implements Runnable {
 		}
 
 	}
+
+	public void creationHumain(int numJoueur, String nom){
+		Humain joueur = new Humain(nom, numJoueur);
+		this.ajouterJoueur(joueur);
+	}
 	
+	public void creationIA(int numJoueur, int strategie){
+		Joueur joueurIA ;
+		switch (strategie) {
+		case 0:
+			joueurIA = new IaAleatoire("ia_" + numJoueur +"_Aleatoire", numJoueur);
+			this.ajouterJoueur(joueurIA);
+			break;
+		case 1:
+			joueurIA = new IaOffensive("ia_" + numJoueur +"_Offensive", numJoueur);
+			this.ajouterJoueur(joueurIA);
+			break;
+		case 2:
+			joueurIA = new IaEquilibree("ia_" + numJoueur +"_Equilibree", numJoueur);
+			this.ajouterJoueur(joueurIA);
+			break;		
+		}
+
+	}
 	
 
 	/**Méthode permettant de créer les joueurs gérés par l'ordinateur

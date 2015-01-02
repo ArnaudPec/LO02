@@ -85,9 +85,12 @@ public class Joueur implements Strategie{
 		return tasVisible;
 	}
 
-	public int choisirUnJoueur(ArrayList<Joueur> j) {
+	@Override
+	public int choisirUnJoueur(ArrayList<Joueur> liste) {
+		// TODO Auto-generated method stub
 		return 0;
 	}
+
 
 	
 
