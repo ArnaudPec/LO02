@@ -258,15 +258,15 @@ public class Partie implements Runnable {
 		Joueur joueurIA ;
 		switch (strategie) {
 		case 0:
-			joueurIA = new IaAleatoire("ia_" + numJoueur +"_Aleatoire", numJoueur);
+			joueurIA = new IaAleatoire("ia_" + numJoueur +"_Ale", numJoueur);
 			this.ajouterJoueur(joueurIA);
 			break;
 		case 1:
-			joueurIA = new IaOffensive("ia_" + numJoueur +"_Offensive", numJoueur);
+			joueurIA = new IaOffensive("ia_" + numJoueur +"_Off", numJoueur);
 			this.ajouterJoueur(joueurIA);
 			break;
 		case 2:
-			joueurIA = new IaEquilibree("ia_" + numJoueur +"_Equilibree", numJoueur);
+			joueurIA = new IaEquilibree("ia_" + numJoueur +"_Equ", numJoueur);
 			this.ajouterJoueur(joueurIA);
 			break;		
 		}
@@ -504,5 +504,5 @@ public class Partie implements Runnable {
 	public void run() {
 		
 	}
-
+	
 }

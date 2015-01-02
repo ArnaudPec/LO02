@@ -83,6 +83,7 @@ public class VueGraphique implements ActionListener {
 		this.partie = Partie.getInstancePartie();
 
 		this.ajouterJoueurs();
+		this.partie.getPioche().distribuerCarte(this.partie);
 		this.dessinerJeu();	
 	}
 
@@ -118,7 +119,7 @@ public class VueGraphique implements ActionListener {
 		System.out.println(partie.getListeJoueurs());
 	}
 
-	private void choisirJoueur() {
+	private Joueur choisirJoueur() {
 
 		String[] listeJoueur = this.partie.getListeNomsJoueurs();
 		
@@ -130,7 +131,7 @@ public class VueGraphique implements ActionListener {
 				null, listeJoueur, 
 				listeJoueur[0]);
 		
-		System.out.println("joueur choisi " +this.partie.getJoueurNom(joueurChoisi));
+		return this.partie.getJoueurNom(joueurChoisi);
 	}
 
 	private void afficherApropos() {
@@ -175,7 +176,6 @@ public class VueGraphique implements ActionListener {
 		
 				// Fenêtre
 				this.window.setResizable(true);
-				//this.window.setPreferredSize(new Dimension(800,600));
 
 				// Container
 
@@ -203,7 +203,6 @@ public class VueGraphique implements ActionListener {
 				this.itemAPropos.addActionListener(this);
 				this.itemNouvellePartie.addActionListener(this);
 				this.itemRegles.addActionListener(this);
-				
 	}
 
 	private void dessinerJeu(){
@@ -211,10 +210,9 @@ public class VueGraphique implements ActionListener {
 		this.initialiserFenetre();
 
 		this.container.add(this.tapisPanel = new TapisPanel(matriceCarte), BorderLayout.CENTER);
-		this.container.add(this.infoPartiePanel = new InfoPartiePanel(), BorderLayout.EAST);
-		this.container.add(this.mainPanel = new MainScrollPane(this.matriceCarte), BorderLayout.SOUTH);
+		this.container.add(this.infoPartiePanel = new InfoPartiePanel(this.partie.getListeJoueurs()), BorderLayout.EAST);
+		this.container.add(this.mainPanel = new MainScrollPane(this.matriceCarte, this.partie.getListeJoueurs().get(1).getMainJoueur()), BorderLayout.SOUTH);
 
-		
 		//Panels
 		this.mainPanel.setBackground(new Color(0,90,50));
 		this.infoPartiePanel.setBackground(new Color(0,90,50));
