@@ -21,6 +21,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import fr.utt.lo02.joueur.Joueur;
+import fr.utt.lo02.partie.Partie;
+
 public class VueGraphique implements ActionListener {
 
 	private JFrame window;
@@ -39,7 +42,9 @@ public class VueGraphique implements ActionListener {
 	private JPanel tapisPanel;
 	private BufferedImage matriceCarte;
 	
-	public static final String[] Strategies = { "Aléatoire", "Offensive", "Equilibrée"};
+	private Partie partie;
+	
+	public static final String[] Strategies = { "Aléatoire", "Offensive (1 Max)", "Equilibrée"};
 
 	public VueGraphique (){
 
@@ -63,20 +68,17 @@ public class VueGraphique implements ActionListener {
 			this.initialiserPartie();
 		}
 		else if (e.getSource() == this.itemRegles){
-
 			System.out.println("Règles du jeu");
 			this.afficherRegles();
-			
 		}
 	}
 
 	private void initialiserPartie() {
 		
+		this.partie = Partie.getInstancePartie();
+
 		this.ajouterJoueurs();
 		this.dessinerJeu();	
-		
-		//test
-		//this.choisirJoueur();
 	}
 
 	private void ajouterJoueurs() {
@@ -86,9 +88,11 @@ public class VueGraphique implements ActionListener {
 		int nbJoueurIA = nbJoueur-nbJoueurHumain;
 		System.out.println(nbJoueurIA);
 		
+		
 		for (int i = 0; i < nbJoueurHumain; i++) {
-			@SuppressWarnings("unused")
 			String nom = JOptionPane.showInputDialog("Veuillez entrer le nom du joueur " +i);
+			Joueur joueur = new Joueur(nom, i);
+			this.partie.ajouterJoueur(joueur);
 		}
 		
 		for (int i = 0; i < nbJoueurIA; i++) {
@@ -99,8 +103,7 @@ public class VueGraphique implements ActionListener {
 					"Stratégie", JOptionPane.QUESTION_MESSAGE, null,
 					Strategies, Strategies[0]);
 		}
-		
-
+		System.out.println(partie.getListeJoueurs());
 	}
 
 	private void choisirJoueur() {
@@ -111,8 +114,6 @@ public class VueGraphique implements ActionListener {
 				"Veuillez choisir un joueur ",
 				"Choisir un joueur", JOptionPane.QUESTION_MESSAGE, null,
 				Strategies, Strategies[0]);
-			
-		
 	}
 
 	private void afficherApropos() {

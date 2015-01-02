@@ -13,7 +13,7 @@ import fr.utt.lo02.joueur.IaEquilibree;
 import fr.utt.lo02.joueur.IaOffensive;
 import fr.utt.lo02.joueur.Joueur;
 
-public class Partie {
+public class Partie implements Runnable {
 
 	private int nbJoueurs;
 	private int joueurCourant;
@@ -68,6 +68,22 @@ public class Partie {
 		this.joueurCourant = joueurCourant;
 	}
 
+	public Pioche getPioche() {
+		return pioche;
+	}
+
+	public void setPioche(Pioche pioche) {
+		this.pioche = pioche;
+	}
+
+	public void setListeJoueurs(ArrayList<Joueur> listeJoueurs) {
+		this.listeJoueurs = listeJoueurs;
+	}
+
+	public void setTapis(Tapis tapis) {
+		this.tapis = tapis;
+	}
+	
 	public ArrayList<Joueur> getListeJoueurs() {
 		return this.listeJoueurs;
 	}
@@ -294,7 +310,7 @@ public class Partie {
 //	}
 
 	/**
-	 * Méthode qui retourne si la partie est gagnée en vérifiant que le joueur
+	 * Méthode qui retourne true si la partie est gagnée en vérifiant que le joueur
 	 * courant a gagné ou non.
 	 * 
 	 * @return [true=la partie est gagnée, false=la partie continue]
@@ -437,6 +453,11 @@ public class Partie {
 			nbtour++;
 		}
 		System.out.println("Partie terminee, gagnant : " + gagnant.getNom()	+ " en " + nbtour + " tours");
+	}
+
+	@Override
+	public void run() {
+		
 	}
 
 }
