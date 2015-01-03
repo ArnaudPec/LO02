@@ -268,8 +268,8 @@ public class Partie extends Observable{
 
 	}
 
-	public void creationHumain(int numJoueur, String nom){
-		Humain joueur = new Humain(nom, numJoueur);
+	public void creationHumain(String nom){
+		Humain joueur = new Humain(nom, 0);
 		this.ajouterJoueur(joueur);
 	}
 	

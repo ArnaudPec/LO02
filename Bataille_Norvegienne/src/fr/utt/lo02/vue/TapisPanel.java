@@ -18,6 +18,7 @@ public class TapisPanel extends JPanel implements Observer{
 	
 	public TapisPanel(BufferedImage matriceCarte, PartieControleur partieControleur){
 		
+<<<<<<< HEAD
 		this.setPreferredSize(new Dimension(600,320));
 		//this.dessinPioche = new CartePanel(new Carte(0, 0), matriceCarte, 0.7, partieControleur);
 		int derniereCarte = partieControleur.getPartie().getPioche().getListeCartes().size();
@@ -25,6 +26,13 @@ public class TapisPanel extends JPanel implements Observer{
 		this.add(this.derniereCarte);	
 		//this.add(this.dessinPioche);
 		
+=======
+		this.setPreferredSize(new Dimension(500,320));
+		this.dessinPioche = new CartePanel(null, matriceCarte, 0.7);
+		this.derniereCarte = new CartePanel(null, matriceCarte, 0.7);
+		this.add(this.derniereCarte);	
+		this.add(this.dessinPioche);
+>>>>>>> FETCH_HEAD
 	}
 
 	@Override
