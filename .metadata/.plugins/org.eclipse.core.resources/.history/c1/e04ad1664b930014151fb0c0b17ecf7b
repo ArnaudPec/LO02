@@ -1,9 +1,0 @@
-package fr.utt.lo02.carte;
-
-public class TourJoueur {
-
-	public TourJoueur() {
-		// TODO Auto-generated constructor stub
-	}
-
-}

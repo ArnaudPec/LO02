@@ -28,6 +28,7 @@ public class TourJoueur {
 		this.ListeCarte.add(i);
 		verifCarteListe(i);
 		changementEtatSelectionne(i);
+
 	}
 	
 	//Change de l'état de la carte, si la carte est sélectionné ou non.

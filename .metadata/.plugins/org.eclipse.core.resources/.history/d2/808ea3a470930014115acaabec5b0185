@@ -10,7 +10,7 @@ public class Executable {
 		Partie partie = Partie.getInstancePartie();
 		PartieControleur partieControleur = new PartieControleur(partie);
 		VueGraphique vueGraphique = new VueGraphique(partie, partieControleur);
-		partieControleur.addVue(vueGraphique);
+		partieControleur.addVue(vueGraphie);
 	}
 	
 }

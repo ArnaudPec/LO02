@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
 <fullyQualifiedTypeName name="java.util.Collections"/>
-<fullyQualifiedTypeName name="fr.utt.lo02.partie.Partie"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.carte.TasCache"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.carte.TasVisible"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.joueur.Joueur"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.carte.Pioche"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.carte.Tapis"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
-<fullyQualifiedTypeName name="fr.utt.lo02.carte.Carte"/>
 <fullyQualifiedTypeName name="java.util.LinkedList"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.joueur.IaAleatoire"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.joueur.IaOffensive"/>
@@ -17,9 +14,17 @@
 <fullyQualifiedTypeName name="fr.utt.lo02.joueur.Humain"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.carte.MainJoueur"/>
 <fullyQualifiedTypeName name="java.util.ListIterator"/>
-<fullyQualifiedTypeName name="java.util.Observable"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.partie.PartieController"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.vue.Vue"/>
-<fullyQualifiedTypeName name="fr.utt.lo02.vue.VueGraphique"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.vue.ImagePanel"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.vue.VueGraphique"/>
+<fullyQualifiedTypeName name="java.util.Observable"/>
+<fullyQualifiedTypeName name="javax.swing.JFrame"/>
+<fullyQualifiedTypeName name="javax.swing.JButton"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="java.util.Observer"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.carte.Carte"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.partie.Partie"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.partie.PartieControleur"/>
 </qualifiedTypeNameHistroy>
