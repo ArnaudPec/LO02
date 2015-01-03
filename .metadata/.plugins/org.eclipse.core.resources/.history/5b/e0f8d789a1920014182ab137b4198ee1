@@ -1,0 +1,18 @@
+package fr.utt.lo02.partie;
+
+import fr.utt.lo02.vue.Vue;
+
+public class Lanceur {
+
+	private Partie partie;
+	private Vue vue;
+	
+	public Lanceur(Partie partie, Vue vue) {
+		this.vue = vue;
+		this.partie = partie;
+	}
+
+	public static void main(String[] args) {
+		
+	}
+}

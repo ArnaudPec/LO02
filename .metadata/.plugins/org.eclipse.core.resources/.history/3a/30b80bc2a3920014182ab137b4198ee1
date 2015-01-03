@@ -1,0 +1,16 @@
+package fr.utt.lo02.partie;
+
+import fr.utt.lo02.vue.Vue;
+
+public class Executable {
+
+	public static void main(String[] args) {
+
+		Partie partie = new Partie();
+		Vue vue = new Vue();
+		PartieControleur partieControleur = new PartieControleur(partie, vue);
+		
+		
+	}
+	
+}

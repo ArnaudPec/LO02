@@ -2,6 +2,7 @@ package fr.utt.lo02.partie;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Observable;
 import java.util.Scanner;
 
 import fr.utt.lo02.carte.Carte;
@@ -13,7 +14,7 @@ import fr.utt.lo02.joueur.IaEquilibree;
 import fr.utt.lo02.joueur.IaOffensive;
 import fr.utt.lo02.joueur.Joueur;
 
-public class Partie implements Runnable {
+public class Partie extends Observable{
 
 	private int nbJoueurs;
 	private int joueurCourant;
@@ -21,12 +22,15 @@ public class Partie implements Runnable {
 	private Pioche pioche;
 	private Tapis tapis;
 	private static Partie instancePartie;
+	private TourJoueur tourJoueur;
+	
 
 	private Partie() {
 		this.listeJoueurs = new ArrayList<Joueur>();
 		this.pioche = Pioche.getInstancePioche();
 		this.tapis = Tapis.getInstanceTapis();
 		this.joueurCourant = 0;
+		this.tourJoueur = new TourJoueur(this);
 	}
 
 	public static Partie getInstancePartie() {
@@ -45,9 +49,16 @@ public class Partie implements Runnable {
 	public int getNbJoueurs() {
 		return nbJoueurs;
 	}
+	
 
+	public void addListeCarte(){
+		
+	}
+	
 	public void setNbJoueurs(int nbJoueurs) {
 		this.nbJoueurs = nbJoueurs;
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public int getJoueurCourant() {
@@ -64,8 +75,11 @@ public class Partie implements Runnable {
 		return joueur;
 	}
 
+
 	public void setJoueurCourant(int joueurCourant) {
 		this.joueurCourant = joueurCourant;
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public Pioche getPioche() {
@@ -74,14 +88,20 @@ public class Partie implements Runnable {
 
 	public void setPioche(Pioche pioche) {
 		this.pioche = pioche;
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public void setListeJoueurs(ArrayList<Joueur> listeJoueurs) {
 		this.listeJoueurs = listeJoueurs;
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public void setTapis(Tapis tapis) {
 		this.tapis = tapis;
+		this.setChanged();
+		this.notifyObservers();
 	}
 	
 	public ArrayList<Joueur> getListeJoueurs() {
@@ -236,7 +256,6 @@ public class Partie implements Runnable {
 //
 //	}
 
-	@SuppressWarnings("resource")
 	public void creationHumain(int nbJoueur) {
 		Scanner sc = new Scanner(System.in);
 
@@ -277,7 +296,6 @@ public class Partie implements Runnable {
 	/**Méthode permettant de créer les joueurs gérés par l'ordinateur
 	 * @param nbJoueur à créer
 	 */
-	@SuppressWarnings("resource")
 	public void creationIA(int nbJoueur) {
 		
 		Scanner scanner = new Scanner(System.in);
@@ -338,22 +356,7 @@ public class Partie implements Runnable {
 			
 	
 	}
-
-//	public void creationIA(int nbIA, int niveau) {
-//
-//		for (int i = 0; i < nbIA; i++) {
-//			if (niveau == 0) {
-//				IaAleatoire iaAleatoire = new IaAleatoire("ia" + i,this.nbJoueurs);
-//				this.ajouterJoueur(iaAleatoire);
-//			}
-//			if (niveau == 1) {
-//				IaOffensive iaOffensive = new IaOffensive("ia" + i,
-//						this.nbJoueurs);
-//				this.ajouterJoueur(iaOffensive);
-//			}
-//		}
-//	}
-
+	
 	/**
 	 * Méthode qui retourne true si la partie est gagnée en vérifiant que le joueur
 	 * courant a gagné ou non.
@@ -368,11 +371,10 @@ public class Partie implements Runnable {
 	 * Methode permettant d'initialiser le jeu. -Melanger les cartes
 	 * -Distribution des cartes -lancer la boucle de jeu
 	 */
-	public void initialisationPartie(Partie partie) {
+	public void initialisationPartie() {
 
-		this.interfaceAjouterJoueur();
 		this.pioche.melanger();
-		this.pioche.distribuerCarte(partie);
+		this.pioche.distribuerCarte(this);
 	}
 
 	/**
@@ -408,7 +410,7 @@ public class Partie implements Runnable {
 
 		Carte[] carteJouees = joueur.choisirCarteAJouer(this.getTapis().getCarteDuDessus());
 		this.getTapis().ajouterPlusieursCartes(carteJouees);
-		
+	
 		return carteJouees.length;
 
 	}
@@ -500,9 +502,5 @@ public class Partie implements Runnable {
 		System.out.println("Partie terminee, gagnant : " + gagnant.getNom()	+ " en " + nbtour + " tours");
 	}
 
-	@Override
-	public void run() {
-		
-	}
 	
 }

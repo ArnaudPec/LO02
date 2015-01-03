@@ -1,11 +1,12 @@
 package fr.utt.lo02.carte;
 
 import java.util.LinkedList;
+import java.util.Observable;
 
 /**
  * Classe Tas, permet de généraliser un Tas
  */
-public abstract class Tas {
+public abstract class Tas extends Observable{
 
 	/**
 	 * Représente l'ensemble des cartes contenu dans un Tas
@@ -45,6 +46,8 @@ public abstract class Tas {
 	 */
 	public void setListeCartes(LinkedList<Carte> listeCartes) {
 		this.listeCartes = listeCartes;
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	/**
@@ -54,20 +57,28 @@ public abstract class Tas {
 	 */
 	public void ajouterCarte(Carte carte) {
 		this.listeCartes.add(carte);
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public void ajouterPlusieursCartes(LinkedList<Carte> carte) {
 		this.listeCartes.addAll(carte);
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	public void ajouterPlusieursCartes(Carte[] carte) {
 		for (int i = 0; i < carte.length; i++) {
 			this.listeCartes.add(carte[i]);
+			this.setChanged();
+			this.notifyObservers();
 		}
 	}
 	
 	public void viderTas(){
 		this.listeCartes.clear();
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 }

@@ -25,7 +25,6 @@ public class VueConsole {
 	/**
 	 * Méthode permettant de gérer le mécanisme d'ajout des joueurs en début de partie
 	 */
-	@SuppressWarnings("resource")
 	public void interfaceAjouterJoueur() {
 		
 		int nbJoueursHumain = 0;
@@ -86,7 +85,6 @@ public class VueConsole {
 	/**Méthode permettant de créer les joueurs gérés par l'ordinateur
 	 * @param nbJoueur à créer
 	 */
-	@SuppressWarnings("resource")
 	public void creationIA(int nbJoueur) {
 		
 		Scanner scanner = new Scanner(System.in);

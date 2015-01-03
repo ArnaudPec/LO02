@@ -1,0 +1,9 @@
+package fr.utt.lo02.partie;
+
+public class Lanceur {
+
+	public Lanceur() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

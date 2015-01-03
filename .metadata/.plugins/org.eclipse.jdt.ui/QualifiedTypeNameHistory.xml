@@ -17,4 +17,9 @@
 <fullyQualifiedTypeName name="fr.utt.lo02.joueur.Humain"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.carte.MainJoueur"/>
 <fullyQualifiedTypeName name="java.util.ListIterator"/>
+<fullyQualifiedTypeName name="java.util.Observable"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.partie.PartieController"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.vue.Vue"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.vue.VueGraphique"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.vue.ImagePanel"/>
 </qualifiedTypeNameHistroy>

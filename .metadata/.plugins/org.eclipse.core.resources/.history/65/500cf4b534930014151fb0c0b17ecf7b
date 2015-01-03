@@ -1,0 +1,38 @@
+package fr.utt.lo02.partie;
+
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import fr.utt.lo02.vue.Vue;
+import fr.utt.lo02.vue.VueGraphique;
+
+public class PartieControleur {
+
+	private Partie partie;
+	private VueGraphique vueGraphique;
+	
+	public PartieControleur(Partie partie, VueGraphique vueGraphique) {
+		this.vueGraphique = vueGraphique;
+		this.partie = partie;
+		
+		this.vueGraphique.getEnvoyer(addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				System.out.println("Vous avez cliqué sur un " + carte.getValeurAffichage() + " de " +carte.getCouleurAffichage());
+			}
+		}
+		
+		
+	}
+
+	public void initialisationPartie(){
+		
+		this.vueGraphique.getImagePanel();
+		
+	}
+	
+	
+	
+}

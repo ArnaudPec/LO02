@@ -1,0 +1,23 @@
+package fr.utt.lo02.carte;
+
+import java.util.ArrayList;
+
+public class TourJoueur {
+
+	private ArrayList<Carte> ListeCarte;
+	private Partie partie;
+	
+	public TourJoueur(Partie partie) {
+		this.ListeCarte = new ArrayList<Carte>();
+	}
+
+	public ArrayList<Carte> getListeCarte() {
+		return ListeCarte;
+	}
+	
+	public void setListeCarte(ArrayList<Carte> listeCarte) {
+		ListeCarte = listeCarte;
+	}
+	
+	
+}

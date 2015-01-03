@@ -5,9 +5,18 @@ import java.util.Observer;
 
 public class Vue implements Observer {	
 	
+	private VueGraphique vueGraphique;
+	
+	public Vue (){
+		//this.vueGraphique = new VueGraphique();
+	}
+	
+	public VueGraphique getVueGraphique(){
+		return this.vueGraphique;
+	}
+	
+	
 	public static void main(String[] args) {
-		@SuppressWarnings("unused")
-		VueGraphique vg = new VueGraphique();
 		//VueConsole vc = new VueConsole();
 	}
 

@@ -1,6 +1,8 @@
 package fr.utt.lo02.carte;
 
-public class Carte {
+import java.util.Observable;
+
+public class Carte extends Observable{
 
 	/**
 	 * Représente la couleur de la carte [coeur=0, pique=1, trefle=2, carreau=3]
@@ -17,6 +19,8 @@ public class Carte {
 	 * Représente la visibilité de la carte [true=retournée, false=cachée]
 	 */
 	private boolean visibilite;
+	
+	private boolean selectionner;
 
 	/**
 	 * Constructeur de carte, permet de créer une carte en lui attribuant une
@@ -32,6 +36,7 @@ public class Carte {
 		this.couleur = couleur;
 		this.valeur = valeur;
 		this.visibilite = false;
+		this.selectionner=false;
 	}
 
 	/**
@@ -60,6 +65,10 @@ public class Carte {
 	public boolean getVisibilite() {
 		return this.visibilite;
 	}
+	
+	public boolean getSelectionner(){
+		return this.selectionner;
+	}
 
 	/**
 	 * Setter de couleur
@@ -69,6 +78,8 @@ public class Carte {
 	 */
 	public void setCouleur(int couleur) {
 		this.couleur = couleur;
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	/**
@@ -79,6 +90,8 @@ public class Carte {
 	 */
 	public void setValeur(int valeur) {
 		this.valeur = valeur;
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	/**
@@ -89,6 +102,18 @@ public class Carte {
 	 */
 	public void setVisibilite(boolean visibilite) {
 		this.visibilite = visibilite;
+		this.setChanged();
+		this.notifyObservers();
+	}
+	
+	public void setSelectionne(){
+		if(this.selectionner){
+			this.selectionner=false;
+		}else{
+			this.selectionner=true;
+		}
+		this.setChanged();
+		this.notifyObservers();
 	}
 
 	/**
@@ -255,18 +280,4 @@ public class Carte {
 
 		return resultat;
 	}
-
-	public static void main(String[] args) {
-
-		Carte carte = new Carte(1, 2);
-		System.out.println(carte.toString());
-
-		Carte carte1 = new Carte(0, 2);
-		System.out.println(carte1);
-
-		carte.toString();
-
-		System.out.println(carte.estPosable(new Carte(0, 15)));
-	}
-
 }

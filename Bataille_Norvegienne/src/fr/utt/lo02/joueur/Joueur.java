@@ -2,13 +2,14 @@ package fr.utt.lo02.joueur;
 
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.carte.MainJoueur;
 import fr.utt.lo02.carte.TasCache;
 import fr.utt.lo02.carte.TasVisible;
 
-public class Joueur implements Strategie{
+public class Joueur extends Observable implements Strategie{
 	
 	protected int numJoueur;
 	protected String nom;
@@ -90,8 +91,4 @@ public class Joueur implements Strategie{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-
-	
-
 }

@@ -1,0 +1,13 @@
+package fr.utt.lo02.partie;
+package fr.utt.lo02.vue;
+
+public class Lanceur {
+
+	private Partie partie;
+	private Vue vue;
+	
+	public Lanceur() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

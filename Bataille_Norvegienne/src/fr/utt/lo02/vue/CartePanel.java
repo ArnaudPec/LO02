@@ -1,25 +1,31 @@
 package fr.utt.lo02.vue;
 
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.util.Observable;
+import java.util.Observer;
 
 import fr.utt.lo02.carte.Carte;
+import fr.utt.lo02.partie.PartieControleur;
 
-public class CartePanel extends ImagePanel {
+public class CartePanel extends ImagePanel implements Observer {
+	
 	
 	private static final long serialVersionUID = 1L;
 	private Carte carte;
 	public static final Dimension TAILLE = new Dimension(168, 244);
+	private int positionDeLaCarteDansMainJoueur;
 	
-	public CartePanel ( Carte c, BufferedImage matriceCarte, double taille){
-		super();
+	public CartePanel ( Carte c, BufferedImage matriceCarte, double taille, final PartieControleur partieControleur, final int position){
+		super(partieControleur);
 		
 		this.carte = c;
-		
+		this.positionDeLaCarteDansMainJoueur = position;
 		BufferedImage bfi;
 		
 		if(c!=null){ // on cherche une carte donnée
@@ -35,7 +41,9 @@ public class CartePanel extends ImagePanel {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
+
 				System.out.println("Vous avez cliqué sur un " + carte.getValeurAffichage() + " de " +carte.getCouleurAffichage());
+				partieControleur.actionCarteSelectionne(position);
 			}
 
 			@Override
@@ -101,6 +109,10 @@ public class CartePanel extends ImagePanel {
 	}
 	
 	
+	public void setCarte(Carte c){
+		this.carte = c;
+	}
+	
 	/**
 	 * Méthode permettant de redimensionner la carte
 	 * @param img 
@@ -120,5 +132,10 @@ public class CartePanel extends ImagePanel {
 	     
 	     return op.filter(img, newImage);
 	 }
-	
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
+	}	
 }
