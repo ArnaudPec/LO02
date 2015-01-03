@@ -36,7 +36,6 @@ public class TourJoueur {
 			this.partie.getPioche().getCarte(position).setSelectionne();
 	}
 	
-	//Si on clique sur une carte et qu'elle est déjà présente dans la liste c'est que le joueur veut la desectionner du coup on la retire.
 	public void verifCarteListe(int carte){
 		for (int i = 0; i < this.ListeCarte.size(); i++) {
 			if(carte == this.ListeCarte.get(i)){
