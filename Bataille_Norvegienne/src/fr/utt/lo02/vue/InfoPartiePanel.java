@@ -1,11 +1,13 @@
 package fr.utt.lo02.vue;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BoxLayout;
 import javax.swing.JEditorPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -13,6 +15,7 @@ import javax.swing.JScrollPane;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 import fr.utt.lo02.joueur.Joueur;
+import fr.utt.lo02.partie.Partie;
 
 public class InfoPartiePanel extends JPanel implements Observer{
 
@@ -20,40 +23,34 @@ public class InfoPartiePanel extends JPanel implements Observer{
 	private JEditorPane ep;
 	private JScrollPane sp;
 	private String infoPartie;
-	private ArrayList<Joueur> listeJoueur;
+	private Partie partie;
 	
-	public InfoPartiePanel(ArrayList<Joueur> liste){
+	public InfoPartiePanel(Partie partie){
 		
-		this.listeJoueur = liste;
+		this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+		this.partie = partie;
 		this.infoPartie = genererInfoPartie();
 		this.ep = new JEditorPane("text/html", this.infoPartie);
 		this.ep.setPreferredSize(new Dimension(250, 200));
-
 		this.ep.setEditable(false);
-		
 		this.sp = new JScrollPane(ep);
-		
 		this.add(sp);
 	}
 
 	private String genererInfoPartie(){
+		
 		StringBuffer sb = new StringBuffer();
 		sb.append("<h3>Etat de la partie</h3><br>");
-		
-//		for (Iterator<Joueur> iterator = this.listeJoueur.iterator(); iterator.hasNext();) {
-//			Joueur joueur = (Joueur) iterator.next();
-//			sb.append("<b>"+joueur.getNom()+"</b>" +" Main: " +joueur.getMainJoueur().getListeCartes().size() );
-//			sb.append("TV : "+joueur.getTasVisible().getListeCartes().size());
-//			sb.append("TC : "+joueur.getTasCache().getListeCartes().size() +"<br>");		
-//		}	
-		
 		sb.append("<TABLE BORDER=\"0\"> <TR>  <TH>Nom</TH> <TH>Main</TH> <TH>Visible</TH> <TH>Cache</TH>  </TR> <TR> ");
-		for (Iterator<Joueur> iterator = listeJoueur.iterator(); iterator.hasNext();) {
+		for (Iterator<Joueur> iterator = this.partie.getListeJoueurs().iterator(); iterator.hasNext();) {
 			Joueur joueur = (Joueur) iterator.next();
 			sb.append("<TH>"+joueur.getNom()+"</TH><TD>"+joueur.getMainJoueur().getListeCartes().size()+"</TD>");
 			sb.append("<TD>"+joueur.getTasVisible().getListeCartes().size()+"</TD> <TD>"+joueur.getTasVisible().getListeCartes().size()+"</TD> </TR>" );
 		}
 		sb.append("</TABLE> ");
+		sb.append("<br><b>Tapis :</b>  "+this.partie.getTapis().getListeCartes().size());
+		sb.append("<br><b>Pioche :</b> "+this.partie.getPioche().getListeCartes().size());
+
 		return sb.toString();
 	}
 	

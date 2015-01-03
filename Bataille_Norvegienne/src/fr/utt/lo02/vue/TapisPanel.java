@@ -1,6 +1,7 @@
 package fr.utt.lo02.vue;
 
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.util.Observable;
 import java.util.Observer;
@@ -17,22 +18,11 @@ public class TapisPanel extends JPanel implements Observer{
 	private CartePanel dessinPioche;
 	
 	public TapisPanel(BufferedImage matriceCarte, PartieControleur partieControleur){
-		
-<<<<<<< HEAD
-		this.setPreferredSize(new Dimension(600,320));
-		//this.dessinPioche = new CartePanel(new Carte(0, 0), matriceCarte, 0.7, partieControleur);
-		int derniereCarte = partieControleur.getPartie().getPioche().getListeCartes().size();
-		this.derniereCarte = new CartePanel(null, matriceCarte, 0.7, partieControleur, derniereCarte);
-		this.add(this.derniereCarte);	
-		//this.add(this.dessinPioche);
-		
-=======
 		this.setPreferredSize(new Dimension(500,320));
-		this.dessinPioche = new CartePanel(null, matriceCarte, 0.7);
-		this.derniereCarte = new CartePanel(null, matriceCarte, 0.7);
+		this.dessinPioche = new CartePanel(null, matriceCarte, 0.7, partieControleur, 0);
+		this.derniereCarte = new CartePanel(null, matriceCarte, 0.7, partieControleur, 0);
 		this.add(this.derniereCarte);	
 		this.add(this.dessinPioche);
->>>>>>> FETCH_HEAD
 	}
 
 	@Override

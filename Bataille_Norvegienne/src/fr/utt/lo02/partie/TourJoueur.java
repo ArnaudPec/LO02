@@ -17,7 +17,7 @@ public class TourJoueur {
 	}
 	
 	public void envoyer(){
-		this.partie.faireJouerJoueur(this.ListeCarte);//Ici j'envoie les numéros des cartes que le joueur veut jouer, il faut que la méthode se débrouille pour faire jouer ces cartes.
+	//	this.partie.faireJouerJoueur(this.ListeCarte);//Ici j'envoie les numéros des cartes que le joueur veut jouer, il faut que la méthode se débrouille pour faire jouer ces cartes.
 		//Rafraichir la vue ? je sais pas trop si ça se fait avec les updates ou si il faut appeller une méthode.
 		
 		this.ListeCarte=null;//Je supprime une fois qu'on à jouer pour le prochain joueur.

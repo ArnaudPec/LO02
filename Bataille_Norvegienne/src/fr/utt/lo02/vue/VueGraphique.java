@@ -10,14 +10,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.imageio.ImageIO;
-import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -33,6 +30,8 @@ import fr.utt.lo02.partie.PartieControleur;
 
 public class VueGraphique extends JFrame implements Observer, ActionListener {
 
+	
+	private static final long serialVersionUID = 1L;
 	protected Partie partie;
 	protected PartieControleur partieControleur;
 	
@@ -47,19 +46,20 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 	private JMenuItem itemAPropos;
 	private JMenuItem itemRegles;
 
+	private JMenuItem itemEnvoyer;
+	
 	private MainScrollPane mainPanel;
 	private JPanel infoPartiePanel;
 	private JPanel tapisPanel;
 	private BufferedImage matriceCarte;
 	
-	
 	private JButton envoyer;
+	private Color tapisColor;
 	
 	public static final String[] Strategies = { "Aléatoire", "Offensive (1 Max)", "Equilibrée"};
-
+	
 	public VueGraphique (Partie partie, final PartieControleur partieControleur){
 
-		this.envoyer = new JButton("Envoyer");
 		this.window = new JFrame("Bataille Norvégienne");
 		this.window.setVisible(true);
 		this.window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,14 +68,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		this.partie = partie;
 		this.partieControleur = partieControleur;
 		this.partie.addObserver(this);//je connecte la vue avec le modèle (est-ce que je dois seulement connecter partie ?)
-		
-		
-		//Action quand on clique sur le bouton envoyer !
-		addButtonListener(new ActionListener () {
-			public void actionPerformed ( ActionEvent e) {
-				
-		}});
-		
+
 	}
 	
 	public JButton getEnvoyer(){
@@ -103,10 +96,14 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 			System.out.println("Règles du jeu");
 			this.afficherRegles();
 		}
+		else if(e.getSource() ==this.envoyer || e.getSource()==this.itemEnvoyer){
+			System.out.println("Bouton Envoyer");
+		}
 	}
 
 	private void initialiserPartie() {
 		this.ajouterJoueurs();
+		if(this.partie.getNbJoueurs()>5)this.partie.getPioche().ajouterUnSecondJeuDeCarte();
 		this.partie.getPioche().distribuerCarte(this.partie);
 		this.dessinerJeu();	
 	}
@@ -138,7 +135,6 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 			}
 			else this.partie.creationIA(i, 0);
 		}
-		System.out.println(partie.getListeJoueurs());
 	}
 
 	private Joueur choisirJoueur() {
@@ -198,12 +194,13 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		
 				// Fenêtre
 				this.window.setResizable(true);
+				this.tapisColor=new Color(0,90,50);
 
 				// Container
 
 				this.container = new ImagePanel(new BorderLayout());  
 				this.window.setContentPane(this.container);
-				this.container.setBackground(new Color(0,90,50));
+				this.container.setBackground(this.tapisColor);
 
 				// Menu
 				this.menuBar = new JMenuBar();
@@ -213,7 +210,9 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 				this.jmenuPartie.add(this.itemQuitter = new JMenuItem("Quitter"));
 				this.jmenuAide.add(this.itemRegles = new JMenuItem("Règles du jeu"));
 				this.jmenuAide.add(this.itemAPropos = new JMenuItem("A propos"));
-
+				this.menuBar.add(this.itemEnvoyer = new JMenuItem("Envoyer"));
+				this.envoyer = new JButton("Envoyer");
+				
 				this.container.add(this.menuBar, BorderLayout.NORTH);
 				
 				//this.window.pack();
@@ -225,25 +224,25 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 				this.itemAPropos.addActionListener(this);
 				this.itemNouvellePartie.addActionListener(this);
 				this.itemRegles.addActionListener(this);
+				this.itemEnvoyer.addActionListener(this);
+				this.envoyer.addActionListener(this);
 	}
 
 	private void dessinerJeu(){
 		
 		this.initialiserFenetre();
+		
+		this.container.add(this.tapisPanel = new TapisPanel(matriceCarte, this.partieControleur), BorderLayout.WEST);
+		this.container.add(this.infoPartiePanel = new InfoPartiePanel(this.partie), BorderLayout.EAST);
+		this.container.add(this.mainPanel = new MainScrollPane(this.matriceCarte, this.partie.getListeJoueurs().get(0).getMainJoueur(), partieControleur), BorderLayout.SOUTH);
+		this.infoPartiePanel.add(this.envoyer, BorderLayout.CENTER);
+	
 
-		this.container.add(this.tapisPanel = new TapisPanel(matriceCarte, this.partieControleur), BorderLayout.CENTER);
-		this.container.add(this.infoPartiePanel = new InfoPartiePanel(this.partie.getListeJoueurs()), BorderLayout.EAST);
-<<<<<<< HEAD
-		this.container.add(this.envoyer, BorderLayout.EAST);
-		this.container.add(this.mainPanel = new MainScrollPane(this.matriceCarte, this.partie.getListeJoueurs().get(1).getMainJoueur(), this.partieControleur), BorderLayout.SOUTH);
-=======
-		this.container.add(this.mainPanel = new MainScrollPane(this.matriceCarte, this.partie.getListeJoueurs().get(0).getMainJoueur()), BorderLayout.SOUTH);
->>>>>>> FETCH_HEAD
-
+		
 		//Panels
-		this.mainPanel.setBackground(new Color(0,90,50));
-		this.infoPartiePanel.setBackground(new Color(0,90,50));
-		this.tapisPanel.setBackground(new Color(0,90,50));
+		this.mainPanel.setBackground(this.tapisColor);
+		this.infoPartiePanel.setBackground(this.tapisColor);
+		this.tapisPanel.setBackground(this.tapisColor);
 
 		this.window.pack();
 	}
