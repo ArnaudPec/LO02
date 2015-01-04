@@ -1,7 +1,6 @@
 package fr.utt.lo02.vue;
 
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.util.Observable;
 import java.util.Observer;

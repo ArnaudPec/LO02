@@ -21,30 +21,7 @@ public class MainScrollPane extends ScrollPane {
 	private MainJoueur mainJoueur;
 	private BufferedImage matriceCarte;
 	private PartieControleur partieControleur;
-	
-//	public MainScrollPane(BufferedImage matriceCarte) throws HeadlessException {
-//		super();
-//		
-//		
-//		//test
-//		this.mainJoueur = new MainJoueur();
-//		this.mainJoueur.ajouterCarte(new Carte(3, 8));
-//		this.mainJoueur.ajouterCarte(new Carte(0, 13));
-//		this.mainJoueur.ajouterCarte(new Carte(1, 2));
-//		this.mainJoueur.ajouterCarte(new Carte(3, 14));
-//		this.mainJoueur.ajouterCarte(new Carte(2, 2));
-//		this.mainJoueur.ajouterCarte(new Carte(2, 14));
-//		//fin 
-//		
-//		
-//		this.matriceCarte = matriceCarte;
-//		this.setPreferredSize(new Dimension(800,200));
-//		this.ajouterCartesMainJoueur();
-//		
-//		
-//		this.add(this.main);
-//	}
-//	
+
 	public MainScrollPane(BufferedImage matriceCarte, MainJoueur mainJoueur, PartieControleur partieControleur) throws HeadlessException {
 		super();
 		this.partieControleur = partieControleur;

@@ -3,7 +3,6 @@ package fr.utt.lo02.partie;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
-import java.util.Scanner;
 
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.carte.Pioche;
@@ -155,119 +154,8 @@ public class Partie extends Observable{
 		this.nbJoueurs++;
 	}
 	
-	/**
-	 * Méthode permettant de gérer le mécanisme d'ajout des joueurs en début de partie
-	 */
-	@SuppressWarnings("resource")
-	public void interfaceAjouterJoueur() {
-		
-		int nbJoueursHumain = 0;
-		int nbJoueursIA = 0;
-		Scanner scanner = new Scanner(System.in);
-		Scanner scanner2 = new Scanner(System.in);
 
-		do{
-			System.out.println("Combien de joueur humain souhaitez vous ajouter ? (0-11 joueurs)");
-			nbJoueursHumain = scanner.nextInt();
-		}while(nbJoueursHumain>11 || nbJoueursHumain <0);
-			
-		System.out.println("Souhaitez vous ajouter des IA ?(Oui/Non)");
-		String reponse = scanner2.nextLine();
-		
-		if (reponse.toUpperCase().equals("OUI") && nbJoueursHumain<11){
-			do{
-				System.out.println("Combien de joueur IA souhaitez vous ajouter ? (1-" + (11-nbJoueursHumain) + ")");
-				nbJoueursIA= scanner.nextInt();
-			}while(nbJoueursHumain + nbJoueursIA >11);
-			if(nbJoueursIA==1 && nbJoueursHumain==0){
-				System.out.println("Vous ne pouvez pas lancer de partie avec une seule IA, une IA a ete ajoutee !");
-				nbJoueursIA ++;
-			}
-		} 
-		else if(reponse.toUpperCase().equals("OUI")){
-			System.out.println("Nombre maximum de joueurs atteint. Impossible d'ajouter des IAs");	
-		}
-		else if (nbJoueursHumain ==1) {
-			System.out.println("Vous ne pouvez pas lancer de partie seul, une IA a ete ajoutee !");
-			nbJoueursIA = 1;
-		}
-		else if(nbJoueursIA==0 && nbJoueursHumain==0){
-			System.out.println("Vous ne pouvez pas lancer de partie sans joueurs, un joueur humain et une IA ont ete ajoutees !");
-			nbJoueursIA = 1;
-			nbJoueursHumain =1;
-		}	
-		this.creationHumain(nbJoueursHumain);
-		this.creationIA(nbJoueursIA);
-		
-		if(this.nbJoueurs>5)this.pioche.ajouterUnSecondJeuDeCarte();
-	}
-//	
-//	
-//	public void interfaceAjouterJoueur() {
-//		
-//		boolean conditionIA = false;
-//		boolean conditionJ = false;
-//
-//		int nbJoueursHumain = 0;
-//		int nbJoueursIA = 0;
-//
-////		int niveau = 0;
-//
-//		Scanner sc = new Scanner(System.in);
-//
-//		System.out.println("Combien de joueur humain voulez vous ajouter");
-//		String demandeNbJoueurs = sc.nextLine();
-//
-//		nbJoueursHumain = Integer.parseInt(demandeNbJoueurs);
-//
-//		do {
-//			if (nbJoueursHumain > 0 && nbJoueursHumain <= 11) {
-//				conditionJ = true;
-//			}
-//		} while (!conditionJ);
-//
-//		System.out.println("Voulez vous ajouter des IA ?(Oui/Non)");
-//		String demandeIA = sc.nextLine();
-//
-//		if ("OUI".equals(demandeIA.toUpperCase())) {
-//
-//			System.out.println("Combien d'IA voulez vous ajouter ?");
-//			nbJoueursIA = sc.nextInt();
-//			do {
-//				if (nbJoueursHumain + nbJoueursIA > 0 && nbJoueursHumain + nbJoueursIA <= 11) { 
-//					conditionIA = true;
-//				}
-//			} while (!conditionIA);
-//
-////			System.out.println("Quel niveau d'IA désirez vous (0=aléatoire, 1=offensive)");
-////			niveau = sc.nextInt();
-//		} else {
-//			if (nbJoueursHumain < 2) {
-//				System.out.println("Vous ne pouvez pas lancer de partie seul, une IA aléatoire a été crée ");
-//				nbJoueursIA = 1;
-////				niveau = 0;
-//			}
-//		}
-//		this.creationHumain(nbJoueursHumain);
-//		this.creationIA(nbJoueursIA);
-////		this.creationIA(nbJoueursIA, niveau);
-//		
-//		if(this.nbJoueurs>5)this.pioche.ajouterUnSecondJeuDeCarte();
-//
-//	}
-
-	public void creationHumain(int nbJoueur) {
-		Scanner sc = new Scanner(System.in);
-
-		for (int i = 0; i < nbJoueur; i++) {
-			System.out.println("\nEntrez le nom du joueur");
-			String nomJoueur = sc.nextLine();
-			Humain joueur = new Humain(nomJoueur, this.nbJoueurs);
-			this.ajouterJoueur(joueur);
-		}
-
-	}
-
+	
 	public void creationHumain(String nom){
 		Humain joueur = new Humain(nom, 0);
 		this.ajouterJoueur(joueur);
@@ -293,54 +181,7 @@ public class Partie extends Observable{
 	}
 	
 
-	/**Méthode permettant de créer les joueurs gérés par l'ordinateur
-	 * @param nbJoueur à créer
-	 */
-	public void creationIA(int nbJoueur) {
-		
-		Scanner scanner = new Scanner(System.in);
-		int strategie;
-		boolean joueurOf=false;
-		
-		for (int i = 0; i < nbJoueur; i++) {
-			
-			System.out.println("\nIA numero "+i +" : Quelle stratégie souahitez vous affronter ? \n0 : Aleatoire | 1 : Offensive (MAX 1)| 2 : Equilibree");
-			strategie = scanner.nextInt();
-			
-			while(strategie<0 || strategie > 2){
-				System.out.println("Erreur, recommencez :");
-				strategie = scanner.nextInt();
-			}
-			
-			joueurOf=this.verifierPresenceIaOffensive();
-			
-			switch (strategie) {
-			case 0:
-				IaAleatoire iaAleatoire = new IaAleatoire("ia_" + i +"_Aleatoire",this.nbJoueurs);
-				this.ajouterJoueur(iaAleatoire);
-				break;
-				
-			case 1:
-				if(!joueurOf){
-				IaOffensive  IaOffensive = new IaOffensive("ia_" + i +"_Offensive",this.nbJoueurs);
-				this.ajouterJoueur(IaOffensive);}
-				else {
-					System.out.println("Nombre max d'IA offensive atteint, creation d'une IA aleatoire");
-					this.ajouterJoueur(new IaAleatoire("ia_" + i +"_Aleatoire",this.nbJoueurs));
-				}
-				break;
-				
-			case 2:
-				IaEquilibree  IaEquilibree = new IaEquilibree("ia_" + i +"_Equilibree",this.nbJoueurs);
-				this.ajouterJoueur(IaEquilibree);
-				break;
 
-			default:
-				break;
-			}
-		}
-	}
-	
 	/**
 	 * Méthode permettant de vérifier si un joueur offensif est présent dans la liste des joueurs
 	 * @return un booleen 
@@ -395,7 +236,6 @@ public class Partie extends Observable{
 		}
 	
 		nb += this.tapis.getListeCartes().size() + this.pioche.getListeCartes().size();
-		System.out.println("NOMBRE TOTAL DE CARTE DANS LE JEU : " +nb);
 	}
 
 	/**
@@ -406,7 +246,7 @@ public class Partie extends Observable{
 	 */
 	public int faireJouerJoueur(Joueur joueur) {
 
-		System.out.println("C'est " + joueur.getNom() + " qui joue ! \n"+ this.getTapis());
+		//System.out.println("C'est " + joueur.getNom() + " qui joue ! \n"+ this.getTapis());
 
 		Carte[] carteJouees = joueur.choisirCarteAJouer(this.getTapis().getCarteDuDessus());
 		this.getTapis().ajouterPlusieursCartes(carteJouees);
@@ -443,22 +283,20 @@ public class Partie extends Observable{
 				joueur.getMainJoueur().ajouterCarte(
 				this.pioche.prendreCarteDuDessus());
 			}
-			System.out.println(nbMax + " carte(s) a(ont) ete piochee(s) par "
-					+ joueur.getNom() + "\n");
+		//	System.out.println(nbMax + " carte(s) a(ont) ete piochee(s) par "	+ joueur.getNom() + "\n");
 
 		}
 
 		else if (this.pioche.getListeCartes().isEmpty() && joueur.getMainJoueur().getListeCartes().isEmpty() && (!joueur.getTasVisible().getListeCartes().isEmpty())) {
 			joueur.getMainJoueur().ajouterPlusieursCartes(joueur.getTasVisible().prendreTasVisible());
-			System.out.println(joueur.getNom()
-					+ " vient de prendre les cartes de son TasVisible.\n");
+		//	System.out.println(joueur.getNom()	+ " vient de prendre les cartes de son TasVisible.\n");
 
 		}
 
 		else if (this.pioche.getListeCartes().isEmpty() && joueur.getTasVisible().getListeCartes().isEmpty() && joueur.getMainJoueur().getListeCartes().isEmpty()) 
 		{
 			joueur.getMainJoueur().ajouterCarte(joueur.getTasCache().prendreCarte());
-			System.out.println(joueur.getNom()+ " vient de prendre une carte de son TasCache.\nIl contient encore " +joueur.getTasCache().getListeCartes().size() + " cartes.\n");
+		//	System.out.println(joueur.getNom()+ " vient de prendre une carte de son TasCache.\nIl contient encore " +joueur.getTasCache().getListeCartes().size() + " cartes.\n");
 		}
 
 	}
@@ -478,7 +316,7 @@ public class Partie extends Observable{
 			
 			if (joueur.peutJouer(this.getTapis().getCarteDuDessus())) {
 
-				System.out.println("num joueur : " + joueur.getNumJoueur());
+				//System.out.println("num joueur : " + joueur.getNumJoueur());
 				
 				int nbCartesPosees=this.faireJouerJoueur(joueur);
 				
@@ -487,11 +325,11 @@ public class Partie extends Observable{
 				
 				if (this.tapis.getCarteDuDessus().estSpeciale()) {ActionSpeciale actionSpeciale = new ActionSpeciale(this,this.joueurCourant, nbCartesPosees);actionSpeciale.appelerBonneMethode();}
 
-				System.out.println("La pioche contient "+ this.pioche.getListeCartes().size() + " cartes. \nLe tapis contient "+ this.tapis.getListeCartes().size() + " cartes. \n");
+			//	System.out.println("La pioche contient "+ this.pioche.getListeCartes().size() + " cartes. \nLe tapis contient "+ this.tapis.getListeCartes().size() + " cartes. \n");
 			}
 
 			else {
-				System.out.println("Le joueur "+ joueur.getNom()+ " ne peut pas jouer, il ramasse le tapis.\n");
+				//System.out.println("Le joueur "+ joueur.getNom()+ " ne peut pas jouer, il ramasse le tapis.\n");
 				joueur.getMainJoueur().getListeCartes().addAll(this.tapis.prendreTapis());// Je donne le
 			}
 			
@@ -499,8 +337,114 @@ public class Partie extends Observable{
 			
 			nbtour++;
 		}
-		System.out.println("Partie terminee, gagnant : " + gagnant.getNom()	+ " en " + nbtour + " tours");
+//		System.out.println("Partie terminee, gagnant : " + gagnant.getNom()	+ " en " + nbtour + " tours");
 	}
 
-	
+//	/**
+//	 * Méthode permettant de gérer le mécanisme d'ajout des joueurs en début de partie
+//	 */
+//	@SuppressWarnings("resource")
+//	public void interfaceAjouterJoueur() {
+//		
+//		int nbJoueursHumain = 0;
+//		int nbJoueursIA = 0;
+//		Scanner scanner = new Scanner(System.in);
+//		Scanner scanner2 = new Scanner(System.in);
+//
+//		do{
+//			System.out.println("Combien de joueur humain souhaitez vous ajouter ? (0-11 joueurs)");
+//			nbJoueursHumain = scanner.nextInt();
+//		}while(nbJoueursHumain>11 || nbJoueursHumain <0);
+//			
+//		System.out.println("Souhaitez vous ajouter des IA ?(Oui/Non)");
+//		String reponse = scanner2.nextLine();
+//		
+//		if (reponse.toUpperCase().equals("OUI") && nbJoueursHumain<11){
+//			do{
+//				System.out.println("Combien de joueur IA souhaitez vous ajouter ? (1-" + (11-nbJoueursHumain) + ")");
+//				nbJoueursIA= scanner.nextInt();
+//			}while(nbJoueursHumain + nbJoueursIA >11);
+//			if(nbJoueursIA==1 && nbJoueursHumain==0){
+//				System.out.println("Vous ne pouvez pas lancer de partie avec une seule IA, une IA a ete ajoutee !");
+//				nbJoueursIA ++;
+//			}
+//		} 
+//		else if(reponse.toUpperCase().equals("OUI")){
+//			System.out.println("Nombre maximum de joueurs atteint. Impossible d'ajouter des IAs");	
+//		}
+//		else if (nbJoueursHumain ==1) {
+//			System.out.println("Vous ne pouvez pas lancer de partie seul, une IA a ete ajoutee !");
+//			nbJoueursIA = 1;
+//		}
+//		else if(nbJoueursIA==0 && nbJoueursHumain==0){
+//			System.out.println("Vous ne pouvez pas lancer de partie sans joueurs, un joueur humain et une IA ont ete ajoutees !");
+//			nbJoueursIA = 1;
+//			nbJoueursHumain =1;
+//		}	
+//		this.creationHumain(nbJoueursHumain);
+//		this.creationIA(nbJoueursIA);
+//		
+//		if(this.nbJoueurs>5)this.pioche.ajouterUnSecondJeuDeCarte();
+//	}
+
+
+//	public void creationHumain(int nbJoueur) {
+//		Scanner sc = new Scanner(System.in);
+//
+//		for (int i = 0; i < nbJoueur; i++) {
+//			System.out.println("\nEntrez le nom du joueur");
+//			String nomJoueur = sc.nextLine();
+//			Humain joueur = new Humain(nomJoueur, this.nbJoueurs);
+//			this.ajouterJoueur(joueur);
+//		}
+//
+//	}
+
+//	/**Méthode permettant de créer les joueurs gérés par l'ordinateur
+//	 * @param nbJoueur à créer
+//	 */
+//	public void creationIA(int nbJoueur) {
+//		
+//		Scanner scanner = new Scanner(System.in);
+//		int strategie;
+//		boolean joueurOf=false;
+//		
+//		for (int i = 0; i < nbJoueur; i++) {
+//			
+//			System.out.println("\nIA numero "+i +" : Quelle stratégie souahitez vous affronter ? \n0 : Aleatoire | 1 : Offensive (MAX 1)| 2 : Equilibree");
+//			strategie = scanner.nextInt();
+//			
+//			while(strategie<0 || strategie > 2){
+//				System.out.println("Erreur, recommencez :");
+//				strategie = scanner.nextInt();
+//			}
+//			
+//			joueurOf=this.verifierPresenceIaOffensive();
+//			
+//			switch (strategie) {
+//			case 0:
+//				IaAleatoire iaAleatoire = new IaAleatoire("ia_" + i +"_Aleatoire",this.nbJoueurs);
+//				this.ajouterJoueur(iaAleatoire);
+//				break;
+//				
+//			case 1:
+//				if(!joueurOf){
+//				IaOffensive  IaOffensive = new IaOffensive("ia_" + i +"_Offensive",this.nbJoueurs);
+//				this.ajouterJoueur(IaOffensive);}
+//				else {
+//					System.out.println("Nombre max d'IA offensive atteint, creation d'une IA aleatoire");
+//					this.ajouterJoueur(new IaAleatoire("ia_" + i +"_Aleatoire",this.nbJoueurs));
+//				}
+//				break;
+//				
+//			case 2:
+//				IaEquilibree  IaEquilibree = new IaEquilibree("ia_" + i +"_Equilibree",this.nbJoueurs);
+//				this.ajouterJoueur(IaEquilibree);
+//				break;
+//
+//			default:
+//				break;
+//			}
+//		}
+//	}
 }

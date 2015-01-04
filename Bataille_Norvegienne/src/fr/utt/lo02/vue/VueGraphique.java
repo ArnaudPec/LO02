@@ -90,7 +90,6 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		else if (e.getSource() == this.itemNouvellePartie){
 			System.out.println("Nouvelle Partie");
 			this.initialiserPartie();
-			this.choisirJoueur();
 		}
 		else if (e.getSource() == this.itemRegles){
 			System.out.println("Règles du jeu");
@@ -150,6 +149,10 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 				listeJoueur[0]);
 		
 		return this.partie.getJoueurNom(joueurChoisi);
+	}
+	
+	public void changerCartes(){
+		//
 	}
 
 	private void afficherApropos() {

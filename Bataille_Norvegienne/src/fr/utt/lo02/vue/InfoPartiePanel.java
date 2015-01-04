@@ -1,8 +1,6 @@
 package fr.utt.lo02.vue;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
 import java.util.Observer;
@@ -11,8 +9,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JEditorPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 import fr.utt.lo02.joueur.Joueur;
 import fr.utt.lo02.partie.Partie;

@@ -95,10 +95,8 @@ public class IaAleatoire extends IA {
 			numCarteMain = rand.nextInt(3);
 			numCarteVis = rand.nextInt(3);
 
-			this.mainJoueur.ajouterCarte(this.tasVisible
-					.prendreCarte(numCarteVis));
-			this.tasVisible.ajouterCarte(this.mainJoueur
-					.prendreCarte(numCarteMain));
+			this.mainJoueur.ajouterCarte(this.tasVisible.prendreCarte(numCarteVis));
+			this.tasVisible.ajouterCarte(this.mainJoueur.prendreCarte(numCarteMain));
 			nbChangement--;
 			changer = rand.nextBoolean();
 		}

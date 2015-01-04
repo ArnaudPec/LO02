@@ -1,15 +1,19 @@
 package fr.utt.lo02.vue;
 
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
+import java.awt.image.ConvolveOp;
+import java.awt.image.Kernel;
 import java.util.Observable;
 import java.util.Observer;
 
+import sun.util.BuddhistCalendar;
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.partie.PartieControleur;
 
@@ -18,8 +22,10 @@ public class CartePanel extends ImagePanel implements Observer {
 	
 	private static final long serialVersionUID = 1L;
 	private Carte carte;
+	private boolean selectionnee;
 	public static final Dimension TAILLE = new Dimension(168, 244);
 	private int positionDeLaCarteDansMainJoueur;
+	private BufferedImage bfi;
 	
 	public CartePanel ( Carte c, BufferedImage matriceCarte, double taille, final PartieControleur partieControleur, final int position){
 		super(partieControleur);
@@ -27,15 +33,17 @@ public class CartePanel extends ImagePanel implements Observer {
 		this.carte = c;
 		this.positionDeLaCarteDansMainJoueur = position;
 		BufferedImage bfi;
+		this.selectionnee=false;
 		
 		if(c!=null){ // on cherche une carte donnée
-			 bfi= matriceCarte.getSubimage(this.getPositionX(c.getValeur())*TAILLE.width,this.getPositionY(c.getCouleur())*TAILLE.height,TAILLE.width,TAILLE.height);
+			 this.bfi= matriceCarte.getSubimage(this.getPositionX(c.getValeur())*TAILLE.width,this.getPositionY(c.getCouleur())*TAILLE.height,TAILLE.width,TAILLE.height);
 		}
 		else { // on veut la carte retournée
-			 bfi = matriceCarte.getSubimage(2*TAILLE.width,4*TAILLE.height,TAILLE.width,TAILLE.height);
+			 this.bfi = matriceCarte.getSubimage(2*TAILLE.width,4*TAILLE.height,TAILLE.width,TAILLE.height);
 		}
 		
-		super.image = redimCarte(bfi, taille);
+		super.image = redimCarte(this.bfi, taille);
+		
 		
 		if (carte != null ) {this.addMouseListener(new MouseListener() {
 			
@@ -44,6 +52,15 @@ public class CartePanel extends ImagePanel implements Observer {
 
 				System.out.println("Vous avez cliqué sur un " + carte.getValeurAffichage() + " de " +carte.getCouleurAffichage());
 				partieControleur.actionCarteSelectionne(position);
+				if(!CartePanel.this.selectionnee) {
+					CartePanel.this.selectionnee = true;
+					CartePanel.this.mettreSurbrillance();
+				}
+				else {
+					CartePanel.this.selectionnee = false;
+					CartePanel.this.enleverSurbrillance();
+				}
+
 			}
 
 			@Override
@@ -71,6 +88,36 @@ public class CartePanel extends ImagePanel implements Observer {
 			}
 		});
 	}
+	}
+	
+	/**
+	 * Méthode permettant de mettre en évidence la sélection de carte
+	 */
+	protected void mettreSurbrillance() {
+		this.bfi = super.image;
+		super.image = redimCarte(super.image, 0.5);
+		this.setBackground(new Color(0,90,50));
+		this.repaint();
+		
+	}
+	/**
+	 * Méthode permettant de déselectionner une carte
+	 */
+	protected void enleverSurbrillance() {
+		super.image = this.bfi;
+		this.repaint();
+	}
+
+	private void flouter(){
+		BufferedImage imgFlou = new BufferedImage(super.image.getWidth(), super.image.getHeight(), BufferedImage.TYPE_INT_ARGB );
+		
+		float[] matrix = new float[400];
+		for (int i = 0; i < 400; i++)
+			matrix[i] = 1.0f/400.0f;
+
+	    BufferedImageOp op = new ConvolveOp( new Kernel(0, 0, matrix), ConvolveOp.EDGE_NO_OP, null );
+		op.filter(super.image, imgFlou );
+		super.image = imgFlou;
 	}
 	
 	/**

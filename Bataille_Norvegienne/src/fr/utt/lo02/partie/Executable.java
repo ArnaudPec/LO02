@@ -1,6 +1,5 @@
 package fr.utt.lo02.partie;
 
-import fr.utt.lo02.vue.Vue;
 import fr.utt.lo02.vue.VueGraphique;
 
 public class Executable {
