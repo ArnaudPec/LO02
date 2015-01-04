@@ -21,7 +21,6 @@ public class Partie extends Observable{
 	private Pioche pioche;
 	private Tapis tapis;
 	private static Partie instancePartie;
-	private TourJoueur tourJoueur;
 	
 
 	private Partie() {
@@ -29,7 +28,6 @@ public class Partie extends Observable{
 		this.pioche = Pioche.getInstancePioche();
 		this.tapis = Tapis.getInstanceTapis();
 		this.joueurCourant = 0;
-		this.tourJoueur = new TourJoueur(this);
 	}
 
 	public static Partie getInstancePartie() {
@@ -227,15 +225,6 @@ public class Partie extends Observable{
 		
 		if (this.joueurCourant == this.nbJoueurs - 1) this.joueurCourant = 0;
 		else joueurCourant++;
-
-		int nb = 0;
-		
-		for (Iterator<Joueur> iterator = this.listeJoueurs.iterator(); iterator.hasNext();) {
-			Joueur joueur = (Joueur) iterator.next();
-			nb = nb + joueur.calculerNombreTotalCarte();
-		}
-	
-		nb += this.tapis.getListeCartes().size() + this.pioche.getListeCartes().size();
 	}
 
 	/**
@@ -283,22 +272,25 @@ public class Partie extends Observable{
 				joueur.getMainJoueur().ajouterCarte(
 				this.pioche.prendreCarteDuDessus());
 			}
-		//	System.out.println(nbMax + " carte(s) a(ont) ete piochee(s) par "	+ joueur.getNom() + "\n");
+			System.out.println(nbMax + " carte(s) a(ont) ete piochee(s) par "	+ joueur.getNom() + "\n");
 
 		}
 
 		else if (this.pioche.getListeCartes().isEmpty() && joueur.getMainJoueur().getListeCartes().isEmpty() && (!joueur.getTasVisible().getListeCartes().isEmpty())) {
 			joueur.getMainJoueur().ajouterPlusieursCartes(joueur.getTasVisible().prendreTasVisible());
-		//	System.out.println(joueur.getNom()	+ " vient de prendre les cartes de son TasVisible.\n");
+			System.out.println(joueur.getNom()	+ " vient de prendre les cartes de son TasVisible.\n");
 
 		}
 
 		else if (this.pioche.getListeCartes().isEmpty() && joueur.getTasVisible().getListeCartes().isEmpty() && joueur.getMainJoueur().getListeCartes().isEmpty()) 
 		{
 			joueur.getMainJoueur().ajouterCarte(joueur.getTasCache().prendreCarte());
-		//	System.out.println(joueur.getNom()+ " vient de prendre une carte de son TasCache.\nIl contient encore " +joueur.getTasCache().getListeCartes().size() + " cartes.\n");
+			System.out.println(joueur.getNom()+ " vient de prendre une carte de son TasCache.\nIl contient encore " +joueur.getTasCache().getListeCartes().size() + " cartes.\n");
 		}
 
+		setChanged();
+		this.notifyObservers();
+		System.out.println("AAA");
 	}
 
 	/**
@@ -320,8 +312,10 @@ public class Partie extends Observable{
 				
 				int nbCartesPosees=this.faireJouerJoueur(joueur);
 				
-				if (joueur.estGagnant()) {estDanish = true; gagnant = joueur;} 
-				else this.fairePiocherJoueur(joueur);
+				if (joueur.estGagnant()) {
+					estDanish = true; 
+					gagnant = joueur;
+				} else this.fairePiocherJoueur(joueur);
 				
 				if (this.tapis.getCarteDuDessus().estSpeciale()) {ActionSpeciale actionSpeciale = new ActionSpeciale(this,this.joueurCourant, nbCartesPosees);actionSpeciale.appelerBonneMethode();}
 
@@ -339,6 +333,7 @@ public class Partie extends Observable{
 		}
 		System.out.println("Partie terminee, gagnant : " + gagnant.getNom()	+ " en " + nbtour + " tours");
 	}
+	
 	
 	
 	public boolean verifierSelection(ArrayList<Carte> liste){

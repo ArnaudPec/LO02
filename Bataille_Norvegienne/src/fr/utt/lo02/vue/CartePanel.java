@@ -15,7 +15,7 @@ import java.util.Observer;
 
 import sun.util.BuddhistCalendar;
 import fr.utt.lo02.carte.Carte;
-import fr.utt.lo02.partie.PartieControleur;
+import fr.utt.lo02.partie.Controleur;
 
 public class CartePanel extends ImagePanel implements Observer {
 	
@@ -27,7 +27,7 @@ public class CartePanel extends ImagePanel implements Observer {
 	private int positionDeLaCarteDansMainJoueur;
 	private BufferedImage bfi;
 	
-	public CartePanel ( Carte c, BufferedImage matriceCarte, boolean selectionnable, double taille, final PartieControleur partieControleur, final int position){
+	public CartePanel ( Carte c, BufferedImage matriceCarte, boolean selectionnable, double taille, final Controleur partieControleur, final int position){
 		super(partieControleur);
 		
 		this.carte = c;

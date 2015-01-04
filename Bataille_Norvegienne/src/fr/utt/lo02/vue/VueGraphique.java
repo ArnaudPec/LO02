@@ -27,13 +27,13 @@ import javax.swing.JScrollPane;
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.joueur.Joueur;
 import fr.utt.lo02.partie.Partie;
-import fr.utt.lo02.partie.PartieControleur;
+import fr.utt.lo02.partie.Controleur;
 
 public class VueGraphique extends JFrame implements Observer, ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	protected Partie partie;
-	protected PartieControleur partieControleur;
+	protected Controleur controleur;
 	
 	private JFrame window;
 	private JMenuBar menuBar;
@@ -58,7 +58,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 	
 	public static final String[] Strategies = { "Aléatoire", "Offensive (1 Max)", "Equilibrée"};
 	
-	public VueGraphique (Partie partie, final PartieControleur partieControleur){
+	public VueGraphique (Partie partie, final Controleur partieControleur){
 
 		this.window = new JFrame("Bataille Norvégienne");
 		this.window.setVisible(true);
@@ -66,7 +66,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		this.initialiserMatriceCarte();
 		this.initialiserFenetre();
 		this.partie = partie;
-		this.partieControleur = partieControleur;
+		this.controleur = partieControleur;
 		this.partie.addObserver(this);
 	}
 	
@@ -97,7 +97,8 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 	}
 
 	private void actionEnvoyer() {
-		boolean envoyer = this.partieControleur.envoyerSelection();
+		
+		boolean envoyer = this.controleur.envoyerSelection();
 		if(!envoyer) JOptionPane.showMessageDialog(this.window, "Mauvaise sélection ! Recommencez", "Alerte", JOptionPane.WARNING_MESSAGE );
 		this.dessinerJeu();
 	}
@@ -139,7 +140,6 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 			}
 			else this.partie.creationIA(i, 0);
 		}
-		
 	}
 
 	private Joueur choisirJoueur() {
@@ -240,13 +240,13 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 				this.envoyer.addActionListener(this);
 	}
 
-	private void dessinerJeu(){
+	public void dessinerJeu(){
 		
 		this.initialiserFenetre();
 		
-		this.container.add(this.tapisPanel = new TapisPanel(matriceCarte, this.partieControleur), BorderLayout.WEST);
+		this.container.add(this.tapisPanel = new TapisPanel(matriceCarte, this.controleur), BorderLayout.WEST);
 		this.container.add(this.infoPartiePanel = new InfoPartiePanel(this.partie), BorderLayout.EAST);
-		this.container.add(this.mainPanel = new MainScrollPane(this.matriceCarte, this.partie.getHumain().getMainJoueur(), partieControleur), BorderLayout.SOUTH);
+		this.container.add(this.mainPanel = new MainScrollPane(this.matriceCarte, this.partie.getHumain().getMainJoueur(), controleur), BorderLayout.SOUTH);
 		this.infoPartiePanel.add(this.envoyer, BorderLayout.CENTER);
 		
 		//Panels
@@ -261,6 +261,15 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		this.dessinerJeu();
+	}
+
+	public void changerBouton() {
+		if(this.envoyer.isVisible())
+		{
+			this.envoyer.setVisible(false);
+		}else{
+			this.envoyer.setVisible(true);
+		}
 	}
 	
 }

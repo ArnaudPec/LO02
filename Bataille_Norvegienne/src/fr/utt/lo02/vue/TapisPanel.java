@@ -8,7 +8,7 @@ import java.util.Observer;
 import javax.swing.JPanel;
 
 import fr.utt.lo02.carte.Carte;
-import fr.utt.lo02.partie.PartieControleur;
+import fr.utt.lo02.partie.Controleur;
 
 public class TapisPanel extends JPanel implements Observer{
 
@@ -16,7 +16,7 @@ public class TapisPanel extends JPanel implements Observer{
 	private CartePanel derniereCarte;
 	private CartePanel dessinPioche;
 	
-	public TapisPanel(BufferedImage matriceCarte, PartieControleur partieControleur){
+	public TapisPanel(BufferedImage matriceCarte, Controleur partieControleur){
 		this.setPreferredSize(new Dimension(500,320));
 		
 		Carte cartePrecedente = partieControleur.getPartie().getTapis().getCarteDuDessus();

@@ -9,7 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
-import fr.utt.lo02.partie.PartieControleur;
+import fr.utt.lo02.partie.Controleur;
 
 public class ImagePanel extends JPanel {
 
@@ -17,9 +17,9 @@ public class ImagePanel extends JPanel {
 	
 
 	protected BufferedImage image;
-	protected PartieControleur partieControleur;
+	protected Controleur partieControleur;
 	
-	public ImagePanel(PartieControleur partieControleur) {
+	public ImagePanel(Controleur partieControleur) {
 		super();
 		this.partieControleur = partieControleur;
 	}

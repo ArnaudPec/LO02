@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.carte.MainJoueur;
-import fr.utt.lo02.partie.PartieControleur;
+import fr.utt.lo02.partie.Controleur;
 
 
 public class MainScrollPane extends ScrollPane {
@@ -20,9 +20,9 @@ public class MainScrollPane extends ScrollPane {
 	private JPanel main;
 	private MainJoueur mainJoueur;
 	private BufferedImage matriceCarte;
-	private PartieControleur partieControleur;
+	private Controleur partieControleur;
 
-	public MainScrollPane(BufferedImage matriceCarte, MainJoueur mainJoueur, PartieControleur partieControleur) throws HeadlessException {
+	public MainScrollPane(BufferedImage matriceCarte, MainJoueur mainJoueur, Controleur partieControleur) throws HeadlessException {
 		super();
 		this.partieControleur = partieControleur;
 		this.mainJoueur = mainJoueur;
