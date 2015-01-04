@@ -67,8 +67,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		this.initialiserFenetre();
 		this.partie = partie;
 		this.partieControleur = partieControleur;
-		this.partie.addObserver(this);//je connecte la vue avec le modèle (est-ce que je dois seulement connecter partie ?)
-
+		this.partie.addObserver(this);
 	}
 	
 	public JButton getEnvoyer(){
@@ -100,6 +99,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 	private void actionEnvoyer() {
 		boolean envoyer = this.partieControleur.envoyerSelection();
 		if(!envoyer) JOptionPane.showMessageDialog(this.window, "Mauvaise sélection ! Recommencez", "Alerte", JOptionPane.WARNING_MESSAGE );
+		this.dessinerJeu();
 	}
 
 	private void initialiserPartie() {
@@ -107,7 +107,6 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		if(this.partie.getNbJoueurs()>5)this.partie.getPioche().ajouterUnSecondJeuDeCarte();
 		this.partie.getPioche().melanger();
 		this.partie.getPioche().distribuerCarte(this.partie);
-		this.partie.getTapis().ajouterCarte(new Carte(0, 6));
 		
 		this.dessinerJeu();	
 		this.changerCartes();
@@ -140,6 +139,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 			}
 			else this.partie.creationIA(i, 0);
 		}
+		
 	}
 
 	private Joueur choisirJoueur() {
@@ -160,7 +160,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 	public void changerCartes(){
 		 int reponse = JOptionPane.showConfirmDialog(null, "Souhaitez vous échanger vos cartes ?", "Echanger cartes", JOptionPane.YES_NO_OPTION);
 	        if (reponse == JOptionPane.YES_OPTION) {
-	          JOptionPane.showMessageDialog(null, "HELLO");
+	          JOptionPane.showMessageDialog(null, "Attention à la marche");
 	        }
 	}
 
@@ -173,7 +173,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		ep.setEditable(false);
 		ep.setPreferredSize(new Dimension(300,100));
 		JScrollPane sp = new JScrollPane(ep);
-		JOptionPane.showMessageDialog(this.window, sp, "A propos", JOptionPane.INFORMATION_MESSAGE);		
+		JOptionPane.showMessageDialog(this.window, sp, "A propos", JOptionPane.INFORMATION_MESSAGE);	
 	}
 
 	private void afficherRegles() {
@@ -246,7 +246,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		
 		this.container.add(this.tapisPanel = new TapisPanel(matriceCarte, this.partieControleur), BorderLayout.WEST);
 		this.container.add(this.infoPartiePanel = new InfoPartiePanel(this.partie), BorderLayout.EAST);
-		this.container.add(this.mainPanel = new MainScrollPane(this.matriceCarte, this.partie.getListeJoueurs().get(0).getMainJoueur(), partieControleur), BorderLayout.SOUTH);
+		this.container.add(this.mainPanel = new MainScrollPane(this.matriceCarte, this.partie.getHumain().getMainJoueur(), partieControleur), BorderLayout.SOUTH);
 		this.infoPartiePanel.add(this.envoyer, BorderLayout.CENTER);
 		
 		//Panels

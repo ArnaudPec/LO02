@@ -171,4 +171,19 @@ public class Humain extends Joueur {
 		return num ;
 	}
 
+
+	public Carte[] choisirCarteAJouer(ArrayList<Carte> listeCartesSelectionnees) {
+
+		int nbCarte = listeCartesSelectionnees.size();
+		Carte[] listeCartes = new Carte[nbCarte];
+		Carte carte = listeCartesSelectionnees.get(0);
+		
+		for (int i = 0; i < listeCartes.length; i++) {
+			listeCartes[i] = this.mainJoueur.prendreCarte(this.mainJoueur.calculerPositionCarteValeur(carte.getValeur()));
+		}
+		
+		return listeCartes;
+		
+	}
+
 }

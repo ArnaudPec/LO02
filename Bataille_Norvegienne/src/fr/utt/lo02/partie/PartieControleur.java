@@ -42,6 +42,10 @@ public class PartieControleur{
 		boolean selectionCorrecte = this.verifierSelection();
 		if(selectionCorrecte){
 			System.out.println(selectionCorrecte +": on envoie");
+			this.partie.getTapis().ajouterPlusieursCartes(this.partie.getHumain().choisirCarteAJouer(this.listeCartesSelectionnees));
+			System.out.println(this.partie.getHumain().getMainJoueur().getListeCartes().size());
+			this.partie.fairePiocherJoueur(this.partie.getHumain());
+			this.listeCartesSelectionnees = new ArrayList<>();
 		}
 		return selectionCorrecte;
 	}

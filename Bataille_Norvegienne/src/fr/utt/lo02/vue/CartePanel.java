@@ -32,7 +32,6 @@ public class CartePanel extends ImagePanel implements Observer {
 		
 		this.carte = c;
 		this.positionDeLaCarteDansMainJoueur = position;
-		BufferedImage bfi;
 		this.selectionnee=false;
 		Carte cartePrecedente = partieControleur.getPartie().getTapis().getCarteDuDessus();
 		
@@ -43,9 +42,7 @@ public class CartePanel extends ImagePanel implements Observer {
 		else { // on veut la carte retournée
 			 this.bfi = matriceCarte.getSubimage(2*TAILLE.width,4*TAILLE.height,TAILLE.width,TAILLE.height);
 		}
-		
 		super.image = redimCarte(this.bfi, taille);
-		
 		
 		if (carte != null && c.estPosable(cartePrecedente) && selectionnable) {this.addMouseListener(new MouseListener() {
 			
@@ -64,7 +61,6 @@ public class CartePanel extends ImagePanel implements Observer {
 					CartePanel.this.partieControleur.supprimerCarteSelectionne(CartePanel.this.carte);
 					CartePanel.this.enleverSurbrillance();
 				}
-
 			}
 
 			@Override
@@ -112,17 +108,7 @@ public class CartePanel extends ImagePanel implements Observer {
 		this.repaint();
 	}
 
-	private void flouter(){
-		BufferedImage imgFlou = new BufferedImage(super.image.getWidth(), super.image.getHeight(), BufferedImage.TYPE_INT_ARGB );
-		
-		float[] matrix = new float[400];
-		for (int i = 0; i < 400; i++)
-			matrix[i] = 1.0f/400.0f;
-
-	    BufferedImageOp op = new ConvolveOp( new Kernel(0, 0, matrix), ConvolveOp.EDGE_NO_OP, null );
-		op.filter(super.image, imgFlou );
-		super.image = imgFlou;
-	}
+	
 	
 	/**
 	 * Méthode permettant de récupérer la position en x du coin supérieur gauche de la carte

@@ -345,7 +345,9 @@ public class Partie extends Observable{
 		
 		int nbCarte = liste.size();
 		if (nbCarte ==0 || nbCarte>3) {
+			System.out.println("pb1");
 			return false;
+			
 		}
 		else if (nbCarte>1){ //Si plus de une carte sélectionnées, on vérifie qu'elles ont la même valeur
 			
@@ -358,13 +360,32 @@ public class Partie extends Observable{
 				}
 			
 			if(compteur==nbCarte) return true;
-			else return false;
+			else {
+				System.out.println("pb2");
+
+				return false;
+			}
 		}
 		
 		else return true;
 		
 	}
 	
+	public Humain getHumain(){
+		
+		for (Iterator<Joueur> iterator = listeJoueurs.iterator(); iterator.hasNext();) {
+			Joueur joueur = (Joueur) iterator.next();
+			if(joueur instanceof Humain) return (Humain) joueur;
+		}
+		
+		 return null;
+	}
+	
+	public void coucou(){
+		this.setChanged();
+		this.notify();
+		
+	}
 	
 	
 
