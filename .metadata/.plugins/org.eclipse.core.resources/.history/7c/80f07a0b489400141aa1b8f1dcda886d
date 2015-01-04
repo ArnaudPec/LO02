@@ -93,6 +93,7 @@ public class Controleur{
 
 					this.partie.faireJouerJoueur(joueur);
 					//this.vueGraphique.dessinerJeu();
+					this.partie.incrementerJoueur();
 					
 					if (joueur.estGagnant()) {
 						//estDanish = true; 

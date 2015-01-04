@@ -22,7 +22,7 @@ public class Controleur{
 		this.ListeCarte = new ArrayList<Carte>();
 		this.partie = partie;
 		this.listeCartesSelectionnees = new ArrayList<Carte>();
-		this.peutJouer=false;
+		peutJouer=false;
 	}
 	
 	public void actionCarteSelectionne(int i){
@@ -45,8 +45,7 @@ public class Controleur{
 	public boolean envoyerSelection(){
 		
 		boolean selectionCorrecte = this.verifierSelection();
-		if(selectionCorrecte){
-			this.peutJouer=true;
+		if(selectionCorrecte){					
 			lancerPartie();
 		}
 		return selectionCorrecte;
@@ -82,7 +81,6 @@ public class Controleur{
 				
 			//if (this.tapis.getCarteDuDessus().estSpeciale()) {ActionSpeciale actionSpeciale = new ActionSpeciale(this,this.joueurCourant, nbCartesPosees);actionSpeciale.appelerBonneMethode();}
 			this.partie.incrementerJoueur();
-			this.peutJouer=false;
 			lancerPartie();
 	}
 	
@@ -93,6 +91,7 @@ public class Controleur{
 
 					this.partie.faireJouerJoueur(joueur);
 					//this.vueGraphique.dessinerJeu();
+					this.partie.incrementerJoueur();
 					
 					if (joueur.estGagnant()) {
 						//estDanish = true; 
@@ -124,10 +123,7 @@ public class Controleur{
 		
 		if(joueur instanceof Humain){
 			if (joueur.peutJouer(this.partie.getTapis().getCarteDuDessus())) {
-				if(peutJouer)
-				{
-					jouerHumain();
-				}		
+				jouerHumain();
 			}
 			else{
 				joueur.getMainJoueur().getListeCartes().addAll(this.partie.getTapis().prendreTapis());

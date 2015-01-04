@@ -82,7 +82,6 @@ public class Controleur{
 				
 			//if (this.tapis.getCarteDuDessus().estSpeciale()) {ActionSpeciale actionSpeciale = new ActionSpeciale(this,this.joueurCourant, nbCartesPosees);actionSpeciale.appelerBonneMethode();}
 			this.partie.incrementerJoueur();
-			this.peutJouer=false;
 			lancerPartie();
 	}
 	
@@ -93,6 +92,7 @@ public class Controleur{
 
 					this.partie.faireJouerJoueur(joueur);
 					//this.vueGraphique.dessinerJeu();
+					this.partie.incrementerJoueur();
 					
 					if (joueur.estGagnant()) {
 						//estDanish = true; 

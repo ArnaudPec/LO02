@@ -17,7 +17,6 @@
 <fullyQualifiedTypeName name="fr.utt.lo02.partie.PartieController"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.vue.Vue"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.vue.ImagePanel"/>
-<fullyQualifiedTypeName name="fr.utt.lo02.vue.VueGraphique"/>
 <fullyQualifiedTypeName name="java.util.Observable"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
 <fullyQualifiedTypeName name="javax.swing.JButton"/>
@@ -27,4 +26,6 @@
 <fullyQualifiedTypeName name="fr.utt.lo02.carte.Carte"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.partie.Partie"/>
 <fullyQualifiedTypeName name="fr.utt.lo02.partie.PartieControleur"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.vue.VueGraphique"/>
+<fullyQualifiedTypeName name="fr.utt.lo02.partie.Controleur"/>
 </qualifiedTypeNameHistroy>
