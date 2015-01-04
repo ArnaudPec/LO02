@@ -27,7 +27,7 @@ public class CartePanel extends ImagePanel implements Observer {
 	private int positionDeLaCarteDansMainJoueur;
 	private BufferedImage bfi;
 	
-	public CartePanel ( Carte c, BufferedImage matriceCarte, double taille, final PartieControleur partieControleur, final int position){
+	public CartePanel ( Carte c, BufferedImage matriceCarte, boolean selectionnable, double taille, final PartieControleur partieControleur, final int position){
 		super(partieControleur);
 		
 		this.carte = c;
@@ -46,7 +46,7 @@ public class CartePanel extends ImagePanel implements Observer {
 		super.image = redimCarte(this.bfi, taille);
 		
 		
-		if (carte != null && c.estPosable(cartePrecedente)) {this.addMouseListener(new MouseListener() {
+		if (carte != null && c.estPosable(cartePrecedente) && selectionnable) {this.addMouseListener(new MouseListener() {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
