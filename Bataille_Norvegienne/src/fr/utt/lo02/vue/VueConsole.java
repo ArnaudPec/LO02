@@ -14,6 +14,7 @@ public class VueConsole {
 	
 	
 	public VueConsole() {
+		
 		this.partie = Partie.getInstancePartie();
 		//this.partie.initialisationPartie(this.partie);
 		this.interfaceAjouterJoueur();
@@ -69,6 +70,7 @@ public class VueConsole {
 	}
 	
 	public void creationHumain(int nbJoueur) {
+		
 		Scanner sc = new Scanner(System.in);
 
 		for (int i = 0; i < nbJoueur; i++) {

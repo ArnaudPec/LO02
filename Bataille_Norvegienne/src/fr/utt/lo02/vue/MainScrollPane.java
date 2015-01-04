@@ -40,11 +40,9 @@ public class MainScrollPane extends ScrollPane {
 	
 	private void ajouterCartesMainJoueur(){
 		this.main = new JPanel();
-		int position = 0;
 		for (Iterator<Carte> iterator = this.mainJoueur.getListeCartes().iterator(); iterator.hasNext();) {
 			Carte carte = (Carte) iterator.next();
-			this.main.add(new CartePanel(carte, this.matriceCarte, true, 0.5, partieControleur, position));
-			position++;
+			this.main.add(new CartePanel(carte, this.matriceCarte, true, 0.5, partieControleur));
 		}
 	}
 }

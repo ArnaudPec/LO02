@@ -13,19 +13,13 @@ public class Controleur{
 	private VueGraphique vueGraphique=null;
 	private ArrayList<Carte> listeCartesSelectionnees;
 	
-	private ArrayList<Carte> ListeCarte;
-	
 	private boolean peutJouer;
 	
 	public Controleur(Partie partie) {
 		//this.vueGraphique = vueGraphique;
-		this.ListeCarte = new ArrayList<Carte>();
 		this.partie = partie;
 		this.listeCartesSelectionnees = new ArrayList<Carte>();
 		this.peutJouer=false;
-	}
-	
-	public void actionCarteSelectionne(int i){
 	}
 	
 	public Partie getPartie(){
@@ -34,12 +28,12 @@ public class Controleur{
 	
 	public void ajouterCarteSelectionne(Carte c){
 		this.listeCartesSelectionnees.add(c);
-		System.out.println(this.listeCartesSelectionnees);
+	//	System.out.println(this.listeCartesSelectionnees);
 	}
 	
 	public void supprimerCarteSelectionne(Carte c){
 		this.listeCartesSelectionnees.remove(c);		
-		System.out.println(this.listeCartesSelectionnees);
+	//	System.out.println(this.listeCartesSelectionnees);
 	}
 	
 	public boolean envoyerSelection(){
@@ -66,12 +60,12 @@ public class Controleur{
 		this.vueGraphique = vueGraphique;
 	}
 	
-	
 	public void jouerHumain(){
 		
 		Joueur joueur = this.partie.getListeJoueurs().get(this.partie.getJoueurCourant());			
 
 			this.partie.getTapis().ajouterPlusieursCartes(this.partie.getHumain().choisirCarteAJouer(this.listeCartesSelectionnees));
+			int nbCartesPosees=this.listeCartesSelectionnees.size();
 			this.listeCartesSelectionnees = new ArrayList<Carte>();									
 				
 			if (joueur.estGagnant()) {
@@ -81,7 +75,11 @@ public class Controleur{
 				this.partie.fairePiocherJoueur(joueur);
 			}
 				
-			//if (this.tapis.getCarteDuDessus().estSpeciale()) {ActionSpeciale actionSpeciale = new ActionSpeciale(this,this.joueurCourant, nbCartesPosees);actionSpeciale.appelerBonneMethode();}
+			if (this.partie.getTapis().getCarteDuDessus().estSpeciale()) 
+			{
+				ActionSpeciale actionSpeciale = new ActionSpeciale(this.partie,joueur.getNumJoueur(), nbCartesPosees);
+				actionSpeciale.appelerBonneMethode();
+				}
 			this.partie.incrementerJoueur();
 			this.peutJouer=false;
 			lancerPartie();
@@ -92,8 +90,7 @@ public class Controleur{
 		Joueur joueur = this.partie.getListeJoueurs().get(this.partie.getJoueurCourant());			
 		if (joueur.peutJouer(this.partie.getTapis().getCarteDuDessus())){
 
-					this.partie.faireJouerJoueur(joueur);
-					//this.vueGraphique.dessinerJeu();
+					int nbCartesPosees = this.partie.faireJouerJoueur(joueur);
 					
 					if (joueur.estGagnant()) {
 						//estDanish = true; 
@@ -101,8 +98,14 @@ public class Controleur{
 					} else {
 						this.partie.fairePiocherJoueur(joueur);
 					}
-				}				
-				//if (this.tapis.getCarteDuDessus().estSpeciale()) {ActionSpeciale actionSpeciale = new ActionSpeciale(this,this.joueurCourant, nbCartesPosees);actionSpeciale.appelerBonneMethode();}
+					
+					if (this.partie.getTapis().getCarteDuDessus().estSpeciale()) 
+					{
+						ActionSpeciale actionSpeciale = new ActionSpeciale(this.partie,joueur.getNumJoueur(), nbCartesPosees);
+						actionSpeciale.appelerBonneMethode();
+						}
+				}			
+		
 		else{
 			joueur.getMainJoueur().getListeCartes().addAll(this.partie.getTapis().prendreTapis());
 			System.out.println("Le joueur "+ joueur.getNom()+ " ne peut pas jouer, il ramasse le tapis.\n");			
@@ -112,14 +115,11 @@ public class Controleur{
 	}
 	
 	public void lancerPartie(){
+		
 		System.out.println("-------------");
 		System.out.println(this.partie.getListeJoueurs().get(this.partie.getJoueurCourant()).getNom());
 		System.out.println(this.partie.getJoueurCourant());
 		System.out.println("-------------");
-		
-		boolean estDanish = false;
-		Joueur gagnant = null;
-		int nbtour = 0;
 			
 		Joueur joueur = this.partie.getListeJoueurs().get(this.partie.getJoueurCourant());			
 		
@@ -133,21 +133,12 @@ public class Controleur{
 			else{
 				joueur.getMainJoueur().getListeCartes().addAll(this.partie.getTapis().prendreTapis());
 				System.out.println("Le joueur "+ joueur.getNom()+ " ne peut pas jouer, il ramasse le tapis.\n");
-				
 				this.partie.incrementerJoueur();
 				lancerPartie();
 			}
-			
 		}else{
 			IAJouer();
 		}
-		
-		nbtour++;
-	}
-
-	private ArrayList<Carte> getListeJoueurs() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 	

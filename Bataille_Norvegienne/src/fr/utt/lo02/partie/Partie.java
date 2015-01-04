@@ -235,11 +235,10 @@ public class Partie extends Observable{
 	 */
 	public int faireJouerJoueur(Joueur joueur) {
 
-		//System.out.println("C'est " + joueur.getNom() + " qui joue ! \n"+ this.getTapis());
+		System.out.println("C'est " + joueur.getNom() + " qui joue ! \n" /*+this.getTapis()*/);
 
 		Carte[] carteJouees = joueur.choisirCarteAJouer(this.getTapis().getCarteDuDessus());
 		this.getTapis().ajouterPlusieursCartes(carteJouees);
-	
 		return carteJouees.length;
 
 	}

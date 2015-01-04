@@ -7,13 +7,9 @@ import java.awt.event.MouseListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageOp;
-import java.awt.image.ConvolveOp;
-import java.awt.image.Kernel;
 import java.util.Observable;
 import java.util.Observer;
 
-import sun.util.BuddhistCalendar;
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.partie.Controleur;
 
@@ -24,14 +20,12 @@ public class CartePanel extends ImagePanel implements Observer {
 	private Carte carte;
 	private boolean selectionnee;
 	public static final Dimension TAILLE = new Dimension(168, 244);
-	private int positionDeLaCarteDansMainJoueur;
 	private BufferedImage bfi;
 	
-	public CartePanel ( Carte c, BufferedImage matriceCarte, boolean selectionnable, double taille, final Controleur partieControleur, final int position){
+	public CartePanel ( Carte c, BufferedImage matriceCarte, boolean selectionnable, double taille, final Controleur partieControleur){
 		super(partieControleur);
 		
 		this.carte = c;
-		this.positionDeLaCarteDansMainJoueur = position;
 		this.selectionnee=false;
 		Carte cartePrecedente = partieControleur.getPartie().getTapis().getCarteDuDessus();
 		
@@ -50,7 +44,6 @@ public class CartePanel extends ImagePanel implements Observer {
 			public void mouseClicked(MouseEvent e) {
 
 				System.out.println("Vous avez cliqué sur un " + carte.getValeurAffichage() + " de " +carte.getCouleurAffichage());
-				partieControleur.actionCarteSelectionne(position);
 				if(!CartePanel.this.selectionnee) {
 					CartePanel.this.selectionnee = true;
 					CartePanel.this.mettreSurbrillance();

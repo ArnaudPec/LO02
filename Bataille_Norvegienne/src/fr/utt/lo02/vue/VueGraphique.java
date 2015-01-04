@@ -24,10 +24,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.joueur.Joueur;
-import fr.utt.lo02.partie.Partie;
 import fr.utt.lo02.partie.Controleur;
+import fr.utt.lo02.partie.Partie;
 
 public class VueGraphique extends JFrame implements Observer, ActionListener {
 
@@ -46,8 +45,6 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 	private JMenuItem itemAPropos;
 	private JMenuItem itemRegles;
 
-	private JMenuItem itemEnvoyer;
-	
 	private MainScrollPane mainPanel;
 	private JPanel infoPartiePanel;
 	private JPanel tapisPanel;
@@ -91,7 +88,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		else if (e.getSource() == this.itemRegles){
 			this.afficherRegles();
 		}
-		else if(e.getSource() ==this.envoyer || e.getSource()==this.itemEnvoyer){
+		else if(e.getSource() ==this.envoyer){
 			this.actionEnvoyer();
 		}
 	}
@@ -130,19 +127,19 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 					"Veuillez choisir une stratégie pour le joueur IA " + i,
 					"Stratégie", JOptionPane.QUESTION_MESSAGE, null,
 					Strategies, Strategies[0]);
-			if(strategieChoisie.equals(Strategies[2])) this.partie.creationIA(i, 2);
+			if(strategieChoisie.equals(Strategies[2])) this.partie.creationIA(i+1, 2);
 			
-			else if (strategieChoisie.equals(Strategies[1]) && !this.partie.verifierPresenceIaOffensive()) this.partie.creationIA(i, 1);
+			else if (strategieChoisie.equals(Strategies[1]) && !this.partie.verifierPresenceIaOffensive()) this.partie.creationIA(i+1, 1);
 			
 			else if (strategieChoisie.equals(Strategies[1])) {
 				JOptionPane.showMessageDialog(this.window, "Nombre maximum d'IA offensive atteint, une IA aléatoire a été ajoutée à la place.", "Alerte", JOptionPane.WARNING_MESSAGE );
-				this.partie.creationIA(i, 0);
+				this.partie.creationIA(i+1, 0);
 			}
-			else this.partie.creationIA(i, 0);
+			else this.partie.creationIA(i+1, 0);
 		}
 	}
 
-	private Joueur choisirJoueur() {
+	private Joueur choisirJoueur(){
 
 		String[] listeJoueur = this.partie.getListeNomsJoueurs();
 		
@@ -222,7 +219,6 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 				this.jmenuPartie.add(this.itemQuitter = new JMenuItem("Quitter"));
 				this.jmenuAide.add(this.itemRegles = new JMenuItem("Règles du jeu"));
 				this.jmenuAide.add(this.itemAPropos = new JMenuItem("A propos"));
-				this.menuBar.add(this.itemEnvoyer = new JMenuItem("Envoyer"));
 				this.envoyer = new JButton("Envoyer");
 				
 				this.container.add(this.menuBar, BorderLayout.NORTH);
@@ -236,7 +232,6 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 				this.itemAPropos.addActionListener(this);
 				this.itemNouvellePartie.addActionListener(this);
 				this.itemRegles.addActionListener(this);
-				this.itemEnvoyer.addActionListener(this);
 				this.envoyer.addActionListener(this);
 	}
 
