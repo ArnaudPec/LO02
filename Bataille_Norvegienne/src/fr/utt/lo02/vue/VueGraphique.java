@@ -104,8 +104,9 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 	private void initialiserPartie() {
 		this.ajouterJoueurs();
 		if(this.partie.getNbJoueurs()>5)this.partie.getPioche().ajouterUnSecondJeuDeCarte();
+		this.partie.getPioche().melanger();
 		this.partie.getPioche().distribuerCarte(this.partie);
-		this.partie.getTapis().ajouterCarte(new Carte(0, 10));
+		this.partie.getTapis().ajouterCarte(new Carte(0, 6));
 
 		this.dessinerJeu();	
 	}

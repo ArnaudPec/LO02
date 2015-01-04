@@ -56,9 +56,11 @@ public class CartePanel extends ImagePanel implements Observer {
 				if(!CartePanel.this.selectionnee) {
 					CartePanel.this.selectionnee = true;
 					CartePanel.this.mettreSurbrillance();
+					CartePanel.this.partieControleur.ajouterCarteSelectionne(CartePanel.this.carte);
 				}
 				else {
 					CartePanel.this.selectionnee = false;
+					CartePanel.this.partieControleur.supprimerCarteSelectionne(CartePanel.this.carte);
 					CartePanel.this.enleverSurbrillance();
 				}
 
