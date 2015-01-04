@@ -21,13 +21,14 @@ public class Partie extends Observable{
 	private Pioche pioche;
 	private Tapis tapis;
 	private static Partie instancePartie;
-	
+	private boolean terminee;
 
 	private Partie() {
 		this.listeJoueurs = new ArrayList<Joueur>();
 		this.pioche = Pioche.getInstancePioche();
 		this.tapis = Tapis.getInstanceTapis();
 		this.joueurCourant = 0;
+		this.terminee=false;
 	}
 
 	public static Partie getInstancePartie() {
@@ -380,7 +381,20 @@ public class Partie extends Observable{
 		this.notify();
 		
 	}
+
+	public boolean isTerminee() {
+		return terminee;
+	}
+
+	public void setTerminee(boolean terminee) {
+		this.terminee = terminee;
+	}
 	
+	public void reset(){
+		Partie.instancePartie=null;
+		Partie.getInstancePartie();
+		this.listeJoueurs.retainAll(listeJoueurs);
+	}
 	
 
 //	/**

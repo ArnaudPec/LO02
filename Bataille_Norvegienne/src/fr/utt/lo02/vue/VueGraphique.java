@@ -267,4 +267,12 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		}
 	}
 	
+	public void afficherVictoire(){
+		JOptionPane.showMessageDialog(this.window, "Vous avez gagné !", "Victoire", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	public void afficherDefaite(){
+		JOptionPane.showMessageDialog(this.window, "Vous avez perdu !", "Defaire", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
 }

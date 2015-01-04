@@ -15,6 +15,7 @@ public class Controleur{
 	
 	private boolean peutJouer;
 	
+	
 	public Controleur(Partie partie) {
 		//this.vueGraphique = vueGraphique;
 		this.partie = partie;
@@ -68,9 +69,11 @@ public class Controleur{
 			int nbCartesPosees=this.listeCartesSelectionnees.size();
 			this.listeCartesSelectionnees = new ArrayList<Carte>();									
 				
-			if (joueur.estGagnant()) {
-				//estDanish = true; 
-				//gagnant = joueur;
+			if (this.partie.getHumain().estGagnant()) {
+				this.vueGraphique.afficherVictoire();
+				this.partie.setTerminee(true);
+				this.resetPartie();
+				
 			} else {
 				this.partie.fairePiocherJoueur(joueur);
 			}
@@ -95,6 +98,12 @@ public class Controleur{
 					if (joueur.estGagnant()) {
 						//estDanish = true; 
 						//gagnant = joueur;
+
+						this.vueGraphique.afficherDefaite();
+						this.partie.setTerminee(true);
+						this.resetPartie();
+
+
 					} else {
 						this.partie.fairePiocherJoueur(joueur);
 					}
@@ -115,31 +124,37 @@ public class Controleur{
 	}
 	
 	public void lancerPartie(){
-		
+
 		System.out.println("-------------");
 		System.out.println(this.partie.getListeJoueurs().get(this.partie.getJoueurCourant()).getNom());
 		System.out.println(this.partie.getJoueurCourant());
 		System.out.println("-------------");
-			
+
 		Joueur joueur = this.partie.getListeJoueurs().get(this.partie.getJoueurCourant());			
-		
-		if(joueur instanceof Humain){
-			if (joueur.peutJouer(this.partie.getTapis().getCarteDuDessus())) {
-				if(peutJouer)
-				{
-					jouerHumain();
-				}		
+
+		if(!this.partie.isTerminee()){
+			if(joueur instanceof Humain){
+				if (joueur.peutJouer(this.partie.getTapis().getCarteDuDessus())) {
+					if(peutJouer)
+					{
+						jouerHumain();
+					}		
+				}
+				else{
+					joueur.getMainJoueur().getListeCartes().addAll(this.partie.getTapis().prendreTapis());
+					System.out.println("Le joueur "+ joueur.getNom()+ " ne peut pas jouer, il ramasse le tapis.\n");
+					this.partie.incrementerJoueur();
+					lancerPartie();
+				}
+			}else{
+				IAJouer();
 			}
-			else{
-				joueur.getMainJoueur().getListeCartes().addAll(this.partie.getTapis().prendreTapis());
-				System.out.println("Le joueur "+ joueur.getNom()+ " ne peut pas jouer, il ramasse le tapis.\n");
-				this.partie.incrementerJoueur();
-				lancerPartie();
-			}
-		}else{
-			IAJouer();
 		}
 	}
-	
+
+	public void resetPartie(){
+		this.partie.reset();
+		this.vueGraphique=new VueGraphique(this.partie, this);
+	}
 	
 }
