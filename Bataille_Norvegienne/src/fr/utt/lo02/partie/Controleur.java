@@ -49,6 +49,7 @@ public class Controleur{
 			this.peutJouer=true;
 			lancerPartie();
 		}
+		else listeCartesSelectionnees = new ArrayList<>();
 		return selectionCorrecte;
 	}
 	
