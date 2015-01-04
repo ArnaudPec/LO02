@@ -31,7 +31,6 @@ import fr.utt.lo02.partie.PartieControleur;
 
 public class VueGraphique extends JFrame implements Observer, ActionListener {
 
-	
 	private static final long serialVersionUID = 1L;
 	protected Partie partie;
 	protected PartieControleur partieControleur;
@@ -85,20 +84,22 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 			System.exit(0);
 		}
 		else if (e.getSource() == this.itemAPropos){
-			System.out.println("A propos");
 			this.afficherApropos();
 		}
 		else if (e.getSource() == this.itemNouvellePartie){
-			System.out.println("Nouvelle Partie");
 			this.initialiserPartie();
 		}
 		else if (e.getSource() == this.itemRegles){
-			System.out.println("Règles du jeu");
 			this.afficherRegles();
 		}
 		else if(e.getSource() ==this.envoyer || e.getSource()==this.itemEnvoyer){
-			System.out.println("Bouton Envoyer");
+			this.actionEnvoyer();
 		}
+	}
+
+	private void actionEnvoyer() {
+		boolean envoyer = this.partieControleur.envoyerSelection();
+		if(!envoyer) JOptionPane.showMessageDialog(this.window, "Mauvaise sélection ! Recommencez", "Alerte", JOptionPane.WARNING_MESSAGE );
 	}
 
 	private void initialiserPartie() {
@@ -107,8 +108,9 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		this.partie.getPioche().melanger();
 		this.partie.getPioche().distribuerCarte(this.partie);
 		this.partie.getTapis().ajouterCarte(new Carte(0, 6));
-
+		
 		this.dessinerJeu();	
+		this.changerCartes();
 	}
 
 	private void ajouterJoueurs() {
@@ -156,7 +158,10 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 	}
 	
 	public void changerCartes(){
-		//
+		 int reponse = JOptionPane.showConfirmDialog(null, "Souhaitez vous échanger vos cartes ?", "Echanger cartes", JOptionPane.YES_NO_OPTION);
+	        if (reponse == JOptionPane.YES_OPTION) {
+	          JOptionPane.showMessageDialog(null, "HELLO");
+	        }
 	}
 
 	private void afficherApropos() {
@@ -243,8 +248,6 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		this.container.add(this.infoPartiePanel = new InfoPartiePanel(this.partie), BorderLayout.EAST);
 		this.container.add(this.mainPanel = new MainScrollPane(this.matriceCarte, this.partie.getListeJoueurs().get(0).getMainJoueur(), partieControleur), BorderLayout.SOUTH);
 		this.infoPartiePanel.add(this.envoyer, BorderLayout.CENTER);
-	
-
 		
 		//Panels
 		this.mainPanel.setBackground(this.tapisColor);
@@ -254,14 +257,10 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		this.window.pack();
 	}
 	
-	public void addButtonListener (ActionListener a){ 
-		this.envoyer.addActionListener(a);
-	}
-
+	
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		
+		this.dessinerJeu();
 	}
 	
 }

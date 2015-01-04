@@ -37,7 +37,8 @@ public class CartePanel extends ImagePanel implements Observer {
 		Carte cartePrecedente = partieControleur.getPartie().getTapis().getCarteDuDessus();
 		
 		if(c!=null && c.estPosable(cartePrecedente)){ // on cherche une carte donnée
-			 this.bfi= matriceCarte.getSubimage(this.getPositionX(c.getValeur())*TAILLE.width,this.getPositionY(c.getCouleur())*TAILLE.height,TAILLE.width,TAILLE.height);
+			 this.bfi= matriceCarte.getSubimage(this.getPositionX(c.getValeur())*TAILLE.width,
+					 this.getPositionY(c.getCouleur())*TAILLE.height,TAILLE.width,TAILLE.height);
 		}
 		else { // on veut la carte retournée
 			 this.bfi = matriceCarte.getSubimage(2*TAILLE.width,4*TAILLE.height,TAILLE.width,TAILLE.height);

@@ -316,7 +316,7 @@ public class Partie extends Observable{
 			
 			if (joueur.peutJouer(this.getTapis().getCarteDuDessus())) {
 
-				//System.out.println("num joueur : " + joueur.getNumJoueur());
+				System.out.println("num joueur : " + joueur.getNumJoueur());
 				
 				int nbCartesPosees=this.faireJouerJoueur(joueur);
 				
@@ -325,11 +325,11 @@ public class Partie extends Observable{
 				
 				if (this.tapis.getCarteDuDessus().estSpeciale()) {ActionSpeciale actionSpeciale = new ActionSpeciale(this,this.joueurCourant, nbCartesPosees);actionSpeciale.appelerBonneMethode();}
 
-			//	System.out.println("La pioche contient "+ this.pioche.getListeCartes().size() + " cartes. \nLe tapis contient "+ this.tapis.getListeCartes().size() + " cartes. \n");
+				System.out.println("La pioche contient "+ this.pioche.getListeCartes().size() + " cartes. \nLe tapis contient "+ this.tapis.getListeCartes().size() + " cartes. \n");
 			}
 
 			else {
-				//System.out.println("Le joueur "+ joueur.getNom()+ " ne peut pas jouer, il ramasse le tapis.\n");
+				System.out.println("Le joueur "+ joueur.getNom()+ " ne peut pas jouer, il ramasse le tapis.\n");
 				joueur.getMainJoueur().getListeCartes().addAll(this.tapis.prendreTapis());// Je donne le
 			}
 			
@@ -337,8 +337,36 @@ public class Partie extends Observable{
 			
 			nbtour++;
 		}
-//		System.out.println("Partie terminee, gagnant : " + gagnant.getNom()	+ " en " + nbtour + " tours");
+		System.out.println("Partie terminee, gagnant : " + gagnant.getNom()	+ " en " + nbtour + " tours");
 	}
+	
+	
+	public boolean verifierSelection(ArrayList<Carte> liste){
+		
+		int nbCarte = liste.size();
+		if (nbCarte ==0 || nbCarte>3) {
+			return false;
+		}
+		else if (nbCarte>1){ //Si plus de une carte sélectionnées, on vérifie qu'elles ont la même valeur
+			
+			Carte c = liste.get(0); // on récupère le premier élément pour comparer sa valeur
+			int compteur = 0;
+			for (Iterator<Carte> iterator = liste.iterator(); iterator.hasNext();) {
+					Carte carte = (Carte) iterator.next();
+					if (c.getValeur() == carte.getValeur())
+					compteur++;
+				}
+			
+			if(compteur==nbCarte) return true;
+			else return false;
+		}
+		
+		else return true;
+		
+	}
+	
+	
+	
 
 //	/**
 //	 * Méthode permettant de gérer le mécanisme d'ajout des joueurs en début de partie

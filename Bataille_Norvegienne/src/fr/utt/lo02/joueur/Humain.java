@@ -170,4 +170,5 @@ public class Humain extends Joueur {
 		
 		return num ;
 	}
+
 }

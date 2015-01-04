@@ -9,7 +9,7 @@ public class PartieControleur{
 
 	private Partie partie;
 	private VueGraphique vueGraphique=null;
-	private ArrayList<Carte> listeCartesSelecrionnes;
+	private ArrayList<Carte> listeCartesSelectionnees;
 	
 	private ArrayList<Carte> ListeCarte;
 	
@@ -17,7 +17,7 @@ public class PartieControleur{
 		//this.vueGraphique = vueGraphique;
 		this.ListeCarte = new ArrayList<Carte>();
 		this.partie = partie;
-		this.listeCartesSelecrionnes = new ArrayList<Carte>();
+		this.listeCartesSelectionnees = new ArrayList<Carte>();
 	}
 	
 	public void actionCarteSelectionne(int i){
@@ -28,14 +28,26 @@ public class PartieControleur{
 	}
 	
 	public void ajouterCarteSelectionne(Carte c){
-		this.listeCartesSelecrionnes.add(c);
-		System.out.println(this.listeCartesSelecrionnes);
+		this.listeCartesSelectionnees.add(c);
+		System.out.println(this.listeCartesSelectionnees);
 	}
 	
 	public void supprimerCarteSelectionne(Carte c){
-		this.listeCartesSelecrionnes.remove(c);		
-		System.out.println(this.listeCartesSelecrionnes);
-
+		this.listeCartesSelectionnees.remove(c);		
+		System.out.println(this.listeCartesSelectionnees);
 	}
 	
+	public boolean envoyerSelection(){
+		
+		boolean selectionCorrecte = this.verifierSelection();
+		if(selectionCorrecte){
+			System.out.println(selectionCorrecte +": on envoie");
+		}
+		return selectionCorrecte;
+	}
+	
+	public boolean verifierSelection(){
+		if(this.partie.verifierSelection(this.listeCartesSelectionnees))return true;
+		else return false;
+	}
 }
