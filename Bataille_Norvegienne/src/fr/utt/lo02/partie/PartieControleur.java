@@ -21,7 +21,7 @@ public class PartieControleur{
 	}
 	
 	public Partie getPartie(){
-		return this.getPartie();
+		return this.partie;
 	}
 	
 }

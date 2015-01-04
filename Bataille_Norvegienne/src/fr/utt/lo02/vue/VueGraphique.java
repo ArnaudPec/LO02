@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.joueur.Joueur;
 import fr.utt.lo02.partie.Partie;
 import fr.utt.lo02.partie.PartieControleur;
@@ -104,6 +105,8 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		this.ajouterJoueurs();
 		if(this.partie.getNbJoueurs()>5)this.partie.getPioche().ajouterUnSecondJeuDeCarte();
 		this.partie.getPioche().distribuerCarte(this.partie);
+		this.partie.getTapis().ajouterCarte(new Carte(0, 10));
+
 		this.dessinerJeu();	
 	}
 

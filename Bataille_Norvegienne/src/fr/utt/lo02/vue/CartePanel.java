@@ -34,8 +34,9 @@ public class CartePanel extends ImagePanel implements Observer {
 		this.positionDeLaCarteDansMainJoueur = position;
 		BufferedImage bfi;
 		this.selectionnee=false;
+		Carte cartePrecedente = partieControleur.getPartie().getTapis().getCarteDuDessus();
 		
-		if(c!=null){ // on cherche une carte donnée
+		if(c!=null && c.estPosable(cartePrecedente)){ // on cherche une carte donnée
 			 this.bfi= matriceCarte.getSubimage(this.getPositionX(c.getValeur())*TAILLE.width,this.getPositionY(c.getCouleur())*TAILLE.height,TAILLE.width,TAILLE.height);
 		}
 		else { // on veut la carte retournée
@@ -45,7 +46,7 @@ public class CartePanel extends ImagePanel implements Observer {
 		super.image = redimCarte(this.bfi, taille);
 		
 		
-		if (carte != null ) {this.addMouseListener(new MouseListener() {
+		if (carte != null && c.estPosable(cartePrecedente)) {this.addMouseListener(new MouseListener() {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
