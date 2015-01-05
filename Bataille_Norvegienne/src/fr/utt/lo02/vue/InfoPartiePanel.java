@@ -41,7 +41,7 @@ public class InfoPartiePanel extends JPanel implements Observer{
 		for (Iterator<Joueur> iterator = this.partie.getListeJoueurs().iterator(); iterator.hasNext();) {
 			Joueur joueur = (Joueur) iterator.next();
 			sb.append("<TH>"+joueur.getNom()+"</TH><TD>"+joueur.getMainJoueur().getListeCartes().size()+"</TD>");
-			sb.append("<TD>"+joueur.getTasVisible().getListeCartes().size()+"</TD> <TD>"+joueur.getTasVisible().getListeCartes().size()+"</TD> </TR>" );
+			sb.append("<TD>"+joueur.getTasVisible().getListeCartes().size()+"</TD> <TD>"+joueur.getTasCache().getListeCartes().size()+"</TD> </TR>" );
 		}
 		sb.append("</TABLE> ");
 		sb.append("<br><b>Tapis :</b>  "+this.partie.getTapis().getListeCartes().size());

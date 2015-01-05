@@ -2,6 +2,7 @@ package fr.utt.lo02.partie;
 
 
 import fr.utt.lo02.carte.Tapis;
+import fr.utt.lo02.joueur.Humain;
 import fr.utt.lo02.joueur.Joueur;
 
 public class ActionSpeciale {
@@ -9,7 +10,7 @@ public class ActionSpeciale {
 	private Tapis tapis;
 	private Joueur joueur;
 	private Partie partie;
-	int nbCartesJouees;
+	private int nbCartesJouees;
 
 	public ActionSpeciale(Partie partie, int JoueurCourant, int nbCartes) {
 		this.partie = partie;
@@ -18,8 +19,9 @@ public class ActionSpeciale {
 		this.nbCartesJouees=nbCartes;
 	}
 
-	public void appelerBonneMethode() {
-		switch (this.tapis.getCarteDuDessus().getValeur()) {
+	public int appelerBonneMethode() {
+		int valeur = this.tapis.getCarteDuDessus().getValeur();
+		switch (valeur) {
 		case 8:
 			effectuerAction8();
 			break;
@@ -27,16 +29,20 @@ public class ActionSpeciale {
 			effectuerAction10();
 			break;
 		case 14:
-			effectuerActionA();
+			if(!(this.joueur instanceof Humain)){
+				int choixDuJoueur = this.joueur.choisirUnJoueur(partie.getListeJoueurs());
+				effectuerActionA(choixDuJoueur);
+			}
 			break;
 		}
+		return valeur;
 	}
 
 
 	/**
 	 * Méthode permettant dé gérer la pose d'une carte 10. Son effet consisteà enlever du jeu les arte du tapis.
 	 */
-	private void effectuerAction10() {
+	public void effectuerAction10() {
 		this.partie.getTapis().viderTas();
 	}
 	
@@ -47,9 +53,8 @@ public class ActionSpeciale {
 	 * Il faut tenir compte du fonctionnement de la boucle dans Partie.lancerPartie et notamment de l'incrémentation du joueur.
 	 * On utilise donc un setter avec le numéro du joueur - la valeur 1 pour être correctement placé. 
 	 */
-	private void effectuerActionA() {
+	public void effectuerActionA(int choixDuJoueur) {
 		
-		int choixDuJoueur = this.joueur.choisirUnJoueur(partie.getListeJoueurs());
 		this.joueur = this.partie.getJoueur(choixDuJoueur);
 		
 		if(!this.joueur.peutJouer(this.tapis.getCarteDuDessus())) {
@@ -77,7 +82,7 @@ public class ActionSpeciale {
 	 *		- on avance de n joueurs
 	 *
 	 */
-	private void effectuerAction8() {
+	public void effectuerAction8() {
 		
 		//System.out.println(this.nbCartesJouees + " carte(s) 8 a(ont) ete posee(s), il faut donc sauter " + this.nbCartesJouees + " joueurs.");
 		

@@ -93,7 +93,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		}
 	}
 
-	private void actionEnvoyer() {
+	public void actionEnvoyer() {
 		
 		boolean envoyer = this.controleur.envoyerSelection();
 		if(!envoyer) JOptionPane.showMessageDialog(this.window, "Mauvaise sélection ! Recommencez", "Alerte", JOptionPane.WARNING_MESSAGE );
@@ -110,7 +110,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		this.changerCartes();
 	}
 
-	private void ajouterJoueurs() {
+	public void ajouterJoueurs() {
 		
 		int nbJoueur = 0;
 		while (nbJoueur <2 || nbJoueur > 11) nbJoueur = Integer.parseInt(JOptionPane.showInputDialog("Nombre total de joueurs ? (max : 11)"));
@@ -139,7 +139,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		}
 	}
 
-	private Joueur choisirJoueur(){
+	public int choisirJoueur(){
 
 		String[] listeJoueur = this.partie.getListeNomsJoueurs();
 		
@@ -151,7 +151,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 				null, listeJoueur, 
 				listeJoueur[0]);
 		
-		return this.partie.getJoueurNom(joueurChoisi);
+		return this.partie.getJoueurInt(joueurChoisi);
 	}
 	
 	public void changerCartes(){
@@ -161,7 +161,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 	        }
 	}
 
-	private void afficherApropos() {
+	public void afficherApropos() {
 		
 		JEditorPane ep = new JEditorPane(
 				"text/html",
@@ -173,7 +173,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		JOptionPane.showMessageDialog(this.window, sp, "A propos", JOptionPane.INFORMATION_MESSAGE);	
 	}
 
-	private void afficherRegles() {
+	public void afficherRegles() {
 		File f = new File("ressources/regles.html");
 		
 		try {
@@ -191,7 +191,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		}		
 	}
 
-	private void initialiserMatriceCarte(){
+	public void initialiserMatriceCarte(){
 		try {
 			this.matriceCarte = ImageIO.read(new File("ressources/cards.jpg"));
 		} catch (IOException e) {
@@ -199,7 +199,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		}
 	}
 	
-	private void initialiserFenetre(){
+	public void initialiserFenetre(){
 		
 				// Fenêtre
 				this.window.setResizable(true);

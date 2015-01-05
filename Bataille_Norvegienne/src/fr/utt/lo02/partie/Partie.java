@@ -107,13 +107,14 @@ public class Partie extends Observable{
 		return this.listeJoueurs;
 	}
 	
-	public Joueur getJoueurNom(String nom){
-		for (Iterator<Joueur> iterator = listeJoueurs.iterator(); iterator.hasNext();) {
-			Joueur joueur = (Joueur) iterator.next();
-			if(joueur.getNom().equals(nom)) return joueur;
-			
+	public int getJoueurInt(String nom){
+		
+		for (int i = 0; i < this.listeJoueurs.size() ; i++) {
+			if(this.listeJoueurs.get(i).getNom().equals(nom)){
+				return i;
+			}
 		}
-		 return null;
+		 return -1;
 	}
 	
 	public String[] getListeNomsJoueurs(){

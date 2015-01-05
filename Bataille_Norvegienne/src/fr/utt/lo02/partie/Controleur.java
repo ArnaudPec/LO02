@@ -26,6 +26,11 @@ public class Controleur{
 	public Partie getPartie(){
 		return this.partie;
 	}
+	
+
+	public void addVue(VueGraphique vueGraphique){	
+		this.vueGraphique = vueGraphique;
+	}
 
 	public void ajouterCarteSelectionne(Carte c){
 		this.listeCartesSelectionnees.add(c);
@@ -44,7 +49,7 @@ public class Controleur{
 			this.peutJouer=true;
 			lancerPartie();
 		}
-		else listeCartesSelectionnees = new ArrayList<>();
+		else listeCartesSelectionnees = new ArrayList<Carte>();
 		return selectionCorrecte;
 	}
 
@@ -57,9 +62,6 @@ public class Controleur{
 		this.vueGraphique.changerBouton();
 	}
 
-	public void addVue(VueGraphique vueGraphique){	
-		this.vueGraphique = vueGraphique;
-	}
 
 	public void jouerHumain(){
 
@@ -81,7 +83,10 @@ public class Controleur{
 		if (this.partie.getTapis().getCarteDuDessus().estSpeciale()) 
 		{
 			ActionSpeciale actionSpeciale = new ActionSpeciale(this.partie,joueur.getNumJoueur(), nbCartesPosees);
-			actionSpeciale.appelerBonneMethode();
+			if(actionSpeciale.appelerBonneMethode() == 14)
+			{	
+				actionSpeciale.effectuerActionA(this.vueGraphique.choisirJoueur());
+			}
 		}
 		this.partie.incrementerJoueur();
 		this.peutJouer=false;
