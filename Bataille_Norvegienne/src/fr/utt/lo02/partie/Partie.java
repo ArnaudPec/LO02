@@ -24,6 +24,7 @@ public class Partie extends Observable{
 	private boolean terminee;
 
 	private Partie() {
+		
 		this.listeJoueurs = new ArrayList<Joueur>();
 		this.pioche = Pioche.getInstancePioche();
 		this.tapis = Tapis.getInstanceTapis();
@@ -393,7 +394,7 @@ public class Partie extends Observable{
 	public void reset(){
 		Partie.instancePartie=null;
 		Partie.getInstancePartie();
-		this.listeJoueurs.retainAll(listeJoueurs);
+		this.listeJoueurs.removeAll(listeJoueurs);
 	}
 	
 

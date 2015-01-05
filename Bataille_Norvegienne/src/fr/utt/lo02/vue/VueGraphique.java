@@ -275,4 +275,10 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		JOptionPane.showMessageDialog(this.window, "Vous avez perdu !", "Defaire", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	public void notifierPriseTapis(){
+		JOptionPane.showMessageDialog(this.window, "Vous ne pouvez pas jouer,vous ramassez le tapis !", "Cocogne", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
+	
+	
 }
