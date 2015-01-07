@@ -2,8 +2,6 @@ package fr.utt.lo02.vue;
 
 import java.awt.Dimension;
 import java.util.Iterator;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.BoxLayout;
 import javax.swing.JEditorPane;
@@ -13,7 +11,7 @@ import javax.swing.JScrollPane;
 import fr.utt.lo02.joueur.Joueur;
 import fr.utt.lo02.partie.Partie;
 
-public class InfoPartiePanel extends JPanel implements Observer{
+public class InfoPartiePanel extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 	private JEditorPane ep;
@@ -46,14 +44,8 @@ public class InfoPartiePanel extends JPanel implements Observer{
 		sb.append("</TABLE> ");
 		sb.append("<br><b>Tapis :</b>  "+this.partie.getTapis().getListeCartes().size());
 		sb.append("<br><b>Pioche :</b> "+this.partie.getPioche().getListeCartes().size());
+		sb.append("<br><b>Cartes en jeu :</b> "+this.partie.calculerNombreCarteTotal());
 
 		return sb.toString();
 	}
-	
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-
-}
+}	

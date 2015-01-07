@@ -1,6 +1,8 @@
 package fr.utt.lo02.partie;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.joueur.Humain;
@@ -11,6 +13,8 @@ public class Controleur{
 
 	private Partie partie;
 	private VueGraphique vueGraphique=null;
+	
+
 	private ArrayList<Carte> listeCartesSelectionnees;
 
 	private boolean peutJouer;
@@ -27,6 +31,13 @@ public class Controleur{
 		return this.partie;
 	}
 	
+	public VueGraphique getVueGraphique() {
+		return vueGraphique;
+	}
+
+	public void setVueGraphique(VueGraphique vueGraphique) {
+		this.vueGraphique = vueGraphique;
+	}
 
 	public void addVue(VueGraphique vueGraphique){	
 		this.vueGraphique = vueGraphique;
@@ -52,15 +63,52 @@ public class Controleur{
 		else listeCartesSelectionnees = new ArrayList<Carte>();
 		return selectionCorrecte;
 	}
+	
+	public boolean envoyerSelectionEchange(){
+
+		boolean selectionCorrecte = this.verifierSelectionEchange();
+		if(selectionCorrecte){
+			this.partie.getHumain().getMainJoueur().getListeCartes().removeAll(this.partie.getHumain().getMainJoueur().getListeCartes());
+			this.partie.getHumain().getMainJoueur().ajouterPlusieursCartes(this.listeCartesSelectionnees);
+		}
+		else this.listeCartesSelectionnees = new ArrayList<Carte>();
+		return selectionCorrecte;
+	}
+	
+	/**
+	 * Méthode permettant de construire le TasVisible après un choix de l'utilisateur.
+	 * On procède par comparaison pour déduire ce dernier. On envoie en paramètre une liste
+	 * contenant les cartes de son TasVisible et celle de sa main avant le choix.
+	 * On compare ensuite avec sa main actuelle pour déduire le tas visible.
+	 * @param listeCarte
+	 */
+	public void envoyerTasVisibleEchange(LinkedList<Carte> listeCarte){
+		this.partie.getHumain().getTasVisible().getListeCartes().removeAll(this.partie.getHumain().getTasVisible().getListeCartes());
+		
+		for (Iterator<Carte> iterator = this.partie.getHumain().getMainJoueur().getListeCartes().iterator(); iterator.hasNext();) {
+			Carte carte = (Carte) iterator.next();
+			for (Iterator<Carte> iterator2 = listeCarte.iterator(); iterator2.hasNext();) {
+				Carte carteTasVisible = (Carte) iterator2.next();
+				if(carte.equals(carteTasVisible)) iterator2.remove();
+			}
+			
+		}
+		
+		this.partie.getHumain().getTasVisible().ajouterPlusieursCartes(listeCarte);
+		this.listeCartesSelectionnees = new ArrayList<Carte>();
+	}
 
 	public boolean verifierSelection(){
 		if(this.partie.verifierSelection(this.listeCartesSelectionnees))return true;
 		else return false;
 	}
-
-	public void boutonJouer(){
-		this.vueGraphique.changerBouton();
+	
+	public boolean verifierSelectionEchange(){
+		if(this.partie.verifierSelectionEchange(this.listeCartesSelectionnees))return true;
+		else return false;
 	}
+	
+
 
 
 	public void jouerHumain(){
@@ -74,7 +122,7 @@ public class Controleur{
 		if (this.partie.getHumain().estGagnant()) {
 			this.vueGraphique.afficherVictoire();
 			this.partie.setTerminee(true);
-			this.resetPartie();
+			//this.resetPartie();
 
 		} else {
 			this.partie.fairePiocherJoueur(joueur);
@@ -101,12 +149,10 @@ public class Controleur{
 			int nbCartesPosees = this.partie.faireJouerJoueur(joueur);
 
 			if (joueur.estGagnant()) {
-				//estDanish = true; 
-				//gagnant = joueur;
 
 				this.vueGraphique.afficherDefaite();
 				this.partie.setTerminee(true);
-				this.resetPartie();
+			//	this.resetPartie();
 
 
 			} else {
@@ -158,9 +204,13 @@ public class Controleur{
 		}
 	}
 
-	public void resetPartie(){
-		this.partie.reset();
-		this.vueGraphique=new VueGraphique(this.partie, this);
-	}
 
+//	public void resetPartie(){
+//		this.partie.reset();
+//		this.vueGraphique=new VueGraphique(this.partie, this);
+//	}
+
+//	public void boutonJouer(){
+//		this.vueGraphique.changerBouton();
+//	}
 }

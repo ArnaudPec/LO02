@@ -1,5 +1,6 @@
 package fr.utt.lo02.carte;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Observable;
 
@@ -66,6 +67,13 @@ public abstract class Tas extends Observable{
 		this.setChanged();
 		this.notifyObservers();
 	}
+	
+	public void ajouterPlusieursCartes(ArrayList<Carte> carte) {
+		this.listeCartes.addAll(carte);
+		this.setChanged();
+		this.notifyObservers();
+	}
+
 
 	public void ajouterPlusieursCartes(Carte[] carte) {
 		for (int i = 0; i < carte.length; i++) {

@@ -34,6 +34,7 @@ public class Humain extends Joueur {
 
 		System.out.println(this.mainJoueur);
 		
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		Carte[] listeCartes;
 		int numCarte = 0;
@@ -151,6 +152,7 @@ public class Humain extends Joueur {
 		
 		int num;
 		
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		do{
 			

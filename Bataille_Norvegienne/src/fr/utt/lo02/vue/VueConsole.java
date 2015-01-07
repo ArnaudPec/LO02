@@ -30,7 +30,9 @@ public class VueConsole {
 		
 		int nbJoueursHumain = 0;
 		int nbJoueursIA = 0;
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
+		@SuppressWarnings("resource")
 		Scanner scanner2 = new Scanner(System.in);
 
 		do{
@@ -71,6 +73,7 @@ public class VueConsole {
 	
 	public void creationHumain(int nbJoueur) {
 		
+		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
 
 		for (int i = 0; i < nbJoueur; i++) {
@@ -89,6 +92,7 @@ public class VueConsole {
 	 */
 	public void creationIA(int nbJoueur) {
 		
+		@SuppressWarnings("resource")
 		Scanner scanner = new Scanner(System.in);
 		int strategie;
 		boolean joueurOf=false;

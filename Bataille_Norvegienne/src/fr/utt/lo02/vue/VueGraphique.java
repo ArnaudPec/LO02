@@ -24,7 +24,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import fr.utt.lo02.joueur.Joueur;
 import fr.utt.lo02.partie.Controleur;
 import fr.utt.lo02.partie.Partie;
 
@@ -52,6 +51,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 	
 	private JButton envoyer;
 	private Color tapisColor;
+	private boolean running;
 	
 	public static final String[] Strategies = { "Aléatoire", "Offensive (1 Max)", "Equilibrée"};
 	
@@ -64,6 +64,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		this.initialiserFenetre();
 		this.partie = partie;
 		this.controleur = partieControleur;
+		this.running=false;
 		this.partie.addObserver(this);
 	}
 	
@@ -105,9 +106,11 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		if(this.partie.getNbJoueurs()>5)this.partie.getPioche().ajouterUnSecondJeuDeCarte();
 		this.partie.getPioche().melanger();
 		this.partie.getPioche().distribuerCarte(this.partie);
-		
 		this.dessinerJeu();	
 		this.changerCartes();
+		this.itemNouvellePartie.setEnabled(false);
+		this.running=true;
+		
 	}
 
 	public void ajouterJoueurs() {
@@ -142,14 +145,26 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 	public int choisirJoueur(){
 
 		String[] listeJoueur = this.partie.getListeNomsJoueurs();
+		String joueurChoisi = new String();
 		
-		String joueurChoisi = (String) JOptionPane.showInputDialog(
-				this.window,
-				"Veuillez choisir un joueur ",
-				"Choisir un joueur", 
-				JOptionPane.QUESTION_MESSAGE, 
-				null, listeJoueur, 
-				listeJoueur[0]);
+		do
+		{
+			joueurChoisi = (String) JOptionPane.showInputDialog(
+					this.window,
+					"Veuillez choisir un joueur ",
+					"Choisir un joueur", 
+					JOptionPane.QUESTION_MESSAGE, 
+					null, listeJoueur, 
+					listeJoueur[0]);
+			
+			if(joueurChoisi == this.partie.getHumain().getNom()){
+				JOptionPane.showMessageDialog(this.window, 
+						"Vous devez désigner un autre joueur !", 
+						"Alerte", 
+						JOptionPane.WARNING_MESSAGE );
+			}
+			
+		}while(joueurChoisi == this.partie.getHumain().getNom());
 		
 		return this.partie.getJoueurInt(joueurChoisi);
 	}
@@ -157,7 +172,9 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 	public void changerCartes(){
 		 int reponse = JOptionPane.showConfirmDialog(null, "Souhaitez vous échanger vos cartes ?", "Echanger cartes", JOptionPane.YES_NO_OPTION);
 	        if (reponse == JOptionPane.YES_OPTION) {
-	          JOptionPane.showMessageDialog(null, "Attention à la marche");
+				EchangerCarteFrame ec = new EchangerCarteFrame(this.partie.getHumain(), this.controleur, this.matriceCarte);
+	        	ec.setLocationRelativeTo(this.window);
+	        	this.dessinerJeu();
 	        }
 	}
 
@@ -219,6 +236,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 				this.jmenuPartie.add(this.itemQuitter = new JMenuItem("Quitter"));
 				this.jmenuAide.add(this.itemRegles = new JMenuItem("Règles du jeu"));
 				this.jmenuAide.add(this.itemAPropos = new JMenuItem("A propos"));
+				if(running) this.itemNouvellePartie.setEnabled(false);
 				this.envoyer = new JButton("Envoyer");
 				
 				this.container.add(this.menuBar, BorderLayout.NORTH);
@@ -233,6 +251,7 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 				this.itemNouvellePartie.addActionListener(this);
 				this.itemRegles.addActionListener(this);
 				this.envoyer.addActionListener(this);
+				
 	}
 
 	public void dessinerJeu(){
@@ -252,33 +271,32 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		this.window.pack();
 	}
 	
-	
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		this.dessinerJeu();
 	}
 
-	public void changerBouton() {
-		if(this.envoyer.isVisible())
-		{
-			this.envoyer.setVisible(false);
-		}else{
-			this.envoyer.setVisible(true);
-		}
-	}
 	
 	public void afficherVictoire(){
 		JOptionPane.showMessageDialog(this.window, "Vous avez gagné !", "Victoire", JOptionPane.INFORMATION_MESSAGE);
+		System.exit(0);
 	}
 	
 	public void afficherDefaite(){
 		JOptionPane.showMessageDialog(this.window, "Vous avez perdu !", "Defaire", JOptionPane.INFORMATION_MESSAGE);
+		System.exit(0);
 	}
 	
 	public void notifierPriseTapis(){
 		JOptionPane.showMessageDialog(this.window, "Vous ne pouvez pas jouer,vous ramassez le tapis !", "Cocogne", JOptionPane.INFORMATION_MESSAGE);
 	}
-	
-	
-	
 }
+
+//	public void changerBouton() {
+//		if(this.envoyer.isVisible())
+//		{
+//			this.envoyer.setVisible(false);
+//		}else{
+//			this.envoyer.setVisible(true);
+//		}
+//	}

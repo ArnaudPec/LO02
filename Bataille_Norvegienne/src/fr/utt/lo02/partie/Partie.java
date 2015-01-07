@@ -50,10 +50,6 @@ public class Partie extends Observable{
 	}
 	
 
-	public void addListeCarte(){
-		
-	}
-	
 	public void setNbJoueurs(int nbJoueurs) {
 		this.nbJoueurs = nbJoueurs;
 		this.setChanged();
@@ -342,7 +338,7 @@ public class Partie extends Observable{
 		
 		int nbCarte = liste.size();
 		if (nbCarte ==0 || nbCarte>3) {
-			System.out.println("pb1");
+			//System.out.println("pb1");
 			return false;
 			
 		}
@@ -358,13 +354,20 @@ public class Partie extends Observable{
 			
 			if(compteur==nbCarte) return true;
 			else {
-				System.out.println("pb2");
+				//System.out.println("pb2");
 
 				return false;
 			}
 		}
 		
 		else return true;
+		
+	}
+	
+	public boolean verifierSelectionEchange(ArrayList<Carte> liste){
+		
+		if (liste.size()==3 ) return true;
+		else return false;
 		
 	}
 	
@@ -378,11 +381,6 @@ public class Partie extends Observable{
 		 return null;
 	}
 	
-	public void coucou(){
-		this.setChanged();
-		this.notify();
-		
-	}
 
 	public boolean isTerminee() {
 		return terminee;
@@ -392,11 +390,27 @@ public class Partie extends Observable{
 		this.terminee = terminee;
 	}
 	
-	public void reset(){
-		Partie.instancePartie=null;
-		Partie.getInstancePartie();
-		this.listeJoueurs.removeAll(listeJoueurs);
+	/** Méthode permettant le calcul du nombre total de carte en jeu.
+	 * @return int
+	 */
+	public int calculerNombreCarteTotal(){
+		int nb;
+		
+		nb=this.getPioche().getListeCartes().size()+this.getTapis().getListeCartes().size();
+		for (Iterator<Joueur> iterator = listeJoueurs.iterator(); iterator.hasNext();) {
+			Joueur joueur = (Joueur) iterator.next();
+			nb += joueur.getMainJoueur().getListeCartes().size();
+			nb += joueur.getTasVisible().getListeCartes().size(); 
+			nb += joueur.getTasCache().getListeCartes().size(); 
+		}
+		return nb;
 	}
+	
+//	public void reset(){
+//		Partie.instancePartie=null;
+//		Partie.getInstancePartie();
+//		this.listeJoueurs.removeAll(listeJoueurs);
+//	}
 	
 
 //	/**
