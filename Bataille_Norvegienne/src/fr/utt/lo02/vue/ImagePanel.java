@@ -11,6 +11,11 @@ import javax.swing.JPanel;
 
 import fr.utt.lo02.partie.Controleur;
 
+/**
+ * Classe héritant de JPanel, @see JPanel 
+ * Sa spécificité est de pouvoir afficher une image en tant que background.
+ *
+ */
 public class ImagePanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;

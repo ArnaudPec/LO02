@@ -13,6 +13,11 @@ import java.util.Observer;
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.partie.Controleur;
 
+/**
+ * Classe matérialisant graphiquement une carete du jeu la bataille Norvégienne. Elle hérite de la classe ImagePanel.
+ * @see ImagePanel
+ *
+ */
 public class CartePanel extends ImagePanel implements Observer {
 	
 	

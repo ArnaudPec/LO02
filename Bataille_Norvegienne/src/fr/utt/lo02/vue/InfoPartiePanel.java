@@ -11,6 +11,10 @@ import javax.swing.JScrollPane;
 import fr.utt.lo02.joueur.Joueur;
 import fr.utt.lo02.partie.Partie;
 
+/**
+ * Classe gérant l'affichage graphique de l'état de la partie.
+ *
+ */
 public class InfoPartiePanel extends JPanel{
 
 	private static final long serialVersionUID = 1L;

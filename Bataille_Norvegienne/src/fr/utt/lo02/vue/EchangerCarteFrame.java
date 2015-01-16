@@ -21,6 +21,10 @@ import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.joueur.Humain;
 import fr.utt.lo02.partie.Controleur;
 
+/**
+ * Classe permettant d'instancier la fenêtre d'échange des cartes du jeu en début de partie.
+ *
+ */
 public class EchangerCarteFrame extends JFrame implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;

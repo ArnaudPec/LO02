@@ -7,7 +7,11 @@ import java.util.Random;
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.carte.MainJoueur;
 import fr.utt.lo02.carte.TasVisible;
-
+/**
+ * Classe matérialisant le joueur IaOffensif et son comportement spécifique. Cette IA a un comportement qui vise
+ * à poser en priorité les cartes spéciales, en particulier les as et les huit.
+ * 
+ */
 public class IaOffensive extends IA {
 
 	public IaOffensive(String nomJoueur, int numJoueur) {

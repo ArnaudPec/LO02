@@ -9,6 +9,11 @@ import fr.utt.lo02.carte.MainJoueur;
 import fr.utt.lo02.carte.TasCache;
 import fr.utt.lo02.carte.TasVisible;
 
+/**
+ * Classe matérialisant un joueur du jeu La Bataille Norvégienne et ces principales caractéristiques. Cette classe
+ * connaît plusieurs spécialisations notamment des joueurs gérés par l'ordinateur et un joueur humain.
+ *
+ */
 public class Joueur extends Observable implements Strategie{
 	
 	protected int numJoueur;

@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 import fr.utt.lo02.carte.Carte;
 
+/**
+ * Interface définissant la stratégie des joueurs. 
+ *
+ */
 public interface Strategie {
 
 	/**

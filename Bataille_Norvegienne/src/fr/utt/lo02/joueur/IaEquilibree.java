@@ -6,6 +6,12 @@ import java.util.Random;
 
 import fr.utt.lo02.carte.Carte;
 
+/**
+ * Classe matérialisant le joueur IaEquilibree et son comportement spécifique. Cette IA a un comportement qui vise
+ * à faire durer le tour le plus longtemps possible. 
+ * 
+ */
+
 public class IaEquilibree extends IA {
 
 	/**

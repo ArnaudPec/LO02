@@ -13,7 +13,10 @@ import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.carte.MainJoueur;
 import fr.utt.lo02.partie.Controleur;
 
-
+/**
+ * Classe gérant l'affichage graphique de la main du joueur.
+ *
+ */
 public class MainScrollPane extends ScrollPane {
 	
 	private static final long serialVersionUID = 1L;

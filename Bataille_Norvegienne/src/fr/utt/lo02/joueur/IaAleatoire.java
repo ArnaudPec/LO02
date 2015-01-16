@@ -6,7 +6,8 @@ import java.util.Random;
 import fr.utt.lo02.carte.*;
 
 /**
- * @see Joueur
+ * Classe matérialisant le joueur IaAléatoire et son comportement spécifique. L'Ia aléatoire n'applique aucune 
+ * stratégie particulière, elle pose et choisit aléatoirement les cartes dans le seul respect des règles du jeu.
  * 
  */
 public class IaAleatoire extends IA {

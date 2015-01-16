@@ -1,5 +1,7 @@
 package fr.utt.lo02.vue;
 
+
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -27,6 +29,10 @@ import javax.swing.JScrollPane;
 import fr.utt.lo02.partie.Controleur;
 import fr.utt.lo02.partie.Partie;
 
+/**
+ * Classe matérialisant la fenêtre principale du jeu la Bataille Norvégienne.
+ *
+ */
 public class VueGraphique extends JFrame implements Observer, ActionListener {
 
 	private static final long serialVersionUID = 1L;
