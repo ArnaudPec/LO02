@@ -7,6 +7,7 @@ import java.util.Observable;
 /**
  * Classe Tas, permet de généraliser un Tas
  */
+
 public abstract class Tas extends Observable{
 
 	/**
@@ -62,19 +63,31 @@ public abstract class Tas extends Observable{
 		this.notifyObservers();
 	}
 
+	/**
+	 * Permet d'ajouter plusieurs cartes à la collection de carte déjà existante
+	 * @param LinkedList<Carte> carte
+	 */
 	public void ajouterPlusieursCartes(LinkedList<Carte> carte) {
 		this.listeCartes.addAll(carte);
 		this.setChanged();
 		this.notifyObservers();
 	}
+
 	
+	/**
+	 * Permet d'ajouter plusieurs cartes à la collection de carte déjà existante
+	 * @param ArrayList<Carte> carte
+	 */
 	public void ajouterPlusieursCartes(ArrayList<Carte> carte) {
 		this.listeCartes.addAll(carte);
 		this.setChanged();
 		this.notifyObservers();
 	}
-
-
+	
+	/**
+	 * Permet d'ajouter plusieurs carte à la collection de carte déjà existante
+	 * @param Carte[] carte
+	 */
 	public void ajouterPlusieursCartes(Carte[] carte) {
 		for (int i = 0; i < carte.length; i++) {
 			this.listeCartes.add(carte[i]);
@@ -83,6 +96,10 @@ public abstract class Tas extends Observable{
 		}
 	}
 	
+	
+	/**
+	 *Permet de vider la collection 
+	 */
 	public void viderTas(){
 		this.listeCartes.clear();
 		this.setChanged();

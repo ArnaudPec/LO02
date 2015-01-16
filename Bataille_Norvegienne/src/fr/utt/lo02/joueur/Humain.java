@@ -8,10 +8,8 @@ import fr.utt.lo02.carte.TasVisible;
 
 
 /**
- * 
  * Classe matérialisant le joueur Humain et son comportement spécifique
  * @see Joueur
- *
  */
 public class Humain extends Joueur {
 

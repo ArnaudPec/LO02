@@ -306,6 +306,9 @@ public class MainJoueur extends Tas {
 		super.listeCartes.addAll(this.listesCartesNonJouable);
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	public String toString() {
 	
 		String resultat = "Main \n\n";

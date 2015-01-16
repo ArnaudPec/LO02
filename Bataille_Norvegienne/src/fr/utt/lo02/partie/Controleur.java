@@ -9,17 +9,21 @@ import fr.utt.lo02.joueur.Humain;
 import fr.utt.lo02.joueur.Joueur;
 import fr.utt.lo02.vue.VueGraphique;
 
+/**
+ * Classe controleur, permettant de faire la gestion entre les vues et les modèles.
+ */
 public class Controleur{
 
 	private Partie partie;
-	private VueGraphique vueGraphique=null;
-	
-
+	private VueGraphique vueGraphique=null;	
 	private ArrayList<Carte> listeCartesSelectionnees;
-
 	private boolean peutJouer;
 
 
+	/**
+	 * Constructeur de partie
+	 * @param partie
+	 */
 	public Controleur(Partie partie) {
 		//this.vueGraphique = vueGraphique;
 		this.partie = partie;
@@ -27,32 +31,63 @@ public class Controleur{
 		this.peutJouer=false;
 	}
 
+	/**
+	 * Getter de partie
+	 * @return partie
+	 */
 	public Partie getPartie(){
 		return this.partie;
 	}
 	
+	
+	/**
+	 * Getter de vueGraphique
+	 * @return VueGraphique
+	 */
 	public VueGraphique getVueGraphique() {
 		return vueGraphique;
 	}
 
+	/**
+	 * Setter de vueGraphique
+	 * @param vueGraphique
+	 */
 	public void setVueGraphique(VueGraphique vueGraphique) {
 		this.vueGraphique = vueGraphique;
 	}
 
+	/**
+	 * Permet d'ajouter une vueGraphique
+	 * @param vueGraphique
+	 */
 	public void addVue(VueGraphique vueGraphique){	
 		this.vueGraphique = vueGraphique;
 	}
 
+	
+	/**
+	 * Permet d'ajouter une carte à la collection
+	 * @param Carte c
+	 */
 	public void ajouterCarteSelectionne(Carte c){
 		this.listeCartesSelectionnees.add(c);
 		//	System.out.println(this.listeCartesSelectionnees);
 	}
 
+	/**
+	 * Permet de supprimer une carte
+	 * @param Carte c
+	 */
 	public void supprimerCarteSelectionne(Carte c){
 		this.listeCartesSelectionnees.remove(c);		
 		//	System.out.println(this.listeCartesSelectionnees);
 	}
 
+	/**
+	 * Méthode qui permet de gérer l'envoie d'information quand le joueur cliquera sur le bouton "envoyer"
+	 * Vérifie la sélection de carte joué, si elle est correcte appellera la méthode jouer
+	 * @return un boolean si la si la sélection est bonne ou non.
+	 */
 	public boolean envoyerSelection(){
 
 		boolean selectionCorrecte = this.verifierSelection();
@@ -64,6 +99,10 @@ public class Controleur{
 		return selectionCorrecte;
 	}
 	
+	/**
+	 * Permet d'envoyer la sélection de carte du début de partie que le joueur à choisi 
+	 * @return selectionCorrecte de carte
+	 */
 	public boolean envoyerSelectionEchange(){
 
 		boolean selectionCorrecte = this.verifierSelectionEchange();
@@ -98,19 +137,28 @@ public class Controleur{
 		this.listeCartesSelectionnees = new ArrayList<Carte>();
 	}
 
+	/**
+	 * Méthode qui vérifie que la sélection de carte est correcte
+	 * @return boolean si les cartes sont sélectionnés ou non
+	 */
 	public boolean verifierSelection(){
 		if(this.partie.verifierSelection(this.listeCartesSelectionnees))return true;
 		else return false;
 	}
 	
+	/**
+	 * Vérifie que les cartes sont correctes lors de l'échange
+	 * @return boolean true or false
+	 */
 	public boolean verifierSelectionEchange(){
 		if(this.partie.verifierSelectionEchange(this.listeCartesSelectionnees))return true;
 		else return false;
 	}
 	
-
-
-
+	
+	/**
+	 * Méthode qui fait jouer un joueur Humain 
+	 */
 	public void jouerHumain(){
 
 		Joueur joueur = this.partie.getListeJoueurs().get(this.partie.getJoueurCourant());			
@@ -141,6 +189,9 @@ public class Controleur{
 		lancerPartie();
 	}
 
+	/**
+	 *Méthode permettant de faire jouer une IA 
+	 */
 	public void IAJouer(){
 
 		Joueur joueur = this.partie.getListeJoueurs().get(this.partie.getJoueurCourant());			
@@ -152,9 +203,6 @@ public class Controleur{
 
 				this.vueGraphique.afficherDefaite();
 				this.partie.setTerminee(true);
-			//	this.resetPartie();
-
-
 			} else {
 				this.partie.fairePiocherJoueur(joueur);
 			}
@@ -174,6 +222,10 @@ public class Controleur{
 		lancerPartie();
 	}
 
+	/**
+	 *Méthode permettant de gérer un tour de jeu, vérifie si la partie est gagné par un joueur
+	 *S'occupe de lancer la bonne méthode de "jouer" 
+	 */
 	public void lancerPartie(){
 
 		System.out.println("-------------");

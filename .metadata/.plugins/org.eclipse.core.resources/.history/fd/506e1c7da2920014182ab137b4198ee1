@@ -1,9 +1,0 @@
-package fr.utt.lo02.partie;
-
-public class Executable {
-
-	public Executable() {
-		// TODO Auto-generated constructor stub
-	}
-
-}

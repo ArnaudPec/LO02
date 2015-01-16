@@ -2,6 +2,9 @@ package fr.utt.lo02.carte;
 
 import java.util.LinkedList;
 
+/**
+ * Classe tapis, extension de Tas gère le tapis physique d'une partie
+ */
 public class Tapis extends Tas {
 
 	private static Tapis instanceTapis;

@@ -66,6 +66,10 @@ public class Carte extends Observable{
 		return this.visibilite;
 	}
 	
+	/**
+	 * Getter permettant de savoir si la cart est selectionné ou non
+	 * @return boolean [true or false]
+	 */
 	public boolean getSelectionner(){
 		return this.selectionner;
 	}
