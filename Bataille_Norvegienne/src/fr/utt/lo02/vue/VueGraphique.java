@@ -24,7 +24,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import fr.utt.lo02.joueur.Strategie;
 import fr.utt.lo02.partie.Controleur;
 import fr.utt.lo02.partie.Partie;
 

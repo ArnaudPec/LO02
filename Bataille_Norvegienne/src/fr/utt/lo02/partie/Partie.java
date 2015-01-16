@@ -13,6 +13,11 @@ import fr.utt.lo02.joueur.IaEquilibree;
 import fr.utt.lo02.joueur.IaOffensive;
 import fr.utt.lo02.joueur.Joueur;
 
+/**
+ * Classe Matérialisant une partie. Dans MVC, il s'agit du modèle.
+ *
+ */
+
 public class Partie extends Observable{
 
 	private int nbJoueurs;
@@ -153,11 +158,23 @@ public class Partie extends Observable{
 	
 
 	
+	/**
+	 * Méthode permettant l'ajout d'un joueur humain à la partie
+	 * @param nom du joueur
+	 */
 	public void creationHumain(String nom){
 		Humain joueur = new Humain(nom, 0);
 		this.ajouterJoueur(joueur);
 	}
 	
+	
+	/**
+	 * Méthode permettant l'ajout de joueurs d'intelligence artificielle à la partie. Le paramètre stratégie permet
+	 * de définir la stratégie de celui-ci.
+	 * 
+	 * @param numJoueur
+	 * @param strategie
+	 */
 	public void creationIA(int numJoueur, int strategie){
 		Joueur joueurIA ;
 		switch (strategie) {
@@ -334,11 +351,15 @@ public class Partie extends Observable{
 	
 	
 	
+	/**
+	 * Méthode permettant de vérifier que la sélection de carte effectuée par le joueur est juste et cohérente.
+	 * @param liste
+	 * @return un boolean vrai ou faux
+	 */
 	public boolean verifierSelection(ArrayList<Carte> liste){
 		
 		int nbCarte = liste.size();
 		if (nbCarte ==0 || nbCarte>3) {
-			//System.out.println("pb1");
 			return false;
 			
 		}
@@ -354,16 +375,20 @@ public class Partie extends Observable{
 			
 			if(compteur==nbCarte) return true;
 			else {
-				//System.out.println("pb2");
-
 				return false;
 			}
 		}
-		
 		else return true;
 		
 	}
 	
+	/**
+	 * Méthode permettant de vérifier la sélection de carte d'un joueur lors de l'échange de carte en début de partie.
+	 * En effet, la sélection doit être cohérente vis à vis des règles du jeu. On n'autorise pas un échange faux.
+	 * 
+	 * @param liste
+	 * @return un boolean vrai ou faux
+	 */
 	public boolean verifierSelectionEchange(ArrayList<Carte> liste){
 		
 		if (liste.size()==3 ) return true;
