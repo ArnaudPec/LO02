@@ -31,6 +31,10 @@ public class InfoPartiePanel extends JPanel{
 		this.add(sp);
 	}
 
+	/**
+	 * Méthode récupérant les information actuelles sur l'état de la partie et générant un contenu html qui sera affiché
+	 * @return un contenu html sous forme de String
+	 */
 	private String genererInfoPartie(){
 		
 		StringBuffer sb = new StringBuffer();

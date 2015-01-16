@@ -8,6 +8,10 @@ import fr.utt.lo02.joueur.IaEquilibree;
 import fr.utt.lo02.joueur.IaOffensive;
 import fr.utt.lo02.partie.Partie;
 
+/**
+ * Objet permettant l'initialisation d'un affichage en console
+ *
+ */
 public class VueConsole {
 
 	private Partie partie;
@@ -16,7 +20,6 @@ public class VueConsole {
 	public VueConsole() {
 		
 		this.partie = Partie.getInstancePartie();
-		//this.partie.initialisationPartie(this.partie);
 		this.interfaceAjouterJoueur();
 		this.partie.getPioche().melanger();
 		this.partie.getPioche().distribuerCarte(this.partie);

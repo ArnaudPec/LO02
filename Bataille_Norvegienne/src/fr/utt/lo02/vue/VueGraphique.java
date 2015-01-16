@@ -24,6 +24,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import fr.utt.lo02.joueur.Strategie;
 import fr.utt.lo02.partie.Controleur;
 import fr.utt.lo02.partie.Partie;
 
@@ -76,6 +77,9 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		return this.container;
 	}
 
+	/** Mééthode de gestion des événements, associe un événement (clic) à une action
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == this.itemQuitter){
 			System.exit(0);
@@ -94,6 +98,9 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		}
 	}
 
+	/**
+	 * Méthode de gestion du bouton envoyer
+	 */
 	public void actionEnvoyer() {
 		
 		boolean envoyer = this.controleur.envoyerSelection();
@@ -101,6 +108,9 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		this.dessinerJeu();
 	}
 
+	/**
+	 * Méthode permettant l'initialisation de la partie : ajouter les joueurs, dessiner le jeu
+	 */
 	private void initialiserPartie() {
 		this.ajouterJoueurs();
 		if(this.partie.getNbJoueurs()>5)this.partie.getPioche().ajouterUnSecondJeuDeCarte();
@@ -113,6 +123,9 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		
 	}
 
+	/**
+	 * Méthode permettant l'ajout et la configuration des joueurs dans la partie
+	 */
 	public void ajouterJoueurs() {
 		
 		int nbJoueur = 0;
@@ -142,6 +155,10 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		}
 	}
 
+	/**
+	 * Méthode permettant graphiquement le choix d'un joueur dans le cas d'une pose d'un as
+	 * @return le numéro du joueur choisi
+	 */
 	public int choisirJoueur(){
 
 		String[] listeJoueur = this.partie.getListeNomsJoueurs();
@@ -169,6 +186,10 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		return this.partie.getJoueurInt(joueurChoisi);
 	}
 	
+	/**
+	 * Méthode permettant l'échange des cartes en début de partie, créé un objet de type EchangerCarteFrame.
+	 * @see EchangerCarteFrame
+	 */
 	public void changerCartes(){
 		 int reponse = JOptionPane.showConfirmDialog(null, "Souhaitez vous échanger vos cartes ?", "Echanger cartes", JOptionPane.YES_NO_OPTION);
 	        if (reponse == JOptionPane.YES_OPTION) {
@@ -178,6 +199,9 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 	        }
 	}
 
+	/**
+	 *  Méthode de gestion de l'item Apropos. Affichage d'information.
+	 */
 	public void afficherApropos() {
 		
 		JEditorPane ep = new JEditorPane(
@@ -190,6 +214,9 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		JOptionPane.showMessageDialog(this.window, sp, "A propos", JOptionPane.INFORMATION_MESSAGE);	
 	}
 
+	/**
+	 *  Méthode de gestion de l'item Règles. Affichage des règles du jeu.
+	 */
 	public void afficherRegles() {
 		File f = new File("ressources/regles.html");
 		
@@ -208,6 +235,11 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		}		
 	}
 
+	/**
+	 * Méthode permettant de charger en mémoire la matrice contenant les images des cartes du jeu.
+	 * Appelée une seule fois en début de programme. La matrice est stockée pour ne pas ralentir l'éxecution à chaque
+	 * affichage de carte.
+	 */
 	public void initialiserMatriceCarte(){
 		try {
 			this.matriceCarte = ImageIO.read(new File("ressources/cards.jpg"));
@@ -216,6 +248,9 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 		}
 	}
 	
+	/**
+	 * Méthode permettant l'initialisation de la fenêtre du jeu et des éléments qui y sont contenus
+	 */
 	public void initialiserFenetre(){
 		
 				// Fenêtre
@@ -254,6 +289,10 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 				
 	}
 
+	/**
+	 * Méthode permettant de dessiner le contenu du jeu qui évolue à chaque tour. Le tapis, la main du joueur et les
+	 * informations de partie
+	 */
 	public void dessinerJeu(){
 		
 		this.initialiserFenetre();
@@ -277,26 +316,26 @@ public class VueGraphique extends JFrame implements Observer, ActionListener {
 	}
 
 	
+	/**
+	 * Notification de victoire
+	 */
 	public void afficherVictoire(){
 		JOptionPane.showMessageDialog(this.window, "Vous avez gagné !", "Victoire", JOptionPane.INFORMATION_MESSAGE);
 		System.exit(0);
 	}
 	
+	/**
+	 * Notification de défaite
+	 */
 	public void afficherDefaite(){
 		JOptionPane.showMessageDialog(this.window, "Vous avez perdu !", "Defaire", JOptionPane.INFORMATION_MESSAGE);
 		System.exit(0);
 	}
 	
+	/**
+	 * Notification de prise de tapis
+	 */
 	public void notifierPriseTapis(){
 		JOptionPane.showMessageDialog(this.window, "Vous ne pouvez pas jouer,vous ramassez le tapis !", "Cocogne", JOptionPane.INFORMATION_MESSAGE);
 	}
 }
-
-//	public void changerBouton() {
-//		if(this.envoyer.isVisible())
-//		{
-//			this.envoyer.setVisible(false);
-//		}else{
-//			this.envoyer.setVisible(true);
-//		}
-//	}

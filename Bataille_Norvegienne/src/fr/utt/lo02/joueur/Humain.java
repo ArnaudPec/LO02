@@ -174,8 +174,13 @@ public class Humain extends Joueur {
 	}
 
 
+	/** Méthode permettant de choisir les cartes à jouer. Prend un ArrayList en paramètre. Pas de vérification de cohérence
+	 * des choix.
+	 * @param listeCartesSelectionnees
+	 * @return
+	 */
 	public Carte[] choisirCarteAJouer(ArrayList<Carte> listeCartesSelectionnees) {
-
+		
 		int nbCarte = listeCartesSelectionnees.size();
 		Carte[] listeCartes = new Carte[nbCarte];
 		Carte carte = listeCartesSelectionnees.get(0);

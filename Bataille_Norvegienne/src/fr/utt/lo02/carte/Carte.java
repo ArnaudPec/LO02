@@ -255,8 +255,6 @@ public class Carte extends Observable{
 		
 		if (cartePrecedente == null)return  true;
 		else if (this.valeur == 2)return  true;
-//		else if (cartePrecedente.getValeur() == 8 && this.valeur != 2)
-//			posable =  false;
 		else if (cartePrecedente.getValeur() == 14 && this.valeur == 14)return true;
 		else if (cartePrecedente.getValeur() == 7 && this.valeur <= 7)return  true;
 		else if (cartePrecedente.getValeur() == 7 && this.valeur > 7)return  false;

@@ -82,12 +82,18 @@ public class EchangerCarteFrame extends JFrame implements ActionListener {
 		}
 	}
 
+	/**  Méthode de gestion des événements
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == this.envoyer){
 			this.actionEnvoyer();
 		}
 	}
 	
+	/**
+	 * Gestion de l'action du bouton envoyer
+	 */
 	public void actionEnvoyer() {
 		
 		boolean envoyer = this.controleur.envoyerSelectionEchange();
@@ -105,6 +111,9 @@ public class EchangerCarteFrame extends JFrame implements ActionListener {
 		}
 	}
 	
+	/**
+	 * Méthode permettant de redessiner la fenêtre d'échange des cartes
+	 */
 	public void dessiner(){
 		this.ajouterCartesJoueur();
 		this.jsp = new JScrollPane(this.cartes);

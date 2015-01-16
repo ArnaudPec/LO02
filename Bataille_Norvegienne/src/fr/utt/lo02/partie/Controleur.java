@@ -203,14 +203,4 @@ public class Controleur{
 			}
 		}
 	}
-
-
-//	public void resetPartie(){
-//		this.partie.reset();
-//		this.vueGraphique=new VueGraphique(this.partie, this);
-//	}
-
-//	public void boutonJouer(){
-//		this.vueGraphique.changerBouton();
-//	}
 }

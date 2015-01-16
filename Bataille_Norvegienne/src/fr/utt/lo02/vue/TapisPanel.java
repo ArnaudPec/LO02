@@ -10,6 +10,10 @@ import javax.swing.JPanel;
 import fr.utt.lo02.carte.Carte;
 import fr.utt.lo02.partie.Controleur;
 
+/**
+ * Classe en charge de l'affichage du tapis du jeu de carte
+ *
+ */
 public class TapisPanel extends JPanel implements Observer{
 
 	private static final long serialVersionUID = 1L;
@@ -30,7 +34,6 @@ public class TapisPanel extends JPanel implements Observer{
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
 		
 	}
 	

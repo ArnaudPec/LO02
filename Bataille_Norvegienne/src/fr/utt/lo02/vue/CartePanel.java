@@ -144,7 +144,7 @@ public class CartePanel extends ImagePanel implements Observer {
 	}
 	
 	/**
-	 * Méthode permettant de redimensionner la carte
+	 * Méthode permettant de redimensionner la carte pour l'adapter aux différents affichages selon le contexte
 	 * @param img 
 	 * @param cf
 	 * @return
